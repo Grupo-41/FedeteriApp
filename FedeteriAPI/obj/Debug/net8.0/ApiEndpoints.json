@@ -122,6 +122,67 @@
     ]
   },
   {
+    "ContainingType": "FedeteriAPI.Controllers.ArticulosController",
+    "Method": "GetArticulosATasar",
+    "RelativePath": "api/Articulos/a-tasar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.ArticuloOut, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.ArticulosController",
+    "Method": "GetArticulosTasados",
+    "RelativePath": "api/Articulos/tasados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.ArticuloOut, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.ArticulosController",
+    "Method": "TasarArticulo",
+    "RelativePath": "api/Articulos/tasar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "articuloID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "precio",
+        "Type": "System.Double",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FedeteriAPI.Controllers.EmpleadosController",
     "Method": "Get",
     "RelativePath": "api/Empleados",

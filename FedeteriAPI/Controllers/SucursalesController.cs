@@ -10,18 +10,30 @@ namespace FedeteriAPI.Controllers
     [ApiController]
     public class SucursalesController : ControllerBase
     {
-        // GET: api/<SucursalesController>
+        /// <summary>
+        /// Retorna todas las sucursales del sistema
+        /// </summary>
         [HttpGet]
         public IEnumerable<Sucursal> Get()
         {
             return SucursalesService.GetSucursals();
         }
 
-        // GET api/<SucursalesController>/5
+        /// <summary>
+        /// Retorna una sucursal según su ID
+        /// </summary>
+        /// <param name="id">ID de la sucursal</param>
+        /// <returns code="200">Encontró la sucursal</returns>
+        /// <returns code="404">Sucursal no encontrada</returns>
         [HttpGet("{id}")]
-        public Sucursal Get(int id)
+        public ActionResult<Sucursal> Get(int id)
         {
-            return SucursalesService.GetSucursal(id);
+            Sucursal s = SucursalesService.GetSucursal(id);
+
+            if (s == null)
+                return NotFound();
+
+            return Ok(s);
         }
     }
 }

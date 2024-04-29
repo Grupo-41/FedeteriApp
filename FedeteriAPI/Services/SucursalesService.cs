@@ -21,7 +21,7 @@ namespace FedeteriAPI.Services
 
         public static Sucursal GetSucursal(int id)
         {
-            return Sucursales[id];
+            return Sucursales.FirstOrDefault(x => x.Id == id);
         }
     }
 }

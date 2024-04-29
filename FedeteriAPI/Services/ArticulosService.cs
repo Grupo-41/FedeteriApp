@@ -53,5 +53,29 @@ namespace FedeteriAPI.Services
         {
             return Articulos.FirstOrDefault(x => x.Id == id);
         }
+
+        public static IEnumerable<ArticuloOut> GetArticulosTasados()
+        {
+            return Articulos.FindAll(x => x.Tasado);
+        }
+
+        public static IEnumerable<ArticuloOut> GetArticulosATasar()
+        {
+            return Articulos.FindAll(x => !x.Tasado);
+        }
+
+        public static bool TasarArticulo(int articuloID, double precio)
+        {
+            ArticuloOut aTasar = GetArticulo(articuloID);
+
+            if (aTasar == null)
+                return false;
+            else
+            {
+                aTasar.PrecioEstimado = precio;
+                aTasar.Tasado = true;
+                return true;
+            }
+        }
     }
 }

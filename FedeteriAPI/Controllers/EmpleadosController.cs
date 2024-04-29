@@ -8,7 +8,10 @@ namespace FedeteriAPI.Controllers
     [ApiController]
     public class EmpleadosController : ControllerBase
     {
-        // GET: api/<EmpleadosController>
+        /// <summary>
+        /// Retorna todos los empleados registrados en el sistema
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<string> Get()
         {

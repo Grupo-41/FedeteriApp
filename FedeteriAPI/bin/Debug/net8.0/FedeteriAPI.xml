@@ -9,6 +9,23 @@
             Retorna todos los artículos
             </summary>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosTasados">
+            <summary>
+            Retorna los artículos que ya fueron tasados (listos para publicar)
+            </summary>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosATasar">
+            <summary>
+            Retorna los artículos que aún no fueron tasados
+            </summary>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.TasarArticulo(System.Int32,System.Double)">
+            <summary>
+            Endpoint para tasar un artículo
+            </summary>
+            <param name="articuloID">ID del artículo a tasar</param>
+            <param name="precio">Precio tasado</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticuloById(System.Int32)">
             <summary>
             Busca un artículo por su ID
@@ -36,6 +53,25 @@
             Borra un artículo del sistema
             </summary>
             <param name="id">ID del artículo</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.EmpleadosController.Get">
+            <summary>
+            Retorna todos los empleados registrados en el sistema
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.SucursalesController.Get">
+            <summary>
+            Retorna todas las sucursales del sistema
+            </summary>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.SucursalesController.Get(System.Int32)">
+            <summary>
+            Retorna una sucursal según su ID
+            </summary>
+            <param name="id">ID de la sucursal</param>
+            <returns code="200">Encontró la sucursal</returns>
+            <returns code="404">Sucursal no encontrada</returns>
         </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.Get">
             <summary>

@@ -20,6 +20,38 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna los artículos que ya fueron tasados (listos para publicar)
+        /// </summary>
+        [HttpGet("tasados")]
+        public IEnumerable<ArticuloOut> GetArticulosTasados()
+        {
+            return ArticulosService.GetArticulosTasados();
+        }
+
+        /// <summary>
+        /// Retorna los artículos que aún no fueron tasados
+        /// </summary>
+        [HttpGet("a-tasar")]
+        public IEnumerable<ArticuloOut> GetArticulosATasar()
+        {
+            return ArticulosService.GetArticulosATasar();
+        }
+
+        /// <summary>
+        /// Endpoint para tasar un artículo
+        /// </summary>
+        /// <param name="articuloID">ID del artículo a tasar</param>
+        /// <param name="precio">Precio tasado</param>
+        [HttpPut("tasar")]
+        public ActionResult TasarArticulo(int articuloID, double precio)
+        {
+            if (ArticulosService.TasarArticulo(articuloID, precio))
+                return Ok();
+
+            return NotFound();
+        }
+
+        /// <summary>
         /// Busca un artículo por su ID
         /// </summary>
         /// <param name="id">ID del artículo</param>
