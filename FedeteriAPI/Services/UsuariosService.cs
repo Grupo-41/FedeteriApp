@@ -8,12 +8,19 @@ namespace FedeteriAPI.Services
     public class UsuariosService
     {
         static List<UsuarioIn> Usuarios = new List<UsuarioIn>();
+        static int ActualID = 0;
 
         public static void WriteAll() => FilesService<UsuarioIn>.WriteAll(Paths.FILE_USUARIOS, Usuarios);
-        public static async Task ReadAllAsync() => Usuarios = await FilesService<UsuarioIn>.ReadAllAsync(Paths.FILE_USUARIOS);
+        public static async Task ReadAllAsync() {
+            Usuarios = await FilesService<UsuarioIn>.ReadAllAsync(Paths.FILE_USUARIOS);
+
+            if(Usuarios.Count > 0)
+                ActualID = Usuarios.Max(x => x.Id) + 1;
+        }
 
         public static void Add(UsuarioIn usuario)
         {
+            usuario.Id = ActualID++;
             Usuarios.Add(usuario);
             WriteAll();
         }

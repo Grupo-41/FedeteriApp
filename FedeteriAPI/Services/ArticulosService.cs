@@ -10,8 +10,13 @@ namespace FedeteriAPI.Services
         static int ActualID = 0;
 
         public static void WriteAll() => FilesService<ArticuloOut>.WriteAll(Paths.FILE_ARTICULOS, Articulos);
-        public static async Task ReadAllAsync() => Articulos = await FilesService<ArticuloOut>.ReadAllAsync(Paths.FILE_ARTICULOS);
+        public static async Task ReadAllAsync()
+        {
+            Articulos = await FilesService<ArticuloOut>.ReadAllAsync(Paths.FILE_ARTICULOS);
 
+            if(Articulos.Count > 0)
+                ActualID = Articulos.Max(x => x.Id) + 1;
+        }
         public static List<ArticuloOut> GetArticulos()
         {
             return Articulos;
