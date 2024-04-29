@@ -20,5 +20,20 @@ namespace FedeteriAPI.Services
         {
             return Usuarios.FirstOrDefault(x => x.Id == id);
         }
+
+        public static Articulo GetArticulo(int userId, int articuloId)
+        {
+            Usuario user = Usuarios.FirstOrDefault(x => x.Id == userId);
+
+            return user == null ? null : user.GetArticulo(articuloId);
+        }
+
+        public static void AddArticulo(int userId, Articulo articulo)
+        {
+            int index = Usuarios.FindIndex(x => x.Id == userId);
+
+            if(index != -1)
+                Usuarios[index].AddArticulo(articulo);
+        }
     }
 }
