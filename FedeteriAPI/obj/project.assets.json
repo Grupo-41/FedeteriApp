@@ -433,11 +433,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Weby\\source\\repos\\FedeteriAPI\\FedeteriAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
       "projectName": "FedeteriAPI",
-      "projectPath": "C:\\Users\\Weby\\source\\repos\\FedeteriAPI\\FedeteriAPI.csproj",
+      "projectPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
       "packagesPath": "C:\\Users\\Weby\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Weby\\source\\repos\\FedeteriAPI\\obj\\",
+      "outputPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Weby\\AppData\\Roaming\\NuGet\\NuGet.Config",
