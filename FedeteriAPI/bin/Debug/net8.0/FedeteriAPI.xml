@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FedeteriAPI</name>
+    </assembly>
+    <members>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.Get">
+            <summary>
+            Retorna todos los artículos
+            </summary>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticuloById(System.Int32)">
+            <summary>
+            Busca un artículo por su ID
+            </summary>
+            <param name="id">ID del artículo</param>
+            <returns code="200">Se encontró el artículo buscado</returns>
+            <returns code="404">No se encontró el artículo buscado</returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.PostArticulo(System.Int32,FedeteriAPI.Models.ArticuloIn)">
+            <summary>
+            Le asigna un usuario a un artículo y lo agrega en el sistema.
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <param name="articulo">Objeto artículo</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.UpdateArticulo(System.Int32,FedeteriAPI.Models.ArticuloIn)">
+            <summary>
+            Modifica un artículo ya registrado en el sistema
+            </summary>
+            <param name="id">ID del artículo</param>
+            <param name="articulo">Objeto artículo con campos actualizados</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.DeleteArticulo(System.Int32)">
+            <summary>
+            Borra un artículo del sistema
+            </summary>
+            <param name="id">ID del artículo</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.Get">
+            <summary>
+            Retorna todos los usuarios del sistema
+            </summary>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.Get(System.Int32)">
+            <summary>
+            Permite buscar un usuario según su ID
+            </summary>
+            <returns code="200">Se retornó el usuario correspondiente al ID</returns>
+            <returns code="404">No se encontró el usuario correspondiente</returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetArticulosByUsuario(System.Int32)">
+            <summary>
+            Retorna los artículos de un usuario en específico
+            </summary>
+            <param name="userId">ID del usuario</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.PostUsuario(FedeteriAPI.Models.UsuarioIn)">
+            <summary>
+            Registra un usuario en el sistema, recibe un objeto Usuario
+            </summary>
+            <param name="usuario">Objeto usuario</param>
+        </member>
+    </members>
+</doc>
