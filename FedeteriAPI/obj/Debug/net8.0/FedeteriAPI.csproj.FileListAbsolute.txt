@@ -31,3 +31,5 @@ C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\refint\Fedet
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.pdb
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.genruntimeconfig.cache
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\ref\FedeteriAPI.dll
+C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\FedeteriAPI.xml
+C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.xml

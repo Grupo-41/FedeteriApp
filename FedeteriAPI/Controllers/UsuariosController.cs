@@ -10,37 +10,50 @@ namespace FedeteriAPI.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        // GET: api/<UsuariosController>
+        /// <summary>
+        /// Retorna todos los usuarios del sistema
+        /// </summary>
         [HttpGet]
-        public IEnumerable<Usuario> Get()
+        public IEnumerable<UsuarioIn> Get()
         {
             return UsuariosService.GetUsuarios();
         }
 
-        // GET api/<UsuariosController>/5
+        /// <summary>
+        /// Permite buscar un usuario según su ID
+        /// </summary>
+        /// <returns code="200">Se retornó el usuario correspondiente al ID</returns>
+        /// <returns code="404">No se encontró el usuario correspondiente</returns>
         [HttpGet("{id}")]
-        public Usuario Get(int id)
+        public ActionResult<UsuarioIn> Get(int id)
         {
-            return UsuariosService.GetUsuarioByID(id);
+            UsuarioIn usuario = UsuariosService.GetUsuarioByID(id);
+
+            if (usuario == null)
+                return NotFound();
+
+            return Ok(usuario);
         }
 
+        /// <summary>
+        /// Retorna los artículos de un usuario en específico
+        /// </summary>
+        /// <param name="userId">ID del usuario</param>
+        [HttpGet("{userId}/articulos")]
+        public List<ArticuloOut> GetArticulosByUsuario(int userId)
+        {
+            return ArticulosService.GetArticulosByUsuario(userId);
+        }
+
+        /// <summary>
+        /// Registra un usuario en el sistema, recibe un objeto Usuario
+        /// </summary>
+        /// <param name="usuario">Objeto usuario</param>
         // POST api/<UsuariosController>
-        [HttpPost("{id}/articulos")]
-        public void Post(int id, [FromBody] Articulo articulo)
+        [HttpPost("")]
+        public void PostUsuario([FromBody] UsuarioIn usuario)
         {
-            UsuariosService.AddArticulo(id, articulo);
-        }
-
-        // PUT api/<UsuariosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UsuariosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            UsuariosService.Add(usuario);
         }
     }
 }

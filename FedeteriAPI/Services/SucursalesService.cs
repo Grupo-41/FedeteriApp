@@ -4,7 +4,7 @@ namespace FedeteriAPI.Services
 {
     public static class SucursalesService
     {
-        static List<Sucursal> Sucursals = new List<Sucursal>()
+        static List<Sucursal> Sucursales = new List<Sucursal>()
         {
             new Sucursal() { Id = 0, Direccion = "Coronel Olmedo 296 Piso 2 Depto. 6", Nombre = "Fedeteria Coronel"},
             new Sucursal() { Id = 1, Direccion = "Iturraspe 1029", Nombre = "Fedeteria Iturraspe"},
@@ -16,12 +16,12 @@ namespace FedeteriAPI.Services
 
         public static List<Sucursal> GetSucursals()
         {
-            return Sucursals;
+            return Sucursales;
         }
 
         public static Sucursal GetSucursal(int id)
         {
-            return Sucursals[id];
+            return Sucursales[id];
         }
     }
 }
