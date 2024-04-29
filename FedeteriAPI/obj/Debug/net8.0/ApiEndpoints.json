@@ -438,5 +438,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "PutCodigoRecuperacion",
+    "RelativePath": "api/Usuarios/recuperar/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

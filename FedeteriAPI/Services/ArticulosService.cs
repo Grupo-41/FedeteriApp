@@ -1,4 +1,6 @@
-﻿using FedeteriAPI.Models;
+﻿using CinemaNightAPI.Utils;
+using FedeteriAPI.Models;
+using static FedeteriAPI.Utils.Constants;
 
 namespace FedeteriAPI.Services
 {
@@ -6,6 +8,9 @@ namespace FedeteriAPI.Services
     {
         static List<ArticuloOut> Articulos = new List<ArticuloOut>();
         static int ActualID = 0;
+
+        public static void WriteAll() => FilesService<ArticuloOut>.WriteAll(Paths.FILE_ARTICULOS, Articulos);
+        public static async Task ReadAllAsync() => Articulos = await FilesService<ArticuloOut>.ReadAllAsync(Paths.FILE_ARTICULOS);
 
         public static List<ArticuloOut> GetArticulos()
         {
@@ -21,6 +26,7 @@ namespace FedeteriAPI.Services
             };
 
             Articulos.Add(nuevoArticulo);
+            WriteAll();
         }
 
         public static List<ArticuloOut> GetArticulosByUsuario(int userId)
@@ -38,6 +44,8 @@ namespace FedeteriAPI.Services
                 toUpdate.Estado = articulo.Estado;
                 toUpdate.ImagenURLs = articulo.ImagenURLs;
                 toUpdate.PrecioEstimado = articulo.PrecioEstimado;
+
+                WriteAll();
             }
         }
 
@@ -47,6 +55,8 @@ namespace FedeteriAPI.Services
 
             if(index == -1)
                 Articulos.RemoveAt(index);
+
+            WriteAll();
         }
 
         public static ArticuloOut GetArticulo(int id)
@@ -74,6 +84,7 @@ namespace FedeteriAPI.Services
             {
                 aTasar.PrecioEstimado = precio;
                 aTasar.Tasado = true;
+                WriteAll();
                 return true;
             }
         }

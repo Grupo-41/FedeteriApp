@@ -1,3 +1,4 @@
+using FedeteriAPI.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+await UsuariosService.ReadAllAsync();
+await ArticulosService.ReadAllAsync();
+await EmpleadosService.ReadAllAsync();
 
 // Configure the HTTP request pipeline.
 

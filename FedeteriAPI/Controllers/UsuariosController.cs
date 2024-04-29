@@ -55,5 +55,11 @@ namespace FedeteriAPI.Controllers
         {
             UsuariosService.Add(usuario);
         }
+
+        [HttpPost("recuperar/{userId}")]
+        public async Task PutCodigoRecuperacion(int userId)
+        {
+            await UsuariosService.EnviarCodigoRecuperacionAsync(userId);
+        }
     }
 }
