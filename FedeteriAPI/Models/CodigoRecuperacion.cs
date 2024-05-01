@@ -2,7 +2,7 @@
 {
     public class CodigoRecuperacion
     {
-        public string Codigo;
-        public int UserID;
+        public string Codigo { get; set; }
+        public string UserMail { get; set; }
     }
 }

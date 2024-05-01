@@ -56,10 +56,37 @@ namespace FedeteriAPI.Controllers
             UsuariosService.Add(usuario);
         }
 
-        [HttpPost("recuperar/{userId}")]
-        public async Task PutCodigoRecuperacion(int userId)
+        /// <summary>
+        /// Actualiza la contraseña del usuario, si este existe. Retorna True si se cambió con éxito. False en cc.
+        /// </summary>
+        /// <param name="usuarioPass">Objeto UsuarioPass (ID del usuario, Contraseña actual, Contraseña nueva)</param>
+        /// <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
+        [HttpPut("cambiar-contrasena")]
+        public bool PutPassword([FromBody] UsuarioPass usuarioPass)
         {
-            await UsuariosService.EnviarCodigoRecuperacionAsync(userId);
+            return UsuariosService.ChangePassword(usuarioPass);
+        }
+
+        /// <summary>
+        /// Genera un código de recuperación de cuenta y se lo envía por email al usuario
+        /// </summary>
+        /// <param name="userMail">Mail del usuario a recuperar</param>
+        [HttpPost("recuperacion/{userMail}")]
+        public async Task PutCodigoRecuperacion(string userMail)
+        {
+            await UsuariosService.EnviarCodigoRecuperacionAsync(userMail);
+        }
+
+        /// <summary>
+        /// Valida el código de recuperación de un usuario, devolviendo True (en caso de ser correcto) o False (cc)
+        /// </summary>
+        /// <param name="userMail">Mail del usuario</param>
+        /// <param name="codigo">Codigo a validar</param>
+        /// <returns></returns>
+        [HttpGet("recuperacion/{userMail}/validar/{codigo}")]
+        public bool GetValidacion(string userMail, string codigo)
+        {
+            return CodigosService.ValidarCodigo(userMail, codigo);
         }
     }
 }

@@ -34,3 +34,4 @@ C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\ref\Fedeteri
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\FedeteriAPI.xml
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.xml
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\usuarios.json
+C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\codigos.json

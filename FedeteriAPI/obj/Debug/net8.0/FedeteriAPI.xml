@@ -97,5 +97,26 @@
             </summary>
             <param name="usuario">Objeto usuario</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutPassword(FedeteriAPI.Models.UsuarioPass)">
+            <summary>
+            Actualiza la contraseña del usuario, si este existe. Retorna True si se cambió con éxito. False en cc.
+            </summary>
+            <param name="usuarioPass">Objeto UsuarioPass (ID del usuario, Contraseña actual, Contraseña nueva)</param>
+            <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutCodigoRecuperacion(System.String)">
+            <summary>
+            Genera un código de recuperación de cuenta y se lo envía por email al usuario
+            </summary>
+            <param name="userMail">Mail del usuario a recuperar</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetValidacion(System.String,System.String)">
+            <summary>
+            Valida el código de recuperación de un usuario, devolviendo True (en caso de ser correcto) o False (cc)
+            </summary>
+            <param name="userMail">Mail del usuario</param>
+            <param name="codigo">Codigo a validar</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

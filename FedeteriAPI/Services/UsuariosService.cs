@@ -40,10 +40,24 @@ namespace FedeteriAPI.Services
             return ArticulosService.GetArticulosByUsuario(userId);
         }
 
-        public static async Task EnviarCodigoRecuperacionAsync(int userId)
+        public static async Task<bool> EnviarCodigoRecuperacionAsync(string userMail)
         {
-            string codigo = CodigosService.GenerarCodigo(userId);
-            await CodigosService.EnviarCodigo(userId, codigo);
+            string codigo = CodigosService.GenerarCodigo(userMail);
+            if (codigo == null || string.IsNullOrEmpty(codigo))
+                return false;
+
+            await CodigosService.EnviarCodigo(userMail, codigo);
+            return true;
+        }
+
+        public static bool ChangePassword(UsuarioPass usuarioPass)
+        {
+            UsuarioIn toUpdate = Usuarios.FirstOrDefault(x => x.Id == usuarioPass.Id);
+            if (toUpdate == null)
+                return false;
+            
+            toUpdate.Contrasena = usuarioPass.Contrasena;
+            return true;
         }
     }
 }

@@ -17,6 +17,7 @@ namespace FedeteriAPI.Services
             if(Articulos.Count > 0)
                 ActualID = Articulos.Max(x => x.Id) + 1;
         }
+
         public static List<ArticuloOut> GetArticulos()
         {
             return Articulos;

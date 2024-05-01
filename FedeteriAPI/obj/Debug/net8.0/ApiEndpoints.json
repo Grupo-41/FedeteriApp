@@ -441,15 +441,41 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "PutPassword",
+    "RelativePath": "api/Usuarios/cambiar-contrasena",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioPass",
+        "Type": "FedeteriAPI.Models.UsuarioPass",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
     "Method": "PutCodigoRecuperacion",
-    "RelativePath": "api/Usuarios/recuperar/{userId}",
+    "RelativePath": "api/Usuarios/recuperacion/{userMail}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int32",
+        "Name": "userMail",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -457,6 +483,37 @@
       {
         "Type": "System.Void",
         "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "GetValidacion",
+    "RelativePath": "api/Usuarios/recuperacion/{userMail}/validar/{codigo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userMail",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codigo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       }
     ]
