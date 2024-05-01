@@ -60,6 +60,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.EmpleadosController.Get(System.Int32)">
+            <summary>
+            Retorna un empleado según su ID
+            </summary>
+            <param name="id">ID del empleado</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.EmpleadosController.Post(FedeteriAPI.Models.Empleado)">
+            <summary>
+            Agrega un empleado al sistema
+            </summary>
+            <param name="empleado">Objeto empleado (Nombre, Sucursal, Nacimiento)</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.SucursalesController.Get">
             <summary>
             Retorna todas las sucursales del sistema
@@ -96,6 +109,19 @@
             Registra un usuario en el sistema, recibe un objeto Usuario
             </summary>
             <param name="usuario">Objeto usuario</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetListaDeDeseados(System.Int32)">
+            <summary>
+            Retorna la lista de deseos de un usuario
+            </summary>
+            <param name="userId">ID del usuario</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.AddArticuloDeseado(System.Int32,System.String)">
+            <summary>
+            Agrega un artículo a la lista de deseos de un usuario
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <param name="articulo">Nombre del artículo</param>
         </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.PutPassword(FedeteriAPI.Models.UsuarioPass)">
             <summary>

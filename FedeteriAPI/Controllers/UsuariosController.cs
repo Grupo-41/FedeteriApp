@@ -14,7 +14,7 @@ namespace FedeteriAPI.Controllers
         /// Retorna todos los usuarios del sistema
         /// </summary>
         [HttpGet]
-        public IEnumerable<UsuarioIn> Get()
+        public IEnumerable<Usuario> Get()
         {
             return UsuariosService.GetUsuarios();
         }
@@ -25,9 +25,9 @@ namespace FedeteriAPI.Controllers
         /// <returns code="200">Se retornó el usuario correspondiente al ID</returns>
         /// <returns code="404">No se encontró el usuario correspondiente</returns>
         [HttpGet("{id}")]
-        public ActionResult<UsuarioIn> Get(int id)
+        public ActionResult<Usuario> Get(int id)
         {
-            UsuarioIn usuario = UsuariosService.GetUsuarioByID(id);
+            Usuario usuario = UsuariosService.GetUsuarioByID(id);
 
             if (usuario == null)
                 return NotFound();
@@ -49,11 +49,31 @@ namespace FedeteriAPI.Controllers
         /// Registra un usuario en el sistema, recibe un objeto Usuario
         /// </summary>
         /// <param name="usuario">Objeto usuario</param>
-        // POST api/<UsuariosController>
         [HttpPost("")]
         public void PostUsuario([FromBody] UsuarioIn usuario)
         {
             UsuariosService.Add(usuario);
+        }
+
+        /// <summary>
+        /// Retorna la lista de deseos de un usuario
+        /// </summary>
+        /// <param name="userId">ID del usuario</param>
+        [HttpGet("{userId}/deseados")]
+        public IEnumerable<string> GetListaDeDeseados(int userId)
+        {
+            return UsuariosService.GetListaDeDeseos(userId);
+        }
+
+        /// <summary>
+        /// Agrega un artículo a la lista de deseos de un usuario
+        /// </summary>
+        /// <param name="userId">ID del usuario</param>
+        /// <param name="articulo">Nombre del artículo</param>
+        [HttpPost("{userId}/deseados/{articulo}")]
+        public void AddArticuloDeseado(int userId, string articulo)
+        {
+            UsuariosService.AddArticuloDeseado(userId, articulo);
         }
 
         /// <summary>

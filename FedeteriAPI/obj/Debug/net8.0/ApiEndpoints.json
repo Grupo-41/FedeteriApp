@@ -192,7 +192,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.Empleado, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -211,8 +211,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "empleado",
+        "Type": "FedeteriAPI.Models.Empleado",
         "IsRequired": true
       }
     ],
@@ -240,61 +240,12 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "FedeteriAPI.Models.Empleado",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FedeteriAPI.Controllers.EmpleadosController",
-    "Method": "Put",
-    "RelativePath": "api/Empleados/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "value",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FedeteriAPI.Controllers.EmpleadosController",
-    "Method": "Delete",
-    "RelativePath": "api/Empleados/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
         "StatusCode": 200
       }
     ]
@@ -355,7 +306,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.UsuarioIn, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.Usuario, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -403,7 +354,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "FedeteriAPI.Models.UsuarioIn",
+        "Type": "FedeteriAPI.Models.Usuario",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -435,6 +386,59 @@
           "application/json",
           "text/json"
         ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "GetListaDeDeseados",
+    "RelativePath": "api/Usuarios/{userId}/deseados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "AddArticuloDeseado",
+    "RelativePath": "api/Usuarios/{userId}/deseados/{articulo}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "articulo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]

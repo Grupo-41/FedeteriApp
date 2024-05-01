@@ -13,7 +13,7 @@ namespace FedeteriAPI.Services
 
         public static string GenerarCodigo(string userMail)
         {
-            UsuarioIn u = UsuariosService.GetUsuarios().FirstOrDefault(x => x.Email == userMail);
+            Usuario u = UsuariosService.GetUsuarios().FirstOrDefault(x => x.Email == userMail);
 
             if (u == null)
                 return null;
@@ -33,7 +33,7 @@ namespace FedeteriAPI.Services
 
         public static async Task EnviarCodigo(string userMail, string codigo)
         {
-            UsuarioIn usuario = UsuariosService.GetUsuarios().FirstOrDefault(x => x.Email == userMail);
+            Usuario usuario = UsuariosService.GetUsuarios().FirstOrDefault(x => x.Email == userMail);
 
             if (usuario == null)
                 return;

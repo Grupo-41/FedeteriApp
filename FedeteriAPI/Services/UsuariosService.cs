@@ -7,12 +7,12 @@ namespace FedeteriAPI.Services
 {
     public class UsuariosService
     {
-        static List<UsuarioIn> Usuarios = new List<UsuarioIn>();
+        static List<Usuario> Usuarios = new List<Usuario>();
         static int ActualID = 0;
 
-        public static void WriteAll() => FilesService<UsuarioIn>.WriteAll(Paths.FILE_USUARIOS, Usuarios);
+        public static void WriteAll() => FilesService<Usuario>.WriteAll(Paths.FILE_USUARIOS, Usuarios);
         public static async Task ReadAllAsync() {
-            Usuarios = await FilesService<UsuarioIn>.ReadAllAsync(Paths.FILE_USUARIOS);
+            Usuarios = await FilesService<Usuario>.ReadAllAsync(Paths.FILE_USUARIOS);
 
             if(Usuarios.Count > 0)
                 ActualID = Usuarios.Max(x => x.Id) + 1;
@@ -21,16 +21,16 @@ namespace FedeteriAPI.Services
         public static void Add(UsuarioIn usuario)
         {
             usuario.Id = ActualID++;
-            Usuarios.Add(usuario);
+            Usuarios.Add(new Usuario(usuario));
             WriteAll();
         }
 
-        public static List<UsuarioIn> GetUsuarios()
+        public static List<Usuario> GetUsuarios()
         {
             return Usuarios;
         }
 
-        public static UsuarioIn GetUsuarioByID(int id)
+        public static Usuario GetUsuarioByID(int id)
         {
             return Usuarios.FirstOrDefault(x => x.Id == id);
         }
@@ -38,6 +38,16 @@ namespace FedeteriAPI.Services
         public static List<ArticuloOut> GetArticulos(int userId)
         {
             return ArticulosService.GetArticulosByUsuario(userId);
+        }
+
+        public static List<string> GetListaDeDeseos(int id)
+        {
+            return GetUsuarioByID(id).ListaDeDeseos;
+        }
+
+        public static void AddArticuloDeseado(int id, string articulo)
+        {
+            GetUsuarioByID(id).ListaDeDeseos.Add(articulo);
         }
 
         public static async Task<bool> EnviarCodigoRecuperacionAsync(string userMail)
@@ -52,8 +62,8 @@ namespace FedeteriAPI.Services
 
         public static bool ChangePassword(UsuarioPass usuarioPass)
         {
-            UsuarioIn toUpdate = Usuarios.FirstOrDefault(x => x.Id == usuarioPass.Id);
-            if (toUpdate == null)
+            Usuario toUpdate = Usuarios.FirstOrDefault(x => x.Id == usuarioPass.Id);
+            if (toUpdate == null || toUpdate.Contrasena != usuarioPass.ContrasenaActual)
                 return false;
             
             toUpdate.Contrasena = usuarioPass.Contrasena;

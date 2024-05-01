@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FedeteriAPI.Models;
+using FedeteriAPI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,34 +15,31 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Empleado> Get()
         {
-            return new string[] { "value1", "value2" };
+            return EmpleadosService.GetEmpleados();
         }
 
+        /// <summary>
+        /// Retorna un empleado según su ID
+        /// </summary>
+        /// <param name="id">ID del empleado</param>
+        /// <returns></returns>
         // GET api/<EmpleadosController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Empleado Get(int id)
         {
-            return "value";
+            return EmpleadosService.GetEmpleadoByID(id);
         }
 
-        // POST api/<EmpleadosController>
+        /// <summary>
+        /// Agrega un empleado al sistema
+        /// </summary>
+        /// <param name="empleado">Objeto empleado (Nombre, Sucursal, Nacimiento)</param>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Empleado empleado)
         {
-        }
-
-        // PUT api/<EmpleadosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<EmpleadosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            EmpleadosService.AddEmpleado(empleado);
         }
     }
 }
