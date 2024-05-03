@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\",
   "Documents": [
     {
@@ -66,6 +67,10 @@
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:fedeteriapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
+=======
+  "WorkspaceRootPath": "E:\\Escritorio\\FedeteriApp\\FedeteriApp\\FedeteriAPI\\",
+  "Documents": [],
+>>>>>>> e4528547e4ed4343bb5e94a7bc6de5033efa43f1
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -73,7 +78,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 6,
+=======
+          "SelectedChildIndex": -1,
+>>>>>>> e4528547e4ed4343bb5e94a7bc6de5033efa43f1
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,6 +107,7 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+<<<<<<< HEAD
             },
             {
               "$type": "Document",
@@ -293,6 +303,8 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-04-29T17:36:33.898Z",
               "EditorCaption": ""
+=======
+>>>>>>> e4528547e4ed4343bb5e94a7bc6de5033efa43f1
             }
           ]
         }
