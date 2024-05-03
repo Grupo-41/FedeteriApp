@@ -428,19 +428,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Weby\\.nuget\\packages\\": {}
+    "C:\\Users\\usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
+      "projectUniqueName": "E:\\Escritorio\\FedeteriApp\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
       "projectName": "FedeteriAPI",
-      "projectPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
-      "packagesPath": "C:\\Users\\Weby\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\obj\\",
+      "projectPath": "E:\\Escritorio\\FedeteriApp\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
+      "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
+      "outputPath": "E:\\Escritorio\\FedeteriApp\\FedeteriApp\\FedeteriAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Weby\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -495,7 +495,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
