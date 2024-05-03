@@ -25,6 +25,8 @@ await CodigosService.ReadAllAsync();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(x => true).WithOrigins(@"http://localhost:3000"));
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
