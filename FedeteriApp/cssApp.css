@@ -23,7 +23,7 @@ h2{
 }
 
 header{
-  background-image: url("Logos/Fedeteria_Horizontal.png");
+  background-image: url("/Fedeteria_Horizontal.png");
   background-size: cover;
   background-position: center;
   padding: 6% 0;
