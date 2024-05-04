@@ -17,7 +17,6 @@ var app = builder.Build();
 
 await UsuariosService.ReadAllAsync();
 await ArticulosService.ReadAllAsync();
-await EmpleadosService.ReadAllAsync();
 await CodigosService.ReadAllAsync();
 
 // Configure the HTTP request pipeline.
@@ -25,7 +24,7 @@ await CodigosService.ReadAllAsync();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(x => true).WithOrigins(@"http://localhost:3000"));
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(x => true).WithOrigins([@"http://localhost:3000", @"http://localhost:*"]));
 
 app.UseHttpsRedirection();
 

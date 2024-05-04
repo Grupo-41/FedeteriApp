@@ -67,7 +67,7 @@
             <param name="id">ID del empleado</param>
             <returns></returns>
         </member>
-        <member name="M:FedeteriAPI.Controllers.EmpleadosController.Post(FedeteriAPI.Models.Empleado)">
+        <member name="M:FedeteriAPI.Controllers.EmpleadosController.RegistrarEmpleado(FedeteriAPI.Models.UsuarioIn)">
             <summary>
             Agrega un empleado al sistema
             </summary>
@@ -104,11 +104,17 @@
             </summary>
             <param name="userId">ID del usuario</param>
         </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.PostUsuario(FedeteriAPI.Models.UsuarioIn)">
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.RegistrarUsuario(FedeteriAPI.Models.UsuarioIn)">
             <summary>
             Registra un usuario en el sistema, recibe un objeto Usuario
             </summary>
             <param name="usuario">Objeto usuario</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.ModificarUsuario(FedeteriAPI.Models.DatosPersonalesUsuario)">
+            <summary>
+            Permite modificar los datos personales de un usuario (no recomiendo modificar la contraseña mediante este endpoint)
+            </summary>
+            <param name="usuario">Objeto de datos personales</param>
         </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.GetListaDeDeseados(System.Int32)">
             <summary>
@@ -143,6 +149,13 @@
             <param name="userMail">Mail del usuario</param>
             <param name="codigo">Codigo a validar</param>
             <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetLogin(FedeteriAPI.Models.CredencialesUsuario)">
+            <summary>
+            Valida las credenciales de inicio de sesión de un usuario
+            </summary>
+            <param name="usuario">Credenciales (email y contraseña)</param>
+            <returns>Un objeto UsuarioOut si las credenciales son correctas, null si las credenciales son incorrectas</returns>
         </member>
     </members>
 </doc>

@@ -15,7 +15,7 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Empleado> Get()
+        public IEnumerable<Usuario> Get()
         {
             return EmpleadosService.GetEmpleados();
         }
@@ -27,7 +27,7 @@ namespace FedeteriAPI.Controllers
         /// <returns></returns>
         // GET api/<EmpleadosController>/5
         [HttpGet("{id}")]
-        public Empleado Get(int id)
+        public Usuario Get(int id)
         {
             return EmpleadosService.GetEmpleadoByID(id);
         }
@@ -37,9 +37,9 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <param name="empleado">Objeto empleado (Nombre, Sucursal, Nacimiento)</param>
         [HttpPost]
-        public void Post([FromBody] Empleado empleado)
+        public void RegistrarEmpleado([FromBody] UsuarioIn usuario)
         {
-            EmpleadosService.AddEmpleado(empleado);
+            EmpleadosService.AddEmpleado(usuario);
         }
     }
 }

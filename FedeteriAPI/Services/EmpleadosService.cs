@@ -7,32 +7,20 @@ namespace FedeteriAPI.Services
 {
     public static class EmpleadosService
     {
-        static List<Empleado> Empleados = new List<Empleado>();
-        static int ActualID = 0;
 
-        public static void WriteAll() => FilesService<Empleado>.WriteAll(Paths.FILE_EMPLEADOS, Empleados);
-        public static async Task ReadAllAsync()
+        public static List<Usuario> GetEmpleados()
         {
-            Empleados = await FilesService<Empleado>.ReadAllAsync(Paths.FILE_EMPLEADOS);
-
-            if (Empleados.Count > 0)
-                ActualID = Empleados.Max(x => x.Id) + 1;
+            return UsuariosService.GetEmpleados();
         }
 
-        public static List<Empleado> GetEmpleados()
+        public static Usuario GetEmpleadoByID(int id)
         {
-            return Empleados;
+            return GetEmpleados().FirstOrDefault(x => x.Id == id);
         }
 
-        public static Empleado GetEmpleadoByID(int id)
+        public static void AddEmpleado(UsuarioIn usuario)
         {
-            return Empleados.FirstOrDefault(x => x.Id == id);
-        }
-
-        public static void AddEmpleado(Empleado e)
-        {
-            e.Id = ActualID++;
-            Empleados.Add(e);
+            UsuariosService.AddEmpleado(usuario);
         }
     }
 }

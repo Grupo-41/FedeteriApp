@@ -192,7 +192,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.Empleado, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.Usuario, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -204,15 +204,15 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.EmpleadosController",
-    "Method": "Post",
+    "Method": "RegistrarEmpleado",
     "RelativePath": "api/Empleados",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "empleado",
-        "Type": "FedeteriAPI.Models.Empleado",
+        "Name": "usuario",
+        "Type": "FedeteriAPI.Models.UsuarioIn",
         "IsRequired": true
       }
     ],
@@ -240,7 +240,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "FedeteriAPI.Models.Empleado",
+        "Type": "FedeteriAPI.Models.Usuario",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -318,7 +318,7 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
-    "Method": "PostUsuario",
+    "Method": "RegistrarUsuario",
     "RelativePath": "api/Usuarios",
     "HttpMethod": "POST",
     "IsController": true,
@@ -327,6 +327,28 @@
       {
         "Name": "usuario",
         "Type": "FedeteriAPI.Models.UsuarioIn",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "ModificarUsuario",
+    "RelativePath": "api/Usuarios",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "datos",
+        "Type": "FedeteriAPI.Models.DatosPersonalesUsuario",
         "IsRequired": true
       }
     ],
@@ -460,6 +482,37 @@
     "ReturnTypes": [
       {
         "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "GetLogin",
+    "RelativePath": "api/Usuarios/login",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DNI",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Contrasena",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FedeteriAPI.Models.UsuarioOut",
         "MediaTypes": [
           "text/plain",
           "application/json",

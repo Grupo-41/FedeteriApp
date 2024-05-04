@@ -1,1 +1,33 @@
 FedeteriAPI/*.json
+
+# User-specific files
+FedeteriAPI/*.suo
+FedeteriAPI/*.user
+FedeteriAPI/*.userosscache
+FedeteriAPI/*.sln.docstates
+FedeteriAPI/[Dd]ebug/
+FedeteriAPI/[Dd]ebugPublic/
+FedeteriAPI/[Oo]bj/
+FedeteriAPI/[Ll]og/
+
+# files ending in .cache can be ignored
+FedeteriAPI/*.[Cc]ache
+# but keep track of directories ending in .cache
+FedeteriAPI/!*.[Cc]ache/
+
+# Others
+FedeteriAPI/ClientBin/
+FedeteriAPI/~$*
+FedeteriAPI/*~
+FedeteriAPI/*.dbmdl
+FedeteriAPI/*.dbproj.schemaview
+FedeteriAPI/*.jfm
+FedeteriAPI/*.pfx
+FedeteriAPI/*.publishsettings
+FedeteriAPI/orleans.codegen.cs
+
+# Visual Studio 6 build log
+*.plg
+
+# Visual Studio 6 workspace options file
+*.opt

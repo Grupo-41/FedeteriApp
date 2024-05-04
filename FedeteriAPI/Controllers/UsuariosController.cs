@@ -1,6 +1,7 @@
 ﻿using FedeteriAPI.Models;
 using FedeteriAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using static FedeteriAPI.Services.Responses;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -49,10 +50,19 @@ namespace FedeteriAPI.Controllers
         /// Registra un usuario en el sistema, recibe un objeto Usuario
         /// </summary>
         /// <param name="usuario">Objeto usuario</param>
-        [HttpPost("")]
-        public void PostUsuario([FromBody] UsuarioIn usuario)
+        [HttpPost]
+        public void RegistrarUsuario([FromBody] UsuarioIn usuario)
         {
-            UsuariosService.Add(usuario);
+            UsuariosService.AddUsuario(usuario);
+        }
+
+        /// <summary>
+        /// Permite modificar los datos personales de un usuario (no recomiendo modificar la contraseña mediante este endpoint)
+        /// </summary>
+        /// <param name="usuario">Objeto de datos personales</param>
+        [HttpPut]
+        public void ModificarUsuario([FromBody] DatosPersonalesUsuario datos) {
+            UsuariosService.UpdateUsuario(datos);
         }
 
         /// <summary>
@@ -107,6 +117,17 @@ namespace FedeteriAPI.Controllers
         public bool GetValidacion(string userMail, string codigo)
         {
             return CodigosService.ValidarCodigo(userMail, codigo);
+        }
+
+        /// <summary>
+        /// Valida las credenciales de inicio de sesión de un usuario
+        /// </summary>
+        /// <param name="usuario">Credenciales (email y contraseña)</param>
+        /// <returns>Un objeto UsuarioOut si las credenciales son correctas, null si las credenciales son incorrectas</returns>
+        [HttpGet("login")]
+        public UsuarioOut GetLogin([FromQuery] CredencialesUsuario usuario)
+        {
+            return UsuariosService.ValidarLogin(usuario);
         }
     }
 }
