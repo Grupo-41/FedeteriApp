@@ -16,28 +16,28 @@ export default function RootLayout({ children }) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" precedence="default" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossOrigin="anonymous"></link>
       </head>
       <body>
-        <nav class="navbar fixed-top navbar-expand-lg bg-primary">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="./Fedeteria_Horizontal.png" width="233" height="35" alt="FedeteriApp"/></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <nav className="navbar fixed-top navbar-expand-lg" style={{background: '#e7ab12 '}}>
+          <div className="container-fluid">
+              <a className="navbar-brand" href="/"><img src="./Fedeteria_Horizontal.png" width="233" height="35" alt="FedeteriApp"/></a>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+                  <span className="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                          <a class="nav-link" href="./signup.html">Registrarme</a>
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li className="nav-item">
+                          <a className="nav-link" href="./signup">Registrarme</a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="./login.html">Iniciar sesión</a>
+                      <li className="nav-item">
+                          <a className="nav-link" href="./login">Iniciar sesión</a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/sucursales">Ver sucursales</a>
+                      <li className="nav-item">
+                          <a className="nav-link" href="/sucursales">Ver sucursales</a>
                       </li>
                   </ul>
-                  <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
-                      <button type="submit" class="btn btn-outline-warning">Buscar</button>
+                  <form className="d-flex" role="search">
+                      <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
+                      <button type="submit" className="btn btn-outline-dark">Buscar</button>
                   </form>
               </div>
           </div>
@@ -45,6 +45,7 @@ export default function RootLayout({ children }) {
         <main className="d-flex justify-content-center align-items-center min-vw-100 min-vh-100">
           {children}
         </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossOrigin="anonymous"></script>
       </body>
     </html>
   );
