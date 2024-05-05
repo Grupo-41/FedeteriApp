@@ -16,7 +16,7 @@ const page = () => {
         }))
         .then(data => data.json())
         .then(data => {
-            if(data.status !== '400'){
+            if(data.status !== 400){
                 setUser(data)
                 window.location.href = '/';
             }
