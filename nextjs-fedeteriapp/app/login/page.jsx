@@ -1,5 +1,5 @@
 'use client'
-import React, {useRef, useEffect, useState} from 'react'
+import React, { useRef } from 'react'
 import { useContext } from 'react';
 import { UserContext } from '@/components/ContextProvider/ContextProvider';
 
@@ -17,8 +17,15 @@ const page = () => {
         .then(data => data.json())
         .then(data => {
             if(data.status !== 400){
-                setUser(data)
-                window.location.href = '/';
+                if(data.esAdmin){
+                    data = {...data, validado: false}
+                    setUser(data)
+                    window.location.href = '/ingresar-codigo';
+                }
+                else{
+                    setUser(data)
+                    window.location.href = '/'
+                }
             }
         })
     }
@@ -34,14 +41,10 @@ const page = () => {
               <label for="exampleInputPassword1" class="form-label">Contraseña</label>
               <input ref={refPass} type="password" class="form-control" id="exampleInputPassword1"/>
             </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-              <div class="d-flex justify-content-between">
-                  <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-                  <a href="/recovery-password">Olvidé mi contraseña</a>
-              </div>
+            <div className='form-label mb-4'>
+              <a href="/recovery-password">Olvidé mi contraseña</a>
             </div>
-            <button onClick={clickLogin} type="button" class="btn btn-primary">Iniciar sesión</button>
+            <button onClick={clickLogin} type="button" style={{backgroundColor: '#e7ab12 '}} class="btn">Iniciar sesión</button>
           </form>
     </div>
   )

@@ -52,13 +52,15 @@ const page = () => {
                 <label for="exampleInputEmail1" className="form-label">DNI</label>
                 <input ref={refDNI} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
             </div>
-            <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Nombre</label>
-                <input ref={refName} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-            </div>
-            <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Apellido</label>
-                <input ref={refApellido} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            <div className='d-flex flex-row'>
+                <div className="mb-3">
+                    <label for="exampleInputEmail1" className="form-label">Nombre</label>
+                    <input ref={refName} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+                <div className="mb-3">
+                    <label for="exampleInputEmail1" className="form-label">Apellido</label>
+                    <input ref={refApellido} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
             </div>
             <div className="mb-3">
                 <label for="exampleInputEmail1" className="form-label">Email</label>
