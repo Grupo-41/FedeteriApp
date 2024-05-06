@@ -2,7 +2,7 @@
 import { UserContext } from '@/components/ContextProvider/ContextProvider';
 import React, {useRef, useEffect, useState, useContext} from 'react'
 
-const page = () => {
+const Page = () => {
     const [sucursales, setSucursales] = useState([]);
     const refDNI = useRef();
     const refName = useRef();
@@ -31,7 +31,7 @@ const page = () => {
             nacimiento: refNacimiento.current.value,
             telefono: refTelefono.current.value,
             contrasena: refPass.current.value,
-            sucursalID: sucursales.find(x => x.nombre === refSucursal.current.value).id
+            sucursalID: refSucursal.current.value
         }
 
         fetch(URL, {
@@ -69,13 +69,15 @@ const page = () => {
                 <label htmlFor="email" className="form-label">Email</label>
                 <input ref={refEmail} type="email" placeholder="Ingrese su correo electrónico"className="form-control border border-dark" id="email" required/>
             </div>
-            <div className="mb-3">
-                <label htmlFor="telefono" className="form-label">Teléfono</label>
-                <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="fecha" className="form-label">Fecha de nacimiento</label>
-                <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
+            <div className='d-flex flex-row gap-3'>
+                <div className="mb-3 w-75">
+                    <label for="telefono" className="form-label">Teléfono</label>
+                    <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
+                </div>
+                <div className="mb-3">
+                    <label for="fecha" className="form-label">Fecha de nacimiento</label>
+                    <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
+                </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Contraseña</label>
@@ -85,7 +87,7 @@ const page = () => {
                 <label htmlFor="sucursal-choice" className="form-label">Sucursal:</label>
                 <select id="sucursal-list" ref={refSucursal} className='form-control form-select border border-dark' required >
                     {sucursales.map(x => 
-                        <option value={x.id}>{x.nombre + " - " + x.direccion}</option>
+                        <option key={x.id} value={x.id}>{x.nombre + " - " + x.direccion}</option>
                     )}
                 </select>
             </div>
@@ -95,4 +97,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
