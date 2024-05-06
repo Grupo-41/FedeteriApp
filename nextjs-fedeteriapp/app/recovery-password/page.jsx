@@ -15,7 +15,7 @@ const Page = () => {
             URL = URL + inputEmail;
 
             fetch(URL, {method: 'POST'});
-            window.location.href = `/validate-code`
+            window.location.href = `/validar-codigo`
         }
     }
 

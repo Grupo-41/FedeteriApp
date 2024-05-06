@@ -15,8 +15,9 @@ const Page = () => {
       fetch(URL)
       .then(data => data.json())
       .then(data => {
-        if(data === true)
-          console.log('Validación exitosa')
+        if(data === true){
+          
+        }
       })
     }
   }
@@ -29,7 +30,7 @@ const Page = () => {
           <input ref={codeRef} placeholder='Ingrese el código que ha recibido en su correo' type="text" className="form-control" id="code"/>
         </div>
 
-        <button onClick={validateCode} type="button" className="btn" style={{background: '#e7ab12 '}}>Generar código</button>
+        <button onClick={validateCode} type="button" className="btn" style={{background: '#e7ab12 '}}>Ingresar código</button>
       </form>
     </div>  
     )

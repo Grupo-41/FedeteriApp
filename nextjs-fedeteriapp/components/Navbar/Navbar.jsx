@@ -33,10 +33,15 @@ const Navbar = () => {
                             </li>
                         </>
                         }
-                        { user !== null ? 
+                        { user !== null &&
                             <li className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
-                            </li> : null
+                            </li>
+                        }
+                        { user !== null && user.esAdmin &&
+                            <li className="nav-item">
+                                <a className="nav-link" href="/estadisticas">Ver estadísticas</a>
+                            </li>
                         }
                     </ul>
                     <form className="d-flex" role="search">
