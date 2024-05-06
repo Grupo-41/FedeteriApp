@@ -12,8 +12,12 @@ const Page = () => {
             dni: refDNI.current.value,
             contrasena: refPass.current.value,
         }))
-        .then(data => data.json())
         .then(data => {
+          console.log(data)
+          return data.json()
+        })
+        .then(data => {
+          console.log(data)
             if(data.status !== 400){
                 if(data.esAdmin){
                     data = {...data, validado: false}

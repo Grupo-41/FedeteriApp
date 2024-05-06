@@ -23,12 +23,16 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <a className="nav-link" href="./signup">Registrarme</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="./login">Iniciar sesión</a>
-                        </li>
+                        { user === null && 
+                        <>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/signup">Registrarme</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/login">Iniciar sesión</a>
+                            </li>
+                        </>
+                        }
                         { user !== null ? 
                             <li className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>

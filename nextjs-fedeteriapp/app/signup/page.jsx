@@ -31,7 +31,7 @@ const Page = () => {
             nacimiento: refNacimiento.current.value,
             telefono: refTelefono.current.value,
             contrasena: refPass.current.value,
-            sucursalID: sucursales.find(x => x.nombre === refSucursal.current.value).id
+            sucursalID: refSucursal.current.value
         }
 
         fetch(URL, {
