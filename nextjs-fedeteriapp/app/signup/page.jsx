@@ -1,5 +1,6 @@
 'use client'
-import React, {useRef, useEffect, useState} from 'react'
+import { UserContext } from '@/components/ContextProvider/ContextProvider';
+import React, {useRef, useEffect, useState, useContext} from 'react'
 
 const page = () => {
     const [sucursales, setSucursales] = useState([]);
