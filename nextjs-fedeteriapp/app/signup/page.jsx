@@ -1,5 +1,6 @@
 'use client'
-import React, {useRef, useEffect, useState} from 'react'
+import { UserContext } from '@/components/ContextProvider/ContextProvider';
+import React, {useRef, useEffect, useState, useContext} from 'react'
 
 const page = () => {
     const [sucursales, setSucursales] = useState([]);
@@ -52,7 +53,7 @@ const page = () => {
                 <label for="dni" className="form-label">DNI</label>
                 <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
             </div>
-            <div className='d-flex flex-row'>
+            <div className='d-flex flex-row gap-3'>
                 <div className="mb-3">
                     <label for="nombre" className="form-label">Nombre</label>
                     <input ref={refName} type="text" placeholder="Ingrese su nombre"className="form-control border border-dark" id="nombre" required/>
