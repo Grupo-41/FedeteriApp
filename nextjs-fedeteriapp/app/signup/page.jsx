@@ -47,47 +47,47 @@ const page = () => {
 
   return (
     <div className="mt-5 d-flex justify-content-center w-100">
-        <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+        <form onSubmit={postUsuario} style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
             <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">DNI</label>
-                <input ref={refDNI} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                <label for="dni" className="form-label">DNI</label>
+                <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
             </div>
             <div className='d-flex flex-row'>
                 <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">Nombre</label>
-                    <input ref={refName} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                    <label for="nombre" className="form-label">Nombre</label>
+                    <input ref={refName} type="text" placeholder="Ingrese su nombre"className="form-control border border-dark" id="nombre" required/>
                 </div>
                 <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">Apellido</label>
-                    <input ref={refApellido} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                    <label for="apellido" className="form-label">Apellido</label>
+                    <input ref={refApellido} type="text" placeholder="Ingrese su apellido" className="form-control border border-dark" id="apellido" required/>
                 </div>
             </div>
             <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Email</label>
-                <input ref={refEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                <label for="email" className="form-label">Email</label>
+                <input ref={refEmail} type="email" placeholder="Ingrese su correo electrónico"className="form-control border border-dark" id="email" required/>
             </div>
             <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Teléfono</label>
-                <input ref={refTelefono} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                <label for="telefono" className="form-label">Teléfono</label>
+                <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
             </div>
             <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Fecha de nacimiento</label>
-                <input ref={refNacimiento} type="date" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                <label for="fecha" className="form-label">Fecha de nacimiento</label>
+                <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
             </div>
             <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">Contraseña</label>
-                <input ref={refPass} type="password" className="form-control" id="exampleInputPassword1"/>
+                <label for="nombre" className="form-label">Contraseña</label>
+                <input ref={refPass} type="password" placeholder="Ingrese su contraseña"className="form-control border border-dark" id="contra" required/>
             </div>
             <div className="mb-3">
-                <label className='form-label' htmlFor="sucursal-choice">Sucursal:</label>
-                <input ref={refSucursal} className='form-control' list="sucursal-list" id="sucursal-choice" name="sucursal-choice" />
-                <datalist id="sucursal-list">
+                <label for="sucursal-choice" className='form-label' htmlFor="sucursal-choice">Sucursal:</label>
+                <select id="sucursal-list" ref={refSucursal} className='form-control form-select border border-dark' required >
+                    <option selected>Seleccione una sucursal</option>
                     {sucursales.map(x => 
-                        <option value={x.nombre}>{x.direccion}</option>
+                        <option value={x.id}>{x.nombre + " - " + x.direccion}</option>
                     )}
-                </datalist>
+                </select>
             </div>
-            <button onClick={postUsuario} type='button' class="btn btn-primary">Registrarse</button>
+            <input type='submit' class="btn btn-primary" value="Registrarse"/>
         </form>
     </div>
   )
