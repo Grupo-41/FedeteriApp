@@ -52,7 +52,7 @@ const page = () => {
                 <label for="exampleInputEmail1" className="form-label">DNI</label>
                 <input ref={refDNI} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
             </div>
-            <div className='d-flex flex-row'>
+            <div className='d-flex flex-row gap-3'>
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Nombre</label>
                     <input ref={refName} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
@@ -66,13 +66,15 @@ const page = () => {
                 <label for="exampleInputEmail1" className="form-label">Email</label>
                 <input ref={refEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
             </div>
-            <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Teléfono</label>
-                <input ref={refTelefono} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-            </div>
-            <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Fecha de nacimiento</label>
-                <input ref={refNacimiento} type="date" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            <div className='d-flex flex-row gap-3 w-100'>
+                <div className="mb-3">
+                    <label for="exampleInputEmail1" className="form-label">Teléfono</label>
+                    <input ref={refTelefono} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+                <div className="mb-3 w-50">
+                    <label for="exampleInputEmail1" className="form-label">Fecha de nacimiento</label>
+                    <input ref={refNacimiento} type="date" className="form-control w-100" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
             </div>
             <div className="mb-3">
                 <label for="exampleInputPassword1" className="form-label">Contraseña</label>
@@ -87,7 +89,7 @@ const page = () => {
                     )}
                 </datalist>
             </div>
-            <button onClick={postUsuario} type='button' class="btn btn-primary">Registrarse</button>
+            <button onClick={postUsuario} style={{background: '#e7ab12'}} type='button' className="btn">Registrarse</button>
         </form>
     </div>
   )

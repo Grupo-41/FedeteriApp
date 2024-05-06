@@ -48,6 +48,9 @@ export default function RootLayout({ children }) {
             {children}
           </ContextProvider>
         </main>
+        <footer style={{position: "fixed", bottom: '0px', right: '20px', color: '#555'}}>
+          <p>Code 41 &copy; 2024</p>
+        </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossOrigin="anonymous"></script>
       </body>
     </html>
