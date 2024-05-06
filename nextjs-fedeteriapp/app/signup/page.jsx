@@ -43,6 +43,8 @@ const page = () => {
             body: JSON.stringify(user)
         }).then(() =>{
             window.location.href = 'login';
+        }).then(() =>{
+            window.location.href = '/';
         })
     }
 
@@ -50,45 +52,44 @@ const page = () => {
     <div className="mt-5 d-flex justify-content-center w-100">
         <form onSubmit={postUsuario} style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
             <div className="mb-3">
-                <label for="dni" className="form-label">DNI</label>
+                <label htmlFor="dni" className="form-label">DNI</label>
                 <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
             </div>
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3">
-                    <label for="nombre" className="form-label">Nombre</label>
+                    <label htmlFor="nombre" className="form-label">Nombre</label>
                     <input ref={refName} type="text" placeholder="Ingrese su nombre"className="form-control border border-dark" id="nombre" required/>
                 </div>
                 <div className="mb-3">
-                    <label for="apellido" className="form-label">Apellido</label>
+                    <label htmlFor="apellido" className="form-label">Apellido</label>
                     <input ref={refApellido} type="text" placeholder="Ingrese su apellido" className="form-control border border-dark" id="apellido" required/>
                 </div>
             </div>
             <div className="mb-3">
-                <label for="email" className="form-label">Email</label>
+                <label htmlFor="email" className="form-label">Email</label>
                 <input ref={refEmail} type="email" placeholder="Ingrese su correo electrónico"className="form-control border border-dark" id="email" required/>
             </div>
             <div className="mb-3">
-                <label for="telefono" className="form-label">Teléfono</label>
+                <label htmlFor="telefono" className="form-label">Teléfono</label>
                 <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
             </div>
             <div className="mb-3">
-                <label for="fecha" className="form-label">Fecha de nacimiento</label>
+                <label htmlFor="fecha" className="form-label">Fecha de nacimiento</label>
                 <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
             </div>
             <div className="mb-3">
-                <label for="nombre" className="form-label">Contraseña</label>
+                <label htmlFor="nombre" className="form-label">Contraseña</label>
                 <input ref={refPass} type="password" placeholder="Ingrese su contraseña"className="form-control border border-dark" id="contra" required/>
             </div>
             <div className="mb-3">
-                <label for="sucursal-choice" className='form-label' htmlFor="sucursal-choice">Sucursal:</label>
+                <label htmlFor="sucursal-choice" className="form-label">Sucursal:</label>
                 <select id="sucursal-list" ref={refSucursal} className='form-control form-select border border-dark' required >
-                    <option selected>Seleccione una sucursal</option>
                     {sucursales.map(x => 
                         <option value={x.id}>{x.nombre + " - " + x.direccion}</option>
                     )}
                 </select>
             </div>
-            <input type='submit' class="btn btn-primary" value="Registrarse"/>
+            <input type='submit' className="btn btn-primary" value="Registrarse"/>
         </form>
     </div>
   )
