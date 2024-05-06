@@ -1,6 +1,8 @@
 'use client'
 import React from 'react'
 import { useLocalStorage } from 'react-use'
+import Image from 'next/image'
+import FedeteriaLogo from '../../public/Fedeteria_Horizontal.png'
 
 const Navbar = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
@@ -12,9 +14,9 @@ const Navbar = () => {
 
   return (
     <>
-        <nav className="navbar fixed-top navbar-expand-lg" style={{background: '#e7ab12 '}}>
+        <nav className="navbar fixed-top navbar-expand-lg shadow border-bottom border-black" style={{background: '#e7ab12 '}}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="/"><img src="./Fedeteria_Horizontal.png" width="233" height="35" alt="FedeteriApp"/></a>
+                <a className="navbar-brand" href="/"><Image src={FedeteriaLogo} width="233" height="35" alt="FedeteriApp"/></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

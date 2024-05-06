@@ -2,7 +2,7 @@
 import { UserContext } from '@/components/ContextProvider/ContextProvider';
 import React, {useRef, useEffect, useState, useContext} from 'react'
 
-const page = () => {
+const Page = () => {
     const [sucursales, setSucursales] = useState([]);
     const refDNI = useRef();
     const refName = useRef();
@@ -67,13 +67,15 @@ const page = () => {
                 <label for="email" className="form-label">Email</label>
                 <input ref={refEmail} type="email" placeholder="Ingrese su correo electrónico"className="form-control border border-dark" id="email" required/>
             </div>
-            <div className="mb-3">
-                <label for="telefono" className="form-label">Teléfono</label>
-                <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
-            </div>
-            <div className="mb-3">
-                <label for="fecha" className="form-label">Fecha de nacimiento</label>
-                <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
+            <div className='d-flex flex-row gap-3'>
+                <div className="mb-3 w-75">
+                    <label for="telefono" className="form-label">Teléfono</label>
+                    <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
+                </div>
+                <div className="mb-3">
+                    <label for="fecha" className="form-label">Fecha de nacimiento</label>
+                    <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
+                </div>
             </div>
             <div className="mb-3">
                 <label for="nombre" className="form-label">Contraseña</label>
@@ -84,7 +86,7 @@ const page = () => {
                 <select id="sucursal-list" ref={refSucursal} className='form-control form-select border border-dark' required >
                     <option selected>Seleccione una sucursal</option>
                     {sucursales.map(x => 
-                        <option value={x.id}>{x.nombre + " - " + x.direccion}</option>
+                        <option key={x.id} value={x.id}>{x.nombre + " - " + x.direccion}</option>
                     )}
                 </select>
             </div>
@@ -94,4 +96,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Sucursal from '@/components/Sucursal/Sucursal';
 import styles from './page.module.css'
 
-const page = () => {
+const Page = () => {
     const [sucursales, setSucursales] = useState([]);
 
   useEffect(() => {
@@ -28,4 +28,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
