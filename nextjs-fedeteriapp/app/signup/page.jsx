@@ -69,11 +69,11 @@ const Page = () => {
             </div>
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3 w-75">
-                    <label for="telefono" className="form-label">Teléfono</label>
+                    <label htmlFor="telefono" className="form-label">Teléfono</label>
                     <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
                 </div>
                 <div className="mb-3">
-                    <label for="fecha" className="form-label">Fecha de nacimiento</label>
+                    <label htmlFor="fecha" className="form-label">Fecha de nacimiento</label>
                     <input ref={refNacimiento} type="date" placeholder="Ingrese su fecha de nacimiento"className="form-control border border-dark" id="fecha" required/>
                 </div>
             </div>
