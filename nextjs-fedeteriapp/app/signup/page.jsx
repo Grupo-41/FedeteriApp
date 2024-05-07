@@ -42,7 +42,7 @@ const Page = () => {
             },
             body: JSON.stringify(user)
         }).then(() =>{
-            window.location.href = 'login';
+            window.location.href = '/login';
         })
     }
 
