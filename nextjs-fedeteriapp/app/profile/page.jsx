@@ -6,6 +6,9 @@ const Page = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
 
     if(user === null)
+        return "Usted no se encuentra autenticado"
+
+    if(user === null && typeof window !== "undefined")
         window.location.href = "/"
 
     return (
@@ -42,7 +45,7 @@ const Page = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="sucursal-choice" className="form-label">Sucursal:</label>
-                    <input type="text" value={user.sucursal} className="form-control border border-dark" id="fecha" disabled/>
+                    <input type="text" value={user.sucursal.nombre + " - " + user.sucursal.direccion} className="form-control border border-dark" id="fecha" disabled/>
                 </div>
                 <input type='button' className="btn btn-primary" value="Modificar perfil"/>
             </form>
