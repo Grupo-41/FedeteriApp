@@ -22,7 +22,8 @@ namespace FedeteriAPI.Services
                 {
                     Email = @"nicoyurec@gmail.com",
                     DNI = 43386791,
-                    Nombre = "Admin",
+                    Nombre = "Fedeteri",
+                    Apellido = "Admin",
                     Contrasena = "FedeteriAdmin",
                     Nacimiento = "01/01/2001",
                     Telefono = 2216325117,
