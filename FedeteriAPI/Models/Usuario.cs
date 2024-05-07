@@ -38,6 +38,7 @@ namespace FedeteriAPI.Models
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public long DNI { get; set; }
         public string Email { get; set; }
         public string Nacimiento { get; set; }
@@ -53,6 +54,7 @@ namespace FedeteriAPI.Models
         {
             this.Id = usuario.Id;
             this.Nombre = usuario.Nombre;
+            this.Apellido = usuario.Apellido;
             this.DNI = usuario.DNI;
             this.Email = usuario.Email;
             this.Nacimiento = usuario.Nacimiento;
