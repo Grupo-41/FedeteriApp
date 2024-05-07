@@ -34,9 +34,15 @@ const Navbar = () => {
                         </>
                         }
                         { user !== null &&
+                        <>
                             <li className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
                             </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/publicar">Publicar artículo</a>
+                            </li>
+                        </>
+                            
                         }
                         { user !== null && user.esAdmin &&
                             <li className="nav-item">
