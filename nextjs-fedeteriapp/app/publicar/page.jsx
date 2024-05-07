@@ -7,25 +7,28 @@ const Page = () => {
     const refEstado = useRef();
     const refMarca = useRef();
     const refPrecioEstimado = useRef();
+    const refNombre = useRef();
+    const [data, setData] = useState();
 
     useEffect(() => {
-        const storedData = localStorage.getItem('data');
+        const storedData = localStorage.getItem('user');
         if (storedData) {
             setData(storedData);
         }
     }, []);
 
     function postArticulo(){
-        const URL = 'http://localhost:5000/api/Articulos/' + data.json().id
+        const URL = 'http://localhost:5000/api/Articulos/' + data.id
 
         const articulo = {
+            nombre: refNombre.current.value,
             descripcion: refDescripcion.current.value,
             estado: refEstado.current.value,
-            marca: refMarca.current.value,
             precioEstimado: refPrecioEstimado.current.value,
+            imagenURLs: [""]
         }
 
-        fetch(URL ({
+        fetch(URL, ({
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -39,7 +42,11 @@ const Page = () => {
 
   return (
     <div className="mt-5 d-flex justify-content-center w-100">
-        <form onSubmit={postArticulo} style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+        <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+            <div className="mb-3">
+                <label htmlFor="nombre" className="form-label">Nombre</label>
+                <input ref={refNombre} type="text" placeholder="Ingrese el nombre del artículo" className="form-control border border-dark" id="nombre" required/>
+            </div>
             <div className="mb-3">
                 <label htmlFor="descripcion" className="form-label">Descripción</label>
                 <input ref={refDescripcion} type="text" placeholder="Ingrese una descripción" className="form-control border border-dark" id="descripcion" required/>
@@ -58,7 +65,7 @@ const Page = () => {
                 <label htmlFor="precio" className="form-label">Precio estimado</label>
                 <input ref={refPrecioEstimado} type="text" placeholder="Ingrese el precio estimado"className="form-control border border-dark" id="precio" required/>
             </div>
-            <input type='submit' className="btn btn-primary" value="Publicar artículo"/>
+            <input onClick={postArticulo} type='button' className="btn btn-primary" value="Publicar artículo"/>
         </form>
     </div>
   )
