@@ -1,5 +1,5 @@
 "use client"
-import React, {useRef} from 'react'
+import React, {useEffect, useRef} from 'react'
 import { useLocalStorage } from 'react-use';
 
 const Page = () => {

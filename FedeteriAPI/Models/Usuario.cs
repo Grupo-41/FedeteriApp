@@ -61,6 +61,7 @@ namespace FedeteriAPI.Models
             this.Telefono = usuario.Telefono;
             this.EsAdmin = usuario.EsAdmin;
             this.EsEmpleado = usuario.EsEmpleado;
+            this.Sucursal = usuario.Sucursal;
         }
     }
 
@@ -73,6 +74,13 @@ namespace FedeteriAPI.Models
     {
         public int Id { get; set; }
         public string ContrasenaActual { get; set; }
+        public string Contrasena { get; set; }
+
+    }
+
+    public class UsuarioRecoveryPass
+    {
+        public string Email { get; set; }
         public string Contrasena { get; set; }
 
     }

@@ -130,5 +130,14 @@ namespace FedeteriAPI.Services
 
             u.Update(usuario);
         }
+
+        internal static bool RecoveryPassword(UsuarioRecoveryPass usuarioPass)
+        {
+            Usuario user = GetUsuarioByEmail(usuarioPass.Email);
+            if(user == null) return false;
+
+            user.Contrasena = usuarioPass.Contrasena;
+            return true;
+        }
     }
 }

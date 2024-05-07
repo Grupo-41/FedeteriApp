@@ -6,6 +6,7 @@ const Page = () => {
     const refDNI = useRef();
     const refPass = useRef();
     const [user, setUser, removeUser] = useLocalStorage('user', null);
+    const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
 
     function clickLogin(){
         fetch('http://localhost:5000/api/Usuarios/login?' + new URLSearchParams({
@@ -28,6 +29,8 @@ const Page = () => {
                     setUser(data)
                     window.location.href = '/'
                 }
+
+                removeEmail();
             }
         })
     }

@@ -1,10 +1,15 @@
 "use client"
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useLocalStorage } from 'react-use'
 
 const Page = () => {
   const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
   const codeRef = useRef();
+
+  useEffect(() => {
+    if(email === '')
+      window.location.href = '/'
+  }, [email])
 
   function validateCode(){
     const codigo = codeRef.current.value;
@@ -16,7 +21,7 @@ const Page = () => {
       .then(data => data.json())
       .then(data => {
         if(data === true){
-          
+          window.location.href = '/change-password'
         }
       })
     }

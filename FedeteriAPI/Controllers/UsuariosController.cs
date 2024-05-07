@@ -59,7 +59,7 @@ namespace FedeteriAPI.Controllers
         /// <summary>
         /// Permite modificar los datos personales de un usuario (no recomiendo modificar la contraseña mediante este endpoint)
         /// </summary>
-        /// <param name="usuario">Objeto de datos personales</param>
+        /// <param name="datos">Objeto de datos personales</param>
         [HttpPut]
         public void ModificarUsuario([FromBody] DatosPersonalesUsuario datos) {
             UsuariosService.UpdateUsuario(datos);
@@ -95,6 +95,17 @@ namespace FedeteriAPI.Controllers
         public bool PutPassword([FromBody] UsuarioPass usuarioPass)
         {
             return UsuariosService.ChangePassword(usuarioPass);
+        }
+
+        /// <summary>
+        /// Actualiza la contraseña de un usuario que no sabe su contraseña
+        /// </summary>
+        /// <param name="usuarioRecoveryPass">Objeto UsuarioRecoveryPass (Email del usuario, contraseña nueva)</param>
+        /// <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
+        [HttpPut("recuperar-contrasena")]
+        public bool PutRecoveryPassword([FromBody] UsuarioRecoveryPass usuarioRecoveryPass)
+        {
+            return UsuariosService.RecoveryPassword(usuarioRecoveryPass);
         }
 
         /// <summary>
