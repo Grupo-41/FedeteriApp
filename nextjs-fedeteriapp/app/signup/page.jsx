@@ -25,7 +25,8 @@ const Page = () => {
         const URL = "http://localhost:5000/api/Usuarios"
 
         const user = {
-            nombre: refName.current.value + " " + refApellido.current.value,
+            nombre: refName.current.value,
+            apellido: refApellido.current.value,
             dni: refDNI.current.value,
             email: refEmail.current.value,
             nacimiento: refNacimiento.current.value,
