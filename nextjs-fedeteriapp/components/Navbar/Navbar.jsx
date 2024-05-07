@@ -36,6 +36,9 @@ const Navbar = () => {
                         { user !== null &&
                         <>
                             <li className="nav-item">
+                                <a className="nav-link" href="/profile">Mi perfil</a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
                             </li>
                             <li className="nav-item">
