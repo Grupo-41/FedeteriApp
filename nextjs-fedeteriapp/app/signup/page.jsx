@@ -1,5 +1,4 @@
 'use client'
-import { UserContext } from '@/components/ContextProvider/ContextProvider';
 import React, {useRef, useEffect, useState, useContext} from 'react'
 
 const Page = () => {
