@@ -1,5 +1,4 @@
 'use client'
-import { UserContext } from '@/components/ContextProvider/ContextProvider';
 import React, {useRef, useEffect, useState, useContext} from 'react'
 
 const Page = () => {
@@ -44,8 +43,6 @@ const Page = () => {
             body: JSON.stringify(user)
         }).then(() =>{
             window.location.href = 'login';
-        }).then(() =>{
-            window.location.href = '/';
         })
     }
 
