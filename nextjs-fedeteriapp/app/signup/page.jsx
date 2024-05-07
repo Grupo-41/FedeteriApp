@@ -48,7 +48,7 @@ const Page = () => {
 
   return (
     <div className="mt-5 d-flex justify-content-center w-100">
-        <form onSubmit={postUsuario} style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+        <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
             <div className="mb-3">
                 <label htmlFor="dni" className="form-label">DNI</label>
                 <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
@@ -89,7 +89,7 @@ const Page = () => {
                     )}
                 </select>
             </div>
-            <input type='submit' className="btn btn-primary" value="Registrarse"/>
+            <input type='button' onClick={postUsuario} className="btn btn-primary" value="Registrarse"/>
         </form>
     </div>
   )
