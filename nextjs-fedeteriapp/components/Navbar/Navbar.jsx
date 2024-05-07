@@ -55,10 +55,7 @@ const Navbar = () => {
                     </ul>
                     { user !== null &&
                         <>
-                            <form className="d-flex" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
-                                <button type="submit" className="btn btn-outline-dark">Buscar</button>
-                            </form>
+
                             <button onClick={closeSession} className="ms-2 btn btn-primary">Cerrar sesión</button>
                         </>
                     }
