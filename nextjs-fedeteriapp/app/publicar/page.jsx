@@ -60,8 +60,11 @@ const Page = () => {
                 <input ref={refPrecioEstimado} type="text" placeholder="Ingrese el precio estimado"className="form-control border border-dark" id="precio" required/>
             </div>
             <div className="mb-3">
-                <label htmlFor="img" className="form-label">Precio estimado</label>
+                <label htmlFor="img" className="form-label">Imágenes</label>
                 <input ref={refImg} type="file" accept="image/png, image/jpeg" multiple className="form-control border border-dark" id="img" required/>
+                <div id="imgHelp" className="form-text">
+                    Debe adjuntar entre 1 y 10 imágenes de su artículo.
+                </div>
             </div>
             <input onClick={postArticulo} type='button' className="btn btn-primary" value="Publicar artículo"/>
         </form>

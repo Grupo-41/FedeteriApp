@@ -10,8 +10,8 @@ const Page = () => {
 
     return (
         <div className="mt-5 d-flex flex-column justify-content-center w-100">
-            <h1 className='text-center mb-4'>Mi perfil</h1>
-            <form style={{minWidth: '400px', background: 'white'}} className="border rounded-3 p-4 w-25 align-self-center">
+            <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+                <h3 className='text-center mt-1 mb-3'>Mi perfil</h3>
                 <div className="mb-3">
                     <label htmlFor="dni" className="form-label">DNI</label>
                     <input value={user.dni} type="text" className="form-control border border-dark" id="dni" disabled/>
@@ -44,7 +44,7 @@ const Page = () => {
                     <label htmlFor="sucursal-choice" className="form-label">Sucursal:</label>
                     <input type="text" value={user.sucursal} className="form-control border border-dark" id="fecha" disabled/>
                 </div>
-                <input type='submit' className="btn btn-primary" value="Registrarse"/>
+                <input type='button' className="btn btn-primary" value="Modificar perfil"/>
             </form>
         </div>
     )

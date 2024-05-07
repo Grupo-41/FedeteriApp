@@ -53,12 +53,14 @@ const Navbar = () => {
                             </li>
                         }
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
-                        <button type="submit" className="btn btn-outline-dark">Buscar</button>
-                    </form>
                     { user !== null &&
-                        <button onClick={closeSession} className="ms-2 btn btn-primary">Cerrar sesión</button>
+                        <>
+                            <form className="d-flex" role="search">
+                                <input className="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" />
+                                <button type="submit" className="btn btn-outline-dark">Buscar</button>
+                            </form>
+                            <button onClick={closeSession} className="ms-2 btn btn-primary">Cerrar sesión</button>
+                        </>
                     }
                 </div>
             </div>

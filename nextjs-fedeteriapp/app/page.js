@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="d-flex justify-content-center flex-column">
         <Image width={900} src={Logo} />
-        <h4 className="mt-5 text-center">Work in progress...</h4>
+        <h3 className="mt-5 text-center">Work in progress...</h3>
       </div>
     </>
   );
