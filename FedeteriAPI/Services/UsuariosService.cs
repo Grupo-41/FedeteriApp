@@ -14,7 +14,7 @@ namespace FedeteriAPI.Services
         public static async Task ReadAllAsync() {
             Usuarios = await FilesService<Usuario>.ReadAllAsync(Paths.FILE_USUARIOS);
 
-            if(Usuarios.Count > 0)
+            if (Usuarios.Count > 0)
                 ActualID = Usuarios.Max(x => x.Id) + 1;
 
             if (Usuarios.FindIndex(x => x.EsAdmin) == -1)
@@ -29,7 +29,7 @@ namespace FedeteriAPI.Services
                     Telefono = 2216325117,
                     EsAdmin = true,
                     EsEmpleado = false,
-                    Id = ActualID,
+                    Id = ActualID++,
                 });
         }
 

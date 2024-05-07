@@ -1,6 +1,7 @@
 'use client'
 import { UserContext } from '@/components/ContextProvider/ContextProvider';
 import React, {useRef, useEffect, useState, useContext} from 'react'
+import { useLocalStorage } from 'react-use';
 
 const Page = () => {
     const refDescripcion = useRef();
@@ -8,22 +9,17 @@ const Page = () => {
     const refMarca = useRef();
     const refPrecioEstimado = useRef();
     const refNombre = useRef();
-    const [data, setData] = useState();
-
-    useEffect(() => {
-        const storedData = localStorage.getItem('user');
-        if (storedData) {
-            setData(storedData);
-        }
-    }, []);
+    const refImg = useRef();
+    const [user, setUser, removeUser] = useLocalStorage('user', null)
 
     function postArticulo(){
-        const URL = 'http://localhost:5000/api/Articulos/' + data.id
+        const URL = 'http://localhost:5000/api/Articulos/' + user.id
 
         const articulo = {
             nombre: refNombre.current.value,
             descripcion: refDescripcion.current.value,
             estado: refEstado.current.value,
+            marca: refMarca.current.value,
             precioEstimado: refPrecioEstimado.current.value,
             imagenURLs: [""]
         }
@@ -35,9 +31,7 @@ const Page = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(articulo)
-        })).then(() =>{
-            window.location.href = 'publicar';
-        })
+        }))
     }
 
   return (
@@ -64,6 +58,10 @@ const Page = () => {
             <div className="mb-3">
                 <label htmlFor="precio" className="form-label">Precio estimado</label>
                 <input ref={refPrecioEstimado} type="text" placeholder="Ingrese el precio estimado"className="form-control border border-dark" id="precio" required/>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="img" className="form-label">Precio estimado</label>
+                <input ref={refImg} type="file" accept="image/png, image/jpeg" multiple className="form-control border border-dark" id="img" required/>
             </div>
             <input onClick={postArticulo} type='button' className="btn btn-primary" value="Publicar artículo"/>
         </form>
