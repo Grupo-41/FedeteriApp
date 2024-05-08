@@ -1,8 +1,10 @@
 'use client'
 import React,{useRef, useEffect, useState, useContext} from 'react'
 import { useLocalStorage } from 'react-use'
+import ChangePassword from '../change-password/component/ChangePassword';
 
-const page = () => {
+const Page = () => {
+    const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [sucursales, setSucursales] = useState([]);
     const refDNI = useRef();
     const refName = useRef();
@@ -46,7 +48,6 @@ const page = () => {
             window.location.href = 'login';
         })
     }
-  const [user, setUser, removeUser] = useLocalStorage('user', null);
 
     if(user === null)
         return "Usted no se encuentra autenticado"
@@ -55,19 +56,14 @@ const page = () => {
         window.location.href = "/"
 
     return (
-        <div className="mt-5 d-flex flex-row justify-content-center w-100 gap-3">
-             <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
-                <div className="mb-3">
-                    <input ref={refPass} type="password" placeholder="Ingrese su contraseña"className="form-control border border-dark" id="contra" required/>
-                </div>
-                <input type='button' onClick={postUsuario} className="btn btn-primary" value="Modificar contraseña"/>
-            </form>
+        <div className="mt-5 d-flex flex-row justify-content-center w-100 gap-5">
+            <ChangePassword />
 
             <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
                 <div className='d-flex flex-row gap-3'>
                     <div className="mb-3">
                         <label htmlFor="nombre" className="form-label">Nombre</label>
-                        <input ref={refName} type="text" placeholder="Ingrese su nombre"className="form-control border border-dark" id="nombre" required/>
+                        <input ref={refName} type="text" placeholder="Ingrese su nombre" className="form-control border border-dark" id="nombre" required/>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="apellido" className="form-label">Apellido</label>
@@ -76,12 +72,12 @@ const page = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>
-                    <input ref={refEmail} type="email" placeholder="Ingrese su correo electrónico"className="form-control border border-dark" id="email" required/>
+                    <input ref={refEmail} type="email" placeholder="Ingrese su correo electrónico" className="form-control border border-dark" id="email" required/>
                 </div>
                 <div className='d-flex flex-row gap-3'>
                     <div className="mb-3 w-100">
                         <label htmlFor="telefono" className="form-label">Teléfono</label>
-                        <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
+                        <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono" className="form-control border border-dark" id="telefono" required/>
                     </div>
                 </div>
 
@@ -93,16 +89,16 @@ const page = () => {
                         )}
                     </select>
                 </div>
-                <input type='button' onClick={postUsuario} className="btn btn-primary" value="Modificar datos personales"/>
+                <input type='button' onClick={postUsuario} className="btn" style={{background: '#e7ab12'}} value="Modificar datos personales"/>
             </form>
 
-            <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+            <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 d-flex justify-content-center align-self-center">
                 <div className="mb-3">
-                    <input type='button' onClick={postUsuario} className="btn btn-primary" value="Editar lista de deseados"/>
+                    <input type='button' onClick={postUsuario} className="mt-3 btn" style={{background: '#e7ab12'}} value="Editar lista de deseados"/>
                 </div> 
             </form>
         </div>
     )
 }
 
-export default page
+export default Page

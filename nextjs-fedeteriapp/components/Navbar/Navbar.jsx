@@ -39,7 +39,7 @@ const Navbar = () => {
                                 <a className="nav-link" href="/profile">Mi perfil</a>
                             </li>
                             <li key={"publicaciones"} className="nav-item">
-                                <a className="nav-link" href="/mis-publicaciones">Mi publicaciones</a>
+                                <a className="nav-link" href="/mis-publicaciones">Mis publicaciones</a>
                             </li>
                             <li key={"sucursales"} className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
@@ -58,7 +58,7 @@ const Navbar = () => {
                     </ul>
                     { user !== null &&
                         <>
-                            <button onClick={closeSession} className="ms-2 btn btn-primary">Cerrar sesión</button>
+                            <button onClick={closeSession} className="ms-2 btn btn-outline-secondary">Cerrar sesión</button>
                         </>
                     }
                 </div>

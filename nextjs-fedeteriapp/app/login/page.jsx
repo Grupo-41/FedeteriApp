@@ -38,11 +38,11 @@ const Page = () => {
                 removeEmail();
             }
             else{
-              toast('Credenciales inválidas.')
+              toast.error('Credenciales inválidas.')
             }
         })
         .catch(() => {
-          toast('Credenciales inválidas.')
+          toast.error('Credenciales inválidas.')
         })
 
     }
