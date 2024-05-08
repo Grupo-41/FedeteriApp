@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
           <main className="d-flex justify-content-center align-items-center min-vw-100 min-vh-100">
             {children}
           </main>
-        <footer style={{position: "fixed", bottom: '0px', right: '20px', color: '#555'}}>
+        <footer style={{userSelect: 'none', position: "fixed", bottom: '0px', right: '20px', color: '#555'}}>
           <p>Code 41 &copy; 2024</p>
         </footer>
         <Toaster
