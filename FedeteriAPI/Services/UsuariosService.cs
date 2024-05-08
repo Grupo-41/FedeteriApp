@@ -139,5 +139,15 @@ namespace FedeteriAPI.Services
             user.Contrasena = usuarioPass.Contrasena;
             return true;
         }
+
+        public static bool ExistsUserByEmail(string email)
+        {
+            return Usuarios.Any(x => x.Email == email);
+        }
+
+        public static bool ExistsUserByDNI(long DNI)
+        {
+            return Usuarios.Any(x => x.DNI == DNI);
+        }
     }
 }

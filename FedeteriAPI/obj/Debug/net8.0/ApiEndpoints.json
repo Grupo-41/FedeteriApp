@@ -493,6 +493,58 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "ExistsUserByDNI",
+    "RelativePath": "api/Usuarios/existe-dni/{dni}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dni",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "ExistsUserByEmail",
+    "RelativePath": "api/Usuarios/existe-email/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
     "Method": "GetLogin",
     "RelativePath": "api/Usuarios/login",
     "HttpMethod": "GET",
@@ -560,6 +612,32 @@
       {
         "Name": "codigo",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "PutRecoveryPassword",
+    "RelativePath": "api/Usuarios/recuperar-contrasena",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioRecoveryPass",
+        "Type": "FedeteriAPI.Models.UsuarioRecoveryPass",
         "IsRequired": true
       }
     ],

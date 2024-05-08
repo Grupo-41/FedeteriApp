@@ -3,19 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\utils\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:utils\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\services\\codigosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:services\\codigosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\services\\usuariosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:services\\usuariosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\models\\articulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\models\\articulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:models\\articulo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -39,14 +47,6 @@
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\services\\codigosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:services\\codigosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\utils\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:utils\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\controllers\\sucursalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:controllers\\sucursalescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -62,21 +62,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 15,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "Models\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Models\\Usuario.cs",
-              "RelativeToolTip": "Models\\Usuario.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAIA5wD8AAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T20:22:07.489Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -103,33 +90,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Models\\Usuario.cs",
+              "RelativeToolTip": "Models\\Usuario.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-07T20:22:07.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UsuariosService.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\UsuariosService.cs",
               "RelativeDocumentMoniker": "Services\\UsuariosService.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\UsuariosService.cs",
               "RelativeToolTip": "Services\\UsuariosService.cs",
-              "ViewState": "AQIAAFkAAAAAAAAAAAAvwG4AAAAlAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAYwFkAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-04T05:21:40.597Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UsuariosController.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\UsuariosController.cs",
               "RelativeDocumentMoniker": "Controllers\\UsuariosController.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "Controllers\\UsuariosController.cs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAAAIwAAAAvAAAA",
+              "ViewState": "AQIAAGcAAAAAAAAAAAAMwHUAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-29T17:18:41.729Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ArticulosController.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\ArticulosController.cs",
               "RelativeDocumentMoniker": "Controllers\\ArticulosController.cs",
@@ -141,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CodigoRecuperacion.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Models\\CodigoRecuperacion.cs",
               "RelativeDocumentMoniker": "Models\\CodigoRecuperacion.cs",
@@ -153,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "EmpleadosController.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\EmpleadosController.cs",
               "RelativeDocumentMoniker": "Controllers\\EmpleadosController.cs",
@@ -165,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Articulo.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Models\\Articulo.cs",
               "RelativeDocumentMoniker": "Models\\Articulo.cs",
@@ -173,12 +172,11 @@
               "RelativeToolTip": "Models\\Articulo.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T04:42:20.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T04:42:20.234Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -190,19 +188,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "CodigosService.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\CodigosService.cs",
               "RelativeDocumentMoniker": "Services\\CodigosService.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\CodigosService.cs",
               "RelativeToolTip": "Services\\CodigosService.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAlwA8AAAATAAAA",
+              "ViewState": "AQIAABEAAAAAAAAAAAAYwCgAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T20:49:47.605Z"
+              "WhenOpened": "2024-04-29T20:49:47.605Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Utils\\EmailService.cs",
+              "RelativeDocumentMoniker": "Utils\\EmailService.cs",
+              "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Utils\\EmailService.cs",
+              "RelativeToolTip": "Utils\\EmailService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABRAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T20:25:29.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ArticulosService.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\ArticulosService.cs",
               "RelativeDocumentMoniker": "Services\\ArticulosService.cs",
@@ -211,18 +223,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-29T20:01:24.844Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Utils\\EmailService.cs",
-              "RelativeDocumentMoniker": "Utils\\EmailService.cs",
-              "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Utils\\EmailService.cs",
-              "RelativeToolTip": "Utils\\EmailService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T20:25:29.09Z"
             },
             {
               "$type": "Document",

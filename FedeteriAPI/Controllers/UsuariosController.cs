@@ -140,5 +140,27 @@ namespace FedeteriAPI.Controllers
         {
             return UsuariosService.ValidarLogin(usuario);
         }
+
+        /// <summary>
+        /// Retorna true si ya existe un usuario registrado con el email otorgado. False en cc
+        /// </summary>
+        /// <param name="email">Email a comprobar</param>
+        /// <returns></returns>
+        [HttpGet("existe-email/{email}")]
+        public bool ExistsUserByEmail(string email)
+        {
+            return UsuariosService.ExistsUserByEmail(email);
+        }
+
+        /// <summary>
+        /// Retorna true si ya existe un usuario registrado con el DNI que se le otorga como parámetro. False en cc
+        /// </summary>
+        /// <param name="dni">DNI a comprobar</param>
+        /// <returns></returns>
+        [HttpGet("existe-dni/{dni}")]
+        public bool ExistsUserByDNI(long dni)
+        {
+            return UsuariosService.ExistsUserByDNI(dni);
+        }
     }
 }
