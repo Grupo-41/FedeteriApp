@@ -34,6 +34,9 @@ namespace FedeteriAPI.Services
 
             var ruta = String.Empty;
 
+            if (!Directory.Exists("Images"))
+                Directory.CreateDirectory("Images");
+
             for(int i = 0; i < articulo.Images.Length; i++)
             {
                 var nombreArchivo = Guid.NewGuid().ToString() + ".jpg";

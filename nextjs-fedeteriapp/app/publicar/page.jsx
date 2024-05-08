@@ -32,6 +32,9 @@ const Page = () => {
             method: 'POST',
             body: data
         }))
+        .then(() => {
+            toast.success('Artículo enviado a la espera de ser tasado por un empleado.')
+        })
     }
 
     async function checkInputs(){
