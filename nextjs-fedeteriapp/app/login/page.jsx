@@ -22,9 +22,7 @@ const Page = () => {
             dni: refDNI.current.value,
             contrasena: refPass.current.value,
         }))
-        .then(data => {
-          return data.json()
-        })
+        .then(data => data.json())
         .then(data => {
             if(data.status !== 400){
                 if(data.esAdmin){
@@ -40,11 +38,11 @@ const Page = () => {
                 removeEmail();
             }
             else{
-              toast.error('Credenciales inválidas.')
+              toast('Credenciales inválidas.')
             }
         })
         .catch(() => {
-          toast.error('Credenciales inválidas.')
+          toast('Credenciales inválidas.')
         })
 
     }

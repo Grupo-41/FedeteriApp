@@ -20,13 +20,13 @@ namespace FedeteriAPI.Services
             if (Usuarios.FindIndex(x => x.EsAdmin) == -1)
                 Usuarios.Add(new Usuario()
                 {
-                    Email = @"nicoyurec@gmail.com",
-                    DNI = 43386791,
-                    Nombre = "Fedeteri",
+                    Email = Email.ADDRESS,
+                    DNI = 1,
+                    Nombre = "Fedeteria",
                     Apellido = "Admin",
                     Contrasena = "FedeteriAdmin",
                     Nacimiento = "01/01/2001",
-                    Telefono = 2216325117,
+                    Telefono = 2215551234,
                     EsAdmin = true,
                     EsEmpleado = false,
                     Id = ActualID++,

@@ -15,7 +15,7 @@ const Page = () => {
   function validateCode(){
     const codigo = codeRef.current.value;
 
-    if(codigo === '')
+    if(!codigo)
       toast.error("Debe ingresar un código.");
 
     if(email !== '' && codigo !== ''){
