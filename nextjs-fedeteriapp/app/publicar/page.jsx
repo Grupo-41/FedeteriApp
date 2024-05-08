@@ -66,7 +66,7 @@ const Page = () => {
                     Debe adjuntar entre 1 y 10 imágenes de su artículo.
                 </div>
             </div>
-            <input onClick={postArticulo} type='button' className="btn btn-primary" value="Publicar artículo"/>
+            <input onClick={postArticulo} type='button' className="btn" style={{background: '#e7ab12'}} value="Publicar artículo"/>
         </form>
     </div>
   )
