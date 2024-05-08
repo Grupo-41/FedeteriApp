@@ -18,21 +18,19 @@ const Page = () => {
         if(await checkInputs())
             return
 
-        const articulo = {
-            descripcion: refDescripcion.current.value,
-            estado: refEstado.current.value,
-            marca: refMarca.current.value || "",
-            precioEstimado: refPrecioEstimado.current.value || "",
-            imagenURLs: [""]
+        const data = new FormData();
+        data.append("Descripcion", refDescripcion.current.value);
+        data.append("Estado", refEstado.current.value);
+        data.append("Marca", refMarca.current.value);
+        data.append("PrecioEstimado", refPrecioEstimado.current.value);
+
+        for (var file of refImg.current.files) {
+            data.append('Images', file, file.name)
         }
 
-        fetch(URL, ({
+        await fetch(URL, ({
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(articulo)
+            body: data
         }))
     }
 

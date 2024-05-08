@@ -74,9 +74,9 @@ namespace FedeteriAPI.Controllers
         /// <param name="userId">ID del usuario</param>
         /// <param name="articulo">Objeto artículo</param>
         [HttpPost("{userId}")]
-        public void PostArticulo(int userId, [FromForm] ArticuloIn articulo)
+        public async Task PostArticulo(int userId, [FromForm] ArticuloIn articulo)
         {
-            ArticulosService.AddArticulo(userId, articulo);
+            await ArticulosService.AddArticulo(userId, articulo);
         }
 
         /// <summary>
