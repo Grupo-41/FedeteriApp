@@ -25,37 +25,39 @@ const Navbar = () => {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         { user === null && 
                         <>
-                            <li className="nav-item">
+                            <li key={"registrarme"} className="nav-item">
                                 <a className="nav-link" href="/signup">Registrarme</a>
                             </li>
-                            <li className="nav-item">
+                            <li key={"login"} className="nav-item">
                                 <a className="nav-link" href="/login">Iniciar sesión</a>
                             </li>
                         </>
                         }
                         { user !== null &&
                         <>
-                            <li className="nav-item">
+                            <li key={"profile"} className="nav-item">
                                 <a className="nav-link" href="/profile">Mi perfil</a>
                             </li>
-                            <li className="nav-item">
+                            <li key={"publicaciones"} className="nav-item">
+                                <a className="nav-link" href="/mis-publicaciones">Mi publicaciones</a>
+                            </li>
+                            <li key={"sucursales"} className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
                             </li>
-                            <li className="nav-item">
+                            <li key={"publicar"} className="nav-item">
                                 <a className="nav-link" href="/publicar">Publicar artículo</a>
                             </li>
                         </>
                             
                         }
                         { user !== null && user.esAdmin &&
-                            <li className="nav-item">
+                            <li key={"estadisticas"} className="nav-item">
                                 <a className="nav-link" href="/estadisticas">Ver estadísticas</a>
                             </li>
                         }
                     </ul>
                     { user !== null &&
                         <>
-
                             <button onClick={closeSession} className="ms-2 btn btn-primary">Cerrar sesión</button>
                         </>
                     }

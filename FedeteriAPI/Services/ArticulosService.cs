@@ -75,7 +75,7 @@ namespace FedeteriAPI.Services
         {
             int index = Articulos.FindIndex(x => x.Id == id);
 
-            if(index == -1)
+            if(index != -1)
                 Articulos.RemoveAt(index);
 
             WriteAll();
