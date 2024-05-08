@@ -47,7 +47,7 @@ const Page = () => {
                     <label htmlFor="sucursal-choice" className="form-label">Sucursal:</label>
                     <input type="text" value={user.sucursal.nombre + " - " + user.sucursal.direccion} className="form-control border border-dark" id="fecha" disabled/>
                 </div>
-                <input type='button' className="btn mt-2" style={{background: '#e7ab12'}} value="Modificar perfil"/>
+                <input onClick={() => {window.location.href = '/modify-profile'}} type='button' className="btn btn-primary mt-2" value="Modificar perfil"/>
             </form>
         </div>
     )
