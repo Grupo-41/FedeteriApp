@@ -1,16 +1,21 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocalStorage } from 'react-use'
 import Image from 'next/image'
 import FedeteriaLogo from '../../public/Fedeteria_Horizontal.png'
 
 const Navbar = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
+    const [loading, setLoading] = useState(true);
 
     function closeSession(){
         removeUser();
         window.location.href = '/';
     }
+
+    useEffect(() => {
+        setLoading(false);
+    }, [])
 
   return (
     <>
@@ -23,7 +28,7 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        { user === null && 
+                        { user === null && !loading && 
                         <>
                             <li key={"registrarme"} className="nav-item">
                                 <a className="nav-link" href="/signup">Registrarme</a>
