@@ -74,7 +74,7 @@ namespace FedeteriAPI.Controllers
         /// <param name="userId">ID del usuario</param>
         /// <param name="articulo">Objeto artículo</param>
         [HttpPost("{userId}")]
-        public void PostArticulo(int userId, [FromBody] ArticuloIn articulo)
+        public void PostArticulo(int userId, [FromForm] ArticuloIn articulo)
         {
             ArticulosService.AddArticulo(userId, articulo);
         }
@@ -85,7 +85,7 @@ namespace FedeteriAPI.Controllers
         /// <param name="id">ID del artículo</param>
         /// <param name="articulo">Objeto artículo con campos actualizados</param>
         [HttpPut("{id}")]
-        public void UpdateArticulo(int id, [FromBody] ArticuloIn articulo)
+        public void UpdateArticulo(int id, [FromForm] ArticuloIn articulo)
         {
             ArticulosService.UpdateArticulo(id, articulo);
         }
