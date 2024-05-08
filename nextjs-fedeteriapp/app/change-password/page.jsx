@@ -40,7 +40,7 @@ const Page = () => {
 
   return (
     <div className="mt-5 d-flex justify-content-center w-100">
-    <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+      <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
         { email === '' &&
             <div className="mb-3">
                 <label htmlFor="actualPass" className="form-label">Contraseña actual</label>

@@ -1,16 +1,26 @@
 "use client"
 import React, {useEffect, useRef} from 'react'
 import { useLocalStorage } from 'react-use';
+import { emailExists, validateEmail } from '../utils';
+import toast from 'react-hot-toast';
 
 const Page = () => {
     const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
     const refEmail = useRef();
 
-    function sendCode(){
+    async function sendCode(){
         let URL = "http://localhost:5000/api/usuarios/recuperacion/"
         let inputEmail = refEmail.current.value;
 
-        if(validateEmail(inputEmail)){
+        if(!validateEmail(inputEmail)){
+          toast.error("Debe ingresar un mail válido.")
+          return;
+        }
+        else if(await emailExists(inputEmail) === false){
+          toast.error("El email ingresado no se encuentra registrado en el sistema.")
+          return;
+        }
+        else{
             setEmail(inputEmail)
             URL = URL + inputEmail;
 
@@ -18,14 +28,6 @@ const Page = () => {
             window.location.href = `/validar-codigo`
         }
     }
-
-    const validateEmail = (email) => {
-        return String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-      };
 
 
   return (

@@ -23,13 +23,30 @@ namespace FedeteriAPI.Services
             return Articulos;
         }
 
-        public static void AddArticulo(int userID, ArticuloIn articulo)
+        public static async Task AddArticulo(int userID, ArticuloIn articulo)
         {
             ArticuloOut nuevoArticulo = new ArticuloOut(articulo)
             {
                 Id = ActualID++,
                 Usuario = new UsuarioOut(UsuariosService.GetUsuarioByID(userID)),
+                ImageNames = new List<string>()
             };
+
+            var ruta = String.Empty;
+
+            if (!Directory.Exists("Images"))
+                Directory.CreateDirectory("Images");
+
+            for(int i = 0; i < articulo.Images.Length; i++)
+            {
+                var nombreArchivo = Guid.NewGuid().ToString() + ".jpg";
+                ruta = $"Images/{nombreArchivo}";
+
+                using(FileStream str = new FileStream(ruta, FileMode.Create))
+                    await articulo.Images[i].CopyToAsync(str);
+
+                nuevoArticulo.ImageNames.Add(nombreArchivo);
+            }
 
             Articulos.Add(nuevoArticulo);
             WriteAll();
@@ -48,7 +65,6 @@ namespace FedeteriAPI.Services
             {
                 toUpdate.Descripcion = articulo.Descripcion;
                 toUpdate.Estado = articulo.Estado;
-                toUpdate.ImagenURLs = articulo.ImagenURLs;
                 toUpdate.PrecioEstimado = articulo.PrecioEstimado;
 
                 WriteAll();

@@ -1,6 +1,7 @@
 "use client"
 import React, { useRef, useEffect } from 'react'
 import { useLocalStorage } from 'react-use'
+import toast from 'react-hot-toast'
 
 const Page = () => {
   const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
@@ -14,6 +15,9 @@ const Page = () => {
   function validateCode(){
     const codigo = codeRef.current.value;
 
+    if(!codigo)
+      toast.error("Debe ingresar un código.");
+
     if(email !== '' && codigo !== ''){
       const URL = `http://localhost:5000/api/usuarios/recuperacion/${email}/validar/${codigo}`;
 
@@ -22,6 +26,9 @@ const Page = () => {
       .then(data => {
         if(data === true){
           window.location.href = '/change-password'
+        }
+        else{
+          toast.error("El código es incorrecto.")
         }
       })
     }

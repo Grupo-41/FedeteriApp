@@ -1,5 +1,7 @@
 'use client'
 import React, {useRef, useEffect, useState, useContext} from 'react'
+import toast from 'react-hot-toast';
+import { validateEmail, validatePassword, validateAge, emailExists } from '../utils';
 
 const Page = () => {
     const [sucursales, setSucursales] = useState([]);
@@ -20,8 +22,11 @@ const Page = () => {
         .then(data => setSucursales(data))
     }, [])
 
-    function postUsuario(){
+    async function postUsuario(){
         const URL = "http://localhost:5000/api/Usuarios"
+
+        if(await checkInputs())
+            return
 
         const user = {
             nombre: refName.current.value,
@@ -42,8 +47,40 @@ const Page = () => {
             },
             body: JSON.stringify(user)
         }).then(() =>{
-            window.location.href = 'login';
+            window.location.href = '/login';
         })
+    }
+
+    async function checkInputs(){
+        if(!refDNI.current.value){
+            toast.error('Debe ingresar un DNI.')
+            return true;
+        }
+        if(!refName.current.value){
+            toast.error('Debe ingresar un nombre.')
+            return true;
+        }
+        if(!refApellido.current.value){
+            toast.error('Debe ingresar un apellido.')
+            return true;
+        }
+        if(!refEmail.current.value || !validateEmail(refEmail.current.value)){
+            toast.error("Debe ingresar un email válido.")
+            return true;
+        }
+        if(await emailExists(refEmail.current.value)){
+            toast.error("El email ingresado ya se encuentra registrado en la aplicación.")
+            return true;
+        }
+        if(!validateAge(refNacimiento.current.value)){
+            return true;
+        }
+        if(!refPass.current.value || !validatePassword(refPass.current.value)){
+            toast.error("La contraseña debe tener más de 6 caracteres, 1 carácter especial y 1 mayúscula")
+            return true;
+        }
+
+        return false;
     }
 
   return (

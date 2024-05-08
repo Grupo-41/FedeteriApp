@@ -164,5 +164,19 @@
             <param name="usuario">Credenciales (email y contraseña)</param>
             <returns>Un objeto UsuarioOut si las credenciales son correctas, null si las credenciales son incorrectas</returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.ExistsUserByEmail(System.String)">
+            <summary>
+            Retorna true si ya existe un usuario registrado con el email otorgado. False en cc
+            </summary>
+            <param name="email">Email a comprobar</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.ExistsUserByDNI(System.Int64)">
+            <summary>
+            Retorna true si ya existe un usuario registrado con el DNI que se le otorga como parámetro. False en cc
+            </summary>
+            <param name="dni">DNI a comprobar</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

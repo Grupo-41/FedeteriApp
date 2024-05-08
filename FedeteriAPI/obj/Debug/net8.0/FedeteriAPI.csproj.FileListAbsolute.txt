@@ -69,3 +69,5 @@ E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.x
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.pdb
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.genruntimeconfig.cache
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\ref\FedeteriAPI.dll
+C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\usuarios.json
+C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\articulos.json

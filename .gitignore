@@ -1,5 +1,10 @@
 FedeteriAPI/*.json
 
+# Imágenes de la API
+FedeteriAPI/Images/*
+Images/
+Images/*
+
 # User-specific files
 FedeteriAPI/*.suo
 FedeteriAPI/*.user
