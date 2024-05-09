@@ -41,11 +41,11 @@ namespace FedeteriAPI.Controllers
         /// Endpoint para tasar un artículo
         /// </summary>
         /// <param name="articuloID">ID del artículo a tasar</param>
-        /// <param name="precio">Precio tasado</param>
+        /// <param name="categoria">Categoria del artículo</param>
         [HttpPut("tasar")]
-        public ActionResult TasarArticulo(int articuloID, double precio)
+        public ActionResult TasarArticulo(int articuloID, string categoria)
         {
-            if (ArticulosService.TasarArticulo(articuloID, precio))
+            if (ArticulosService.TasarArticulo(articuloID, categoria))
                 return Ok();
 
             return NotFound();

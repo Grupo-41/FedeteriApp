@@ -74,11 +74,6 @@
         "IsRequired": false
       },
       {
-        "Name": "PrecioEstimado",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
         "Name": "Images",
         "Type": "Microsoft.AspNetCore.Http.IFormFile[]",
         "IsRequired": false
@@ -140,11 +135,6 @@
       {
         "Name": "Marca",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "PrecioEstimado",
-        "Type": "System.Double",
         "IsRequired": false
       },
       {
@@ -215,8 +205,8 @@
         "IsRequired": false
       },
       {
-        "Name": "precio",
-        "Type": "System.Double",
+        "Name": "categoria",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],

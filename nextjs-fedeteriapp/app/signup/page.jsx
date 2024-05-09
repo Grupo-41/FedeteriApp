@@ -126,7 +126,7 @@ const Page = () => {
                     )}
                 </select>
             </div>
-            <input type='button' onClick={postUsuario} className="btn btn-primary" value="Registrarse"/>
+            <input type='button' onClick={postUsuario} className="btn" style={{background: '#e7ab12'}} value="Registrarse"/>
         </form>
     </div>
   )

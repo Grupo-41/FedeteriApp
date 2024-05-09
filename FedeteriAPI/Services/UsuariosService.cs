@@ -12,25 +12,42 @@ namespace FedeteriAPI.Services
 
         public static void WriteAll() => FilesService<Usuario>.WriteAll(Paths.FILE_USUARIOS, Usuarios);
         public static async Task ReadAllAsync() {
-            Usuarios = await FilesService<Usuario>.ReadAllAsync(Paths.FILE_USUARIOS);
+            try
+            {
+                Usuarios = await FilesService<Usuario>.ReadAllAsync(Paths.FILE_USUARIOS);
+            }
+            catch(Exception ex)
+            {
+                Usuarios.Clear();
+                File.Delete(Paths.FILE_USUARIOS);
+            }
+            finally
+            {
+                if (Usuarios.Count > 0)
+                    ActualID = Usuarios.Max(x => x.Id) + 1;
 
-            if (Usuarios.Count > 0)
-                ActualID = Usuarios.Max(x => x.Id) + 1;
+                if (Usuarios.FindIndex(x => x.EsAdmin) == -1)
+                    AddAdmin();
+            }
+        }
 
-            if (Usuarios.FindIndex(x => x.EsAdmin) == -1)
-                Usuarios.Add(new Usuario()
-                {
-                    Email = Email.ADDRESS,
-                    DNI = 1,
-                    Nombre = "Fedeteria",
-                    Apellido = "Admin",
-                    Contrasena = "FedeteriAdmin",
-                    Nacimiento = "01/01/2001",
-                    Telefono = 2215551234,
-                    EsAdmin = true,
-                    EsEmpleado = false,
-                    Id = ActualID++,
-                });
+        public static void AddAdmin()
+        {
+            Usuarios.Add(new Usuario()
+            {
+                Email = Email.ADDRESS,
+                DNI = 1,
+                Nombre = "Fedeteria",
+                Apellido = "Admin",
+                Contrasena = "FedeteriAdmin",
+                Nacimiento = "1985-07-12",
+                Telefono = 2215551234,
+                EsAdmin = true,
+                EsEmpleado = false,
+                Id = ActualID++,
+            });
+
+            WriteAll();
         }
 
         public static void AddEmpleado(UsuarioIn usuario)
@@ -98,6 +115,7 @@ namespace FedeteriAPI.Services
                 return false;
             
             toUpdate.Contrasena = usuarioPass.Contrasena;
+            WriteAll();
             return true;
         }
 
@@ -129,6 +147,7 @@ namespace FedeteriAPI.Services
             if(u == null) return;
 
             u.Update(usuario);
+            WriteAll();
         }
 
         internal static bool RecoveryPassword(UsuarioRecoveryPass usuarioPass)
@@ -137,6 +156,7 @@ namespace FedeteriAPI.Services
             if(user == null) return false;
 
             user.Contrasena = usuarioPass.Contrasena;
+            WriteAll();
             return true;
         }
 

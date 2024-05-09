@@ -65,7 +65,7 @@ namespace FedeteriAPI.Services
             {
                 toUpdate.Descripcion = articulo.Descripcion;
                 toUpdate.Estado = articulo.Estado;
-                toUpdate.PrecioEstimado = articulo.PrecioEstimado;
+                toUpdate.Marca = articulo.Marca;
 
                 WriteAll();
             }
@@ -96,7 +96,7 @@ namespace FedeteriAPI.Services
             return Articulos.FindAll(x => !x.Tasado);
         }
 
-        public static bool TasarArticulo(int articuloID, double precio)
+        public static bool TasarArticulo(int articuloID, string categoria)
         {
             ArticuloOut aTasar = GetArticulo(articuloID);
 
@@ -104,7 +104,7 @@ namespace FedeteriAPI.Services
                 return false;
             else
             {
-                aTasar.PrecioEstimado = precio;
+                aTasar.Categoria = categoria;
                 aTasar.Tasado = true;
                 WriteAll();
                 return true;
