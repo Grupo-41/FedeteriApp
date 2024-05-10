@@ -11,8 +11,6 @@ const Page = () => {
     if(user === null && typeof window !== "undefined")
         window.location.href = "/"
 
-        console.log(user);
-
     return (
         <div className="mt-5 d-flex flex-column justify-content-center w-100">
             <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">

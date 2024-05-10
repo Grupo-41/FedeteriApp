@@ -1,14 +1,17 @@
 'use client'
 import React, {useRef, useEffect, useState, useContext} from 'react'
 import toast from 'react-hot-toast';
-import { validateEmail, validatePassword, validateAge, emailExists } from '../utils';
+import { validateEmail, validatePassword, validateAge, emailExists, dniExists } from '../utils';
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 const Page = () => {
     const [sucursales, setSucursales] = useState([]);
+    const [passVisibility, setPassVisibility] = useState(false);
     const refDNI = useRef();
     const refName = useRef();
     const refApellido = useRef();
     const refPass = useRef();
+    const refRePass = useRef();
     const refTelefono = useRef();
     const refNacimiento = useRef();
     const refEmail = useRef();
@@ -21,6 +24,10 @@ const Page = () => {
         .then(data => data.json())
         .then(data => setSucursales(data))
     }, [])
+
+    function togglePassVisibility(){
+        setPassVisibility(!passVisibility);
+    }
 
     async function postUsuario(){
         const URL = "http://localhost:5000/api/Usuarios"
@@ -56,6 +63,10 @@ const Page = () => {
             toast.error('Debe ingresar un DNI.')
             return true;
         }
+        if(await dniExists(refDNI.current.value)){
+            toast.error("Ya existe un usuario con el DNI ingresado.")
+            return true;
+        }
         if(!refName.current.value){
             toast.error('Debe ingresar un nombre.')
             return true;
@@ -75,8 +86,16 @@ const Page = () => {
         if(!validateAge(refNacimiento.current.value)){
             return true;
         }
-        if(!refPass.current.value || !validatePassword(refPass.current.value)){
+        if(!refPass.current.value){
+            toast.error("Debe ingresar una contraseña.")
+            return true;
+        }
+        if(!validatePassword(refPass.current.value)){
             toast.error("La contraseña debe tener más de 6 caracteres, 1 carácter especial y 1 mayúscula")
+            return true;
+        }
+        if(!refRePass.current.value || refRePass.current.value !== refPass.current.value){
+            toast.error("La contraseñas ingresadas deben coincidir")
             return true;
         }
 
@@ -86,9 +105,10 @@ const Page = () => {
   return (
     <div className="mt-5 d-flex justify-content-center w-100">
         <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+            <h3 className='text-center'>Registro de usuario</h3>
             <div className="mb-3">
                 <label htmlFor="dni" className="form-label">DNI</label>
-                <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
+                <input ref={refDNI} type="number" min="0" onInput={(e) => replaceNonNumbers(e)} placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
             </div>
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3">
@@ -115,8 +135,18 @@ const Page = () => {
                 </div>
             </div>
             <div className="mb-3">
-                <label htmlFor="nombre" className="form-label">Contraseña</label>
-                <input ref={refPass} type="password" placeholder="Ingrese su contraseña"className="form-control border border-dark" id="contra" required/>
+                <label htmlFor="pass" className="form-label">Contraseña</label>
+                <div className="input-group mb-3">
+                    <input ref={refPass} type={passVisibility ? "text" : "password"} placeholder="Ingrese su contraseña" className="form-control border border-dark" id="pass"/>
+                    <button className="btn btn-outline-secondary border-dark" onClick={togglePassVisibility} type="button">{passVisibility ? <FiEye className='mb-1' /> : <FiEyeOff className='mb-1' />}</button>
+                </div>
+            </div>
+            <div className="mb-3">
+                <label htmlFor="rePass" className="form-label">Repita su contraseña</label>
+                <div className="input-group mb-3">
+                    <input ref={refRePass} type={passVisibility ? "text" : "password"} placeholder="Ingrese su contraseña" className="form-control border border-dark" id="rePass"/>
+                    <button className="btn btn-outline-secondary border-dark" onClick={togglePassVisibility} type="button">{passVisibility ? <FiEye className='mb-1' /> : <FiEyeOff className='mb-1' />}</button>
+                </div>
             </div>
             <div className="mb-3">
                 <label htmlFor="sucursal-choice" className="form-label">Sucursal:</label>
@@ -126,7 +156,7 @@ const Page = () => {
                     )}
                 </select>
             </div>
-            <input type='button' onClick={postUsuario} className="btn" style={{background: '#e7ab12'}} value="Registrarse"/>
+            <input type='button' onClick={postUsuario} className="btn mt-2 w-100" style={{background: '#e7ab12'}} value="Registrarse"/>
         </form>
     </div>
   )

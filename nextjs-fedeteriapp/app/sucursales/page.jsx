@@ -19,14 +19,14 @@ const Page = () => {
       {
         sucursales.length > 0 ? 
           <div className='w-100 d-flex justify-content-center align-items-center flex-column'>
-              <div>
-                  <h1 className='mb-4'>Nuestras sucursales</h1>
-                  <div className={styles.sucursalesContainer}>
-                      {sucursales.map(x => 
-                          <Sucursal sucursal={x} key={x.nombre}/>
-                      )}
-                  </div>
+            <div>
+              <h1 className='mb-4'>Nuestras sucursales</h1>
+              <div className={styles.sucursalesContainer}>
+                  {sucursales.map(x => 
+                      <Sucursal sucursal={x} key={x.nombre}/>
+                  )}
               </div>
+            </div>
           </div> :
           "Cargando sucursales..."
       }

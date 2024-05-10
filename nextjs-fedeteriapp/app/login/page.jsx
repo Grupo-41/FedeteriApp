@@ -2,6 +2,9 @@
 import React, { useRef, useState } from 'react'
 import { useLocalStorage } from 'react-use';
 import toast from 'react-hot-toast';
+import { FiEye, FiEyeOff } from "react-icons/fi"
+import Image from 'next/image';
+import FedeteriaLogo from '../../public/Fedeteria_Principal.png'
 
 
 const Page = () => {
@@ -10,12 +13,17 @@ const Page = () => {
     const [error, setError] = useState(false)
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
+    const [passVisibility, setPassVisibility] = useState(false)
 
     function keyDown(e){
       if (e.key === 'Enter' || e.keyCode === 13) {
         clickLogin();
       }
-    } 
+    }
+
+    function togglePassVisibility(){
+      setPassVisibility(!passVisibility)
+    }
 
     function clickLogin(){
         fetch('http://localhost:5000/api/Usuarios/login?' + new URLSearchParams({
@@ -48,21 +56,25 @@ const Page = () => {
     }
     
   return (
-    <div className="mt-5 d-flex justify-content-center w-100">
-        <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">DNI</label>
-              <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="email" />
+    <div className="mt-5 d-flex flex-column gap-5 justify-content-center align-items-center w-100">
+      <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25">
+        <h3 className='text-center'>Inicio de sesión</h3>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">DNI</label>
+            <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="email" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="contra" className="form-label">Contraseña</label>
+            <div className="input-group mb-3">
+              <input onKeyDown={(e) => keyDown(e)} ref={refPass} type={passVisibility ? "text" : "password"} placeholder="Ingrese su contraseña" className="form-control border border-dark" id="contra"/>
+              <button className="btn btn-outline-secondary border-dark" onClick={togglePassVisibility} type="button" id="button-addon2">{passVisibility ? <FiEye className='mb-1' /> : <FiEyeOff className='mb-1' />}</button>
             </div>
-            <div className="mb-4">
-              <label htmlFor="contra" className="form-label">Contraseña</label>
-              <input onKeyDown={(e) => keyDown(e)} ref={refPass} type="password" placeholder="Ingrese su contraseña" className="form-control border border-dark" id="contra"/>
-            </div>
-            <div className='d-flex flex-row justify-content-between align-items-center'>
-              <a href="/recovery-password">Olvidé mi contraseña</a>
-              <button onClick={clickLogin} type="button" style={{backgroundColor: '#e7ab12 ', float: 'right'}} className="btn">Iniciar sesión</button>
-            </div>
-        </form>
+          </div>
+          <div className='d-flex flex-row justify-content-between align-items-center'>
+            <a href="/recovery-password">Olvidé mi contraseña</a>
+            <button onClick={clickLogin} type="button" style={{backgroundColor: '#e7ab12 ', float: 'right'}} className="btn">Iniciar sesión</button>
+          </div>
+      </form>
     </div>
   )
 }

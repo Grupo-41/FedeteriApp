@@ -17,15 +17,28 @@ export const emailExists = async (email) => {
   return response;
 }
 
+export const dniExists = async (dni) => {
+  var response = false;
+  const URL = `http://localhost:5000/api/Usuarios/existe-dni/${dni}`;
+
+  await fetch(URL).then(data => data.json()).then(data => response = data);
+
+  return response;
+}
+
 export const validatePassword = (str) => {
-        if (str.length < 6) {
-            return false;
-        } else if (str.search(/[a-zA-Z]/) == -1) {
-            return false;
-        } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
-            return false;
-        }
-        return true;
+  if (str.length < 6) {
+      return false;
+  } 
+
+  const regexMayuscula = /[A-Z]/;
+  const regexCaracterEspecial = /[!@#$%^&*]/;
+
+  if (!regexMayuscula.test(str) || !regexCaracterEspecial.test(str)) {
+      return false;
+  }
+
+  return true;
 };
 
 export const validateAge = (date) => {

@@ -26,7 +26,6 @@ const Page = () => {
                         <div className="card-footer">
                             <h5 className="card-title">{x.descripcion}</h5>
                             <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
-                            <p className="card-subtitle text-body-secondary"><strong>Precio estimado: </strong>${x.precioEstimado}</p>
                             <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Aún sin definir"}</p>
                         </div>
                         <div className='card-footer'>{x.tasado ? "Artículo publicado" : "Artículo a la espera de ser tasado"}</div>

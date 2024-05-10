@@ -21,7 +21,7 @@ const Navbar = () => {
     <>
         <nav className="navbar fixed-top navbar-expand-lg shadow border-bottom border-black" style={{background: '#e7ab12 '}}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="/"><Image src={FedeteriaLogo} width="233" height="35" alt="FedeteriApp"/></a>
+                <a className="navbar-brand" href="/"><Image src={FedeteriaLogo} height="35" alt="FedeteriApp"/></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

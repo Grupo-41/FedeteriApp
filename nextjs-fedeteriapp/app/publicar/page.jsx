@@ -61,6 +61,7 @@ const Page = () => {
   return (
     <div className="mt-5 d-flex justify-content-center w-100">
         <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
+            <h3 className='text-center mb-3'>Nuevo artículo</h3>
             <div className="mb-3">
                 <label htmlFor="descripcion" className="form-label">Descripción</label>
                 <input ref={refDescripcion} type="text" placeholder="Ingrese una descripción" className="form-control border border-dark" id="descripcion" required/>
@@ -78,13 +79,6 @@ const Page = () => {
                 <div className="mb-3">
                     <label htmlFor="marca" className="form-label">Marca</label>
                     <input ref={refMarca} type="text" placeholder="Ingrese la marca" className="form-control border border-dark" id="marca" required/>
-                </div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="precio" className="form-label">Precio estimado</label>
-                <div id='precio' class="input-group mb-3">
-                    <span class="input-group-text border border-dark">$</span>
-                    <input ref={refPrecioEstimado} type="text" placeholder="Ingrese el precio estimado" class="form-control border border-dark" />
                 </div>
             </div>
             <div className="mb-3">
