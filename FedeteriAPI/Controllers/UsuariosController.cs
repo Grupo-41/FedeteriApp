@@ -57,12 +57,17 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
-        /// Permite modificar los datos personales de un usuario (no recomiendo modificar la contraseña mediante este endpoint)
+        /// Permite modificar los datos personales de un usuario
         /// </summary>
         /// <param name="datos">Objeto de datos personales</param>
         [HttpPut]
-        public void ModificarUsuario([FromBody] DatosPersonalesUsuario datos) {
-            UsuariosService.UpdateUsuario(datos);
+        public ActionResult<UsuarioOut> ModificarUsuario([FromBody] DatosPersonalesUsuario datos) {
+            UsuarioOut u = UsuariosService.UpdateUsuario(datos);
+
+            if (u != null)
+                return Ok(u);
+
+            return NotFound();
         }
 
         /// <summary>

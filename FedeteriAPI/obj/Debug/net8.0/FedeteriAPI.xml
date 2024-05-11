@@ -112,7 +112,7 @@
         </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.ModificarUsuario(FedeteriAPI.Models.DatosPersonalesUsuario)">
             <summary>
-            Permite modificar los datos personales de un usuario (no recomiendo modificar la contraseña mediante este endpoint)
+            Permite modificar los datos personales de un usuario
             </summary>
             <param name="datos">Objeto de datos personales</param>
         </member>

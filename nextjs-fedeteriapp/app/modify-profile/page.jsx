@@ -3,16 +3,15 @@ import React,{useRef, useEffect, useState, useContext} from 'react'
 import toast from 'react-hot-toast'
 import { useLocalStorage } from 'react-use'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { emailExists, validateEmail, validatePassword } from '../utils'
 
 const Page = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [sucursales, setSucursales] = useState([]);
     const [passVisibility, setPassVisibility] = useState(false);
-    const refDNI = useRef();
     const refNombre = useRef();
     const refApellido = useRef();
     const refTelefono = useRef();
-    const refNacimiento = useRef();
     const refEmail = useRef();
     const refSucursal = useRef();
 
@@ -43,38 +42,49 @@ const Page = () => {
         setPassVisibility(!passVisibility)
     }
 
-    function postUsuario(){
+    async function postDatosPersonales(){
         const URL = "http://localhost:5000/api/Usuarios"
 
-        const user = {
+        if(await checkInputs())
+            return;
+
+        const objPersonalData = {
+            id: user.id,
             nombre: refNombre.current.value,
             apellido: refApellido.current.value,
-            dni: refDNI.current.value,
             email: refEmail.current.value,
-            nacimiento: refNacimiento.current.value,
             telefono: refTelefono.current.value,
             sucursalID: refSucursal.current.value
         }
 
-        fetch(URL, {
-            method: 'POST',
+        await fetch(URL, {
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
-        }).then(() =>{
-            window.location.href = 'login';
+            body: JSON.stringify(objPersonalData)
+        }).then((data) => {
+            if(data.status === 200)
+                return data.json();
+            
+            return null;
+        }).then((data) => {
+            if(data !== null){
+                setUser(data);
+                toast.success("Datos personales modificados exitosamente.")
+            }
         })
     }
 
     function changePassword(){
-        if(checkInputs())
+        if(checkPassInputs())
             return
 
         const URL = "http://localhost:5000/api/Usuarios/cambiar-contrasena"
         const bodyObject = {
-            email: email,
+            id: user.id,
+            contrasenaActual: refActualPass.current.value,
             contrasena: refPass.current.value
         }
 
@@ -85,10 +95,41 @@ const Page = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(bodyObject)
-        })).then(() => window.location.href = '/login')
+        })).then(data => data.json())
+        .then((data) =>{
+            if(data)
+                toast.success("Contraseña modificada exitosamente.")
+            else
+                toast.error("La contraseña actual ingresada es incorrecta.")
+        })
     }
 
-    function checkInputs(){
+    async function checkInputs(){
+        if(!refNombre.current.value){
+            toast.error('Debe ingresar un nombre.')
+            return true;
+        }
+        if(!refApellido.current.value){
+            toast.error('Debe ingresar un apellido.')
+            return true;
+        }
+        if(!refEmail.current.value || !validateEmail(refEmail.current.value)){
+            toast.error("Debe ingresar un email válido.")
+            return true;
+        }
+        if(user.email !== refEmail.current.value && await emailExists(refEmail.current.value)){
+            toast.error("El email ingresado ya se encuentra registrado en la aplicación.")
+            return true;
+        }
+        if(!refTelefono.current.value){
+            toast.error("Debe ingresar un número de teléfono.")
+            return true;
+        }
+
+        return false;
+    }
+
+    function checkPassInputs(){
         if(!refPass.current.value){
             toast.error("Debe ingresar una contraseña.")
             return true;
@@ -152,7 +193,7 @@ const Page = () => {
                 <div className='d-flex flex-row gap-3'>
                     <div className="mb-3 w-100">
                         <label htmlFor="telefono" className="form-label">Teléfono</label>
-                        <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono" className="form-control border border-dark" id="telefono" required/>
+                        <input ref={refTelefono} type="number" placeholder="Ingrese su número de teléfono" className="form-control border border-dark" id="telefono" required/>
                     </div>
                 </div>
 
@@ -164,12 +205,12 @@ const Page = () => {
                         )}
                     </select>
                 </div>
-                <input type='button' onClick={postUsuario} className="btn mt-2 float-end" style={{background: '#e7ab12'}} value="Modificar datos personales"/>
+                <input type='button' onClick={postDatosPersonales} className="btn mt-2 float-end" style={{background: '#e7ab12'}} value="Modificar datos personales"/>
             </form>
 
             <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 d-flex flex-column justify-content-center align-self-center">
                 <h3 className='mb-3'>Lista de deseados</h3>
-                <input type='button' onClick={postUsuario} className="mt-2 btn justify-self-center" style={{background: '#e7ab12'}} value="Editar lista de deseados"/>
+                <input type='button' className="mt-2 btn justify-self-center" style={{background: '#e7ab12'}} value="Editar lista de deseados"/>
             </form>
         </div>
     )

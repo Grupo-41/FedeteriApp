@@ -27,7 +27,6 @@ const Page = () => {
         data.append("Descripcion", refDescripcion.current.value);
         data.append("Estado", refEstado.current.value);
         data.append("Marca", refMarca.current.value);
-        data.append("PrecioEstimado", refPrecioEstimado.current.value);
 
         for (var file of refImg.current.files) {
             data.append('Images', file, file.name)

@@ -90,6 +90,10 @@ const Page = () => {
             toast.error("El email ingresado ya se encuentra registrado en la aplicación.")
             return true;
         }
+        if(!refTelefono.current.value){
+            toast.error("Debe ingresar un número de teléfono.")
+            return true;
+        }
         if(!validateAge(refNacimiento.current.value)){
             return true;
         }
@@ -115,7 +119,7 @@ const Page = () => {
             <h3 className='text-center'>Registro de usuario</h3>
             <div className="mb-3">
                 <label htmlFor="dni" className="form-label">DNI</label>
-                <input ref={refDNI} type="number" min="0" onInput={(e) => replaceNonNumbers(e)} placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
+                <input ref={refDNI} type="number" min="0" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
             </div>
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3">

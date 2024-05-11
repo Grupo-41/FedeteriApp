@@ -148,13 +148,14 @@ namespace FedeteriAPI.Services
             return Usuarios.FindAll(x => x.EsEmpleado);
         }
 
-        public static void UpdateUsuario(DatosPersonalesUsuario usuario)
+        public static UsuarioOut UpdateUsuario(DatosPersonalesUsuario usuario)
         {
             Usuario u = GetUsuarioByID(usuario.Id);
-            if(u == null) return;
+            if(u == null) return null;
 
             u.Update(usuario);
             WriteAll();
+            return new UsuarioOut(u);
         }
 
         internal static bool RecoveryPassword(UsuarioRecoveryPass usuarioPass)

@@ -29,8 +29,11 @@ namespace FedeteriAPI.Models
 
         public void Update(DatosPersonalesUsuario datos)
         {
+            this.Nombre = datos.Nombre;
+            this.Apellido = datos.Apellido;
             this.Telefono = datos.Telefono;
             this.Email = datos.Email;
+            this.Sucursal = SucursalesService.GetSucursal(datos.SucursalId);
         }
     }
 
@@ -88,9 +91,11 @@ namespace FedeteriAPI.Models
     public class DatosPersonalesUsuario
     {
         public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public long Telefono { get; set; }
         public string Email { get; set; }
-
+        public int SucursalId { get; set; }
     }
 
     public class CredencialesUsuario

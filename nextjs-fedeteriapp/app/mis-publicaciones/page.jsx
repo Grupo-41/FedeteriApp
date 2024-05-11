@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocalStorage } from 'react-use'
 import Image from 'next/image'
+import { BsFillTrashFill } from "react-icons/bs";
+import { MdEdit } from "react-icons/md";
 
 const Page = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
@@ -31,7 +33,14 @@ const Page = () => {
                 articulos.map(x => {
                     return (
                         <div key={x.id} className="card" style={{width: '18rem'}}>
-                            <img src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} height={175} style={{objectFit: 'contain'}} alt="" className="p-2 card-img-top" />
+                            <div className='position-relative card-img-top'>
+                                <img src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} height={175} style={{objectFit: 'contain'}} alt="" className="w-100 p-2" />
+                                <div class="btn-group-vertical position-absolute top-0 end-0 mt-2 me-2">
+                                    <button type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16}/></button>
+                                    <button type="button" class="btn btn-danger p-2 pt-0 pb-1"><BsFillTrashFill size={16}/></button>
+                                </div>
+                            </div>
+                            
                             <div className="card-footer">
                                 <h5 className="card-title">{x.descripcion}</h5>
                                 <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
