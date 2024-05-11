@@ -1,0 +1,1 @@
+start %~dp0/bin/Release/net8.0/FedeteriAPI.exe

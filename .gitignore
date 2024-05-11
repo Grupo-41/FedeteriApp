@@ -2,6 +2,7 @@ FedeteriAPI/*.json
 
 # Imágenes de la API
 FedeteriAPI/Images/*
+FedeteriAPI/Images/!FedeteriaLogo.png
 Images/
 Images/*
 

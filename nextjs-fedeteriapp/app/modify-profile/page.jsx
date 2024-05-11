@@ -29,6 +29,9 @@ const Page = () => {
     }, [])
 
     useEffect(() => {
+        if(user === null && typeof window !== "undefined")
+            window.location.href = "/"
+
         refNombre.current.value = user.nombre;
         refApellido.current.value = user.apellido;
         refEmail.current.value = user.email;
@@ -101,12 +104,6 @@ const Page = () => {
 
         return false;
     }
-
-    if(user === null)
-        return "Usted no se encuentra autenticado"
-
-    if(user === null && typeof window !== "undefined")
-        window.location.href = "/"
 
     return (
         <div className="mt-5 d-flex flex-row justify-content-center w-100 gap-5">

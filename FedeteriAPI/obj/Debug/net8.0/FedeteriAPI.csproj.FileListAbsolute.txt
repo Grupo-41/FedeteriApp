@@ -33,7 +33,6 @@ C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\ref\FedeteriAPI.dll
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\FedeteriAPI.xml
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.xml
-C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\codigos.json
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\appsettings.Development.json
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\appsettings.json
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\FedeteriAPI.exe
@@ -69,5 +68,4 @@ E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.x
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.pdb
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\FedeteriAPI.genruntimeconfig.cache
 E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\ref\FedeteriAPI.dll
-C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\articulos.json
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\usuarios.json

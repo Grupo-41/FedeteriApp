@@ -29,7 +29,7 @@ const ChangePassword = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(bodyObject)
-        })).then(() => window.location.href = '/login')
+        })).then(() => { removeEmail(); window.location.href = '/login' })
     }
 
     function checkInputs(){

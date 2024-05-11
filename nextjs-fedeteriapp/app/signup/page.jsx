@@ -3,10 +3,12 @@ import React, {useRef, useEffect, useState, useContext} from 'react'
 import toast from 'react-hot-toast';
 import { validateEmail, validatePassword, validateAge, emailExists, dniExists } from '../utils';
 import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { useLocalStorage } from 'react-use';
 
 const Page = () => {
     const [sucursales, setSucursales] = useState([]);
     const [passVisibility, setPassVisibility] = useState(false);
+    const [user, setUser, removeUser] = useLocalStorage('user', null)
     const refDNI = useRef();
     const refName = useRef();
     const refApellido = useRef();
@@ -17,6 +19,11 @@ const Page = () => {
     const refEmail = useRef();
     const refSucursal = useRef();
     
+    useEffect(() => {
+        if(user !== null && typeof window !== "undefined")
+            window.location.href = "/"
+        }, [user])
+
     useEffect(() => {
         const URL = "http://localhost:5000/api/sucursales"
 

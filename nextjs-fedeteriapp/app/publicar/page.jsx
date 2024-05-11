@@ -12,6 +12,11 @@ const Page = () => {
     const refImg = useRef();
     const [user, setUser, removeUser] = useLocalStorage('user', null)
 
+    useEffect(() => {
+        if(!user && typeof(window) !== 'undefined')
+            window.location.href = '/'
+    }, [user])
+
     async function postArticulo(){
         const URL = 'http://localhost:5000/api/Articulos/' + user.id
 

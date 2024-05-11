@@ -65,6 +65,13 @@ namespace FedeteriAPI.Services
             usuario.EsAdmin = false;
             usuario.EsEmpleado = false;
             Usuarios.Add(new Usuario(usuario));
+
+            EmailService.SendEmailAsync(
+                usuario.Email,
+                subject: "FedeteriApp - Registro exitoso",
+                message: $"Bienvenido {usuario.Nombre}! Usted se ha registrado en FedeteriApp de forma exitosa. Esperamos que disfrute de la aplicación!"
+                );
+
             WriteAll();
         }
 

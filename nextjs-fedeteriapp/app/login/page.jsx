@@ -1,11 +1,8 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocalStorage } from 'react-use';
 import toast from 'react-hot-toast';
 import { FiEye, FiEyeOff } from "react-icons/fi"
-import Image from 'next/image';
-import FedeteriaLogo from '../../public/Fedeteria_Principal.png'
-
 
 const Page = () => {
     const refDNI = useRef();
@@ -14,6 +11,11 @@ const Page = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
     const [passVisibility, setPassVisibility] = useState(false)
+
+    useEffect(() => {
+      if(user !== null && typeof window !== "undefined")
+          window.location.href = "/"
+      }, [user])
 
     function keyDown(e){
       if (e.key === 'Enter' || e.keyCode === 13) {
