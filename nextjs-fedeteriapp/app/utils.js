@@ -41,7 +41,7 @@ export const validatePassword = (str) => {
   return true;
 };
 
-export const validateAge = (date) => {
+export const validateAge = (date, message = "Debes ser mayor de 18 años para utilizar el sistema.") => {
   if(!date){
     toast.error('Debe ingresar una fecha de nacimiento.')
     return false;
@@ -54,7 +54,7 @@ export const validateAge = (date) => {
   var age = Math.abs(year - 1970);
 
   if(age < 18){
-    toast.error("Debes ser mayor de 18 años para utilizar el sistema.")
+    toast.error(message)
     return false;
   }
   

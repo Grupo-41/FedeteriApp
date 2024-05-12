@@ -1,7 +1,7 @@
 ﻿using FedeteriAPI.Models;
 using System.Text.Json;
 
-namespace CinemaNightAPI.Utils
+namespace FedeteriAPI.Utils
 {
     public static class FilesService<T>
     {

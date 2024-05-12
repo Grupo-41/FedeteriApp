@@ -1,4 +1,4 @@
-﻿using CinemaNightAPI.Utils;
+﻿using FedeteriAPI.Utils;
 using FedeteriAPI.Models;
 using FedeteriAPI.Utils;
 using static FedeteriAPI.Utils.Constants;
@@ -55,7 +55,21 @@ namespace FedeteriAPI.Services
             usuario.Id = ActualID++;
             usuario.EsAdmin = false;
             usuario.EsEmpleado = true;
+            
             Usuarios.Add(new Usuario(usuario));
+
+            EmailService.SendEmailAsync(
+                usuario.Email,
+                subject: "FedeteriApp - Instructivo de inicio de sesión para empleados",
+                message: $@"Bienvenido {usuario.Nombre}! <br /><br />
+
+                        Usted ha sido registrado exitosamente en el <a href=""http://localhost:3000/"">sistema</a>, para poder acceder a él deberá dirigirse a la sección de inicio de sesión y oprimir en ""Olvidé mi contraseña"". Luego le enviaremos un código y podrá crear su contraseña.
+                        <br /><br />
+                        Saludos!
+                        <br /><br />
+                        -Fedetería"
+                );
+
             WriteAll();
         }
 

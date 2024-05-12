@@ -26,7 +26,7 @@ const Page = () => {
         const data = new FormData();
         data.append("Descripcion", refDescripcion.current.value);
         data.append("Estado", refEstado.current.value);
-        data.append("Marca", refMarca.current.value);
+        data.append("Marca", refMarca.current.value || 'Ninguna');
 
         for (var file of refImg.current.files) {
             data.append('Images', file, file.name)
@@ -72,7 +72,7 @@ const Page = () => {
             </div>
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3 w-50">
-                    <label htmlFor="estado" className="form-label">Estado:</label>
+                    <label htmlFor="estado" className="form-label">Estado</label>
                     <select id="estado" ref={refEstado} className='form-control form-select border border-dark' required >
                         <option value="">Seleccione un estado</option>
                         <option value="Nuevo">Nuevo</option>

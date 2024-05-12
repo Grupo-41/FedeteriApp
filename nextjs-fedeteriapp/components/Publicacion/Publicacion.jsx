@@ -20,6 +20,7 @@ const Publicacion = ({item: x, own}) => {
         <div className="card-footer">
             <h5 className="card-title">{x.descripcion}</h5>
             <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
+            <p className='card-subtitle text-body-secondary'><strong>Marca: </strong>{x.marca}</p>
             <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Aún sin definir"}</p>
         </div>
         <div className='card-footer text-truncate'>{own ? x.tasado ? "Artículo publicado" : "Artículo a la espera de ser tasado" :

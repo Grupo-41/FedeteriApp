@@ -21,7 +21,7 @@ export default function Home() {
           { articulos.length > 0 &&
             <>
               <h2 className="mb-3">Publicaciones</h2>
-              <div style={{minWidth: '400px', maxWidth: '60rem', maxHeight: '33vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
+              <div style={{minWidth: '400px', maxWidth: '58rem', paddingRight: '17px', maxHeight: '35vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
                 {articulos.map(x => <Publicacion key={x.id} item={x} />)}
               </div>
             </>

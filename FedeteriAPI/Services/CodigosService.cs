@@ -1,4 +1,4 @@
-﻿using CinemaNightAPI.Utils;
+﻿using FedeteriAPI.Utils;
 using FedeteriAPI.Models;
 using FedeteriAPI.Utils;
 using static FedeteriAPI.Utils.Constants;

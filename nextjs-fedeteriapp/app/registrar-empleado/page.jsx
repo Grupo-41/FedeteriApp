@@ -45,6 +45,7 @@ const Page = () => {
             email: refEmail.current.value,
             nacimiento: refNacimiento.current.value,
             telefono: refTelefono.current.value,
+            contrasena: "empleado",
             sucursalID: refSucursal.current.value
         }
 
@@ -56,7 +57,7 @@ const Page = () => {
             },
             body: JSON.stringify(user)
         }).then(() =>{
-            window.location.href = '/login';
+            toast.success('Empleado registrado con éxito.')
         })
     }
 
@@ -89,7 +90,7 @@ const Page = () => {
             toast.error("Debe ingresar un número de teléfono.")
             return true;
         }
-        if(!validateAge(refNacimiento.current.value)){
+        if(!validateAge(refNacimiento.current.value, "El empleado debe ser mayor de 18 años.")){
             return true;
         }
 

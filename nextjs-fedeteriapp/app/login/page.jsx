@@ -64,7 +64,7 @@ const Page = () => {
         <h3 className='text-center'>Inicio de sesión</h3>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">DNI</label>
-            <input ref={refDNI} type="text" placeholder="Ingrese su DNI" className="form-control border border-dark" id="email" />
+            <input ref={refDNI} type="number" min={0} placeholder="Ingrese su DNI" className="form-control border border-dark" id="email" />
           </div>
           <div className="mb-4">
             <label htmlFor="contra" className="form-label">Contraseña</label>
