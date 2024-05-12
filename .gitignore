@@ -37,3 +37,7 @@ FedeteriAPI/orleans.codegen.cs
 
 # Visual Studio 6 workspace options file
 *.opt
+
+*/articulos.json
+*/codigos.json
+*/usuarios.json
