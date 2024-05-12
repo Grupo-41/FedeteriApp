@@ -9,12 +9,14 @@ const Page = () => {
     const refPass = useRef();
     const [error, setError] = useState(false)
     const [user, setUser, removeUser] = useLocalStorage('user', null);
+    const [userToValidate, setUserToValidate, removeUserToValidate] = useLocalStorage('user-validate', null);
     const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
     const [passVisibility, setPassVisibility] = useState(false)
 
     useEffect(() => {
-      if(user !== null && typeof window !== "undefined")
-          window.location.href = "/"
+      if(user !== null && typeof window !== "undefined"){
+        window.location.href = "/"
+      }
       }, [user])
 
     function keyDown(e){
@@ -35,10 +37,9 @@ const Page = () => {
         .then(data => data.json())
         .then(data => {
             if(data.status !== 400){
-                if(data.esAdmin){
-                    data = {...data, validado: false}
-                    setUser(data)
-                    window.location.href = '/ingresar-codigo';
+                if(data.esAdmin === true){
+                    setUserToValidate(data)
+                    window.location.href = '/validar-codigo';
                 }
                 else{
                     setUser(data)

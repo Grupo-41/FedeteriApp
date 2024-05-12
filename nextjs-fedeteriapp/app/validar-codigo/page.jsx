@@ -4,13 +4,23 @@ import { useLocalStorage } from 'react-use'
 import toast from 'react-hot-toast'
 
 const Page = () => {
+  const [user, setUser, removeUser] = useLocalStorage('user', null)
   const [email, setEmail, removeEmail] = useLocalStorage('email-recovery', '');
+  const [userToValidate, setUserToValidate, removeUserToValidate] = useLocalStorage('user-validate', null);
   const codeRef = useRef();
 
   useEffect(() => {
-    if(email === '')
+    if(email === '' && userToValidate === null)
       window.location.href = '/'
-  }, [email])
+
+    if(userToValidate){
+      removeEmail();
+
+      const URL = `http://localhost:5000/api/Usuarios/generar-codigo-inicio/${userToValidate.email}`
+
+      fetch(URL, {method: 'POST'});
+    }
+  }, [email, userToValidate])
 
   function validateCode(){
     const codigo = codeRef.current.value;
@@ -19,13 +29,22 @@ const Page = () => {
       toast.error("Debe ingresar un código.");
 
     if(email !== '' && codigo !== ''){
-      const URL = `http://localhost:5000/api/usuarios/recuperacion/${email}/validar/${codigo}`;
+      const emailToValidate = userToValidate ? userToValidate.email : email;
+      const URL = `http://localhost:5000/api/usuarios/recuperacion/${emailToValidate}/validar/${codigo}`;
 
       fetch(URL)
       .then(data => data.json())
       .then(data => {
-        if(data === true)
-          window.location.href = '/change-password'
+        if(data === true){
+          if(userToValidate){
+            setUser(userToValidate)
+            removeUserToValidate();
+            window.location.href = '/'
+          }
+          else{
+            window.location.href = '/change-password'
+          }
+        }
         else
           toast.error("El código es incorrecto.")
       })

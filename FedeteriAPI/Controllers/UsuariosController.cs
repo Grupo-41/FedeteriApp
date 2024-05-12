@@ -92,6 +92,16 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Genera un código de inicio de sesión y se lo envía por email al administrador
+        /// </summary>
+        /// <param name="userMail">Mail del usuario administrador</param>
+        [HttpPost("generar-codigo-inicio/{userMail}")]
+        public async Task PutCodigoDeInicio(string userMail)
+        {
+            await UsuariosService.EnviarCodigoInicioAsync(userMail);
+        }
+
+        /// <summary>
         /// Actualiza la contraseña del usuario, si este existe. Retorna True si se cambió con éxito. False en cc.
         /// </summary>
         /// <param name="usuarioPass">Objeto UsuarioPass (ID del usuario, Contraseña actual, Contraseña nueva)</param>

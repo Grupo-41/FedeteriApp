@@ -105,6 +105,16 @@ namespace FedeteriAPI.Services
             GetUsuarioByID(id).ListaDeDeseos.Add(articulo);
         }
 
+        public static async Task<bool> EnviarCodigoInicioAsync(string userMail)
+        {
+            string codigo = CodigosService.GenerarCodigoInicio(userMail);
+            if (codigo == null || string.IsNullOrEmpty(codigo))
+                return false;
+
+            await CodigosService.EnviarCodigoInicio(userMail, codigo);
+            return true;
+        }
+
         public static async Task<bool> EnviarCodigoRecuperacionAsync(string userMail)
         {
             string codigo = CodigosService.GenerarCodigo(userMail);

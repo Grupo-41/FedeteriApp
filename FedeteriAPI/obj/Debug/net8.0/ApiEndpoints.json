@@ -595,6 +595,28 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "Method": "PutCodigoDeInicio",
+    "RelativePath": "api/Usuarios/generar-codigo-inicio/{userMail}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userMail",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
     "Method": "GetLogin",
     "RelativePath": "api/Usuarios/login",
     "HttpMethod": "GET",

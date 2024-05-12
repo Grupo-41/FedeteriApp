@@ -129,6 +129,12 @@
             <param name="userId">ID del usuario</param>
             <param name="articulo">Nombre del artículo</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutCodigoDeInicio(System.String)">
+            <summary>
+            Genera un código de inicio de sesión y se lo envía por email al administrador
+            </summary>
+            <param name="userMail">Mail del usuario administrador</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.PutPassword(FedeteriAPI.Models.UsuarioPass)">
             <summary>
             Actualiza la contraseña del usuario, si este existe. Retorna True si se cambió con éxito. False en cc.

@@ -1,8 +1,10 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import { useLocalStorage } from 'react-use';
 
 const Page = ({params}) => {
     const id = params.id;
+    const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [searchedUser, setSearchedUser] = useState(null)
 
     useEffect(() => {
@@ -24,6 +26,7 @@ const Page = ({params}) => {
     return (
         <>
         {
+            user !== null ?
             searchedUser ?
             <div className="mt-5 d-flex flex-column justify-content-center w-100">
                 <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
@@ -59,6 +62,7 @@ const Page = ({params}) => {
                 </form>
             </div>
             : "El usuario solicitado no existe"
+            : "Debe estar autenticado para ver perfiles ajenos"
         }
         </>
     )
