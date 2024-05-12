@@ -33,7 +33,7 @@ namespace FedeteriAPI.Controllers
             if (usuario == null)
                 return NotFound();
 
-            return Ok(usuario);
+            return Ok(new UsuarioOut(usuario));
         }
 
         /// <summary>

@@ -21,13 +21,13 @@ const Navbar = () => {
     <>
         <nav className="navbar fixed-top navbar-expand-lg shadow border-bottom border-black" style={{background: '#e7ab12 '}}>
             <div className="container-fluid">
-                <a className="navbar-brand" href="/"><Image src={FedeteriaLogo} height="35" alt="FedeteriApp"/></a>
+                <a className="navbar-brand me-3 ms-2" href="/"><Image src={FedeteriaLogo} height="35" alt="FedeteriApp"/></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto gap-1 mb-2 mb-lg-0">
                         { user === null && !loading && 
                         <>
                             <li key={"registrarme"} className="nav-item">
@@ -53,12 +53,18 @@ const Navbar = () => {
                                 <a className="nav-link" href="/publicar">Publicar artículo</a>
                             </li>
                         </>
-                            
                         }
                         { user !== null && user.esAdmin &&
+                        <>
+                            <li key={"registrarEmpleado"} className="nav-item">
+                                <a className="nav-link" href="/registrar-empleado">Registrar empleado</a>
+                            </li>
+                            {/*
                             <li key={"estadisticas"} className="nav-item">
                                 <a className="nav-link" href="/estadisticas">Ver estadísticas</a>
                             </li>
+                            */}
+                        </>
                         }
                     </ul>
                     { user !== null &&
