@@ -37,5 +37,3 @@ FedeteriAPI/orleans.codegen.cs
 
 # Visual Studio 6 workspace options file
 *.opt
-
-*.json

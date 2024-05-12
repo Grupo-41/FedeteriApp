@@ -193,7 +193,7 @@ const Page = () => {
                 <div className='d-flex flex-row gap-3'>
                     <div className="mb-3 w-100">
                         <label htmlFor="telefono" className="form-label">Teléfono</label>
-                        <input ref={refTelefono} type="number" placeholder="Ingrese su número de teléfono" className="form-control border border-dark" id="telefono" required/>
+                        <input ref={refTelefono} type="number" min={0} placeholder="Ingrese su número de teléfono" className="form-control border border-dark" id="telefono" required/>
                     </div>
                 </div>
 

@@ -119,7 +119,7 @@ const Page = () => {
             <h3 className='text-center'>Registro de usuario</h3>
             <div className="mb-3">
                 <label htmlFor="dni" className="form-label">DNI</label>
-                <input ref={refDNI} type="number" min="0" placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
+                <input ref={refDNI} type="number" min={0} placeholder="Ingrese su DNI" className="form-control border border-dark" id="dni" required/>
             </div>
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3">
@@ -138,7 +138,7 @@ const Page = () => {
             <div className='d-flex flex-row gap-3'>
                 <div className="mb-3 w-75">
                     <label htmlFor="telefono" className="form-label">Teléfono</label>
-                    <input ref={refTelefono} type="text" placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
+                    <input ref={refTelefono} type="number" min={0} placeholder="Ingrese su número de teléfono"className="form-control border border-dark" id="telefono" required/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="fecha" className="form-label">Fecha de nacimiento</label>
