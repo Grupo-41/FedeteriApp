@@ -9,6 +9,14 @@
             Retorna todos los artículos
             </summary>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticuloById(System.Int32)">
+            <summary>
+            Busca un artículo por su ID
+            </summary>
+            <param name="id">ID del artículo</param>
+            <returns code="200">Se encontró el artículo buscado</returns>
+            <returns code="404">No se encontró el artículo buscado</returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosTasados">
             <summary>
             Retorna los artículos que ya fueron tasados (listos para publicar)
@@ -25,14 +33,6 @@
             </summary>
             <param name="articuloID">ID del artículo a tasar</param>
             <param name="categoria">Categoria del artículo</param>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticuloById(System.Int32)">
-            <summary>
-            Busca un artículo por su ID
-            </summary>
-            <param name="id">ID del artículo</param>
-            <returns code="200">Se encontró el artículo buscado</returns>
-            <returns code="404">No se encontró el artículo buscado</returns>
         </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.PostArticulo(System.Int32,FedeteriAPI.Models.ArticuloIn)">
             <summary>

@@ -19,9 +19,21 @@ namespace FedeteriAPI.Controllers
             return ArticulosService.GetArticulos();
         }
 
+        /// <summary>
+        /// Busca un artículo por su ID
+        /// </summary>
+        /// <param name="id">ID del artículo</param>
+        /// <returns code="200">Se encontró el artículo buscado</returns>
+        /// <returns code="404">No se encontró el artículo buscado</returns>
         [HttpGet("{id}")]
-        public ArticuloOut GetArticulo(int id) {
-            return ArticulosService.GetArticulo(id);
+        public ActionResult<ArticuloOut> GetArticuloById(int id)
+        {
+            ArticuloOut articulo = ArticulosService.GetArticulo(id);
+
+            if (articulo == null)
+                return NotFound();
+
+            return Ok(articulo);
         }
 
         /// <summary>
@@ -54,23 +66,6 @@ namespace FedeteriAPI.Controllers
                 return Ok();
 
             return NotFound();
-        }
-
-        /// <summary>
-        /// Busca un artículo por su ID
-        /// </summary>
-        /// <param name="id">ID del artículo</param>
-        /// <returns code="200">Se encontró el artículo buscado</returns>
-        /// <returns code="404">No se encontró el artículo buscado</returns>
-        [HttpGet("{id}")]
-        public ActionResult<ArticuloOut> GetArticuloById(int id)
-        {
-            ArticuloOut articulo = ArticulosService.GetArticulo(id);
-
-            if (articulo == null)
-                return NotFound();
-
-            return Ok(articulo);
         }
 
         /// <summary>

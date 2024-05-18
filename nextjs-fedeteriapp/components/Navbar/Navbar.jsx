@@ -66,6 +66,13 @@ const Navbar = () => {
                             */}
                         </>
                         }
+                        { user !== null && user.esEmpleado &&
+                            <>
+                                <li key={"tasarArticulo"} className="nav-item">
+                                    <a className="nav-link" href="/tasar-articulos">Tasar artículos</a>
+                                </li>
+                            </>
+                        }
                     </ul>
                     { user !== null &&
                         <>
