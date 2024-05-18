@@ -13,7 +13,7 @@ namespace FedeteriAPI.Models
     public class Usuario : UsuarioOut
     {
         public string Contrasena { get; set; }
-        public List<string> ListaDeDeseos { get; set; }
+        public List<ArticuloDeseado> ListaDeDeseos { get; set; }
 
         public Usuario()
         {
@@ -24,7 +24,7 @@ namespace FedeteriAPI.Models
         {
             this.Sucursal = SucursalesService.GetSucursal(usuario.SucursalID);
             this.Contrasena = usuario.Contrasena;
-            this.ListaDeDeseos = new List<string>();
+            this.ListaDeDeseos = new List<ArticuloDeseado>();
         }
 
         public void Update(DatosPersonalesUsuario datos)
@@ -66,11 +66,6 @@ namespace FedeteriAPI.Models
             this.EsEmpleado = usuario.EsEmpleado;
             this.Sucursal = usuario.Sucursal;
         }
-    }
-
-    public class EmpleadoOut
-    {
-
     }
 
     public class UsuarioPass

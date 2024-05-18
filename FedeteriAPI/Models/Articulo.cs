@@ -35,4 +35,10 @@
             this.ImageNames = new List<string>();
         }
     }
+
+    public class ArticuloDeseado
+    {
+        public string Descripcion { get; set; }
+        public string Marca { get; set; }
+    }
 }

@@ -19,6 +19,11 @@ namespace FedeteriAPI.Controllers
             return ArticulosService.GetArticulos();
         }
 
+        [HttpGet("{id}")]
+        public ArticuloOut GetArticulo(int id) {
+            return ArticulosService.GetArticulo(id);
+        }
+
         /// <summary>
         /// Retorna los artículos que ya fueron tasados (listos para publicar)
         /// </summary>

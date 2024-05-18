@@ -109,16 +109,6 @@ namespace FedeteriAPI.Services
             return ArticulosService.GetArticulosByUsuario(userId);
         }
 
-        public static List<string> GetListaDeDeseos(int id)
-        {
-            return GetUsuarioByID(id).ListaDeDeseos;
-        }
-
-        public static void AddArticuloDeseado(int id, string articulo)
-        {
-            GetUsuarioByID(id).ListaDeDeseos.Add(articulo);
-        }
-
         public static async Task<bool> EnviarCodigoInicioAsync(string userMail)
         {
             string codigo = CodigosService.GenerarCodigoInicio(userMail);
@@ -200,6 +190,31 @@ namespace FedeteriAPI.Services
         public static bool ExistsUserByDNI(long DNI)
         {
             return Usuarios.Any(x => x.DNI == DNI);
+        }
+
+        public static IEnumerable<ArticuloDeseado> GetArticulosDeseados(int userId)
+        {
+            Usuario u = GetUsuarioByID(userId); if (u == null) return null;
+
+            return u.ListaDeDeseos;
+        }
+
+        public static bool AddArticuloDeseado(int userId, ArticuloDeseado articulo)
+        {
+            Usuario u = GetUsuarioByID(userId); if(u == null) return false;
+
+            u.ListaDeDeseos.Add(articulo);
+            WriteAll();
+            return true;
+        }
+
+        public static bool DeleteArticuloDeseado(int userId, int id)
+        {
+            Usuario u = GetUsuarioByID(userId); if (u == null) return false;
+
+            u.ListaDeDeseos.RemoveAt(id);
+            WriteAll();
+            return true;
         }
     }
 }

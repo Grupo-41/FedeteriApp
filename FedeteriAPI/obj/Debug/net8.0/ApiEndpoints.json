@@ -463,16 +463,16 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
-    "Method": "GetListaDeDeseados",
-    "RelativePath": "api/Usuarios/{userId}/deseados",
+    "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
+    "Method": "Get",
+    "RelativePath": "api/Usuarios/{userId}/Deseados",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "userId",
-        "Type": "System.Int32",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -489,21 +489,21 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
-    "Method": "AddArticuloDeseado",
-    "RelativePath": "api/Usuarios/{userId}/deseados/{articulo}",
+    "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
+    "Method": "Post",
+    "RelativePath": "api/Usuarios/{userId}/Deseados",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int32",
+        "Name": "value",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
-        "Name": "articulo",
-        "Type": "System.String",
+        "Name": "userId",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -516,7 +516,97 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
+    "Method": "Get",
+    "RelativePath": "api/Usuarios/{userId}/Deseados/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
+    "Method": "Put",
+    "RelativePath": "api/Usuarios/{userId}/Deseados/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "value",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
+    "Method": "Delete",
+    "RelativePath": "api/Usuarios/{userId}/Deseados/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.AuthController",
     "Method": "PutPassword",
     "RelativePath": "api/Usuarios/cambiar-contrasena",
     "HttpMethod": "PUT",
@@ -594,7 +684,7 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "ContainingType": "FedeteriAPI.Controllers.AuthController",
     "Method": "PutCodigoDeInicio",
     "RelativePath": "api/Usuarios/generar-codigo-inicio/{userMail}",
     "HttpMethod": "POST",
@@ -616,7 +706,7 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "ContainingType": "FedeteriAPI.Controllers.AuthController",
     "Method": "GetLogin",
     "RelativePath": "api/Usuarios/login",
     "HttpMethod": "GET",
@@ -647,7 +737,7 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "ContainingType": "FedeteriAPI.Controllers.AuthController",
     "Method": "PutCodigoRecuperacion",
     "RelativePath": "api/Usuarios/recuperacion/{userMail}",
     "HttpMethod": "POST",
@@ -669,7 +759,7 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "ContainingType": "FedeteriAPI.Controllers.AuthController",
     "Method": "GetValidacion",
     "RelativePath": "api/Usuarios/recuperacion/{userMail}/validar/{codigo}",
     "HttpMethod": "GET",
@@ -700,7 +790,7 @@
     ]
   },
   {
-    "ContainingType": "FedeteriAPI.Controllers.UsuariosController",
+    "ContainingType": "FedeteriAPI.Controllers.AuthController",
     "Method": "PutRecoveryPassword",
     "RelativePath": "api/Usuarios/recuperar-contrasena",
     "HttpMethod": "PUT",

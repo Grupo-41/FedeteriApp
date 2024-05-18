@@ -54,6 +54,47 @@
             </summary>
             <param name="id">ID del artículo</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.AuthController.GetLogin(FedeteriAPI.Models.CredencialesUsuario)">
+            <summary>
+            Valida las credenciales de inicio de sesión de un usuario
+            </summary>
+            <param name="usuario">Credenciales (email y contraseña)</param>
+            <returns>Un objeto UsuarioOut si las credenciales son correctas, null si las credenciales son incorrectas</returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.AuthController.PutCodigoRecuperacion(System.String)">
+            <summary>
+            Genera un código de recuperación de cuenta y se lo envía por email al usuario
+            </summary>
+            <param name="userMail">Mail del usuario a recuperar</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.AuthController.GetValidacion(System.String,System.String)">
+            <summary>
+            Valida el código de recuperación de un usuario, devolviendo True (en caso de ser correcto) o False (cc)
+            </summary>
+            <param name="userMail">Mail del usuario</param>
+            <param name="codigo">Codigo a validar</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.AuthController.PutCodigoDeInicio(System.String)">
+            <summary>
+            Genera un código de inicio de sesión y se lo envía por email al administrador
+            </summary>
+            <param name="userMail">Mail del usuario administrador</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.AuthController.PutPassword(FedeteriAPI.Models.UsuarioPass)">
+            <summary>
+            Actualiza la contraseña del usuario, si este existe. Retorna True si se cambió con éxito. False en cc.
+            </summary>
+            <param name="usuarioPass">Objeto UsuarioPass (ID del usuario, Contraseña actual, Contraseña nueva)</param>
+            <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.AuthController.PutRecoveryPassword(FedeteriAPI.Models.UsuarioRecoveryPass)">
+            <summary>
+            Actualiza la contraseña de un usuario que no sabe su contraseña
+            </summary>
+            <param name="usuarioRecoveryPass">Objeto UsuarioRecoveryPass (Email del usuario, contraseña nueva)</param>
+            <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.EmpleadosController.Get">
             <summary>
             Retorna todos los empleados registrados en el sistema
@@ -115,60 +156,6 @@
             Permite modificar los datos personales de un usuario
             </summary>
             <param name="datos">Objeto de datos personales</param>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetListaDeDeseados(System.Int32)">
-            <summary>
-            Retorna la lista de deseos de un usuario
-            </summary>
-            <param name="userId">ID del usuario</param>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.AddArticuloDeseado(System.Int32,System.String)">
-            <summary>
-            Agrega un artículo a la lista de deseos de un usuario
-            </summary>
-            <param name="userId">ID del usuario</param>
-            <param name="articulo">Nombre del artículo</param>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutCodigoDeInicio(System.String)">
-            <summary>
-            Genera un código de inicio de sesión y se lo envía por email al administrador
-            </summary>
-            <param name="userMail">Mail del usuario administrador</param>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutPassword(FedeteriAPI.Models.UsuarioPass)">
-            <summary>
-            Actualiza la contraseña del usuario, si este existe. Retorna True si se cambió con éxito. False en cc.
-            </summary>
-            <param name="usuarioPass">Objeto UsuarioPass (ID del usuario, Contraseña actual, Contraseña nueva)</param>
-            <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutRecoveryPassword(FedeteriAPI.Models.UsuarioRecoveryPass)">
-            <summary>
-            Actualiza la contraseña de un usuario que no sabe su contraseña
-            </summary>
-            <param name="usuarioRecoveryPass">Objeto UsuarioRecoveryPass (Email del usuario, contraseña nueva)</param>
-            <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.PutCodigoRecuperacion(System.String)">
-            <summary>
-            Genera un código de recuperación de cuenta y se lo envía por email al usuario
-            </summary>
-            <param name="userMail">Mail del usuario a recuperar</param>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetValidacion(System.String,System.String)">
-            <summary>
-            Valida el código de recuperación de un usuario, devolviendo True (en caso de ser correcto) o False (cc)
-            </summary>
-            <param name="userMail">Mail del usuario</param>
-            <param name="codigo">Codigo a validar</param>
-            <returns></returns>
-        </member>
-        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetLogin(FedeteriAPI.Models.CredencialesUsuario)">
-            <summary>
-            Valida las credenciales de inicio de sesión de un usuario
-            </summary>
-            <param name="usuario">Credenciales (email y contraseña)</param>
-            <returns>Un objeto UsuarioOut si las credenciales son correctas, null si las credenciales son incorrectas</returns>
         </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.ExistsUserByEmail(System.String)">
             <summary>
