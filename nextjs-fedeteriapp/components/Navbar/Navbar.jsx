@@ -73,6 +73,13 @@ const Navbar = () => {
                                 </li>
                             </>
                         }
+                        { user !== null && (user.esEmpleado || user.esAdmin) &&
+                            <>
+                                <li key={"truequesPendientes"} className="nav-item">
+                                    <a className="nav-link" href="/trueques-pendientes">Trueques pendientes</a>
+                                </li>
+                            </>
+                        }
                     </ul>
                     { user !== null &&
                         <>

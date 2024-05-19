@@ -71,3 +71,4 @@ E:\Escritorio\FedeteriApp\FedeteriApp\FedeteriAPI\obj\Debug\net8.0\ref\FedeteriA
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\articulos.json
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\codigos.json
 C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\usuarios.json
+C:\Users\Weby\source\repos\FedeteriApp\FedeteriAPI\bin\Debug\net8.0\trueques.json

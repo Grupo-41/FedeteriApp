@@ -18,6 +18,7 @@ var app = builder.Build();
 await UsuariosService.ReadAllAsync();
 await ArticulosService.ReadAllAsync();
 await CodigosService.ReadAllAsync();
+await TruequesService.ReadAllAsync();
 
 // Configure the HTTP request pipeline.
 

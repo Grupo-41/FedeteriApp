@@ -17,7 +17,7 @@ namespace FedeteriAPI.Controllers
             return TruequesService.GetAll();
         }
 
-
+        [HttpPost("[controller]")]
         public void PostTrueque(TruequeIn newTrueque)
         {
             if (newTrueque == null) { return; }

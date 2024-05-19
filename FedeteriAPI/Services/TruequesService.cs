@@ -6,7 +6,7 @@ namespace FedeteriAPI.Services
 {
     public class TruequesService
     {
-        static List<Trueque> Trueques { get; set; }
+        static List<Trueque> Trueques { get; set; } = new List<Trueque>();
         static int ActualID = 0;
 
         public static void WriteAll() => FilesService<Trueque>.WriteAll(Paths.FILE_TRUEQUES, Trueques);
