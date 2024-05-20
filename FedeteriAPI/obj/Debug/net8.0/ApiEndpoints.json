@@ -281,6 +281,52 @@
     ]
   },
   {
+    "ContainingType": "FedeteriAPI.Controllers.EmpleadosController",
+    "Method": "GetProductos",
+    "RelativePath": "api/Empleados/productos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Services.Producto, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.EmpleadosController",
+    "Method": "GetProductoByCodigo",
+    "RelativePath": "api/Empleados/productos/{codigo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codigo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "FedeteriAPI.Services.Producto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "FedeteriAPI.Controllers.ImagesController",
     "Method": "Get",
     "RelativePath": "api/Images/{imageName}",
@@ -338,6 +384,48 @@
           "application/json",
           "text/json"
         ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "Get",
+    "RelativePath": "api/Trueques",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.Trueque, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "PostTrueque",
+    "RelativePath": "api/Trueques",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newTrueque",
+        "Type": "FedeteriAPI.Models.TruequeIn",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]
@@ -464,7 +552,7 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
-    "Method": "Get",
+    "Method": "GetDeseadosByUserId",
     "RelativePath": "api/Usuarios/{userId}/Deseados",
     "HttpMethod": "GET",
     "IsController": true,
@@ -472,13 +560,13 @@
     "Parameters": [
       {
         "Name": "userId",
-        "Type": "",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.ArticuloDeseado, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -497,46 +585,19 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "value",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
         "Name": "userId",
-        "Type": "",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
-    "Method": "Get",
-    "RelativePath": "api/Usuarios/{userId}/Deseados/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "userId",
-        "Type": "",
+        "Name": "articulo",
+        "Type": "FedeteriAPI.Models.ArticuloDeseado",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "System.Boolean",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -548,32 +609,31 @@
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.DeseadosController",
-    "Method": "Put",
+    "Method": "GetDeseadoByUserById",
     "RelativePath": "api/Usuarios/{userId}/Deseados/{id}",
-    "HttpMethod": "PUT",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "userId",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "value",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "userId",
-        "Type": "",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "FedeteriAPI.Models.ArticuloDeseado",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       }
     ]
@@ -587,20 +647,24 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "userId",
         "Type": "System.Int32",
         "IsRequired": true
       },
       {
-        "Name": "userId",
-        "Type": "",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
         "StatusCode": 200
       }
     ]

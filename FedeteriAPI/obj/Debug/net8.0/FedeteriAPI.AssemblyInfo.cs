@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FedeteriAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b25b339fee7ad39f3b4f3798bf69b5935fc18959")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29545d194729aa06a2231cce81153fda45292cd5")]
 [assembly: System.Reflection.AssemblyProductAttribute("FedeteriAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FedeteriAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -41,5 +41,30 @@ namespace FedeteriAPI.Controllers
         {
             EmpleadosService.AddEmpleado(usuario);
         }
+
+        /// <summary>
+        /// Retorna todos los productos registrados en el sistema
+        /// </summary>
+        [HttpGet("productos")]
+        public IEnumerable<Producto> GetProductos()
+        {
+            return ProductosService.GetProductos();
+        }
+
+        /// <summary>
+        /// Retorna el producto que coincida con el código ingresado, si es que lo encuentra. De lo contrario, devuelve NotFound
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        [HttpGet("productos/{codigo}")]
+        public ActionResult<Producto> GetProductoByCodigo(string codigo)
+        {
+            Producto p = ProductosService.GetProductoByCodigo(codigo);
+
+            if (p == null)
+                return NotFound();
+
+            return Ok(p);
+        }
     }
 }

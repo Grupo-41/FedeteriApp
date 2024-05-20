@@ -36,6 +36,7 @@ namespace FedeteriAPI.Services
         public static void AddTrueque(TruequeIn newTrueque)
         {
             Trueque t = new Trueque(newTrueque);
+            t.Id = ActualID++;
             Trueques.Add(t);
             WriteAll();
         }

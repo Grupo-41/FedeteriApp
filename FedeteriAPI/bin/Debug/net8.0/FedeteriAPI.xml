@@ -114,6 +114,18 @@
             </summary>
             <param name="empleado">Objeto empleado (Nombre, Sucursal, Nacimiento)</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.EmpleadosController.GetProductos">
+            <summary>
+            Retorna todos los productos registrados en el sistema
+            </summary>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.EmpleadosController.GetProductoByCodigo(System.String)">
+            <summary>
+            Retorna el producto que coincida con el código ingresado, si es que lo encuentra. De lo contrario, devuelve NotFound
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.SucursalesController.Get">
             <summary>
             Retorna todas las sucursales del sistema
