@@ -1,8 +1,10 @@
 import React from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import { Carousel } from 'react-responsive-carousel';
 
-const Publicacion = ({item: x, own, clickable = false}) => {
+const Publicacion = ({item: x, own, clickable = false, truequeable = false}) => {
     function tasarArticulo(){
         if(typeof(window) !== 'undefined')
             window.location.href = '/tasar-articulos/' + x.id
@@ -12,7 +14,18 @@ const Publicacion = ({item: x, own, clickable = false}) => {
     <div key={x.id} className="card" style={{width: '18rem'}}>
         <div onClick={clickable ? tasarArticulo : null} style={{cursor: clickable ? 'pointer' : 'default'}}>
             <div className='position-relative card-img-top'>
-                <img src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} height={175} style={{objectFit: 'contain'}} alt="" className="w-100 p-2" />
+                <div className='d-flex justify-content-center'>
+                    { clickable ? 
+                        <img height={175} style={{objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} />
+                        :
+                        <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true} width={175}>
+                        { x.imageNames.map(image => 
+                            <img height={175} style={{objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
+                        )}
+                        </Carousel>
+                    }
+                    
+                </div>
                 {
                     own && 
                     <div class="btn-group-vertical position-absolute top-0 end-0 mt-2 me-2">

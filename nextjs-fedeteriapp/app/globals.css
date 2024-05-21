@@ -118,3 +118,8 @@ input[type=number] {
     color-scheme: dark;
   }
 }
+
+button {
+  background: transparent;
+  border: none;
+}

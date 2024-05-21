@@ -17,9 +17,9 @@ const Page = ({params}) => {
     }, []);
 
     return (
-        <div className="mt-5 d-flex justify-content-center w-100">
+        <div className="mt-5 d-flex flex-column align-items-center justify-content-center w-100">
             <form style={{minWidth: '400px', background: 'white'}} className="d-flex flex-column justify-content-center align-items-center border rounded p-4 align-self-center">
-                <h3 className='text-center mb-3'>{articulo.descripcion}</h3>
+                <h3 className='text-center mb-3'>Tasando artículo: {articulo.descripcion}</h3>
                 <div className={'d-flex align-items-center gap-4'}>
                     <div style={{width: '180px'}}>
                         {articulo.imageNames &&

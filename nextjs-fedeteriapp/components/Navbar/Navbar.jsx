@@ -1,16 +1,32 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocalStorage } from 'react-use'
 import Image from 'next/image'
 import FedeteriaLogo from '../../public/Fedeteria_Horizontal.png'
+import { BiSearch } from "react-icons/bi";
 
 const Navbar = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [loading, setLoading] = useState(true);
+    const refInput = useRef();
 
     function closeSession(){
         removeUser();
         window.location.href = '/';
+    }
+
+    function inputKeyDown(e){
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            e.preventDefault();
+            onClickSearch();
+        }
+    }
+
+    function onClickSearch(){
+        if(refInput.current.value && refInput.current.value.length > 0){
+            if(typeof(window) !== 'undefined')
+                window.location.href = '/buscar/' + refInput.current.value;
+        }
     }
 
     useEffect(() => {
@@ -83,6 +99,10 @@ const Navbar = () => {
                     </ul>
                     { user !== null &&
                         <>
+                            <form className="d-flex position-relative" role="search">
+                                <input ref={refInput} onKeyDown={e => inputKeyDown(e)} className="form-control me-2" type="search" placeholder="Buscar artículos..." aria-label="Search" />
+                                <button type='button' onClick={onClickSearch} className='position-absolute end-0 me-3 mt-1'><BiSearch size={20} fill='gray' /></button>
+                            </form>
                             <button onClick={closeSession} className="ms-2 btn btn-outline-secondary">Cerrar sesión</button>
                         </>
                     }
