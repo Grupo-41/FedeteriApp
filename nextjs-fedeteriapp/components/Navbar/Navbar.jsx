@@ -101,7 +101,7 @@ const Navbar = () => {
                         <>
                             <form className="d-flex position-relative" role="search">
                                 <input ref={refInput} onKeyDown={e => inputKeyDown(e)} className="form-control me-2" type="search" placeholder="Buscar artículos..." aria-label="Search" />
-                                <button type='button' onClick={onClickSearch} className='position-absolute end-0 me-3 mt-1'><BiSearch size={20} fill='gray' /></button>
+                                <button type='button' onClick={onClickSearch} style={{marginTop: '5px', marginRight: '18px'}} className='position-absolute end-0'><BiSearch size={20} fill='gray' /></button>
                             </form>
                             <button onClick={closeSession} className="ms-2 btn btn-outline-secondary">Cerrar sesión</button>
                         </>

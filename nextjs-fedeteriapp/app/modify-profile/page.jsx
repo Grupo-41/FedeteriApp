@@ -3,6 +3,7 @@ import React,{useRef, useEffect, useState, useContext} from 'react'
 import toast from 'react-hot-toast'
 import { useLocalStorage } from 'react-use'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { BsFillTrashFill } from "react-icons/bs";
 import { emailExists, validateEmail, validatePassword } from '../utils'
 
 const Page = () => {
@@ -207,11 +208,42 @@ const Page = () => {
                 </div>
                 <input type='button' onClick={postDatosPersonales} className="btn mt-2 float-end" style={{background: '#e7ab12'}} value="Modificar datos personales"/>
             </form>
-
-            <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 d-flex flex-column justify-content-center align-self-center">
-                <h3 className='mb-3'>Lista de deseados</h3>
-                <input type='button' className="mt-2 btn justify-self-center" style={{background: '#e7ab12'}} value="Editar lista de deseados"/>
-            </form>
+            
+            <div className='d-flex flex-column gap-4 align-items-center justify-content-center p-0 m-0 w-25'>
+                <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 d-flex flex-column justify-content-center align-self-center">
+                    <h3 className='mb-3'>Lista de deseos</h3>
+                    <div className='d-flex flex-row gap-3'>
+                        <div className="mb-3 w-50">
+                            <label htmlFor="articulo" className="form-label">Artículo</label>
+                            <input type="text" placeholder="Ingrese un artículo" className="form-control border border-dark" id="articulo" required/>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="marca" className="form-label">Marca</label>
+                            <input type="text" placeholder="Ingrese la marca" className="form-control border border-dark" id="marca" required/>
+                        </div>
+                    </div>
+                    <input type='button' className="mt-2 btn justify-self-center" style={{background: '#e7ab12'}} value="Añadir artículo deseado"/>
+                </form>
+                <form style={{minWidth: '400px', width: '100%', background: 'white'}} className="border rounded p-4 d-flex flex-column justify-content-center align-self-center">
+                    <h3 className='mb-3'>Tu lista de deseos</h3>
+                    <ul style={{maxHeight: '25.7vh'}} className="list-group pe-2 py-1 overflow-y-auto">
+                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 className="mb-0">Nombre del artículo</h6>
+                                <small>Marca del artículo</small>
+                            </div>
+                            <span className="badge text-bg-danger py-2" style={{cursor: 'pointer'}}>Eliminar</span>
+                        </li>
+                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 className="mb-0 text-truncate">Nombre del artículo</h6>
+                                <small className='text-truncate'>Marca del artículo</small>
+                            </div>
+                            <span className="badge text-bg-danger py-2" style={{cursor: 'pointer'}}>Eliminar</span>
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
     )
 }
