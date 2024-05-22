@@ -12,7 +12,7 @@ namespace FedeteriAPI.Controllers
     {
         // GET: api/<TruequesController>
         [HttpGet("[controller]")]
-        public IEnumerable<Trueque> Get()
+        public IEnumerable<TruequeOut> Get()
         {
             return TruequesService.GetAll();
         }

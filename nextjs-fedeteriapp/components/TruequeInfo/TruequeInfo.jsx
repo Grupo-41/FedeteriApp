@@ -8,8 +8,8 @@ import { FaBan, FaCheck } from "react-icons/fa";
 
 
 const TruequeInfo = ({ trueque }) => {
-  const user1 = trueque.usuarioSolicitante;
-  const user2 = trueque.usuarioSolicitado;
+  const user1 = trueque.articuloOfrecido.usuario;
+  const user2 = trueque.articuloSolicitado.usuario;
   const articulo1 = trueque.articuloOfrecido;
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
@@ -17,7 +17,7 @@ const TruequeInfo = ({ trueque }) => {
   return (
     <>
       <div className="card" style={{maxWidth: '800px', width: 'fit-content'}}>
-        <div className="d-flex mx-2 flex-row justify-content-center align-items-center">
+        <div className="d-flex mx-3 flex-row justify-content-center align-items-center">
           <div style={{width: '20.5%'}}>
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true}>
               { articulo1.imageNames.map(image => 

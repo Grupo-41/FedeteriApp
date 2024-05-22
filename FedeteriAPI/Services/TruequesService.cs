@@ -6,29 +6,33 @@ namespace FedeteriAPI.Services
 {
     public class TruequesService
     {
-        static List<Trueque> Trueques { get; set; } = new List<Trueque>();
+        static List<Trueque> TruequesFile { get; set; } = new List<Trueque>();
+        static List<TruequeOut> Trueques { get; set; } = new List<TruequeOut>();
+
         static int ActualID = 0;
 
-        public static void WriteAll() => FilesService<Trueque>.WriteAll(Paths.FILE_TRUEQUES, Trueques);
+        public static void WriteAll() => FilesService<Trueque>.WriteAll(Paths.FILE_TRUEQUES, TruequesFile);
         public static async Task ReadAllAsync()
         {
-            Trueques = await FilesService<Trueque>.ReadAllAsync(Paths.FILE_TRUEQUES);
+            TruequesFile = await FilesService<Trueque>.ReadAllAsync(Paths.FILE_TRUEQUES);
 
-            if (Trueques.Count > 0)
-                ActualID = Trueques.Max(x => x.Id) + 1;
+            if (TruequesFile.Count > 0)
+                ActualID = TruequesFile.Max(x => x.Id) + 1;
+
+            Trueques = TruequesFile.Select(x => new TruequeOut(x)).ToList();
         }
 
-        public static IEnumerable<Trueque> GetAll()
+        public static IEnumerable<TruequeOut> GetAll()
         {
             return Trueques;
         }
 
-        public static IEnumerable<Trueque> GetTruequesByUsuario(int userId)
+        public static IEnumerable<TruequeOut> GetTruequesByUsuario(int userId)
         {
-            return Trueques.Where(x => x.UsuarioSolicitado.Id == userId);
+            return Trueques.Where(x => x.ArticuloSolicitado.Usuario.Id == userId || x.ArticuloOfrecido.Usuario.Id == userId);
         }
 
-        public static IEnumerable<Trueque> GetTruequesPendientesBySucursal(int sucursalId)
+        public static IEnumerable<TruequeOut> GetTruequesPendientesBySucursal(int sucursalId)
         {
             return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value && x.Sucursal.Id == sucursalId);
         }
@@ -37,7 +41,8 @@ namespace FedeteriAPI.Services
         {
             Trueque t = new Trueque(newTrueque);
             t.Id = ActualID++;
-            Trueques.Add(t);
+            TruequesFile.Add(t);
+            Trueques.Add(new TruequeOut(t));
             WriteAll();
         }
     }
