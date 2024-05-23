@@ -10,6 +10,7 @@ const Page = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [sucursales, setSucursales] = useState([]);
     const [passVisibility, setPassVisibility] = useState(false);
+    const [listaDeDeseos, setListaDeDeseos] = useState([]);
     const refNombre = useRef();
     const refApellido = useRef();
     const refTelefono = useRef();
@@ -19,7 +20,18 @@ const Page = () => {
     const refActualPass = useRef();
     const refPass = useRef();
     const refRePass = useRef();
+
+    const refArticuloDeseado = useRef();
+    const refMarcaDeseado = useRef();
     
+    useEffect(() => {
+        const URL = `http://localhost:5000/api/Usuarios/${user.id}/Deseados`;
+
+        fetch(URL)
+        .then(data => data.json())
+        .then(data => setListaDeDeseos(data));
+    }, [])
+
     useEffect(() => {
         const URL = "http://localhost:5000/api/sucursales"
 
@@ -147,6 +159,51 @@ const Page = () => {
         return false;
     }
 
+    function postArticuloDeseado(){
+        const URL = `http://localhost:5000/api/Usuarios/${user.id}/Deseados`;
+        const objDeseado = {
+            "descripcion": refArticuloDeseado.current.value,
+            "marca": refMarcaDeseado.current.value
+        };
+
+        if(!refArticuloDeseado.current.value){
+            toast.error('Debe ingresar un artículo a añadir')
+            return;
+        }
+
+        fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(objDeseado),
+        })
+        .then(data => data.json())
+        .then(data => {
+            if(data){
+                setListaDeDeseos([...listaDeDeseos, objDeseado]);
+                refArticuloDeseado.current.value = "";
+                refMarcaDeseado.current.value = "";
+            }
+            else
+                toast.error('Ese artículo ya se encuentra en su lista de deseados')
+        })
+    }
+
+    function deleteArticuloDeseado(idArticulo){
+        const URL = `http://localhost:5000/api/Usuarios/${user.id}/Deseados/${idArticulo}`;
+
+        fetch(URL, {
+            method: 'DELETE'
+        })
+        .then(() => {
+            const newArray = [...listaDeDeseos];
+            newArray.splice(idArticulo, 1);
+            setListaDeDeseos(newArray);
+        })
+    }
+
     return (
         <div className="mt-5 d-flex flex-row justify-content-center w-100 gap-5">
             <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 w-25 align-self-center">
@@ -211,38 +268,37 @@ const Page = () => {
             
             <div className='d-flex flex-column gap-4 align-items-center justify-content-center p-0 m-0 w-25'>
                 <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 d-flex flex-column justify-content-center align-self-center">
-                    <h3 className='mb-3'>Lista de deseos</h3>
+                    <h3 className='mb-3'>Agregar artículo deseado</h3>
                     <div className='d-flex flex-row gap-3'>
                         <div className="mb-3 w-50">
                             <label htmlFor="articulo" className="form-label">Artículo</label>
-                            <input type="text" placeholder="Ingrese un artículo" className="form-control border border-dark" id="articulo" required/>
+                            <input ref={refArticuloDeseado} type="text" placeholder="Ingrese un artículo" className="form-control border border-dark" id="articulo" required/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="marca" className="form-label">Marca</label>
-                            <input type="text" placeholder="Ingrese la marca" className="form-control border border-dark" id="marca" required/>
+                            <input ref={refMarcaDeseado} type="text" placeholder="Ingrese la marca" className="form-control border border-dark" id="marca" required/>
                         </div>
                     </div>
-                    <input type='button' className="mt-2 btn justify-self-center" style={{background: '#e7ab12'}} value="Añadir artículo deseado"/>
+                    <input onClick={postArticuloDeseado} type='button' className="mt-2 btn justify-self-center" style={{background: '#e7ab12'}} value="Agregar artículo deseado"/>
                 </form>
-                <form style={{minWidth: '400px', width: '100%', background: 'white'}} className="border rounded p-4 d-flex flex-column justify-content-center align-self-center">
-                    <h3 className='mb-3'>Tu lista de deseos</h3>
-                    <ul style={{maxHeight: '25.7vh'}} className="list-group pe-2 py-1 overflow-y-auto">
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 className="mb-0">Nombre del artículo</h6>
-                                <small>Marca del artículo</small>
-                            </div>
-                            <span className="badge text-bg-danger py-2" style={{cursor: 'pointer'}}>Eliminar</span>
-                        </li>
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <h6 className="mb-0 text-truncate">Nombre del artículo</h6>
-                                <small className='text-truncate'>Marca del artículo</small>
-                            </div>
-                            <span className="badge text-bg-danger py-2" style={{cursor: 'pointer'}}>Eliminar</span>
-                        </li>
-                    </ul>
-                </form>
+                {
+                    listaDeDeseos.length > 0 &&
+                    <form style={{minWidth: '400px', width: '100%', background: 'white'}} className="border rounded p-4 d-flex flex-column justify-content-center align-self-center">
+                        <h3 className='mb-3'>Tu lista de deseos</h3>
+                        <ul style={{maxHeight: '25.7vh'}} className="list-group pe-2 py-1 overflow-y-auto">
+                            { listaDeDeseos.map((x, index) => 
+                                (<li key={index} className="list-group-item border-black d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 className="mb-0">{x.descripcion}</h6>
+                                        <small><strong>Marca:</strong> {x.marca ? x.marca : "Ninguna"}</small>
+                                    </div>
+                                    <span onClick={() => deleteArticuloDeseado(index)} className="badge text-bg-danger py-2" style={{cursor: 'pointer'}}>Eliminar</span>
+                                </li>)
+                            ) }
+                        </ul>
+                    </form>
+                }
+                
             </div>
         </div>
     )

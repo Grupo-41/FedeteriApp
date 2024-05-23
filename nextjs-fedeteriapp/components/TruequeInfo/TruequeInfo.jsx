@@ -20,8 +20,8 @@ const TruequeInfo = ({ trueque }) => {
         <div className="d-flex mx-3 flex-row justify-content-center align-items-center">
           <div style={{width: '20.5%'}}>
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true}>
-              { articulo1.imageNames.map(image => 
-                  <img height={'100px'} style={{borderRadius: '10px', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
+              { articulo1.imageNames.map((image, index) => 
+                  <img key={index} height={'100px'} style={{borderRadius: '10px', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
               )}
             </Carousel>
           </div>
@@ -52,8 +52,8 @@ const TruequeInfo = ({ trueque }) => {
           </div>
           <div style={{width: '20.5%'}}>
             <Carousel showThumbs={false} showStatus={false} showIndicators={false} infiniteLoop={true}>
-              { articulo2.imageNames.map(image => 
-                  <img height={'100px'} style={{borderRadius: '10px', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
+              { articulo2.imageNames.map((image, index) => 
+                  <img key={index} height={'100px'} style={{borderRadius: '10px', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
               )}
             </Carousel>
           </div>

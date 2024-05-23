@@ -19,8 +19,8 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false}) => 
                         <img height={175} style={{objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} />
                         :
                         <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true} width={175}>
-                        { x.imageNames.map(image => 
-                            <img height={175} style={{objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
+                        { x.imageNames.map((image, index) => 
+                            <img key={index} height={175} style={{objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
                         )}
                         </Carousel>
                     }

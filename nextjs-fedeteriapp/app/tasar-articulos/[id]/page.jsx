@@ -24,8 +24,8 @@ const Page = ({params}) => {
                     <div style={{width: '180px'}}>
                         {articulo.imageNames &&
                             <Carousel showIndicators={articulo.imageNames.length > 1} showStatus={false} showThumbs={false} infiniteLoop={true}>
-                                {articulo.imageNames.map(image => 
-                                    <img src={`http://localhost:5000/api/Images/${image}`} height={'180px'} style={{borderRadius: '15px', objectFit: 'contain'}} alt="" />
+                                {articulo.imageNames.map((image, index) => 
+                                    <img key={index} src={`http://localhost:5000/api/Images/${image}`} height={'180px'} style={{borderRadius: '15px', objectFit: 'contain'}} alt="" />
                                 )}
                             </Carousel>
                         }

@@ -17,7 +17,7 @@ namespace FedeteriAPI.Models
 
         public Usuario()
         {
-
+            this.ListaDeDeseos = new List<ArticuloDeseado>();
         }
 
         public Usuario(UsuarioIn usuario) : base(usuario)

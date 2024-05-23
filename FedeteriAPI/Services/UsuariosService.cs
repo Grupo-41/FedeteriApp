@@ -201,7 +201,14 @@ namespace FedeteriAPI.Services
 
         public static bool AddArticuloDeseado(int userId, ArticuloDeseado articulo)
         {
-            Usuario u = GetUsuarioByID(userId); if(u == null) return false;
+            Usuario u = GetUsuarioByID(userId);
+            if(u == null) return false;
+
+            if (u.ListaDeDeseos.FindIndex(x => x.Marca == articulo.Marca && x.Descripcion == articulo.Descripcion) != -1)
+                return false;
+
+            if(u.ListaDeDeseos == null)
+                u.ListaDeDeseos = new List<ArticuloDeseado>();
 
             u.ListaDeDeseos.Add(articulo);
             WriteAll();
