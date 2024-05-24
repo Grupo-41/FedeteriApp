@@ -29,7 +29,7 @@ const Page = ({params}) => {
                 })
                 :
                 <p>No hay artículos para mostrar</p>
-        }
+            }
         </div>
     </div>
     )

@@ -35,7 +35,7 @@ const TruequeInfo = ({ trueque }) => {
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 className='mb-4' size={42} />
+              <TbArrowsExchange2 style={{marginBottom: '27px'}} size={42} />
               <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
                 <button className={style.button}><FaCheck size={20} fill='#1a5' /></button>
                 <button className={style.button}><FaBan size={20} fill='#e12' /></button>

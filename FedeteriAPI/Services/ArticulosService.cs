@@ -96,7 +96,7 @@ namespace FedeteriAPI.Services
             return Articulos.FindAll(x => !x.Tasado);
         }
 
-        public static bool TasarArticulo(int articuloID, string categoria)
+        public static bool TasarArticulo(int articuloID, int precioEstimado)
         {
             ArticuloOut aTasar = GetArticulo(articuloID);
 
@@ -104,11 +104,26 @@ namespace FedeteriAPI.Services
                 return false;
             else
             {
-                aTasar.Categoria = categoria;
+                aTasar.Categoria = AsignarCategoria(precioEstimado);
                 aTasar.Tasado = true;
                 WriteAll();
                 return true;
             }
         }
+
+        private static string AsignarCategoria(double precio) => precio switch
+        {
+            < 1000 => "I",
+            >= 1000 and < 2500 => "II",
+            >= 2500 and < 5000 => "III",
+            >= 5000 and < 7500 => "IV",
+            >= 7500 and < 10000 => "V",
+            >= 10000 and < 20000 => "VI",
+            >= 20000 and < 40000 => "VII",
+            >= 40000 and < 70000 => "VIII",
+            >= 70000 and < 100000 => "IX",
+            >= 100000 => "X",
+            _ => throw new NotImplementedException()
+        };
     }
 }

@@ -11,7 +11,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false}) => 
     }
 
   return (
-    <div key={x.id} className="card" style={{width: '18rem'}}>
+    <div key={x.id} className="card" style={{width: '16rem'}}>
         <div onClick={clickable ? tasarArticulo : null} style={{cursor: clickable ? 'pointer' : 'default'}}>
             <div className='position-relative card-img-top'>
                 <div className='d-flex justify-content-center'>
@@ -39,11 +39,11 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false}) => 
                 <h5 className="card-title">{x.descripcion}</h5>
                 <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
                 <p className='card-subtitle text-body-secondary'><strong>Marca: </strong>{x.marca}</p>
-                <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Aún sin definir"}</p>
+                <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
             </div>
         </div>
-        <div className='card-footer text-truncate'>{own ? x.tasado ? "Artículo publicado" : "Artículo a la espera de ser tasado" :
-                                        <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}</div>
+        <small className='card-footer text-center text-truncate'>{own ? x.tasado ? <em>Artículo publicado</em> : <em>Artículo a la espera de ser tasado</em> :
+                                        <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}</small>
     </div>
   )
 }
