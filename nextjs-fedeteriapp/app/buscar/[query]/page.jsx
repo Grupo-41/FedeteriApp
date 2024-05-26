@@ -1,8 +1,10 @@
 'use client'
 import Publicacion from '@/components/Publicacion/Publicacion'
 import React, { useEffect, useState } from 'react'
+import { useLocalStorage } from 'react-use'
 
 const Page = ({params}) => {
+    const [user, setUser, removeUser] = useLocalStorage('user', {});
     const query = params.query;
     const [articulos, setArticulos] = useState([])
 
@@ -12,7 +14,7 @@ const Page = ({params}) => {
         fetch(URL)
         .then(data => data.json())
         .then(data => {
-            let resFilter = data.filter(x => x.descripcion.toLowerCase().includes(query.toLowerCase()));
+            let resFilter = data.filter(x => x.descripcion.toLowerCase().includes(query.toLowerCase())).filter(x => x.usuario.id !== user.id);
             setArticulos(resFilter);
         })
     })

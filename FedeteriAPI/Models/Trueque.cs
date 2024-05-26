@@ -9,7 +9,7 @@ namespace FedeteriAPI.Models
         public ArticuloOut ArticuloOfrecido { get; set; }
         public Sucursal? Sucursal { get; set; }
         public bool? Aceptado { get; set; }
-        public bool Realizado { get; set; }
+        public bool? Realizado { get; set; }
 
         public TruequeOut(Trueque t)
         {
@@ -29,7 +29,7 @@ namespace FedeteriAPI.Models
         public int ArticuloOfrecidoID { get; set; }
         public Sucursal? Sucursal { get; set; }
         public bool? Aceptado { get; set; }
-        public bool Realizado { get; set; }
+        public bool? Realizado { get; set; }
 
         public Trueque() { }
 
@@ -37,7 +37,7 @@ namespace FedeteriAPI.Models
         {
             ArticuloSolicitadoID = truequeIn.ArticuloSolicitadoID;
             ArticuloOfrecidoID = truequeIn.ArticuloOfrecidoID;
-            Realizado = false;
+            Realizado = null;
             Aceptado = null;
         }
     }
