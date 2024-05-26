@@ -22,7 +22,7 @@ export default function Home() {
             <>
               <h2 className="mb-3">Publicaciones</h2>
               <div style={{minWidth: '400px', maxWidth: '58rem', paddingRight: '17px', maxHeight: '44vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                {articulos.map(x => <Publicacion key={x.id} item={x} />)}
+                {articulos.map(x => <Publicacion key={x.id} item={x} truequeable={true} />)}
               </div>
             </>
           }

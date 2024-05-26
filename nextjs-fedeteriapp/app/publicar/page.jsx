@@ -1,5 +1,4 @@
 'use client'
-import { UserContext } from '@/components/ContextProvider/ContextProvider';
 import React, {useRef, useEffect, useState, useContext} from 'react'
 import { useLocalStorage } from 'react-use';
 import toast from 'react-hot-toast';
@@ -8,7 +7,6 @@ const Page = () => {
     const refDescripcion = useRef();
     const refEstado = useRef();
     const refMarca = useRef();
-    const refPrecioEstimado = useRef();
     const refImg = useRef();
     const [user, setUser, removeUser] = useLocalStorage('user', null)
 
