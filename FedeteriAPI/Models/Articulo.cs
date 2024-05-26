@@ -5,6 +5,7 @@
         public string Descripcion { get; set; }
         public string Estado { get; set; }
         public string Marca { get; set; }
+        public int? ArticuloAsociado { get; set; } = null;
         public IFormFile[] Images { get; set; }
     }
 
@@ -15,6 +16,7 @@
         public string Estado { get; set; }
         public string Marca { get; set; }
         public string Categoria { get; set; }
+        public int? ArticuloAsociado { get; set; } = null;
         public List<string> ImageNames { get; set; }
         public bool Tasado { get; set; } = false;
 
@@ -32,6 +34,7 @@
             this.Marca = articulo.Marca;
             this.Categoria = "";
             this.Tasado = false;
+            this.ArticuloAsociado = articulo.ArticuloAsociado;
             this.ImageNames = new List<string>();
         }
     }

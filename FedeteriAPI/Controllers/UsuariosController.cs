@@ -41,7 +41,7 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <param name="userId">ID del usuario</param>
         [HttpGet("{userId}/articulos")]
-        public List<ArticuloOut> GetArticulosByUsuario(int userId)
+        public IEnumerable<ArticuloOut> GetArticulosByUsuario(int userId)
         {
             return ArticulosService.GetArticulosByUsuario(userId);
         }

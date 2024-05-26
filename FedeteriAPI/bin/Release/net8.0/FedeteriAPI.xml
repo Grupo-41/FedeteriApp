@@ -36,7 +36,7 @@
         </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.PostArticulo(System.Int32,FedeteriAPI.Models.ArticuloIn)">
             <summary>
-            Le asigna un usuario a un artículo y lo agrega en el sistema.
+            Le asigna un usuario a un artículo y lo agrega en el sistema
             </summary>
             <param name="userId">ID del usuario</param>
             <param name="articulo">Objeto artículo</param>
@@ -95,6 +95,37 @@
             <param name="usuarioRecoveryPass">Objeto UsuarioRecoveryPass (Email del usuario, contraseña nueva)</param>
             <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.DeseadosController.GetDeseadosByUserId(System.Int32)">
+            <summary>
+            Retorna los artículos deseados de un usuario en concreto
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.DeseadosController.GetDeseadoByUserById(System.Int32,System.Int32)">
+            <summary>
+            Retorna un artículo deseado de un usuario en específico
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <param name="id">ID del artículo deseado</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.DeseadosController.Post(System.Int32,FedeteriAPI.Models.ArticuloDeseado)">
+            <summary>
+            Endpoint para sumar un artículo deseado a un usuario en concreto
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <param name="articulo">Objeto ArticuloDeseado (Descripción, Marca)</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.DeseadosController.Delete(System.Int32,System.Int32)">
+            <summary>
+            Endpoint para eliminar un artículo deseado de un usuario en concreto
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <param name="id">ID del artículo a eliminar</param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.EmpleadosController.Get">
             <summary>
             Retorna todos los empleados registrados en el sistema
@@ -138,6 +169,56 @@
             <param name="id">ID de la sucursal</param>
             <returns code="200">Encontró la sucursal</returns>
             <returns code="404">Sucursal no encontrada</returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.Get">
+            <summary>
+            Retorna todos los trueques del sistema
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PostTrueque(FedeteriAPI.Models.TruequeIn)">
+            <summary>
+            Endpoint para proponer un trueque, recibe los IDs de los artículos involucrados y se lo asigna a los usuarios de dichos artículos
+            </summary>
+            <param name="newTrueque">Objeto TruequeIn, con información de los artículos involucrados</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetTruequesByUsuario(System.Int32)">
+            <summary>
+            Retorna todos los trueques del usuario, sin importar su aceptación y validación
+            </summary>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetTruequesPendientesByUsuario(System.Int32)">
+            <summary>
+            Retorna los trueques pendientes (aceptados) de un usuario
+            </summary>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PutAceptarTrueque(System.Int32)">
+            <summary>
+            Marca un trueque como aceptado
+            </summary>
+            <param name="truequeId">ID del trueque</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PutRechazarTrueque(System.Int32)">
+            <summary>
+            Marca un trueque como rechazado
+            </summary>
+            <param name="truequeId">ID del trueque</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PutValidarTrueque(System.Int32)">
+            <summary>
+            Marca un trueque como realizado
+            </summary>
+            <param name="truequeId">ID del trueque</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PutInvalidarTrueque(System.Int32)">
+            <summary>
+            Marca un trueque como no-realizado
+            </summary>
+            <param name="truequeId">ID del trueque</param>
         </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.Get">
             <summary>

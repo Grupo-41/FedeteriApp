@@ -31,10 +31,14 @@ namespace FedeteriAPI.Services
         {
             return Trueques.Where(x => x.ArticuloSolicitado.Usuario.Id == userId || x.ArticuloOfrecido.Usuario.Id == userId);
         }
+        public static IEnumerable<TruequeOut> GetTruequesPendientesByUsuario(int userId)
+        {
+            return GetTruequesByUsuario(userId).Where(x => x.Aceptado.HasValue && x.Aceptado.Value);
+        }
 
         public static IEnumerable<TruequeOut> GetTruequesPendientesBySucursal(int sucursalId)
         {
-            return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value && x.Sucursal.Id == sucursalId);
+            return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value && x.Sucursal != null && x.Sucursal.Id == sucursalId);
         }
 
         public static void AddTrueque(TruequeIn newTrueque)
@@ -44,6 +48,51 @@ namespace FedeteriAPI.Services
             TruequesFile.Add(t);
             Trueques.Add(new TruequeOut(t));
             WriteAll();
+        }
+
+        private static TruequeOut GetTruequeById(int truequeId) {
+            return Trueques.FirstOrDefault(x => x.Id == truequeId);
+        }
+
+        private static Trueque GetTruequeFileById(int truequeId)
+        {
+            return TruequesFile.FirstOrDefault(x => x.Id == truequeId);
+        }
+
+        public static void ValidateTrueque(int truequeId, bool done)
+        {
+            TruequeOut t = GetTruequeById(truequeId);
+            Trueque tFile = GetTruequeFileById(truequeId);
+
+            if(t != null && tFile != null)
+            {
+                t.Realizado = done;
+                tFile.Realizado = done;
+                WriteAll();
+            }
+        }
+
+        private static void SetTruequeAceptado(int truequeId, bool aceptado)
+        {
+            TruequeOut t = GetTruequeById(truequeId);
+            Trueque tFile = GetTruequeFileById(truequeId);
+
+            if (t != null && tFile != null)
+            {
+                t.Aceptado = aceptado;
+                tFile.Aceptado = aceptado;
+                WriteAll();
+            }
+        }
+
+        public static void AceptarTrueque(int truequeId)
+        {
+            SetTruequeAceptado(truequeId, true);
+        }
+
+        public static void RechazarTrueque(int truequeId)
+        {
+            SetTruequeAceptado(truequeId, false);
         }
     }
 }

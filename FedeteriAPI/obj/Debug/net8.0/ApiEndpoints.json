@@ -194,7 +194,7 @@
   {
     "ContainingType": "FedeteriAPI.Controllers.ArticulosController",
     "Method": "TasarArticulo",
-    "RelativePath": "api/Articulos/tasar",
+    "RelativePath": "api/Articulos/tasar/{articuloID}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -202,12 +202,12 @@
       {
         "Name": "articuloID",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
-        "Name": "categoria",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "precioEstimado",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -540,7 +540,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[FedeteriAPI.Models.ArticuloOut, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.ArticuloOut, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -660,6 +660,58 @@
     "ReturnTypes": [
       {
         "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "GetTruequesByUsuario",
+    "RelativePath": "api/Usuarios/{userID}/trueques",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.TruequeOut, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "GetTruequesPendientesByUsuario",
+    "RelativePath": "api/Usuarios/{userID}/trueques-pendientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[FedeteriAPI.Models.TruequeOut, FedeteriAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

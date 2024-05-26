@@ -69,7 +69,7 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
-        /// Le asigna un usuario a un artículo y lo agrega en el sistema.
+        /// Le asigna un usuario a un artículo y lo agrega en el sistema
         /// </summary>
         /// <param name="userId">ID del usuario</param>
         /// <param name="articulo">Objeto artículo</param>

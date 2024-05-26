@@ -28,6 +28,9 @@ namespace FedeteriAPI.Services
 
                 if (Usuarios.FindIndex(x => x.EsAdmin) == -1)
                     AddAdmin();
+
+                if (Usuarios.FindIndex(x => x.EsEmpleado) == -1)
+                    AddEmpleado();
             }
         }
 
@@ -44,6 +47,25 @@ namespace FedeteriAPI.Services
                 Telefono = 2215551234,
                 EsAdmin = true,
                 EsEmpleado = false,
+                Id = ActualID++,
+            });
+
+            WriteAll();
+        }
+
+        public static void AddEmpleado()
+        {
+            Usuarios.Add(new Usuario()
+            {
+                Email = "empleadoFedeteria@gmail.com",
+                DNI = 2,
+                Nombre = "Fedeteria",
+                Apellido = "Empleado",
+                Contrasena = "123456",
+                Nacimiento = "1997-10-24",
+                Telefono = 2215551324,
+                EsAdmin = false,
+                EsEmpleado = true,
                 Id = ActualID++,
             });
 
