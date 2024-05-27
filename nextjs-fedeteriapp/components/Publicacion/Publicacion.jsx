@@ -90,7 +90,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
             <div className='position-relative card-img-top'>
                 <div className='d-flex justify-content-center'>
                     { clickable ? 
-                        <img height={175} style={{objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} />
+                        <img height={175} style={{maxWidth: '100%', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} />
                         :
                         <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true} width={175}>
                         { x.imageNames.map((image, index) => 
@@ -98,7 +98,6 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                         )}
                         </Carousel>
                     }
-                    
                 </div>
                 {
                     own && 
@@ -108,37 +107,28 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                     </div>
                 }
             </div>
-            
-            
 
-            <div className="card-body" >
-                <h5 className="card-title">{x.descripcion}</h5>
-                <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
-                <p className='card-subtitle text-body-secondary'><strong>Marca: </strong>{x.marca}</p>
-                <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
-            </div>
-            
-            <div className="d-flex justify-content-center align-items-center">
-                {truequeable &&
-                <div className="btn-group">
-                    <button type="button" className="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{background: '#e7ab12 '}}>
-                        Proponer trueque
-                    </button>
-                    <ul className="dropdown-menu">
-                        <li><a type="button" className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Cargar artículo<FiUpload className='ms-2'/></a></li>
-                        <li><hr className="dropdown-divider"/></li>
-                        {articulosUsuario && articulosUsuario.length > 0 ?
-                            articulosUsuario.map(item => {
-                                return (
-                                    <li key={item.id}><a onClick={()=>postTrueque(item.id)} className="dropdown-item">{item.descripcion}</a></li>
-                                )
-                            })
-                            :
-                            <p className="dropdown-item">No tienes artículos publicados</p>
-                        }
-                    </ul>
-                </div>
-                }
+            {truequeable &&
+            <div className="d-flex justify-content-center align-items-center card-footer">
+                
+                    <div className="btn-group align-self-center dropdown-center">
+                        <button type="button" className="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{background: '#e7ab12 '}}>
+                            Proponer trueque
+                        </button>
+                        <ul className="dropdown-menu">
+                            {articulosUsuario && articulosUsuario.length > 0 ?
+                                articulosUsuario.map(item => {
+                                    return (
+                                        <li key={item.id}><a onClick={()=>postTrueque(item.id)} className="dropdown-item">{item.descripcion}</a></li>
+                                    )
+                                })
+                                :
+                                <li className='dropdown-item disabled'><span >No tienes artículos publicados</span></li>
+                            }
+                            <li><hr className="dropdown-divider"/></li>
+                            <li><a type="button" className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Cargar artículo<FiUpload className='ms-2'/></a></li>
+                        </ul>
+                    </div>
                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -148,7 +138,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                             </div>
                             <div className="modal-body p-1">
                                 <div className="d-flex justify-content-center w-100">
-                                    <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 align-self-center">
+                                    <form style={{minWidth: '400px', background: 'white'}} className="rounded p-4 align-self-center">
                                         <div className="mb-3">
                                             <label htmlFor="descripcion" className="form-label">Descripción</label>
                                             <input ref={refDescripcion} type="text" placeholder="Ingrese una descripción" className="form-control border border-dark" id="descripcion" required/>
@@ -168,7 +158,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                                                 <input ref={refMarca} type="text" placeholder="Ingrese la marca" className="form-control border border-dark" id="marca" required/>
                                             </div>
                                         </div>
-                                        <div className="mb-3">
+                                        <div>
                                             <label htmlFor="img" className="form-label">Imágenes</label>
                                             <input ref={refImg} type="file" accept="image/png, image/jpeg" multiple className="form-control border border-dark" id="img" required/>
                                             <div id="imgHelp" className="form-text">
@@ -185,6 +175,15 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                     </div>
                 </div>
             </div>
+            }
+            <div className="card-footer d-flex flex-column" >
+                <h5 className="card-title">{x.descripcion}</h5>
+                <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
+                <p className='card-subtitle text-body-secondary'><strong>Marca: </strong>{x.marca}</p>
+                <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
+
+            </div>
+            
         </div>
         <small className='card-footer text-center text-truncate'>{own ? x.tasado ? <em>Artículo publicado</em> : <em>Artículo a la espera de ser tasado</em> :
                                         <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}</small>
