@@ -57,13 +57,17 @@ namespace FedeteriAPI.Services
             return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value && x.Sucursal != null && x.Sucursal.Id == sucursalId);
         }
 
-        public static void AddTrueque(TruequeIn newTrueque)
+        public static bool AddTrueque(TruequeIn newTrueque)
         {
+            if (TruequesFile.Any(x => x.ArticuloOfrecidoID == newTrueque.ArticuloOfrecidoID && x.ArticuloSolicitadoID == newTrueque.ArticuloSolicitadoID))
+                return false;
+
             Trueque t = new Trueque(newTrueque);
             t.Id = ActualID++;
             TruequesFile.Add(t);
             Trueques.Add(new TruequeOut(t));
             WriteAll();
+            return true;
         }
 
         private static TruequeOut GetTruequeById(int truequeId) {

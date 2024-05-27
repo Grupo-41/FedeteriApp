@@ -39,7 +39,7 @@ export default function Home() {
             <>
               <h2 className="ms-4 ps-2 mb-3">Historial de trueques</h2>
               <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                {trueques.map(x => <TruequeInfo trueque={x} />)}
+                {trueques.map(x => <TruequeInfo key={x.id} trueque={x} />)}
               </div>
             </>
           }
