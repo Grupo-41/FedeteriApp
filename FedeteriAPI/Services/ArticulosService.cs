@@ -25,10 +25,10 @@ namespace FedeteriAPI.Services
         {
             AddHardcodedArticulo(2, new ArticuloIn()
             {
-                Descripcion = "Pala",
-                Marca = "Ninguna",
-                Estado = "Nuevo"
-            }, ["Pala.jpg"]);
+                Descripcion = "Llave Criquet",
+                Marca = "BREMEN",
+                Estado = "Usada"
+            }, ["Llave Criquet.jpg"]);
 
             AddHardcodedArticulo(2, new ArticuloIn()
             {
@@ -53,24 +53,24 @@ namespace FedeteriAPI.Services
 
             AddHardcodedArticulo(3, new ArticuloIn()
             {
-                Descripcion = "Caña de pescar",
-                Marca = "Genérica",
-                Estado = "Nueva"
-            }, ["Caña de pescar.jpg"]);
+                Descripcion = "Kit Tubos Llaves",
+                Marca = "STANLEY",
+                Estado = "Usado"
+            }, ["Kit Tubos Llaves.jpg"]);
 
             AddHardcodedArticulo(3, new ArticuloIn()
             {
-                Descripcion = "Martillo",
-                Marca = "Genérico",
-                Estado = "Usado"
-            }, ["Martillo.jpg"]);
+                Descripcion = "Martillo de goma",
+                Marca = "BREMEN",
+                Estado = "Nuevo"
+            }, ["Martillo de goma.jpg"]);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
-                Descripcion = "Desmalezadora",
-                Marca = "Genérica",
-                Estado = "Nueva"
-            }, ["Desmalezadora.jpg"]);
+                Descripcion = "Tarugos",
+                Marca = "Fischer",
+                Estado = "Nuevos"
+            }, ["Tarugos Fischer.jpg"]);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
@@ -85,6 +85,27 @@ namespace FedeteriAPI.Services
                 Marca = "CROSSMASTER",
                 Estado = "Nuevos"
             }, ["Set de destornilladores.jpg"]);
+
+            AddHardcodedArticulo(5, new ArticuloIn()
+            {
+                Descripcion = "Alicate Universal",
+                Marca = "DUROLL",
+                Estado = "Nuevo"
+            }, ["Alicate Universal.jpg"]);
+
+            AddHardcodedArticulo(5, new ArticuloIn()
+            {
+                Descripcion = "Rollo de cable unipolar 2.5mm",
+                Marca = "TREFILCON",
+                Estado = "Nuevo"
+            }, ["Rollo Cable Unipolar 2.5mm.jpg"]);
+
+            AddHardcodedArticulo(5, new ArticuloIn()
+            {
+                Descripcion = "Caja Capsulada Exterior",
+                Marca = "Genérica",
+                Estado = "Nuevo"
+            }, ["Caja Capsulada Exterior.jpg"]);
 
             WriteAll();
         }

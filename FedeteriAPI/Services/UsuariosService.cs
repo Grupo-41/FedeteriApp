@@ -118,6 +118,19 @@ namespace FedeteriAPI.Services
                 Id = ActualID++,
             }));
 
+            Usuarios.Add(new Usuario(new UsuarioIn()
+            {
+                Email = "user4@fedeteriapp.com",
+                DNI = 6,
+                Nombre = "Maria",
+                Apellido = "Gonzalez",
+                Contrasena = "6",
+                Nacimiento = "1995-09-28",
+                Telefono = 777888999,
+                SucursalID = 4,
+                Id = ActualID++,
+            }));
+
             WriteAll();
         }
 
