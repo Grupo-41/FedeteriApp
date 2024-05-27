@@ -27,14 +27,18 @@ namespace FedeteriAPI.Services
                     ActualID = Usuarios.Max(x => x.Id) + 1;
 
                 if (Usuarios.FindIndex(x => x.EsAdmin) == -1)
-                    AddAdmin();
+                    HardcodeAdmin();
 
                 if (Usuarios.FindIndex(x => x.EsEmpleado) == -1)
-                    AddEmpleado();
+                    HardcodeEmpleado();
+
+                if (Usuarios.FindAll(x => !x.EsAdmin && !x.EsEmpleado).Count() < 3)
+                    HardcodeUsers();
             }
         }
 
-        public static void AddAdmin()
+
+        public static void HardcodeAdmin()
         {
             Usuarios.Add(new Usuario()
             {
@@ -53,24 +57,70 @@ namespace FedeteriAPI.Services
             WriteAll();
         }
 
-        public static void AddEmpleado()
+        public static void HardcodeEmpleado()
         {
-            Usuarios.Add(new Usuario()
+            Usuarios.Add(new Usuario(new UsuarioIn()
             {
                 Email = "empleadoFedeteria@gmail.com",
                 DNI = 2,
                 Nombre = "Fedeteria",
                 Apellido = "Empleado",
-                Contrasena = "123456",
+                Contrasena = "2",
                 Nacimiento = "1997-10-24",
                 Telefono = 2215551324,
                 EsAdmin = false,
                 EsEmpleado = true,
+                SucursalID = 1,
                 Id = ActualID++,
-            });
+            }));
 
             WriteAll();
         }
+        
+        private static void HardcodeUsers()
+        {
+            Usuarios.Add(new Usuario(new UsuarioIn()
+            {
+                Email = "user1@fedeteriapp.com",
+                DNI = 3,
+                Nombre = "John",
+                Apellido = "Doe",
+                Contrasena = "3",
+                Nacimiento = "1990-05-20",
+                Telefono = 1234567890,
+                SucursalID = 1,
+                Id = ActualID++,
+            }));
+
+            Usuarios.Add(new Usuario(new UsuarioIn()
+            {
+                Email = "user2@fedeteriapp.com",
+                DNI = 4,
+                Nombre = "Jane",
+                Apellido = "Smith",
+                Contrasena = "4",
+                Nacimiento = "1988-12-15",
+                Telefono = 9876543210,
+                SucursalID = 2,
+                Id = ActualID++,
+            }));
+
+            Usuarios.Add(new Usuario(new UsuarioIn()
+            {
+                Email = "user3@fedeteriapp.com",
+                DNI = 5,
+                Nombre = "Alice",
+                Apellido = "Johnson",
+                Contrasena = "5",
+                Nacimiento = "1982-03-10",
+                Telefono = 5556667777,
+                SucursalID = 3,
+                Id = ActualID++,
+            }));
+
+            WriteAll();
+        }
+
 
         public static void AddEmpleado(UsuarioIn usuario)
         {

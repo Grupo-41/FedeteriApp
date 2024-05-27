@@ -16,11 +16,95 @@ namespace FedeteriAPI.Services
 
             if(Articulos.Count > 0)
                 ActualID = Articulos.Max(x => x.Id) + 1;
+
+            if (Articulos.Count < 5)
+                HardcodeArticles();
+        }
+
+        private static void HardcodeArticles()
+        {
+            AddHardcodedArticulo(2, new ArticuloIn()
+            {
+                Descripcion = "Pala",
+                Marca = "Ninguna",
+                Estado = "Nuevo"
+            }, ["Pala.jpg"]);
+
+            AddHardcodedArticulo(2, new ArticuloIn()
+            {
+                Descripcion = "Motosierra",
+                Marca = "STIHL",
+                Estado = "Nuevo"
+            }, ["Motosierra.jpg"]);
+
+            AddHardcodedArticulo(2, new ArticuloIn()
+            {
+                Descripcion = "Stillson",
+                Marca = "Genérica",
+                Estado = "Usada"
+            }, ["Llave Stillson.jpg"]);
+
+            AddHardcodedArticulo(3, new ArticuloIn()
+            {
+                Descripcion = "Llave Francesa",
+                Marca = "BAHCO",
+                Estado = "Usada"
+            }, ["Llave Francesa.jpg"]);
+
+            AddHardcodedArticulo(3, new ArticuloIn()
+            {
+                Descripcion = "Caña de pescar",
+                Marca = "Genérica",
+                Estado = "Nueva"
+            }, ["Caña de pescar.jpg"]);
+
+            AddHardcodedArticulo(3, new ArticuloIn()
+            {
+                Descripcion = "Martillo",
+                Marca = "Genérico",
+                Estado = "Usado"
+            }, ["Martillo.jpg"]);
+
+            AddHardcodedArticulo(4, new ArticuloIn()
+            {
+                Descripcion = "Desmalezadora",
+                Marca = "Genérica",
+                Estado = "Nueva"
+            }, ["Desmalezadora.jpg"]);
+
+            AddHardcodedArticulo(4, new ArticuloIn()
+            {
+                Descripcion = "Agujereadora",
+                Marca = "Black&Decker",
+                Estado = "Nueva"
+            }, ["Agujereadora.jpg"]);
+
+            AddHardcodedArticulo(4, new ArticuloIn()
+            {
+                Descripcion = "Set de destornilladores",
+                Marca = "CROSSMASTER",
+                Estado = "Nuevos"
+            }, ["Set de destornilladores.jpg"]);
+
+            WriteAll();
         }
 
         public static List<ArticuloOut> GetArticulos()
         {
             return Articulos;
+        }
+
+        private static void AddHardcodedArticulo(int userID, ArticuloIn articulo, string[] images)
+        {
+            ArticuloOut nuevoArticulo = new ArticuloOut(articulo)
+            {
+                Id = ActualID++,
+                Usuario = new UsuarioOut(UsuariosService.GetUsuarioByID(userID)),
+                ImageNames = images.ToList()
+            };
+
+            Articulos.Add(nuevoArticulo);
+            WriteAll();
         }
 
         public static async Task AddArticulo(int userID, ArticuloIn articulo)

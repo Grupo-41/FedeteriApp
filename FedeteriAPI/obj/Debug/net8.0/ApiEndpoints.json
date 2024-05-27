@@ -1,5 +1,27 @@
 [
   {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "PutAceptarTrueque",
+    "RelativePath": "api/aceptar-trueque/{truequeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "truequeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "FedeteriAPI.Controllers.ArticulosController",
     "Method": "Get",
     "RelativePath": "api/Articulos",
@@ -74,6 +96,11 @@
         "IsRequired": false
       },
       {
+        "Name": "ArticuloAsociado",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
         "Name": "Images",
         "Type": "Microsoft.AspNetCore.Http.IFormFile[]",
         "IsRequired": false
@@ -135,6 +162,11 @@
       {
         "Name": "Marca",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ArticuloAsociado",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -341,6 +373,50 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "PutInvalidarTrueque",
+    "RelativePath": "api/invalidar-trueque/{truequeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "truequeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "PutRechazarTrueque",
+    "RelativePath": "api/rechazar-trueque/{truequeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "truequeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "FedeteriAPI.Controllers.SucursalesController",
@@ -927,6 +1003,28 @@
           "application/json",
           "text/json"
         ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FedeteriAPI.Controllers.TruequesController",
+    "Method": "PutValidarTrueque",
+    "RelativePath": "api/validar-trueque/{truequeId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "truequeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]
