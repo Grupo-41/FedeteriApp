@@ -35,7 +35,7 @@ export default function Home() {
     <>
       <div className="mt-5 d-flex flex-column gap-5 align-items-center justify-content-center">
         <div>
-          { articulos.length > 0 &&
+          { trueques.length > 0 &&
             <>
               <h2 className="ms-4 ps-2 mb-3">Historial de trueques</h2>
               <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
