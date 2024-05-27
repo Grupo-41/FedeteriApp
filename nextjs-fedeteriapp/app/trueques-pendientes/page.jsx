@@ -33,7 +33,7 @@ const Page = () => {
                 trueques.map(x => {
                     return (
                         <TruequeInfo key={x.id} 
-                        trueque={x} />
+                        trueque={x} toValidate={true}/>
                     )
                 })
                 :

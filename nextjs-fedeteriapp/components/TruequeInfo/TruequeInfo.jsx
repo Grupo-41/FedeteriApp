@@ -7,7 +7,7 @@ import { TbArrowsExchange2 } from "react-icons/tb";
 import { FaBan, FaCheck } from "react-icons/fa";
 
 
-const TruequeInfo = ({ trueque }) => {
+const TruequeInfo = ({ trueque, toValidate = false }) => {
   const user1 = trueque.articuloOfrecido.usuario;
   const user2 = trueque.articuloSolicitado.usuario;
   const articulo1 = trueque.articuloOfrecido;
@@ -35,11 +35,14 @@ const TruequeInfo = ({ trueque }) => {
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={{marginBottom: '27px'}} size={42} />
-              <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
-                <button className={style.button}><FaCheck size={20} fill='#1a5' /></button>
-                <button className={style.button}><FaBan size={20} fill='#e12' /></button>
-              </div>
+              <TbArrowsExchange2 style={toValidate && {marginBottom: '27px'}} size={42} />
+              {
+                toValidate &&
+                <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
+                  <button className={style.button}><FaCheck size={20} fill='#1a5' /></button>
+                  <button className={style.button}><FaBan size={20} fill='#e12' /></button>
+                </div>
+              }
             </div>
           </div>
           <div className='w-50'>

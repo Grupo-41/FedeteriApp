@@ -110,7 +110,6 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
 
             {truequeable &&
             <div className="d-flex justify-content-center align-items-center card-footer">
-                
                     <div className="btn-group align-self-center dropdown-center">
                         <button type="button" className="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{background: '#e7ab12 '}}>
                             Proponer trueque
@@ -119,7 +118,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                             {articulosUsuario && articulosUsuario.length > 0 ?
                                 articulosUsuario.map(item => {
                                     return (
-                                        <li key={item.id}><a onClick={()=>postTrueque(item.id)} className="dropdown-item">{item.descripcion}</a></li>
+                                        <li key={item.id}><a onClick={()=>postTrueque(item.id)} className="dropdown-item">{item.descripcion} ({item.categoria})</a></li>
                                     )
                                 })
                                 :
