@@ -21,6 +21,25 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna todos los trueques que han sido aceptados, pendientes de realizarse
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("[controller]/aceptados")]
+        public IEnumerable<TruequeOut> GetAceptados()
+        {
+            return TruequesService.GetAceptados();
+        }
+
+        /// <summary>
+        /// Retorna todos los trueques que han sido realizados
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("[controller]/realizados")]
+        public IEnumerable<TruequeOut> GetRealizados() {
+            return TruequesService.GetRealizados();
+        }
+
+        /// <summary>
         /// Endpoint para proponer un trueque, recibe los IDs de los artículos involucrados y se lo asigna a los usuarios de dichos artículos
         /// </summary>
         /// <param name="newTrueque">Objeto TruequeIn, con información de los artículos involucrados</param>
@@ -33,7 +52,7 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
-        /// Retorna todos los trueques del usuario, sin importar su aceptación y validación
+        /// Retorna todos los trueques del usuario, sin importar su aceptación o realización
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
@@ -41,6 +60,18 @@ namespace FedeteriAPI.Controllers
         public IEnumerable<TruequeOut> GetTruequesByUsuario(int userID)
         {
             return TruequesService.GetTruequesByUsuario(userID);
+        }
+
+
+        /// <summary>
+        /// Retorna todos los trueques del usuario que no hayan sido aceptados ni rechazados
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        [HttpGet("/api/Usuarios/{userID}/propuestas")]
+        public IEnumerable<TruequeOut> GetPropuestasByUsuario(int userID)
+        {
+            return TruequesService.GetPropuestasByUsuario(userID);
         }
 
 
@@ -56,10 +87,21 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna los trueques pendientes (aceptados) de una sucursal
+        /// </summary>
+        /// <param name="sucursalID"></param>
+        /// <returns></returns>
+        [HttpGet("/api/Sucursales/{sucursalID}/trueques-pendientes")]
+        public IEnumerable<TruequeOut> GetTruequesPendientesBySucursal(int sucursalID)
+        {
+            return TruequesService.GetTruequesPendientesBySucursal(sucursalID);
+        }
+
+        /// <summary>
         /// Marca un trueque como aceptado
         /// </summary>
         /// <param name="truequeId">ID del trueque</param>
-        [HttpPut("aceptar-trueque/{truequeId}")]
+        [HttpPut("[controller]/aceptar-trueque/{truequeId}")]
         public void PutAceptarTrueque(int truequeId)
         {
             TruequesService.AceptarTrueque(truequeId);
@@ -69,7 +111,7 @@ namespace FedeteriAPI.Controllers
         /// Marca un trueque como rechazado
         /// </summary>
         /// <param name="truequeId">ID del trueque</param>
-        [HttpPut("rechazar-trueque/{truequeId}")]
+        [HttpPut("[controller]/rechazar-trueque/{truequeId}")]
         public void PutRechazarTrueque(int truequeId)
         {
             TruequesService.RechazarTrueque(truequeId);
@@ -79,7 +121,7 @@ namespace FedeteriAPI.Controllers
         /// Marca un trueque como realizado
         /// </summary>
         /// <param name="truequeId">ID del trueque</param>
-        [HttpPut("validar-trueque/{truequeId}")]
+        [HttpPut("[controller]/validar-trueque/{truequeId}")]
         public void PutValidarTrueque(int truequeId)
         {
             TruequesService.ValidateTrueque(truequeId, true);
@@ -89,7 +131,7 @@ namespace FedeteriAPI.Controllers
         /// Marca un trueque como no-realizado
         /// </summary>
         /// <param name="truequeId">ID del trueque</param>
-        [HttpPut("invalidar-trueque/{truequeId}")]
+        [HttpPut("[controller]/invalidar-trueque/{truequeId}")]
         public void PutInvalidarTrueque(int truequeId)
         {
             TruequesService.ValidateTrueque(truequeId, false);

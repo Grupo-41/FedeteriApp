@@ -176,6 +176,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetAceptados">
+            <summary>
+            Retorna todos los trueques que han sido aceptados, pendientes de realizarse
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetRealizados">
+            <summary>
+            Retorna todos los trueques que han sido realizados
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.TruequesController.PostTrueque(FedeteriAPI.Models.TruequeIn)">
             <summary>
             Endpoint para proponer un trueque, recibe los IDs de los artículos involucrados y se lo asigna a los usuarios de dichos artículos
@@ -184,7 +196,14 @@
         </member>
         <member name="M:FedeteriAPI.Controllers.TruequesController.GetTruequesByUsuario(System.Int32)">
             <summary>
-            Retorna todos los trueques del usuario, sin importar su aceptación y validación
+            Retorna todos los trueques del usuario, sin importar su aceptación o realización
+            </summary>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetPropuestasByUsuario(System.Int32)">
+            <summary>
+            Retorna todos los trueques del usuario que no hayan sido aceptados ni rechazados
             </summary>
             <param name="userID"></param>
             <returns></returns>
@@ -194,6 +213,13 @@
             Retorna los trueques pendientes (aceptados) de un usuario
             </summary>
             <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetTruequesPendientesBySucursal(System.Int32)">
+            <summary>
+            Retorna los trueques pendientes (aceptados) de una sucursal
+            </summary>
+            <param name="sucursalID"></param>
             <returns></returns>
         </member>
         <member name="M:FedeteriAPI.Controllers.TruequesController.PutAceptarTrueque(System.Int32)">

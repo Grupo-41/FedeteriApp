@@ -5,14 +5,30 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { TbArrowsExchange2 } from "react-icons/tb";
 import { FaBan, FaCheck } from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 
-const TruequeInfo = ({ trueque, toValidate = false }) => {
+const TruequeInfo = ({ trueque, removeTrueque, toValidate = false }) => {
   const user1 = trueque.articuloOfrecido.usuario;
   const user2 = trueque.articuloSolicitado.usuario;
   const articulo1 = trueque.articuloOfrecido;
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
+
+  function validateTrueque(realizado){
+    let URL = 'http://localhost:5000/api/Trueques/'
+    URL += realizado ? 'validar-trueque/' : 'invalidar-trueque/'
+    URL += trueque.id
+
+    fetch(URL, {
+      method: 'PUT'
+    }).then(() => {
+      toast.success(realizado ? 'Trueque validado con éxito.' : 'Trueque invalidado con éxito.')
+
+      if(removeTrueque)
+        removeTrueque(trueque.id);
+    });
+  }
 
   return (
     <>
@@ -39,8 +55,8 @@ const TruequeInfo = ({ trueque, toValidate = false }) => {
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
-                  <button className={style.button}><FaCheck size={20} fill='#1a5' /></button>
-                  <button className={style.button}><FaBan size={20} fill='#e12' /></button>
+                  <button onClick={() => validateTrueque(true)} className={style.button}><FaCheck size={20} fill='#1a5' /></button>
+                  <button onClick={() => validateTrueque(false)} className={style.button}><FaBan size={20} fill='#e12' /></button>
                 </div>
               }
             </div>

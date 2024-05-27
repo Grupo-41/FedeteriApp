@@ -14,7 +14,7 @@ const Page = () => {
     }, [user])
 
     useEffect(() => {
-        const URL = 'http://localhost:5000/api/Trueques'
+        const URL = 'http://localhost:5000/api/Trueques/aceptados'
 
         fetch(URL)
         .then(data => data.json())
@@ -23,6 +23,11 @@ const Page = () => {
             //setTrueques(user.esAdmin ? data : user.esEmpleado ? data.filter(x => x.sucursal.id === user.sucursal.id) : {});
         })
     }, [])
+
+    function removeTrueque(id){
+        let newArray = trueques.filter(x => x.id !== id);
+        setTrueques(newArray);
+    }
 
   return (
     <div className="mt-5 d-flex flex-column align-items-center justify-content-center w-100">
@@ -33,7 +38,9 @@ const Page = () => {
                 trueques.map(x => {
                     return (
                         <TruequeInfo key={x.id} 
-                        trueque={x} toValidate={true}/>
+                        trueque={x}
+                        removeTrueque={(id) => removeTrueque(id)}
+                        toValidate={true}/>
                     )
                 })
                 :

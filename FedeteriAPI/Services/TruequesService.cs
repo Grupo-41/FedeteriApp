@@ -27,10 +27,26 @@ namespace FedeteriAPI.Services
             return Trueques;
         }
 
+        public static IEnumerable<TruequeOut> GetAceptados()
+        {
+            return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value);
+        }
+
+        public static IEnumerable<TruequeOut> GetRealizados()
+        {
+            return GetAceptados().Where(x => x.Realizado.HasValue && x.Realizado.Value);
+        }
+
         public static IEnumerable<TruequeOut> GetTruequesByUsuario(int userId)
         {
             return Trueques.Where(x => x.ArticuloSolicitado.Usuario.Id == userId || x.ArticuloOfrecido.Usuario.Id == userId);
         }
+
+        public static IEnumerable<TruequeOut> GetPropuestasByUsuario(int userId)
+        {
+            return Trueques.Where(x => x.ArticuloSolicitado.Usuario.Id == userId && !x.Aceptado.HasValue);
+        }
+
         public static IEnumerable<TruequeOut> GetTruequesPendientesByUsuario(int userId)
         {
             return GetTruequesByUsuario(userId).Where(x => x.Aceptado.HasValue && x.Aceptado.Value);

@@ -211,6 +211,17 @@ namespace FedeteriAPI.Services
             {
                 aTasar.Categoria = AsignarCategoria(precioEstimado);
                 aTasar.Tasado = true;
+
+                if(aTasar.Tasado && aTasar.ArticuloAsociado.HasValue)
+                {
+                    if(GetArticulo(articuloID) != null && GetArticulo(aTasar.ArticuloAsociado.Value) != null)
+                        TruequesService.AddTrueque(new TruequeIn()
+                        {
+                            ArticuloOfrecidoID = articuloID,
+                            ArticuloSolicitadoID = aTasar.ArticuloAsociado.Value
+                        });
+                }
+
                 WriteAll();
                 return true;
             }
