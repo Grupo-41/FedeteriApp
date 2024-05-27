@@ -177,7 +177,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
             </div>
             }
             <div className="card-footer d-flex flex-column" >
-                <h5 className="card-title">{x.descripcion}</h5>
+                <h5 className="card-title text-truncate">{x.descripcion}</h5>
                 <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
                 <p className='card-subtitle text-body-secondary'><strong>Marca: </strong>{x.marca}</p>
                 <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
