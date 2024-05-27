@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\controllers\\truequescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\controllers\\truequescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:controllers\\truequescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\services\\usuariosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\services\\usuariosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:services\\usuariosservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -106,8 +106,7 @@
               "RelativeToolTip": "Services\\UsuariosService.cs",
               "ViewState": "AQIAAGUAAAAAAAAAAAAswG4AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:29:09.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T15:29:09.527Z"
             },
             {
               "$type": "Document",
@@ -119,8 +118,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAcwCQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T03:05:57.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T03:05:57.764Z"
             },
             {
               "$type": "Document",
@@ -132,8 +130,7 @@
               "RelativeToolTip": "Controllers\\EmpleadosController.cs",
               "ViewState": "AQIAADAAAAAAAAAAAAA6wEIAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T18:38:50.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-29T18:38:50.635Z"
             },
             {
               "$type": "Document",
@@ -145,8 +142,7 @@
               "RelativeToolTip": "Services\\EmpleadosService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T21:09:19.492Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T21:09:19.492Z"
             },
             {
               "$type": "Document",
@@ -158,8 +154,7 @@
               "RelativeToolTip": "Utils\\FilesService.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAcwBMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T21:41:04.484Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T21:41:04.484Z"
             },
             {
               "$type": "Document",
@@ -171,8 +166,7 @@
               "RelativeToolTip": "Controllers\\ArticulosController.cs",
               "ViewState": "AQIAAEwAAAAAAAAAAAAcwGIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T21:12:44.442Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T21:12:44.442Z"
             },
             {
               "$type": "Document",
@@ -182,7 +176,7 @@
               "RelativeDocumentMoniker": "Controllers\\TruequesController.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\TruequesController.cs",
               "RelativeToolTip": "Controllers\\TruequesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAWAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwA4AAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-19T03:30:38.927Z",
               "EditorCaption": ""
@@ -197,8 +191,7 @@
               "RelativeToolTip": "Controllers\\UsuariosController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-23T02:14:53.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-23T02:14:53.579Z"
             },
             {
               "$type": "Document",
@@ -210,8 +203,7 @@
               "RelativeToolTip": "Models\\Articulo.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-26T20:00:25.014Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-26T20:00:25.014Z"
             },
             {
               "$type": "Document",
@@ -223,8 +215,7 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-18T19:31:57.292Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T19:31:57.292Z"
             },
             {
               "$type": "Document",
@@ -236,8 +227,7 @@
               "RelativeToolTip": "Services\\SucursalesService.cs",
               "ViewState": "AQIAABcAAAAAAAAAAAArwDwAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T21:09:29.839Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-09T21:09:29.839Z"
             },
             {
               "$type": "Document",
@@ -249,8 +239,7 @@
               "RelativeToolTip": "Models\\CodigoRecuperacion.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T05:10:22.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-01T05:10:22.372Z"
             },
             {
               "$type": "Document",
@@ -262,8 +251,7 @@
               "RelativeToolTip": "Services\\ProductosService.cs",
               "ViewState": "AQIAAEcAAAAAAAAAAAAQwFwAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T02:53:06.475Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-20T02:53:06.475Z"
             },
             {
               "$type": "Document",
@@ -275,8 +263,7 @@
               "RelativeToolTip": "Controllers\\SucursalesController.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAUwBYAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T02:02:44.66Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-29T02:02:44.66Z"
             },
             {
               "$type": "Document",
@@ -287,8 +274,7 @@
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\FedeteriAPI.csproj",
               "RelativeToolTip": "FedeteriAPI.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-04-29T17:36:33.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-29T17:36:33.898Z"
             }
           ]
         }

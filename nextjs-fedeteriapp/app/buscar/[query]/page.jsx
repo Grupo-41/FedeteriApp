@@ -16,7 +16,7 @@ const Page = ({params}) => {
         fetch(URL)
         .then(data => data.json())
         .then(data => {
-            let resFilter = data.filter(x => x.descripcion.toLowerCase().includes(query.toLowerCase())).filter(x => x.usuario.id !== user.id);
+            let resFilter = data.filter(x => x.descripcion.toLowerCase().includes(query.toLowerCase()) || x.marca.toLowerCase().includes(query.toLowerCase())).filter(x => x.usuario.id !== user.id);
             let usuarioFilter = data.filter(x => x.usuario.id === user.id);
 
             setArticulos(resFilter);
