@@ -241,5 +241,10 @@ namespace FedeteriAPI.Services
             >= 100000 => "X",
             _ => throw new NotImplementedException()
         };
+
+        public static IEnumerable<ArticuloOut> GetArticulosPublicados()
+        {
+            return GetArticulosTasados().Where(x => !x.Truequeado);
+        }
     }
 }

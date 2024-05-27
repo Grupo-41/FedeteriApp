@@ -17,6 +17,12 @@
             <returns code="200">Se encontró el artículo buscado</returns>
             <returns code="404">No se encontró el artículo buscado</returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosPublicados">
+            <summary>
+            Retorna todos los artículos que fueron tasados y aún no han sido truequeados (los que deberían estar publicados)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosTasados">
             <summary>
             Retorna los artículos que ya fueron tasados (listos para publicar)

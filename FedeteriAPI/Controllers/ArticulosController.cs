@@ -19,6 +19,7 @@ namespace FedeteriAPI.Controllers
             return ArticulosService.GetArticulos();
         }
 
+
         /// <summary>
         /// Busca un artículo por su ID
         /// </summary>
@@ -34,6 +35,16 @@ namespace FedeteriAPI.Controllers
                 return NotFound();
 
             return Ok(articulo);
+        }
+
+        /// <summary>
+        /// Retorna todos los artículos que fueron tasados y aún no han sido truequeados (los que deberían estar publicados)
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("publicados")]
+        public IEnumerable<ArticuloOut> GetArticulosPublicados()
+        {
+            return ArticulosService.GetArticulosPublicados();
         }
 
         /// <summary>
@@ -53,6 +64,7 @@ namespace FedeteriAPI.Controllers
         {
             return ArticulosService.GetArticulosATasar();
         }
+
 
         /// <summary>
         /// Endpoint para tasar un artículo

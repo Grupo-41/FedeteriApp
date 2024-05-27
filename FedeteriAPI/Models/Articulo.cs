@@ -19,6 +19,7 @@
         public int? ArticuloAsociado { get; set; } = null;
         public List<string> ImageNames { get; set; }
         public bool Tasado { get; set; } = false;
+        public bool Truequeado { get; set; } = false;
 
         public UsuarioOut Usuario { get; set; }
 
@@ -34,6 +35,7 @@
             this.Marca = articulo.Marca;
             this.Categoria = "";
             this.Tasado = false;
+            this.Truequeado = false;
             this.ArticuloAsociado = articulo.ArticuloAsociado;
             this.ImageNames = new List<string>();
         }

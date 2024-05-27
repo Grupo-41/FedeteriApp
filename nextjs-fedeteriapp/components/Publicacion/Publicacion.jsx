@@ -34,7 +34,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
         for (var file of refImg.current.files) {
             data.append('Images', file, file.name)
         }
-        data.append( "articuloAsociado", x.id);
+        data.append("articuloAsociado", x.id);
 
         await fetch(URL, ({
             method: 'POST',
@@ -59,8 +59,12 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(trueque)
-        }).then(() =>{
-            toast.success('Articulo ofrecido con exito')
+        }).then((data) => data.json())
+        .then(data => {
+            if(data)
+                toast.success('Articulo ofrecido con exito')
+            else
+                toast.error('Ya ofreciste este artículo en esta publicación.')
         })
     }
     async function checkInputs(){

@@ -44,11 +44,11 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <param name="newTrueque">Objeto TruequeIn, con información de los artículos involucrados</param>
         [HttpPost("[controller]")]
-        public void PostTrueque(TruequeIn newTrueque)
+        public bool PostTrueque(TruequeIn newTrueque)
         {
-            if (newTrueque == null) { return; }
+            if (newTrueque == null) { return false; }
 
-            TruequesService.AddTrueque(newTrueque);
+            return TruequesService.AddTrueque(newTrueque);
         }
 
         /// <summary>

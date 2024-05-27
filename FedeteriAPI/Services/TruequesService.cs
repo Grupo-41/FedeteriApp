@@ -86,6 +86,8 @@ namespace FedeteriAPI.Services
 
             if(t != null && tFile != null)
             {
+                t.ArticuloSolicitado.Truequeado = done;
+                t.ArticuloOfrecido.Truequeado = done;
                 t.Realizado = done;
                 tFile.Realizado = done;
                 WriteAll();
@@ -99,6 +101,8 @@ namespace FedeteriAPI.Services
 
             if (t != null && tFile != null)
             {
+                t.ArticuloOfrecido.Truequeado = aceptado;
+                t.ArticuloSolicitado.Truequeado = aceptado;
                 t.Aceptado = aceptado;
                 tFile.Aceptado = aceptado;
                 WriteAll();
