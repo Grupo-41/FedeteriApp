@@ -37,7 +37,7 @@ export default function Home() {
         <div>
           { trueques.length > 0 &&
             <>
-              <h2 className="ms-4 ps-2 mb-3">Historial de trueques</h2>
+              <h2 className="text-center mb-3">Historial de trueques</h2>
               <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
                 {trueques.map(x => <TruequeInfo key={x.id} trueque={x} />)}
               </div>
@@ -47,7 +47,7 @@ export default function Home() {
         <div>
           { articulos.length > 0 &&
             <>
-              <h2 className="ms-4 ps-2 mb-3">Publicaciones</h2>
+              <h2 className="text-center mb-3">Publicaciones</h2>
               <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: user ? '40vh' : '34vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
                 {articulos.map(x => <Publicacion key={x.id} item={x} truequeable={user !== null} articulosUsuario={articulosUsuario} />)}
               </div>

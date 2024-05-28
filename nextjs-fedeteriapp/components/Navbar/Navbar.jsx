@@ -68,6 +68,9 @@ const Navbar = () => {
                             <li key={"propuestas"} className="nav-item">
                                 <a className="nav-link" href="/propuestas">Mis propuestas</a>
                             </li>
+                            <li key={"mis-trueques"} className="nav-item">
+                                <a className="nav-link" href="/mis-trueques">Mis trueques</a>
+                            </li>
                             <li key={"sucursales"} className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
                             </li>
