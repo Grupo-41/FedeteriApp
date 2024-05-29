@@ -19,6 +19,7 @@ const Page = () => {
         fetch(URL)
         .then(data => data.json())
         .then(data => {
+            //data = data.filter(x => x.sucursal !== null)
             setTrueques(data)
             //setTrueques(user.esAdmin ? data : user.esEmpleado ? data.filter(x => x.sucursal.id === user.sucursal.id) : {});
         })

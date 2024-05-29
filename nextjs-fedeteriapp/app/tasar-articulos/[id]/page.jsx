@@ -27,6 +27,9 @@ const Page = ({params}) => {
         }).then(() => {
             refreshArticulo();
             toast.success('Artículo tasado correctamente.')
+            setTimeout(() => {
+                window.location.href = '/tasar-articulos'
+            }, 1250)
         })
     }
 

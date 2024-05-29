@@ -172,7 +172,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <input onClick={postArticulo} type='button' className="btn" style={{background: '#e7ab12'}} value="Publicar artículo"/>
+                                <input onClick={postArticulo} type='button' data-bs-dismiss="modal" className="btn" style={{background: '#e7ab12'}} value="Publicar artículo"/>
                             </div>
                         </div>
                     </div>

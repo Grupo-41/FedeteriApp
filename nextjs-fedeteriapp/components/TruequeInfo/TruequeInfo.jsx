@@ -49,7 +49,7 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
 
   return (
     <>
-      <div className="card" style={{maxWidth: '800px', width: 'fit-content'}}>
+      <div className="card" style={{maxWidth: '800px', width: '100%'}}>
         <div className="d-flex mx-3 flex-row justify-content-center align-items-center">
           <div style={{width: '20.5%'}}>
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true}>
