@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\controllers\\articuloscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:controllers\\articuloscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\services\\truequesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|c:\\users\\weby\\source\\repos\\fedeteriapp\\fedeteriapi\\services\\truequesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:services\\truequesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\controllers\\truequescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:controllers\\truequescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\controllers\\articuloscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|solutionrelative:controllers\\articuloscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1FA2303D-EBB2-4E45-84F4-18FF878A2B72}|FedeteriAPI.csproj|C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,15 +98,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TruequesService.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\TruequesService.cs",
               "RelativeDocumentMoniker": "Services\\TruequesService.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Services\\TruequesService.cs",
               "RelativeToolTip": "Services\\TruequesService.cs",
-              "ViewState": "AQIAAFQAAAAAAAAAAAAawGgAAAAkAAAA",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAAAHcAAAB/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T17:48:16.762Z"
+              "WhenOpened": "2024-05-27T17:48:16.762Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -158,26 +159,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ArticulosController.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\ArticulosController.cs",
               "RelativeDocumentMoniker": "Controllers\\ArticulosController.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\ArticulosController.cs",
               "RelativeToolTip": "Controllers\\ArticulosController.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAUwCYAAAAAAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAADwvy0AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T21:12:44.442Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-08T21:12:44.442Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "TruequesController.cs",
               "DocumentMoniker": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\TruequesController.cs",
               "RelativeDocumentMoniker": "Controllers\\TruequesController.cs",
               "ToolTip": "C:\\Users\\Weby\\source\\repos\\FedeteriApp\\FedeteriAPI\\Controllers\\TruequesController.cs",
               "RelativeToolTip": "Controllers\\TruequesController.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAYwH4AAAArAAAA",
+              "ViewState": "AQIAAF8AAAAAAAAAAAAAwGoAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-19T03:30:38.927Z"
             },
