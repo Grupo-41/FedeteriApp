@@ -21,7 +21,6 @@ const Page = ({params}) => {
 
             setArticulos(resFilter);
             setArticulosUsuario(usuarioFilter);
-
         })
     }, [])
 

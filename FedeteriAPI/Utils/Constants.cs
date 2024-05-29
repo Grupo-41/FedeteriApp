@@ -12,7 +12,7 @@
 
         public static class Email
         {
-            public const string ADDRESS = "FedeteriApp@outlook.com.ar";
+            public const string ADDRESS = "FedeteriApp@outlook.com";
             public const string PASSWORD = "FedeteriaEmail123";
         }
     }

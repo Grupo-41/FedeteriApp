@@ -61,7 +61,7 @@ namespace FedeteriAPI.Services
         {
             Usuarios.Add(new Usuario(new UsuarioIn()
             {
-                Email = "empleadoFedeteria@gmail.com",
+                Email = "EmpleadoFedeteria@outlook.com",
                 DNI = 2,
                 Nombre = "Fedeteria",
                 Apellido = "Empleado",
@@ -81,7 +81,7 @@ namespace FedeteriAPI.Services
         {
             Usuarios.Add(new Usuario(new UsuarioIn()
             {
-                Email = "user1@fedeteriapp.com",
+                Email = "Usuario1Fedeteria@outlook.com",
                 DNI = 3,
                 Nombre = "John",
                 Apellido = "Doe",
@@ -94,7 +94,7 @@ namespace FedeteriAPI.Services
 
             Usuarios.Add(new Usuario(new UsuarioIn()
             {
-                Email = "user2@fedeteriapp.com",
+                Email = "Usuario2Fedeteria@outlook.com",
                 DNI = 4,
                 Nombre = "Jane",
                 Apellido = "Smith",
