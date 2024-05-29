@@ -27,7 +27,7 @@ namespace FedeteriAPI.Services
             {
                 Descripcion = "Llave Criquet",
                 Marca = "BREMEN",
-                Estado = "Usada"
+                Estado = "Usado"
             }, ["Llave Criquet.jpg"]);
 
             AddHardcodedArticulo(2, new ArticuloIn()
@@ -41,14 +41,14 @@ namespace FedeteriAPI.Services
             {
                 Descripcion = "Stillson",
                 Marca = "Genérica",
-                Estado = "Usada"
+                Estado = "Usado"
             }, ["Llave Stillson.jpg"]);
 
             AddHardcodedArticulo(3, new ArticuloIn()
             {
                 Descripcion = "Llave Francesa",
                 Marca = "BAHCO",
-                Estado = "Usada"
+                Estado = "Usado"
             }, ["Llave Francesa.jpg"]);
 
             AddHardcodedArticulo(3, new ArticuloIn()
@@ -69,21 +69,21 @@ namespace FedeteriAPI.Services
             {
                 Descripcion = "Tarugos",
                 Marca = "Fischer",
-                Estado = "Nuevos"
+                Estado = "Nuevo"
             }, ["Tarugos Fischer.jpg"]);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
                 Descripcion = "Agujereadora",
                 Marca = "Black&Decker",
-                Estado = "Nueva"
+                Estado = "Nuevo"
             }, ["Agujereadora.jpg"]);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
                 Descripcion = "Set de destornilladores",
                 Marca = "CROSSMASTER",
-                Estado = "Nuevos"
+                Estado = "Nuevo"
             }, ["Set de destornilladores.jpg"]);
 
             AddHardcodedArticulo(5, new ArticuloIn()
