@@ -16,7 +16,7 @@ export default function Home() {
     const URL = 'http://localhost:5000/api/Trueques'
 
     fetch(URL).then(data => data.json()).then(data => {
-      setTrueques(data)
+      setTrueques(data.filter(x => x.realizado))
     });
   }, [])
 
