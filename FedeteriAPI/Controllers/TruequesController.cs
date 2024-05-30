@@ -39,6 +39,17 @@ namespace FedeteriAPI.Controllers
             return TruequesService.GetRealizados();
         }
 
+
+        /// <summary>
+        /// Permite modificar la sucursal en la que se realizará el trueque
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut("[controller]/{truequeId}/sucursal/{sucursalId}")]
+        public void PutSucursal(int truequeId, int sucursalId)
+        {
+            TruequesService.UpdateSucursal(truequeId, sucursalId);
+        }
+
         /// <summary>
         /// Endpoint para proponer un trueque, recibe los IDs de los artículos involucrados y se lo asigna a los usuarios de dichos artículos
         /// </summary>

@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState, useContext} from 'react'
+import React, {useRef} from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
@@ -13,9 +13,7 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
     const refMarca = useRef();
     const refImg = useRef();
     const [user, setUser, removeUser] = useLocalStorage('user', null)
-
-    console.log(articulosUsuario);
-
+    
     function tasarArticulo(){
         if(typeof(window) !== 'undefined')
             window.location.href = '/tasar-articulos/' + x.id

@@ -8,9 +8,19 @@ import TruequeInfo from "@/components/TruequeInfo/TruequeInfo";
 
 export default function Home() {
   const [user, setUser, removeUser] = useLocalStorage('user', null);
+  const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
   const [trueques, setTrueques] = useState([]);
   const [articulos, setArticulos] = useState([]);
   const [articulosUsuario, setArticulosUsuario] = useState([]);
+
+  useEffect(() => {
+    if(sucursales.length > 0)
+      return
+
+    const URL = 'http://localhost:5000/api/Sucursales'
+
+    fetch(URL).then(data => data.json()).then(data => setSucursales(data));
+  }, [])
 
   useEffect(() => {
     const URL = 'http://localhost:5000/api/Trueques'

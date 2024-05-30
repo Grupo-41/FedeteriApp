@@ -130,5 +130,16 @@ namespace FedeteriAPI.Services
         {
             SetTruequeAceptado(truequeId, false);
         }
+
+        public static void UpdateSucursal(int truequeId, int sucursalId)
+        {
+            TruequeOut t = GetTruequeById(truequeId);
+            Trueque tFile = GetTruequeFileById(truequeId);
+
+            t.Sucursal = SucursalesService.GetSucursal(sucursalId);
+            tFile.SucursalID = sucursalId;
+
+            WriteAll();
+        }
     }
 }

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import style from './TruequeInfo.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
@@ -8,14 +8,22 @@ import { FaBan, FaCheck, FaExternalLinkAlt } from "react-icons/fa";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import toast from 'react-hot-toast';
+import { useLocalStorage } from 'react-use';
 
 
-const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = false }) => {
+const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = false, showSucursalInput = false }) => {
+  const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
+  const refSucursal = useRef();
   const user1 = trueque.articuloOfrecido.usuario;
   const user2 = trueque.articuloSolicitado.usuario;
   const articulo1 = trueque.articuloOfrecido;
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
+
+  useEffect(() => {
+    if(showSucursalInput && sucursal)
+      refSucursal.current.value = sucursal.id;
+  }, [])
 
   function validateTrueque(realizado){
     let URL = 'http://localhost:5000/api/Trueques/'
@@ -47,6 +55,19 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     });
   }
 
+  function updateSucursal(){
+    if(!refSucursal.current.value)
+      return
+
+    const URL = 'http://localhost:5000/api/Trueques/' + trueque.id + '/sucursal/' + refSucursal.current.value;
+
+    fetch(URL, {
+      method: 'PUT'
+    }).then(() => {
+      toast.success('Sucursal establecida con éxito. \n¡Te esperamos!')
+    })
+  }
+
   return (
     <>
       <div className="card" style={{maxWidth: '800px', width: '100%'}}>
@@ -68,7 +89,7 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={(toValidate || toAccept) && {marginBottom: '27px'}} size={42} />
+              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput) && {marginBottom: '27px'}} size={42} />
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
@@ -85,6 +106,17 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
                   <button onClick={() => acceptTrueque(false)} className={style.button} id="btnReject"><FaBan size={20} fill='#e12' /></button>
                   <Tooltip anchorSelect='#btnAccept' place='bottom'>Aceptar propuesta</Tooltip>
                   <Tooltip anchorSelect='#btnReject' place='bottom'>Rechazar propuesta</Tooltip>
+                </div>
+              }
+              {
+                showSucursalInput &&
+                <div className='position-absolute bottom-0 mb-3' style={{zoom: '0.8'}}>
+                    <select onInput={updateSucursal} id="sucursal-list" ref={refSucursal} className='py-1 form-control form-select border border-secondary' required >
+                        {!sucursal && <option value="">Seleccione una sucursal</option> }
+                        {sucursales.map(x =>
+                            <option key={x.id} value={x.id}>{x.nombre}</option>
+                        )}
+                    </select>
                 </div>
               }
             </div>

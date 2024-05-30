@@ -194,6 +194,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PutSucursal(System.Int32,System.Int32)">
+            <summary>
+            Permite modificar la sucursal en la que se realizará el trueque
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.TruequesController.PostTrueque(FedeteriAPI.Models.TruequeIn)">
             <summary>
             Endpoint para proponer un trueque, recibe los IDs de los artículos involucrados y se lo asigna a los usuarios de dichos artículos

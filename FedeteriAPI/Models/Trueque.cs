@@ -16,7 +16,7 @@ namespace FedeteriAPI.Models
             Id = t.Id;
             ArticuloSolicitado = ArticulosService.GetArticulo(t.ArticuloSolicitadoID);
             ArticuloOfrecido = ArticulosService.GetArticulo(t.ArticuloOfrecidoID);
-            Sucursal = t.Sucursal;
+            Sucursal = t.SucursalID.HasValue ? SucursalesService.GetSucursal(t.SucursalID.Value) : null;
             Aceptado = t.Aceptado;
             Realizado = t.Realizado;
         }
@@ -27,7 +27,7 @@ namespace FedeteriAPI.Models
         public int Id { get; set; }
         public int ArticuloSolicitadoID { get; set; }
         public int ArticuloOfrecidoID { get; set; }
-        public Sucursal? Sucursal { get; set; }
+        public int? SucursalID { get; set; }
         public bool? Aceptado { get; set; }
         public bool? Realizado { get; set; }
 
@@ -37,6 +37,7 @@ namespace FedeteriAPI.Models
         {
             ArticuloSolicitadoID = truequeIn.ArticuloSolicitadoID;
             ArticuloOfrecidoID = truequeIn.ArticuloOfrecidoID;
+            SucursalID = null;
             Realizado = null;
             Aceptado = null;
         }
