@@ -59,11 +59,11 @@ const Navbar = () => {
                             <li key={"profile"} className="nav-item">
                                 <a className="nav-link" href="/profile">Mi perfil</a>
                             </li>
-                            <li key={"publicaciones"} className="nav-item">
-                                <a className="nav-link" href="/mis-publicaciones">Mis publicaciones</a>
-                            </li>
                             <li key={"publicar"} className="nav-item">
                                 <a className="nav-link" href="/publicar">Publicar artículo</a>
+                            </li>
+                            <li key={"publicaciones"} className="nav-item">
+                                <a className="nav-link" href="/mis-publicaciones">Mis publicaciones</a>
                             </li>
                             <li key={"propuestas"} className="nav-item">
                                 <a className="nav-link" href="/propuestas">Mis propuestas</a>

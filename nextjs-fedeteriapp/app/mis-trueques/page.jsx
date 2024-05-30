@@ -25,19 +25,28 @@ const Page = () => {
             <>
             {
                 trueques.filter(x => x.realizado).length > 0 &&
-                <>
+                <div className='mb-5'>
                     <h2 className="ps-2 mb-3 text-center">Trueques realizados</h2>
                     <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
                         {trueques.filter(x => x.realizado).map(x => <TruequeInfo key={x.id} trueque={x} />)}
                     </div>
-                </>
+                </div>
             }
             {
-                trueques.filter(x => !x.realizado).length > 0 &&
-                <>
+                trueques.filter(x => x.realizado === null).length > 0 &&
+                <div className='mb-5'>
                     <h2 className="ps-2 mb-3 text-center">Trueques pendientes</h2>
                     <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                        {trueques.filter(x => !x.realizado).map(x => <TruequeInfo key={x.id} trueque={x} showSucursalInput={true} />)}
+                        {trueques.filter(x => x.realizado === null).map(x => <TruequeInfo key={x.id} trueque={x} showSucursalInput={true} />)}
+                    </div>
+                </div>
+            }
+            {
+                trueques.filter(x => x.realizado === false).length > 0 &&
+                <>
+                    <h2 className="ps-2 mb-3 text-center">Trueques no realizados</h2>
+                    <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
+                        {trueques.filter(x => x.realizado === false).map(x => <TruequeInfo key={x.id} trueque={x} />)}
                     </div>
                 </>
             }
