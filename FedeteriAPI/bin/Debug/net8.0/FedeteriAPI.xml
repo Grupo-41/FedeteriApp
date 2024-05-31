@@ -9,6 +9,13 @@
             Retorna todos los artículos
             </summary>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosFedeteria(System.Int32)">
+            <summary>
+            Retorna artículos de la Fedeteria (ventas) según su ID
+            </summary>
+            <param name="id">ID del artículo</param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticuloById(System.Int32)">
             <summary>
             Busca un artículo por su ID
@@ -163,6 +170,13 @@
             <param name="codigo"></param>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ImagesController.Get(System.String)">
+            <summary>
+            A este endpoint se le piden todas las imágenes a la API
+            </summary>
+            <param name="imageName"></param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.SucursalesController.Get">
             <summary>
             Retorna todas las sucursales del sistema
@@ -276,6 +290,13 @@
             <returns code="200">Se retornó el usuario correspondiente al ID</returns>
             <returns code="404">No se encontró el usuario correspondiente</returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetPuntosByUsuario(System.Int32)">
+            <summary>
+            Retorna los puntos adquiridos de un usuario en específico
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.GetArticulosByUsuario(System.Int32)">
             <summary>
             Retorna los artículos de un usuario en específico
@@ -307,6 +328,13 @@
             </summary>
             <param name="dni">DNI a comprobar</param>
             <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.VentasController.Post(System.Int32,FedeteriAPI.Models.Venta)">
+            <summary>
+            Registra la venta de un artículo de la Fedetería, y suma los puntos al usuario por su compra
+            </summary>
+            <param name="idArticulo">ID del artículo vendido</param>
+            <param name="venta">Objeto venta</param>
         </member>
     </members>
 </doc>

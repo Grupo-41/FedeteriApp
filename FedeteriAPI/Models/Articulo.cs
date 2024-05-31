@@ -46,4 +46,30 @@
         public string Descripcion { get; set; }
         public string Marca { get; set; }
     }
+
+    public class ArticuloFedeteria
+    {
+        public int Id { get; set; }
+        public string Descripcion { get; set; }
+        public string Marca { get; set; }
+        public string Image { get; set; }
+        public int Precio { get; set; }
+        public List<Venta> Ventas { get; set; }
+
+        public ArticuloFedeteria()
+        {
+            Ventas = new List<Venta>();
+        }
+
+        public int GetCountVentas()
+        {
+            return Ventas.Count;
+        }
+    }
+
+    public class Venta
+    {
+        public int UsuarioID { get; set; }
+        public int TruequeID { get; set; }
+    }
 }

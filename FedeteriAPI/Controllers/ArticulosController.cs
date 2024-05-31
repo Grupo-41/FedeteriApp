@@ -19,6 +19,16 @@ namespace FedeteriAPI.Controllers
             return ArticulosService.GetArticulos();
         }
 
+        /// <summary>
+        /// Retorna artículos de la Fedeteria (ventas) según su ID
+        /// </summary>
+        /// <param name="id">ID del artículo</param>
+        /// <returns></returns>
+        [HttpGet("Fedeteria/{id}")]
+        public ArticuloFedeteria GetArticulosFedeteria(int id)
+        {
+            return VentasService.GetArticuloFedeteria(id);
+        }
 
         /// <summary>
         /// Busca un artículo por su ID

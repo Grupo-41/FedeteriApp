@@ -4,16 +4,17 @@
     {
         public static class Paths
         {
-            public const string FILE_USUARIOS = "usuarios.json";
-            public const string FILE_ARTICULOS = "articulos.json";
-            public const string FILE_CODIGOS = "codigos.json";
-            public const string FILE_TRUEQUES = "trueques.json";
+            internal static readonly string FILE_USUARIOS = "usuarios.json";
+            internal static readonly string FILE_ARTICULOS = "articulos.json";
+            internal static readonly string FILE_ARTICULOS_FEDETERIA = "articulos_fedeteria.json";
+            internal static readonly string FILE_CODIGOS = "codigos.json";
+            internal static readonly string FILE_TRUEQUES = "trueques.json";
         }
 
         public static class Email
         {
-            public const string ADDRESS = "FedeteriApp@outlook.com";
-            public const string PASSWORD = "FedeteriaEmail123";
+            internal static readonly string ADDRESS = "FedeteriApp@outlook.com";
+            internal static readonly string PASSWORD = "FedeteriaEmail123";
         }
     }
 }

@@ -7,6 +7,11 @@ namespace FedeteriAPI.Controllers
     [ApiController]
     public class ImagesController : ControllerBase
     {
+        /// <summary>
+        /// A este endpoint se le piden todas las imágenes a la API
+        /// </summary>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
         [HttpGet("{imageName}")]
         public IActionResult Get(string imageName)
         {

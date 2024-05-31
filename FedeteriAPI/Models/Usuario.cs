@@ -22,6 +22,7 @@ namespace FedeteriAPI.Models
 
         public Usuario(UsuarioIn usuario) : base(usuario)
         {
+            this.Puntos = 0;
             this.Sucursal = SucursalesService.GetSucursal(usuario.SucursalID);
             this.Contrasena = usuario.Contrasena;
             this.ListaDeDeseos = new List<ArticuloDeseado>();
@@ -34,6 +35,11 @@ namespace FedeteriAPI.Models
             this.Telefono = datos.Telefono;
             this.Email = datos.Email;
             this.Sucursal = SucursalesService.GetSucursal(datos.SucursalId);
+        }
+
+        public void AddPoints(int puntos)
+        {
+            this.Puntos += puntos;
         }
     }
 
@@ -49,6 +55,7 @@ namespace FedeteriAPI.Models
         public bool EsAdmin { get; set; }
         public bool EsEmpleado { get; set; }
         public Sucursal? Sucursal { get; set; }
+        public int Puntos { get; set; } = 0;
 
 
         public UsuarioOut() { }
@@ -65,6 +72,7 @@ namespace FedeteriAPI.Models
             this.EsAdmin = usuario.EsAdmin;
             this.EsEmpleado = usuario.EsEmpleado;
             this.Sucursal = usuario.Sucursal;
+            this.Puntos = usuario.Puntos;
         }
     }
 

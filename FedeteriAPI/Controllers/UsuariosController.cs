@@ -37,6 +37,17 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna los puntos adquiridos de un usuario en específico
+        /// </summary>
+        /// <param name="userId">ID del usuario</param>
+        /// <returns></returns>
+        [HttpGet("{userId}/puntos")]
+        public int GetPuntosByUsuario(int userId)
+        {
+            return UsuariosService.GetUsuarioByID(userId).Puntos;
+        }
+
+        /// <summary>
         /// Retorna los artículos de un usuario en específico
         /// </summary>
         /// <param name="userId">ID del usuario</param>

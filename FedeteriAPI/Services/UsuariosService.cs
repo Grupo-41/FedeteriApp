@@ -308,5 +308,13 @@ namespace FedeteriAPI.Services
             WriteAll();
             return true;
         }
+
+        public static void AddPointsToUser(int userId, int points)
+        {
+            Usuario u = GetUsuarioByID(userId); if (u == null) return;
+
+            u.AddPoints(points);
+            WriteAll();
+        }
     }
 }
