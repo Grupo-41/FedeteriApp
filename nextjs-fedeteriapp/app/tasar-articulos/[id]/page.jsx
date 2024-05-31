@@ -45,6 +45,12 @@ const Page = ({params}) => {
         .then(data => setArticulo(data));
     }
 
+    function keyDownPrecio(e){
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          clickTasarArticulo();
+        }
+    }
+
     return (
         <div className="mt-5 d-flex flex-column align-items-center justify-content-center w-100">
             <form style={{minWidth: '400px', background: 'white'}} className="d-flex flex-column justify-content-center align-items-center border rounded p-4 align-self-center">
@@ -95,7 +101,7 @@ const Page = ({params}) => {
                                 <div className="d-flex flex-row gap-3 align-items-end">
                                     <div class="input-group mb-3 w-75" id='precio'>
                                         <span class="input-group-text border border-dark">$</span>
-                                        <input ref={refPrecioEstimado} type="number" class="form-control border border-dark" placeholder='Ingrese el precio a tasar' />
+                                        <input autoFocus={true} ref={refPrecioEstimado} onKeyDown={(e) => keyDownPrecio(e)} type="number" class="form-control border border-dark" placeholder='Ingrese el precio a tasar' />
                                     </div>
                                     <input onClick={clickTasarArticulo} type='button' className="btn align-self-start" style={{background: '#e7ab12'}} value="Confirmar tasación"/>
                                 </div>

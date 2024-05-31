@@ -48,15 +48,9 @@ const Page = ({params}) => {
                             <input type="text" value={searchedUser.apellido} className="form-control border border-dark" id="apellido" disabled/>
                         </div>
                     </div>
-                    <div className='d-flex flex-row gap-3'>
-                        <div className="mb-3 w-50">
-                            <label for="truequesCount" className="form-label">Trueques realizados</label>
-                            <input type="text" value={truequesCount} className="form-control border border-dark" id="truequesCount" disabled/>
-                        </div>
-                        <div className="mb-3 w-50">
-                            <label for="fecha" className="form-label">Fecha de nacimiento</label>
-                            <input type="date" value={searchedUser.nacimiento} className="form-control border border-dark" id="fecha" disabled/>
-                        </div>
+                    <div className="mb-3">
+                        <label for="truequesCount" className="form-label">Trueques realizados</label>
+                        <input type="text" value={truequesCount} className="form-control border border-dark" id="truequesCount" disabled/>
                     </div>
                 </form>
             </div>

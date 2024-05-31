@@ -44,7 +44,7 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto gap-1 mb-2 mb-lg-0">
-                        { user === null && !loading && 
+                        { !user && !loading && 
                         <>
                             <li key={"registrarme"} className="nav-item">
                                 <a className="nav-link" href="/signup">Registrarme</a>
@@ -54,7 +54,7 @@ const Navbar = () => {
                             </li>
                         </>
                         }
-                        { user !== null &&
+                        { user &&
                         <>
                             <li key={"profile"} className="nav-item">
                                 <a className="nav-link" href="/profile">Mi perfil</a>
@@ -76,7 +76,7 @@ const Navbar = () => {
                             </li>
                         </>
                         }
-                        { user !== null && user.esAdmin &&
+                        { user && user.esAdmin &&
                         <>
                             <li key={"registrarEmpleado"} className="nav-item">
                                 <a className="nav-link" href="/registrar-empleado">Registrar empleado</a>
@@ -88,14 +88,14 @@ const Navbar = () => {
                             */}
                         </>
                         }
-                        { user !== null && user.esEmpleado &&
+                        { user && user.esEmpleado &&
                             <>
                                 <li key={"tasarArticulo"} className="nav-item">
                                     <a className="nav-link" href="/tasar-articulos">Tasar artículos</a>
                                 </li>
                             </>
                         }
-                        { user !== null && (user.esEmpleado || user.esAdmin) &&
+                        { user && (user.esEmpleado || user.esAdmin) &&
                             <>
                                 <li key={"truequesPendientes"} className="nav-item">
                                     <a className="nav-link" href="/trueques-pendientes">Trueques pendientes</a>
@@ -103,7 +103,7 @@ const Navbar = () => {
                             </>
                         }
                     </ul>
-                    { user !== null &&
+                    { user &&
                         <>
                             <form className="d-flex position-relative" role="search">
                                 <input ref={refInput} onKeyDown={e => inputKeyDown(e)} className="form-control me-2" type="search" placeholder="Buscar artículos..." aria-label="Search" />

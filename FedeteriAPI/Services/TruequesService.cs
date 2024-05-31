@@ -62,6 +62,10 @@ namespace FedeteriAPI.Services
             if (TruequesFile.Any(x => x.ArticuloOfrecidoID == newTrueque.ArticuloOfrecidoID && x.ArticuloSolicitadoID == newTrueque.ArticuloSolicitadoID))
                 return false;
 
+            ArticulosService.GetArticulo(newTrueque.ArticuloOfrecidoID).Truequeado = true;
+            ArticulosService.GetArticulo(newTrueque.ArticuloSolicitadoID).Truequeado = true;
+            ArticulosService.WriteAll();
+
             Trueque t = new Trueque(newTrueque);
             t.Id = ActualID++;
             TruequesFile.Add(t);
@@ -90,6 +94,7 @@ namespace FedeteriAPI.Services
                 t.ArticuloOfrecido.Truequeado = done;
                 t.Realizado = done;
                 tFile.Realizado = done;
+                ArticulosService.WriteAll();
                 WriteAll();
             }
         }
@@ -105,6 +110,7 @@ namespace FedeteriAPI.Services
                 t.ArticuloSolicitado.Truequeado = aceptado;
                 t.Aceptado = aceptado;
                 tFile.Aceptado = aceptado;
+                ArticulosService.WriteAll();
                 WriteAll();
             }
 

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 import { useLocalStorage } from 'react-use';
 
 
-const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = false, showSucursalInput = false }) => {
+const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false }) => {
   const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
   const refSucursal = useRef();
   const user1 = trueque.articuloOfrecido.usuario;
@@ -89,7 +89,7 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput) && {marginBottom: '27px'}} size={42} />
+              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput) && (showSucursal ? {marginBottom: '8px'} : {marginBottom: '25px'})} size={42} />
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
@@ -117,6 +117,12 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
                             <option key={x.id} value={x.id}>{x.nombre}</option>
                         )}
                     </select>
+                </div>
+              }
+              {
+                showSucursal && trueque && trueque.sucursal &&
+                <div className='position-absolute top-0 mt-3' style={{zoom: '0.8'}}>
+                  <em>{trueque.sucursal.nombre}</em>
                 </div>
               }
             </div>

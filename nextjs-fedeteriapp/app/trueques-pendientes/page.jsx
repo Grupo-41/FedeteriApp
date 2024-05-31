@@ -32,7 +32,7 @@ const Page = () => {
   return (
     <div style={{marginTop: '100px', marginBottom: '25px'}} className="d-flex flex-column align-items-center justify-content-center w-100">
         <h1>Trueques pendientes</h1>
-        { user.sucursal ? <em>Sucursal: {user && user.sucursal.nombre}</em> : <em>Mostrando trueques de todas las sucursales</em>}
+        { user && user.sucursal ? <em>Sucursal: {user && user.sucursal.nombre}</em> : <em>Mostrando trueques de todas las sucursales</em>}
         <div style={{minWidth: '400px', maxWidth: '58rem'}} className="mt-4 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
             {trueques && trueques.length > 0 ?
                 trueques.map(x => {
@@ -40,7 +40,8 @@ const Page = () => {
                         <TruequeInfo key={x.id} 
                         trueque={x}
                         removeTrueque={(id) => removeTrueque(id)}
-                        toValidate={true}/>
+                        toValidate={true}
+                        showSucursal={user && user.esAdmin}/>
                     )
                 })
                 :

@@ -2,7 +2,8 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import Publicacion from "@/components/Publicacion/Publicacion";
-import { useState, useEffect } from "react";
+import Logo from '../public/Fedeteria_Horizontal.png'
+import { useState, useEffect, useRef } from "react";
 import { useLocalStorage } from "react-use";
 import TruequeInfo from "@/components/TruequeInfo/TruequeInfo";
 
@@ -31,7 +32,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const URL = 'http://localhost:5000/api/Articulos/tasados'
+    const URL = 'http://localhost:5000/api/Articulos/publicados'
 
     fetch(URL).then(data => data.json()).then(data => {
       setArticulos(user ? data.filter(x => x.usuario.id !== user.id) : data)
@@ -41,29 +42,47 @@ export default function Home() {
     });
   }, [])
 
+  function removeItem(id){
+    const newArray = articulos.filter(x => x.id !== id);
+    setArticulos(newArray);
+  }
+
+  function removeArticulosUsuario(id){
+    const newArray = articulosUsuario.filter(x => x.id !== id);
+    setArticulosUsuario(newArray);
+  }
+
   return (
     <>
       <div className="mt-5 d-flex flex-column gap-5 align-items-center justify-content-center">
-        <div>
-          { trueques.length > 0 &&
-            <>
+        { trueques.length > 0 &&
+          <div>
               <h2 className="text-center mb-3">Historial de trueques</h2>
               <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
                 {trueques.map(x => <TruequeInfo key={x.id} trueque={x} />)}
-              </div>
-            </>
-          }
-        </div>
-        <div>
-          { articulos.length > 0 &&
-            <>
+              </div>          
+          </div>
+        }
+        { articulos.length > 0 &&
+          <div>
               <h2 className="text-center mb-3">Publicaciones</h2>
               <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: user ? '40vh' : '34vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                {articulos.map(x => <Publicacion key={x.id} item={x} truequeable={user !== null} articulosUsuario={articulosUsuario} />)}
+                {articulos.map(x => <Publicacion key={x.id} item={x} 
+                removeItem={removeItem} truequeable={user !== null} 
+                articulosUsuario={articulosUsuario.filter(y => y.categoria === x.categoria)} 
+                removeArticulosUsuario={removeArticulosUsuario} />)}
               </div>
-            </>
-          }
-        </div>
+          </div>
+        }
+        {
+          (articulos.length === 0 || trueques.length === 0) &&
+          <div className="mt-5">
+            <div style={articulos.length === 0 && trueques.length === 0 ? {} : {zoom: 0.75}}>
+              <Image width={400} src={Logo} />
+              <h3 className="mt-5 text-center">Work in progress...</h3>
+            </div>
+          </div> 
+        }
       </div>
     </>
   );

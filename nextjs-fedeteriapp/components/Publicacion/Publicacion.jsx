@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { useLocalStorage } from 'react-use';
 import { FiUpload } from "react-icons/fi";
 
-const Publicacion = ({item: x, own, clickable = false, truequeable = false, articulosUsuario}) => {
+const Publicacion = ({item: x, removeItem, own, clickable = false, truequeable = false, articulosUsuario, removeArticulosUsuario}) => {
     const refDescripcion = useRef();
     const refEstado = useRef();
     const refMarca = useRef();
@@ -59,8 +59,11 @@ const Publicacion = ({item: x, own, clickable = false, truequeable = false, arti
             body: JSON.stringify(trueque)
         }).then((data) => data.json())
         .then(data => {
-            if(data)
+            if(data){
                 toast.success('Articulo ofrecido con exito')
+                removeArticulosUsuario(itemID)
+                removeItem(x.id)
+            }
             else
                 toast.error('Ya ofreciste este artículo en esta publicación.')
         })
