@@ -14,7 +14,7 @@ const Page = () => {
     }, [user])
 
     useEffect(() => {
-        const URL = 'http://localhost:5000/api/Trueques/aceptados'
+        const URL = 'http://localhost:5000/api/Trueques/pendientes'
 
         fetch(URL)
         .then(data => data.json())
@@ -44,8 +44,8 @@ const Page = () => {
                         showSucursal={user && user.esAdmin}/>
                     )
                 })
-                :
-                <p>La sucursal no posee trueques pendientes</p>
+                : user && user.sucursal ?
+                <p>La sucursal no posee trueques pendientes</p> : <p>No hay trueques pendientes</p>
         }
         </div>
     </div>

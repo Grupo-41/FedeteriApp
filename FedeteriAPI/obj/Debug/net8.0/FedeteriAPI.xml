@@ -182,9 +182,15 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FedeteriAPI.Controllers.TruequesController.GetAceptados">
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetPendientes">
             <summary>
             Retorna todos los trueques que han sido aceptados, pendientes de realizarse
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.GetAceptados">
+            <summary>
+            Retorna todos los trueques que han sido aceptados, realizados o no
             </summary>
             <returns></returns>
         </member>

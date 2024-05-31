@@ -4,7 +4,7 @@ import style from './TruequeInfo.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from 'react-responsive-carousel';
 import { TbArrowsExchange2 } from "react-icons/tb";
-import { FaBan, FaCheck, FaExternalLinkAlt } from "react-icons/fa";
+import { FaBan, FaCheck, FaMoneyBillWave } from "react-icons/fa";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import toast from 'react-hot-toast';
@@ -19,6 +19,8 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
   const articulo1 = trueque.articuloOfrecido;
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
+
+  console.log(trueque)
 
   useEffect(() => {
     if(showSucursalInput && sucursal)
@@ -93,10 +95,16 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
+                  <button onClick={() => registrarVenta()} className={style.button} style={{marginRight: '5px'}} id="btnVenta1"><FaMoneyBillWave size={20} fill='#27a' /></button>
+                  <div className="vr align-self-center" style={{marginTop: '7px', marginRight:'5px', height: '15px'}}></div>
                   <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate"><FaCheck size={20} fill='#1a5' /></button>
                   <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate"><FaBan size={20} fill='#e12' /></button>
+                  <div className="vr align-self-center" style={{marginTop: '7px', marginLeft:'5px', height: '15px'}}></div>
+                  <button onClick={() => registrarVenta()} className={style.button} style={{marginLeft: '5px'}} id="btnVenta2"><FaMoneyBillWave size={20} fill='#27a' /></button>
                   <Tooltip anchorSelect='#btnValidate' place='bottom'>Marcar trueque como realizado</Tooltip>
                   <Tooltip anchorSelect='#btnUnvalidate' place='bottom'>Marcar trueque como no realizado</Tooltip>
+                  <Tooltip anchorSelect='#btnVenta1' place='bottom'>Registrar venta a {user1.nombre}</Tooltip>
+                  <Tooltip anchorSelect='#btnVenta2' place='bottom'>Registrar venta a {user2.nombre}</Tooltip>
                 </div>
               }
               {

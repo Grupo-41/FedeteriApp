@@ -24,6 +24,16 @@ namespace FedeteriAPI.Controllers
         /// Retorna todos los trueques que han sido aceptados, pendientes de realizarse
         /// </summary>
         /// <returns></returns>
+        [HttpGet("[controller]/pendientes")]
+        public IEnumerable<TruequeOut> GetPendientes()
+        {
+            return TruequesService.GetPendientes();
+        }
+
+        /// <summary>
+        /// Retorna todos los trueques que han sido aceptados, realizados o no
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[controller]/aceptados")]
         public IEnumerable<TruequeOut> GetAceptados()
         {

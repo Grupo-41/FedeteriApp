@@ -147,5 +147,10 @@ namespace FedeteriAPI.Services
 
             WriteAll();
         }
+
+        internal static IEnumerable<TruequeOut> GetPendientes()
+        {
+            return GetAceptados().Where(x => !x.Realizado.HasValue);
+        }
     }
 }
