@@ -91,7 +91,7 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
             body: JSON.stringify(data)
         }))
         .then((data) => {
-            if(data){
+            if(data.status === 200){
                 toast.success('Venta registrada.')
             }
             else
