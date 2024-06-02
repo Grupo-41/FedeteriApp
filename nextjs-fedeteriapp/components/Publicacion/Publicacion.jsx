@@ -12,6 +12,7 @@ const Publicacion = ({item: x, removeItem, own, clickable = false, truequeable =
     const refEstado = useRef();
     const refMarca = useRef();
     const refImg = useRef();
+    const refCloseModal = useRef();
     const [user, setUser, removeUser] = useLocalStorage('user', null)
     
     function tasarArticulo(){
@@ -40,8 +41,10 @@ const Publicacion = ({item: x, removeItem, own, clickable = false, truequeable =
         }))
         .then(() => {
             toast.success('Artículo enviado a la espera de ser tasado por un empleado.')
+            refCloseModal.current.click();
         })
     }
+    
     async function postTrueque(itemID){
         const URL = 'http://localhost:5000/api/Trueques/'
 
@@ -138,7 +141,7 @@ const Publicacion = ({item: x, removeItem, own, clickable = false, truequeable =
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h3 className="modal-title text-center" id="exampleModalLabel">Nuevo artículo</h3>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" ref={refCloseModal} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div className="modal-body p-1">
                                 <div className="d-flex justify-content-center w-100">
@@ -173,7 +176,7 @@ const Publicacion = ({item: x, removeItem, own, clickable = false, truequeable =
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <input onClick={postArticulo} type='button' data-bs-dismiss="modal" className="btn" style={{background: '#e7ab12'}} value="Publicar artículo"/>
+                                <input onClick={postArticulo} type='button' className="btn" style={{background: '#e7ab12'}} value="Publicar artículo"/>
                             </div>
                         </div>
                     </div>

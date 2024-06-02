@@ -16,9 +16,12 @@ namespace FedeteriAPI.Controllers
         /// <param name="idArticulo">ID del artículo vendido</param>
         /// <param name="venta">Objeto venta</param>
         [HttpPost("{idArticulo}")]
-        public void Post(int idArticulo, [FromBody] Venta venta)
+        public ActionResult Post(int idArticulo, [FromBody] Venta venta)
         {
-            VentasService.PostVenta(idArticulo, venta);
+            if (VentasService.PostVenta(idArticulo, venta))
+                return Ok();
+
+            return NotFound();
         }
     }
 }

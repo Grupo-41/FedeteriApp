@@ -131,6 +131,10 @@ namespace FedeteriAPI.Services
                 Id = ActualID++,
             }));
 
+            AddArticuloDeseado(4, new ArticuloDeseado() { Descripcion = "Motosierra", Marca = "STIHL" });
+            AddArticuloDeseado(4, new ArticuloDeseado() { Descripcion = "Adhesivo", Marca = "Eccole" });
+            AddArticuloDeseado(4, new ArticuloDeseado() { Descripcion = "Caja de herramientas", Marca = "STANLEY" });
+
             WriteAll();
         }
 

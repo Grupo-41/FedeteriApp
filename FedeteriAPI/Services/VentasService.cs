@@ -123,15 +123,15 @@ namespace FedeteriAPI.Services
             return ArticulosFedeteria.FirstOrDefault(x => x.Id == id);
         }
 
-        public static void PostVenta(int articuloId, Venta venta)
+        public static bool PostVenta(int articuloId, Venta venta)
         {
             ArticuloFedeteria articulo = GetArticuloFedeteria(articuloId);
-            
-            if (articulo == null) return;
+            if (articulo == null) return false;
 
             articulo.Ventas.Add(venta);
             UsuariosService.AddPointsToUser(venta.UsuarioID, PuntosService.AsignarPuntosPorVenta(articulo.Precio));
             WriteAll();
+            return true;
         }
     }
 }
