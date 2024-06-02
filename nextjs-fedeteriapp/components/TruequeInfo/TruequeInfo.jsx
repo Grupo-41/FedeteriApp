@@ -19,8 +19,9 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
   const articulo1 = trueque.articuloOfrecido;
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
+  const refCodigoProducto = useRef();
 
-  console.log(trueque)
+  const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
     if(showSucursalInput && sucursal)
@@ -70,6 +71,42 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     })
   }
 
+  async function postVenta(){
+        const URL = 'http://localhost:5000/api/Ventas/' + refCodigoProducto.current.value
+
+        if(await checkInputs())
+            return
+
+        const data = {
+          "usuarioID" : usuario.id,
+          "truequeID" : trueque.id
+        }
+
+        await fetch(URL, ({
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(data)
+        }))
+        .then((data) => {
+            if(data){
+                toast.success('Venta registrada.')
+            }
+            else
+                toast.error('El código de producto ingresado no existe.')
+        })
+  }
+
+  async function checkInputs(){
+        if(!refCodigoProducto.current.value){
+            toast.error('Es necesario ingresar un código de producto.')
+            return true;
+        }
+        return false;
+  }
+
   return (
     <>
       <div className="card" style={{maxWidth: '800px', width: '100%'}}>
@@ -95,12 +132,12 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
-                  <button onClick={() => registrarVenta()} className={style.button} style={{marginRight: '5px'}} id="btnVenta1"><FaMoneyBillWave size={20} fill='#27a' /></button>
+                  <a type="button" onClick={() => setUsuario(user1)} className={style.button} data-bs-toggle="modal" data-bs-target="#exampleModal"id="btnVenta1"><FaMoneyBillWave size={20} fill='#27a' /></a>
                   <div className="vr align-self-center" style={{marginTop: '7px', marginRight:'5px', height: '15px'}}></div>
                   <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate"><FaCheck size={20} fill='#1a5' /></button>
                   <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate"><FaBan size={20} fill='#e12' /></button>
                   <div className="vr align-self-center" style={{marginTop: '7px', marginLeft:'5px', height: '15px'}}></div>
-                  <button onClick={() => registrarVenta()} className={style.button} style={{marginLeft: '5px'}} id="btnVenta2"><FaMoneyBillWave size={20} fill='#27a' /></button>
+                  <a type="button" onClick={() => setUsuario(user2)} className={style.button} data-bs-toggle="modal" data-bs-target="#exampleModal"id="btnVenta2"><FaMoneyBillWave size={20} fill='#27a' /></a>
                   <Tooltip anchorSelect='#btnValidate' place='bottom'>Marcar trueque como realizado</Tooltip>
                   <Tooltip anchorSelect='#btnUnvalidate' place='bottom'>Marcar trueque como no realizado</Tooltip>
                   <Tooltip anchorSelect='#btnVenta1' place='bottom'>Registrar venta a {user1.nombre}</Tooltip>
@@ -135,6 +172,29 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               }
             </div>
           </div>
+          <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h3 className="modal-title text-center" id="exampleModalLabel">Venta - {usuario.nombre}</h3>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body p-1">
+                                <div className="d-flex justify-content-center w-100">
+                                    <form style={{minWidth: '400px', background: 'white'}} className="rounded p-4 align-self-center">
+                                        <div className="mb-3">
+                                            <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
+                                            <input  type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref = {refCodigoProducto} required/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <input type='button' onClick = {postVenta} className="btn" style={{background: '#e7ab12'}} value="Registrar venta"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
           <div className='w-50'>
             <div className="card-body text-end">
             <h5 className="card-title"><a className='text-black text-decoration-none' href={'/profile/' + user2.id}>{user2.nombre} {user2.apellido}</a></h5>
