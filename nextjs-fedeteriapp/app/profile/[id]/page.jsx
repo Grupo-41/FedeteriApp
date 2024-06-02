@@ -7,6 +7,7 @@ const Page = ({params}) => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [searchedUser, setSearchedUser] = useState(null)
     const [truequesCount, setTruequesCount] = useState(0);
+    const [listaDeseos, setListaDeseos] = useState([]);
 
     useEffect(() => {
         let URL = 'http://localhost:5000/api/Usuarios/' + id;
@@ -28,6 +29,15 @@ const Page = ({params}) => {
         fetch(URL)
         .then(data => data.json())
         .then(data => setTruequesCount(data.filter(x => x.realizado).length));
+
+
+        URL = 'http://localhost:5000/api/Usuarios/' + id + '/deseados';
+
+        fetch(URL)
+        .then(data => data.json())
+        .then(data => {
+            console.log(data)
+            setListaDeseos(data)});
     }, [])
 
     return (
@@ -58,6 +68,9 @@ const Page = ({params}) => {
                             <input type="text" value={searchedUser.puntos} className="form-control border border-dark" id="pointsCount" disabled/>
                         </div>
                     </div>
+                    { listaDeseos.map(x => {
+                        return <div>{x.descripcion}</div>
+                    })}
                 </form>
             </div>
             : "El usuario solicitado no existe"
