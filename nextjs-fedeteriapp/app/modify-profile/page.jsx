@@ -287,7 +287,7 @@ const Page = () => {
                         <h3 className='mb-3'>Tu lista de deseos</h3>
                         <ul style={{maxHeight: '25.7vh'}} className="list-group pe-2 py-1 overflow-y-auto">
                             { listaDeDeseos.map((x, index) => 
-                                (<li key={index} className="list-group-item border-black d-flex justify-content-between align-items-center">
+                                (<li key={index} className="list-group-item border-secondary d-flex justify-content-between align-items-center">
                                     <div>
                                         <h6 className="mb-0">{x.descripcion}</h6>
                                         <small><strong>Marca:</strong> {x.marca ? x.marca : "Ninguna"}</small>
