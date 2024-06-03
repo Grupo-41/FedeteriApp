@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import style from './TruequeInfo.module.css'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { TbArrowsExchange2 } from "react-icons/tb";
 import { FaBan, FaCheck, FaMoneyBillWave } from "react-icons/fa";
@@ -24,11 +24,11 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
   const [usuario, setUsuario] = useState({});
 
   useEffect(() => {
-    if(showSucursalInput && sucursal)
+    if (showSucursalInput && sucursal)
       refSucursal.current.value = sucursal.id;
   }, [])
 
-  function validateTrueque(realizado){
+  function validateTrueque(realizado) {
     let URL = 'http://localhost:5000/api/Trueques/'
     URL += realizado ? 'validar-trueque/' : 'invalidar-trueque/'
     URL += trueque.id
@@ -38,12 +38,12 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     }).then(() => {
       toast.success(realizado ? 'Trueque validado con éxito.' : 'Trueque invalidado con éxito.')
 
-      if(removeTrueque)
+      if (removeTrueque)
         removeTrueque(trueque.id);
     });
   }
-  
-  function acceptTrueque(accept){
+
+  function acceptTrueque(accept) {
     let URL = 'http://localhost:5000/api/Trueques/'
     URL += accept ? 'aceptar-trueque/' : 'rechazar-trueque/'
     URL += trueque.id
@@ -53,13 +53,13 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     }).then(() => {
       toast.success(accept ? 'Trueque aceptado con éxito.' : 'Trueque rechazado con éxito.')
 
-      if(removeTrueque)
+      if (removeTrueque)
         removeTrueque(trueque.id);
     });
   }
 
-  function updateSucursal(){
-    if(!refSucursal.current.value)
+  function updateSucursal() {
+    if (!refSucursal.current.value)
       return
 
     const URL = 'http://localhost:5000/api/Trueques/' + trueque.id + '/sucursal/' + refSucursal.current.value;
@@ -71,50 +71,50 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     })
   }
 
-  async function postVenta(){
-        const URL = 'http://localhost:5000/api/Ventas/' + refCodigoProducto.current.value
+  async function postVenta() {
+    const URL = 'http://localhost:5000/api/Ventas/' + refCodigoProducto.current.value
 
-        if(await checkInputs())
-            return
+    if (await checkInputs())
+      return
 
-        const data = {
-          "usuarioID" : usuario.id,
-          "truequeID" : trueque.id
+    const data = {
+      "usuarioID": usuario.id,
+      "truequeID": trueque.id
+    }
+
+    await fetch(URL, ({
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }))
+      .then((data) => {
+        if (data.status === 200) {
+          toast.success('Venta registrada.')
         }
-
-        await fetch(URL, ({
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify(data)
-        }))
-        .then((data) => {
-            if(data.status === 200){
-                toast.success('Venta registrada.')
-            }
-            else
-                toast.error('El código de producto ingresado no existe.')
-        })
+        else
+          toast.error('El código de producto ingresado no existe.')
+      })
   }
 
-  async function checkInputs(){
-        if(!refCodigoProducto.current.value){
-            toast.error('Es necesario ingresar un código de producto.')
-            return true;
-        }
-        return false;
+  async function checkInputs() {
+    if (!refCodigoProducto.current.value) {
+      toast.error('Es necesario ingresar un código de producto.')
+      return true;
+    }
+    return false;
   }
 
   return (
     <>
-      <div className="card" style={{maxWidth: '800px', width: '100%'}}>
+      <div className="card" style={{ maxWidth: '800px', width: '100%' }}>
         <div className="d-flex mx-3 flex-row justify-content-center align-items-center">
-          <div style={{width: '20.5%'}}>
+          <div style={{ width: '20.5%' }}>
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true}>
-              { articulo1.imageNames.map((image, index) => 
-                  <img key={index} height={'100px'} style={{borderRadius: '10px', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
+              {articulo1.imageNames.map((image, index) =>
+                <img key={index} height={'100px'} style={{ borderRadius: '10px', objectFit: 'contain' }} src={`http://localhost:5000/api/Images/${image}`} />
               )}
             </Carousel>
           </div>
@@ -128,16 +128,14 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput) && (showSucursal ? {marginBottom: '8px'} : {marginBottom: '25px'})} size={42} />
+              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput) && (showSucursal ? { marginBottom: '8px' } : { marginBottom: '25px' })} size={42} />
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
-                  <a type="button" onClick={() => setUsuario(user1)} className={style.button} data-bs-toggle="modal" data-bs-target="#exampleModal"id="btnVenta1"><FaMoneyBillWave size={20} fill='#27a' /></a>
-                  <div className="vr align-self-center" style={{marginTop: '7px', marginRight:'5px', height: '15px'}}></div>
-                  <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate"><FaCheck size={20} fill='#1a5' /></button>
-                  <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate"><FaBan size={20} fill='#e12' /></button>
-                  <div className="vr align-self-center" style={{marginTop: '7px', marginLeft:'5px', height: '15px'}}></div>
-                  <a type="button" onClick={() => setUsuario(user2)} className={style.button} data-bs-toggle="modal" data-bs-target="#exampleModal"id="btnVenta2"><FaMoneyBillWave size={20} fill='#27a' /></a>
+                  <div className="vr align-self-center" style={{ marginTop: '7px', marginRight: '5px', height: '15px' }}></div>
+                  <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate" data-bs-toggle="modal" data-bs-target="#exampleModal"><FaCheck size={20} fill='#1a5' /></button>
+                  <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate" data-bs-toggle="modal" data-bs-target="#exampleModal"><FaBan size={20} fill='#e12' /></button>
+                  <div className="vr align-self-center" style={{ marginTop: '7px', marginLeft: '5px', height: '15px' }}></div>
                   <Tooltip anchorSelect='#btnValidate' place='bottom'>Marcar trueque como realizado</Tooltip>
                   <Tooltip anchorSelect='#btnUnvalidate' place='bottom'>Marcar trueque como no realizado</Tooltip>
                   <Tooltip anchorSelect='#btnVenta1' place='bottom'>Registrar venta a {user1.nombre}</Tooltip>
@@ -155,63 +153,87 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               }
               {
                 showSucursalInput &&
-                <div className='position-absolute bottom-0 mb-3' style={{zoom: '0.8'}}>
-                    <select onInput={updateSucursal} id="sucursal-list" ref={refSucursal} className='py-1 form-control form-select border border-secondary' required >
-                        {!sucursal && <option value="">Seleccione una sucursal</option> }
-                        {sucursales.map(x =>
-                            <option key={x.id} value={x.id}>{x.nombre}</option>
-                        )}
-                    </select>
+                <div className='position-absolute bottom-0 mb-3' style={{ zoom: '0.8' }}>
+                  <select onInput={updateSucursal} id="sucursal-list" ref={refSucursal} className='py-1 form-control form-select border border-secondary' required >
+                    {!sucursal && <option value="">Seleccione una sucursal</option>}
+                    {sucursales.map(x =>
+                      <option key={x.id} value={x.id}>{x.nombre}</option>
+                    )}
+                  </select>
                 </div>
               }
               {
                 showSucursal && trueque && trueque.sucursal &&
-                <div className='position-absolute top-0 mt-3' style={{zoom: '0.8'}}>
+                <div className='position-absolute top-0 mt-3' style={{ zoom: '0.8' }}>
                   <em>{trueque.sucursal.nombre}</em>
                 </div>
               }
             </div>
           </div>
           <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h3 className="modal-title text-center" id="exampleModalLabel">Venta - {usuario.nombre}</h3>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body p-1">
-                                <div className="d-flex justify-content-center w-100">
-                                    <form style={{minWidth: '400px', background: 'white'}} className="rounded p-4 align-self-center">
-                                        <div className="mb-3">
-                                            <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
-                                            <input  type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref = {refCodigoProducto} required/>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <input type='button' onClick = {postVenta} className="btn" style={{background: '#e7ab12'}} value="Registrar venta"/>
-                            </div>
-                        </div>
-                    </div>
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h3 className="modal-title text-center" id="exampleModalLabel">Venta - {user1.nombre}</h3>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div className="modal-body p-1">
+                  <div className="d-flex justify-content-center w-100">
+                    <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
+                      <div className="mb-3">
+                        <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
+                        <input type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <input type='button' onClick={postVenta} className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" style={{ background: '#e7ab12' }} value="Registrar venta" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h3 className="modal-title text-center" id="exampleModalLabel2">Venta - {user2.nombre}</h3>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body p-1">
+                  <div className="d-flex justify-content-center w-100">
+                    <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
+                      <div className="mb-3">
+                        <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
+                        <input type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button class="btn btn-warning" data-bs-target="#exampleModal" style={{ background: '#e7ab12' }} data-bs-toggle="modal">Volver</button>
+                  <input type='button' onClick={postVenta} className="btn" style={{ background: '#e7ab12' }} value="Registrar venta" />
+                </div>
+              </div>
+            </div>
+          </div>
           <div className='w-50'>
             <div className="card-body text-end">
-            <h5 className="card-title"><a className='text-black text-decoration-none' href={'/profile/' + user2.id}>{user2.nombre} {user2.apellido}</a></h5>
+              <h5 className="card-title"><a className='text-black text-decoration-none' href={'/profile/' + user2.id}>{user2.nombre} {user2.apellido}</a></h5>
               <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{articulo2.estado}</p>
               <p className='card-subtitle text-body-secondary'><strong>Marca: </strong>{articulo2.marca}</p>
               <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{articulo2.categoria || "Indefinida"}</p>
             </div>
           </div>
-          <div style={{width: '20.5%'}}>
+          <div style={{ width: '20.5%' }}>
             <Carousel showThumbs={false} showStatus={false} showIndicators={false} infiniteLoop={true}>
-              { articulo2.imageNames.map((image, index) => 
-                  <img key={index} height={'100px'} style={{borderRadius: '10px', objectFit: 'contain'}} src={`http://localhost:5000/api/Images/${image}`} />
+              {articulo2.imageNames.map((image, index) =>
+                <img key={index} height={'100px'} style={{ borderRadius: '10px', objectFit: 'contain' }} src={`http://localhost:5000/api/Images/${image}`} />
               )}
             </Carousel>
           </div>
+        </div>
       </div>
-</div>
     </>
   )
 }
