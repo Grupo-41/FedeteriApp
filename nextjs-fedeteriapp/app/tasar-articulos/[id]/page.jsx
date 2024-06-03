@@ -89,8 +89,8 @@ const Page = ({params}) => {
                             <>
                                 <label className="form-label">Categoría designada</label>
                                 <div className="d-flex flex-row gap-3 align-items-end">
-                                    <div class="input-group mb-3 w-75" id='categoria'>
-                                        <input disabled value={"Categoría " + articulo.categoria} type="text" class="form-control border border-dark" />
+                                    <div className="input-group mb-3 w-75" id='categoria'>
+                                        <input disabled value={"Categoría " + articulo.categoria} type="text" className="form-control border border-dark" />
                                     </div>
                                     <input onClick={clickTasarArticulo} disabled type='button' className="btn align-self-start" style={{background: '#e7ab12'}} value="Confirmar tasación"/>
                                 </div>
@@ -99,9 +99,9 @@ const Page = ({params}) => {
                             <>
                                 <label className="form-label">Precio</label>
                                 <div className="d-flex flex-row gap-3 align-items-end">
-                                    <div class="input-group mb-3 w-75" id='precio'>
-                                        <span class="input-group-text border border-dark">$</span>
-                                        <input autoFocus={true} ref={refPrecioEstimado} onKeyDown={(e) => keyDownPrecio(e)} type="number" class="form-control border border-dark" placeholder='Ingrese el precio a tasar' />
+                                    <div className="input-group mb-3 w-75" id='precio'>
+                                        <span className="input-group-text border border-dark">$</span>
+                                        <input autoFocus={true} ref={refPrecioEstimado} onKeyDown={(e) => keyDownPrecio(e)} type="number" className="form-control border border-dark" placeholder='Ingrese el precio a tasar' />
                                     </div>
                                     <input onClick={clickTasarArticulo} type='button' className="btn align-self-start" style={{background: '#e7ab12'}} value="Confirmar tasación"/>
                                 </div>

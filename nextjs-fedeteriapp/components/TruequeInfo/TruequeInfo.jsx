@@ -21,8 +21,6 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
   const sucursal = trueque.sucursal;
   const refCodigoProducto = useRef();
 
-  const [usuario, setUsuario] = useState({});
-
   useEffect(() => {
     if (showSucursalInput && sucursal)
       refSucursal.current.value = sucursal.id;
@@ -37,9 +35,6 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
       method: 'PUT'
     }).then(() => {
       toast.success(realizado ? 'Trueque validado con éxito.' : 'Trueque invalidado con éxito.')
-
-      if (removeTrueque)
-        removeTrueque(trueque.id);
     });
   }
 
@@ -71,7 +66,7 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     })
   }
 
-  async function postVenta() {
+  async function postVenta(usuario) {
     const URL = 'http://localhost:5000/api/Ventas/' + refCodigoProducto.current.value
 
     if (await checkInputs())
@@ -132,14 +127,10 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
-                  <div className="vr align-self-center" style={{ marginTop: '7px', marginRight: '5px', height: '15px' }}></div>
                   <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate" data-bs-toggle="modal" data-bs-target="#exampleModal"><FaCheck size={20} fill='#1a5' /></button>
                   <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate" data-bs-toggle="modal" data-bs-target="#exampleModal"><FaBan size={20} fill='#e12' /></button>
-                  <div className="vr align-self-center" style={{ marginTop: '7px', marginLeft: '5px', height: '15px' }}></div>
                   <Tooltip anchorSelect='#btnValidate' place='bottom'>Marcar trueque como realizado</Tooltip>
                   <Tooltip anchorSelect='#btnUnvalidate' place='bottom'>Marcar trueque como no realizado</Tooltip>
-                  <Tooltip anchorSelect='#btnVenta1' place='bottom'>Registrar venta a {user1.nombre}</Tooltip>
-                  <Tooltip anchorSelect='#btnVenta2' place='bottom'>Registrar venta a {user2.nombre}</Tooltip>
                 </div>
               }
               {
@@ -170,12 +161,12 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               }
             </div>
           </div>
-          <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h3 className="modal-title text-center" id="exampleModalLabel">Venta - {user1.nombre}</h3>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <h3 className="modal-title text-center" id="exampleModalLabel">Registrar ventas</h3>
+                  <button type="button" onClick={() => removeTrueque(trueque.id)} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body p-1">
                   <div className="d-flex justify-content-center w-100">
@@ -188,31 +179,8 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
                   </div>
                 </div>
                 <div className="modal-footer">
-                  <input type='button' onClick={postVenta} className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2" style={{ background: '#e7ab12' }} value="Registrar venta" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h3 className="modal-title text-center" id="exampleModalLabel2">Venta - {user2.nombre}</h3>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div className="modal-body p-1">
-                  <div className="d-flex justify-content-center w-100">
-                    <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
-                      <div className="mb-3">
-                        <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
-                        <input type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button class="btn btn-warning" data-bs-target="#exampleModal" style={{ background: '#e7ab12' }} data-bs-toggle="modal">Volver</button>
-                  <input type='button' onClick={postVenta} className="btn" style={{ background: '#e7ab12' }} value="Registrar venta" />
+                  <input type='button' onClick={() => postVenta(user1)} className="btn" style={{ background: '#e7ab12' }} value={"Registrar venta a " + user1.nombre} />
+                  <input type='button' onClick={() => postVenta(user2)} className="btn" style={{ background: '#e7ab12' }} value={"Registrar venta a " + user2.nombre} />
                 </div>
               </div>
             </div>
