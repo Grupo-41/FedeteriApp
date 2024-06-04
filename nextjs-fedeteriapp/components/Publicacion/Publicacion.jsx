@@ -133,14 +133,14 @@ const Publicacion = ({ item: x, removeItem, own, clickable = false, truequeable 
                                     <li className='dropdown-item disabled'><span >No tienes artículos publicados</span></li>
                                 }
                                 <li><hr className="dropdown-divider" /></li>
-                                <li><a type="button" className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Cargar artículo<FiUpload className='ms-2' /></a></li>
+                                <li><a type="button" className="dropdown-item" data-bs-toggle="modal" data-bs-target="#articuloModal">Cargar artículo<FiUpload className='ms-2' /></a></li>
                             </ul>
                         </div>
-                        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal fade" id="articuloModal" tabindex="-1" aria-labelledby="articuloModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
                                     <div className="modal-header">
-                                        <h3 className="modal-title text-center" id="exampleModalLabel">Nuevo artículo</h3>
+                                        <h3 className="modal-title text-center" id="articuloModalLabel">Nuevo artículo</h3>
                                         <button type="button" ref={refCloseModal} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div className="modal-body p-1">

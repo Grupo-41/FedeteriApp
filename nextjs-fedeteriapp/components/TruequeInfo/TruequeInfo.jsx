@@ -127,8 +127,8 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
-                  <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate" data-bs-toggle="modal" data-bs-target="#exampleModal"><FaCheck size={20} fill='#1a5' /></button>
-                  <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate" data-bs-toggle="modal" data-bs-target="#exampleModal"><FaBan size={20} fill='#e12' /></button>
+                  <button onClick={() => validateTrueque(true)} className={style.button} id="btnValidate" data-bs-toggle="modal" data-bs-target="#ventaModal"><FaCheck size={20} fill='#1a5' /></button>
+                  <button onClick={() => validateTrueque(false)} className={style.button} id="btnUnvalidate" data-bs-toggle="modal" data-bs-target="#ventaModal"><FaBan size={20} fill='#e12' /></button>
                   <Tooltip anchorSelect='#btnValidate' place='bottom'>Marcar trueque como realizado</Tooltip>
                   <Tooltip anchorSelect='#btnUnvalidate' place='bottom'>Marcar trueque como no realizado</Tooltip>
                 </div>
@@ -161,11 +161,11 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               }
             </div>
           </div>
-          <div className="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal fade" id="ventaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="ventaModalLabel" aria-hidden="true">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h3 className="modal-title text-center" id="exampleModalLabel">Registrar ventas</h3>
+                  <h3 className="modal-title text-center" id="ventaModalLabel">Registrar ventas</h3>
                   <button type="button" onClick={() => removeTrueque(trueque.id)} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body p-1">

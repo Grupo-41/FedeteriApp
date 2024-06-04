@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="mt-5 d-flex flex-column gap-5 align-items-center justify-content-center">
+      <div style={{marginTop: '100px', paddingBottom: '50px'}} className="d-flex flex-column gap-5 align-items-center justify-content-center">
         { trueques.length > 0 &&
           <div>
               <h2 className="text-center mb-3">Historial de trueques</h2>
