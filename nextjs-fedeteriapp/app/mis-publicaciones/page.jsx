@@ -23,6 +23,11 @@ const Page = () => {
             window.location.href = "/"
     }, [user])
 
+    function removeItem(itemID){
+      const newArray = articulos.filter(x => x.id !== itemID);
+      setArticulos(newArray);
+    }
+
   return (
     <div className="mt-5 d-flex flex-column align-items-center justify-content-center w-100">
         <h1 className='mb-4'>Tus publicaciones</h1>
@@ -30,7 +35,7 @@ const Page = () => {
             {articulos && articulos.length > 0 ?
                 articulos.map(x => {
                     return (
-                        <Publicacion key={x.id} item={x} own={true}/>
+                        <Publicacion key={x.id} item={x} removeItem={removeItem} own={true}/>
                     )
                 })
                 :

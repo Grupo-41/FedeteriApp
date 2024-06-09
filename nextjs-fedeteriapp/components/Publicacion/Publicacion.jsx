@@ -3,11 +3,26 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import toast from 'react-hot-toast';
 
-const Publicacion = ({ item: x, own, url = null }) => {
+const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
     function onClickArticle() {
         if (typeof (window) !== 'undefined' && url)
             window.location.href = url
+    }
+
+    function onClickRemove(){
+        const URL = 'http://localhost:5000/api/Articulos/' + x.id;
+
+        fetch(URL, {
+            method: 'DELETE'
+        })
+        .then(() => {
+            toast.success('Artículo eliminado con éxito')
+
+            if(removeItem)
+                removeItem(x.id);
+        })
     }
 
     return (
@@ -29,7 +44,7 @@ const Publicacion = ({ item: x, own, url = null }) => {
                         own &&
                         <div class="btn-group-vertical position-absolute top-0 end-0 mt-2 me-2">
                             <button type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
-                            <button type="button" class="btn btn-danger p-2 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
+                            <button onClick={onClickRemove} type="button" class="btn btn-danger p-2 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
                         </div>
                     }
                 </div>                
