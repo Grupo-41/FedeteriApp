@@ -29,7 +29,7 @@ const Page = () => {
             {articulos && articulos.length > 0 ?
                 articulos.map(x => {
                     return (
-                        <Publicacion clickable={true} key={x.id} item={x} own={false}/>
+                        <Publicacion url={`/tasar-articulos/${x.id}`} key={x.id} item={x} own={false}/>
                     )
                 })
                 :

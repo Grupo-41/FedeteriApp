@@ -66,11 +66,8 @@ export default function Home() {
         { articulos.length > 0 &&
           <div>
               <h2 className="text-center mb-3">Publicaciones</h2>
-              <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: user ? '40vh' : '34vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                {articulos.map(x => <Publicacion key={x.id} item={x} 
-                removeItem={removeItem} truequeable={user !== null} 
-                articulosUsuario={articulosUsuario.filter(y => y.categoria === x.categoria)} 
-                removeArticulosUsuario={removeArticulosUsuario} />)}
+              <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '35vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
+                {articulos.map(x => <Publicacion key={x.id} item={x} url={`/publicacion/${x.id}`}/>)}
               </div>
           </div>
         }
