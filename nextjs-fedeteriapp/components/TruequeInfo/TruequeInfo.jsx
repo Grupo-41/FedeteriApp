@@ -31,9 +31,14 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
   function chargeArticle(){
     if(refCodigoProducto.current && refCodigoProducto.current.value && (refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length))
       setArticuloVenta(articulosFedeteria[Number(refCodigoProducto.current.value)]);
-    else
-      setArticuloVenta({ descripcion: 'Artículo a cargar', 
-      image: 'Placeholder.png'})
+    else{
+      if(refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length)
+        setArticuloVenta({ descripcion: 'Artículo a cargar', 
+                            image: 'Placeholder.png'})
+      else
+        setArticuloVenta({ descripcion: 'El artículo ingresado no existe', image: 'Placeholder.png'})
+        
+    }
   }
 
   function validateTrueque(realizado) {
