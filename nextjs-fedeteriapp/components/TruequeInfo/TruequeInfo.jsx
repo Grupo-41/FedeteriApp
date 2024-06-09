@@ -11,8 +11,10 @@ import toast from 'react-hot-toast';
 import { useLocalStorage } from 'react-use';
 
 
-const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false }) => {
+const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false }) => {
   const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
+  const [articuloVenta, setArticuloVenta] = useState({ descripcion: 'Artículo a cargar', 
+                                                        image: 'Placeholder.png'})
   const refSucursal = useRef();
   const user1 = trueque.articuloOfrecido.usuario;
   const user2 = trueque.articuloSolicitado.usuario;
@@ -26,19 +28,27 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
       refSucursal.current.value = sucursal.id;
   }, [])
 
+  function chargeArticle(){
+    if(refCodigoProducto.current && refCodigoProducto.current.value && (refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length))
+      setArticuloVenta(articulosFedeteria[Number(refCodigoProducto.current.value)]);
+    else
+      setArticuloVenta({ descripcion: 'Artículo a cargar', 
+      image: 'Placeholder.png'})
+  }
+
   function validateTrueque(realizado) {
     let URL = 'http://localhost:5000/api/Trueques/'
     URL += realizado ? 'validar-trueque/' : 'invalidar-trueque/'
     URL += trueque.id
-
+/*
     fetch(URL, {
       method: 'PUT'
     }).then(() => {
       toast.success(realizado ? 'Trueque validado con éxito.' : 'Trueque invalidado con éxito.')
-    });
+    });*/
   }
 
-  function acceptTrueque(accept) {
+  function acceptTrueque(accept) { 
     let URL = 'http://localhost:5000/api/Trueques/'
     URL += accept ? 'aceptar-trueque/' : 'rechazar-trueque/'
     URL += trueque.id
@@ -48,9 +58,9 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
     }).then(() => {
       toast.success(accept ? 'Trueque aceptado con éxito.' : 'Trueque rechazado con éxito.')
 
-      if (removeTrueque)
+      if(removeTrueque)
         removeTrueque(trueque.id);
-    });
+    }); 
   }
 
   function updateSucursal() {
@@ -166,14 +176,23 @@ const TruequeInfo = ({ trueque, removeTrueque, toValidate = false, toAccept = fa
               <div className="modal-content">
                 <div className="modal-header">
                   <h3 className="modal-title text-center" id="ventaModalLabel">Registrar ventas</h3>
-                  <button type="button" onClick={() => removeTrueque(trueque.id)} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button type="button" onClick={{/*() => removeTrueque(trueque.id)*/}} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body p-1">
                   <div className="d-flex justify-content-center w-100">
                     <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
                       <div className="mb-3">
                         <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
-                        <input type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
+                        <input onInput={chargeArticle} list='fedeteriaArticles' type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
+                        <datalist id='fedeteriaArticles'>
+                          {
+                            articulosFedeteria.map(x => <option value={x.id}>{x.descripcion}</option>)
+                          }
+                        </datalist>
+                      </div>
+                      <div className='mt-5 d-flex flex-column align-items-center justify-content-center'>
+                        <img className='rounded rounded-4 border border-black p-2' height={175} src={'http://localhost:5000/api/Images/' + articuloVenta.image} alt={articuloVenta.descripcion} />
+                        <p className='mt-3'>{articuloVenta.descripcion}</p>
                       </div>
                     </form>
                   </div>

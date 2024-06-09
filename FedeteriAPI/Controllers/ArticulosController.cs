@@ -20,6 +20,16 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna todos los artículos de la Fedeteria (ventas)
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Fedeteria")]
+        public IEnumerable<ArticuloFedeteria> GetArticulosFedeteria()
+        {
+            return VentasService.GetArticulosFedeteria();
+        }
+
+        /// <summary>
         /// Retorna artículos de la Fedeteria (ventas) según su ID
         /// </summary>
         /// <param name="id">ID del artículo</param>

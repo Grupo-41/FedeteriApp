@@ -9,6 +9,12 @@
             Retorna todos los artículos
             </summary>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosFedeteria">
+            <summary>
+            Retorna todos los artículos de la Fedeteria (ventas)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.GetArticulosFedeteria(System.Int32)">
             <summary>
             Retorna artículos de la Fedeteria (ventas) según su ID

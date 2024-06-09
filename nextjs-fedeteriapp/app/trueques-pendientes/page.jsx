@@ -7,6 +7,7 @@ import { useLocalStorage } from 'react-use'
 const Page = () => {
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [trueques, setTrueques] = useState({});
+    const [articulosFedeteria, setArticulosFedeteria] = useState([]);
     
     useEffect(() => {
         if(!user.esAdmin && !user.esEmpleado && typeof(window) !== 'undefined')
@@ -14,7 +15,7 @@ const Page = () => {
     }, [user])
 
     useEffect(() => {
-        const URL = 'http://localhost:5000/api/Trueques/pendientes'
+        let URL = 'http://localhost:5000/api/Trueques/pendientes'
 
         fetch(URL)
         .then(data => data.json())
@@ -22,6 +23,12 @@ const Page = () => {
             data = data.filter(x => x.sucursal !== null)
             setTrueques(user.esAdmin ? data : user.esEmpleado ? data.filter(x => x.sucursal.id === user.sucursal.id) : {});
         })
+
+        URL = 'http://localhost:5000/api/Articulos/Fedeteria';
+        
+        fetch(URL)
+        .then(data => data.json())
+        .then(data => setArticulosFedeteria(data));
     }, [])
 
     function removeTrueque(id){
@@ -40,6 +47,7 @@ const Page = () => {
                         <TruequeInfo key={x.id} 
                         trueque={x}
                         removeTrueque={(id) => removeTrueque(id)}
+                        articulosFedeteria={articulosFedeteria}
                         toValidate={true}
                         showSucursal={user && user.esAdmin}/>
                     )

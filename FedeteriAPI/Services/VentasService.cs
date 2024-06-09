@@ -133,5 +133,10 @@ namespace FedeteriAPI.Services
             WriteAll();
             return true;
         }
+
+        internal static IEnumerable<ArticuloFedeteria> GetArticulosFedeteria()
+        {
+            return ArticulosFedeteria;
+        }
     }
 }
