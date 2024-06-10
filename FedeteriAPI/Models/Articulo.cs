@@ -71,5 +71,6 @@
     {
         public int UsuarioID { get; set; }
         public int TruequeID { get; set; }
+        public DateOnly? Fecha { get; set; }
     }
 }

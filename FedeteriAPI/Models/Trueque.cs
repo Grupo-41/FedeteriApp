@@ -10,6 +10,9 @@ namespace FedeteriAPI.Models
         public Sucursal? Sucursal { get; set; }
         public bool? Aceptado { get; set; }
         public bool? Realizado { get; set; }
+        public DateOnly? FechaRealizacion { get; set; }
+
+        public TruequeOut() { }
 
         public TruequeOut(Trueque t)
         {
@@ -19,6 +22,7 @@ namespace FedeteriAPI.Models
             Sucursal = t.SucursalID.HasValue ? SucursalesService.GetSucursal(t.SucursalID.Value) : null;
             Aceptado = t.Aceptado;
             Realizado = t.Realizado;
+            FechaRealizacion = t.FechaRealizacion;
         }
     }
 
@@ -30,6 +34,7 @@ namespace FedeteriAPI.Models
         public int? SucursalID { get; set; }
         public bool? Aceptado { get; set; }
         public bool? Realizado { get; set; }
+        public DateOnly? FechaRealizacion { get; set; }
 
         public Trueque() { }
 
@@ -40,6 +45,7 @@ namespace FedeteriAPI.Models
             SucursalID = null;
             Realizado = null;
             Aceptado = null;
+            FechaRealizacion = null;
         }
     }
 

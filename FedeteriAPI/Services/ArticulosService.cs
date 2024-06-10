@@ -28,84 +28,140 @@ namespace FedeteriAPI.Services
                 Descripcion = "Llave Criquet",
                 Marca = "BREMEN",
                 Estado = "Usado"
-            }, ["Llave Criquet.jpg"]);
+            }, ["Llave Criquet.jpg"], 15000);
+
+            AddHardcodedArticulo(2, new ArticuloIn()
+            {
+                Descripcion = "Lijadora de Palma",
+                Marca = "Black&Decker",
+                Estado = "Usado"
+            }, ["Lijadora de Palma.png"], 50000);
+
+            AddHardcodedArticulo(2, new ArticuloIn()
+            {
+                Descripcion = "Flexible Agua Mallado",
+                Marca = "Genérico",
+                Estado = "Nuevo"
+            }, ["Flexible Agua Mallado.webp"], 5000);
 
             AddHardcodedArticulo(2, new ArticuloIn()
             {
                 Descripcion = "Motosierra",
                 Marca = "STIHL",
                 Estado = "Nuevo"
-            }, ["Motosierra.jpg"]);
+            }, ["Motosierra.jpg"], 50000);
 
             AddHardcodedArticulo(2, new ArticuloIn()
             {
                 Descripcion = "Stillson",
                 Marca = "Genérica",
                 Estado = "Usado"
-            }, ["Llave Stillson.jpg"]);
+            }, ["Llave Stillson.jpg"], 25000);
 
             AddHardcodedArticulo(3, new ArticuloIn()
             {
                 Descripcion = "Llave Francesa",
                 Marca = "BAHCO",
                 Estado = "Usado"
-            }, ["Llave Francesa.jpg"]);
+            }, ["Llave Francesa.jpg"], 15000);
 
             AddHardcodedArticulo(3, new ArticuloIn()
             {
                 Descripcion = "Kit Tubos Llaves",
                 Marca = "STANLEY",
                 Estado = "Usado"
-            }, ["Kit Tubos Llaves.jpg"]);
+            }, ["Kit Tubos Llaves.jpg"], 50000);
+
+            AddHardcodedArticulo(3, new ArticuloIn()
+            {
+                Descripcion = "Caja de herramientas",
+                Marca = "STANLEY",
+                Estado = "Usado"
+            }, ["Caja de herramientas.png"], 25000);
+
+            AddHardcodedArticulo(3, new ArticuloIn()
+            {
+                Descripcion = "Caña de pescar",
+                Marca = "Genérica",
+                Estado = "Usado"
+            }, ["Caña de pescar.jpg"], 15000);
 
             AddHardcodedArticulo(3, new ArticuloIn()
             {
                 Descripcion = "Martillo de goma",
                 Marca = "BREMEN",
                 Estado = "Nuevo"
-            }, ["Martillo de goma.jpg"]);
+            }, ["Martillo de goma.jpg"], 5500);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
                 Descripcion = "Tarugos",
                 Marca = "Fischer",
                 Estado = "Nuevo"
-            }, ["Tarugos Fischer.jpg"]);
+            }, ["Tarugos Fischer.jpg"], 5500);
+
+            AddHardcodedArticulo(4, new ArticuloIn()
+            {
+                Descripcion = "Hacha de mano",
+                Marca = "Genérica",
+                Estado = "Usado"
+            }, ["Hacha de mano.png"], 25000);
+
+            AddHardcodedArticulo(4, new ArticuloIn()
+            {
+                Descripcion = "Adhesivo",
+                Marca = "Eccole",
+                Estado = "Nuevo"
+            }, ["Eccole.webp"], 15000);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
                 Descripcion = "Agujereadora",
                 Marca = "Black&Decker",
                 Estado = "Nuevo"
-            }, ["Agujereadora.jpg"]);
+            }, ["Agujereadora.jpg"], 50000);
 
             AddHardcodedArticulo(4, new ArticuloIn()
             {
                 Descripcion = "Set de destornilladores",
                 Marca = "CROSSMASTER",
                 Estado = "Nuevo"
-            }, ["Set de destornilladores.jpg"]);
+            }, ["Set de destornilladores.jpg"], 50000);
 
             AddHardcodedArticulo(5, new ArticuloIn()
             {
                 Descripcion = "Alicate Universal",
                 Marca = "DUROLL",
                 Estado = "Nuevo"
-            }, ["Alicate Universal.jpg"]);
+            }, ["Alicate Universal.jpg"], 15000);
 
             AddHardcodedArticulo(5, new ArticuloIn()
             {
                 Descripcion = "Rollo de cable unipolar 2.5mm",
                 Marca = "TREFILCON",
                 Estado = "Nuevo"
-            }, ["Rollo Cable Unipolar 2.5mm.jpg"]);
+            }, ["Rollo Cable Unipolar 2.5mm.jpg"], 17500);
+
+            AddHardcodedArticulo(5, new ArticuloIn()
+            {
+                Descripcion = "Maza",
+                Marca = "Ninguna",
+                Estado = "Nuevo"
+            }, ["Maza.jpg"], 50000);
+
+            AddHardcodedArticulo(5, new ArticuloIn()
+            {
+                Descripcion = "Guantes de trabajo",
+                Marca = "Genéricos",
+                Estado = "Nuevo"
+            }, ["Guantes de trabajo.webp"], 15000);
 
             AddHardcodedArticulo(5, new ArticuloIn()
             {
                 Descripcion = "Caja Capsulada Exterior",
                 Marca = "Genérica",
                 Estado = "Nuevo"
-            }, ["Caja Capsulada Exterior.jpg"]);
+            }, ["Caja Capsulada Exterior.jpg"], 15000);
 
             WriteAll();
         }
@@ -115,13 +171,15 @@ namespace FedeteriAPI.Services
             return Articulos;
         }
 
-        private static void AddHardcodedArticulo(int userID, ArticuloIn articulo, string[] images)
+        private static void AddHardcodedArticulo(int userID, ArticuloIn articulo, string[] images, double price)
         {
             ArticuloOut nuevoArticulo = new ArticuloOut(articulo)
             {
                 Id = ActualID++,
                 Usuario = new UsuarioOut(UsuariosService.GetUsuarioByID(userID)),
-                ImageNames = images.ToList()
+                ImageNames = images.ToList(),
+                Categoria = AsignarCategoria(price),
+                Tasado = true
             };
 
             Articulos.Add(nuevoArticulo);

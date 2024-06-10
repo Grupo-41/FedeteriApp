@@ -128,6 +128,7 @@ namespace FedeteriAPI.Services
             ArticuloFedeteria articulo = GetArticuloFedeteria(articuloId);
             if (articulo == null) return false;
 
+            venta.Fecha = DateOnly.FromDateTime(DateTime.Now);
             articulo.Ventas.Add(venta);
             UsuariosService.AddPointsToUser(venta.UsuarioID, PuntosService.AsignarPuntosPorVenta(articulo.Precio));
             WriteAll();

@@ -4,7 +4,7 @@ import style from './TruequeInfo.module.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { TbArrowsExchange2 } from "react-icons/tb";
-import { FaBan, FaCheck, FaMoneyBillWave } from "react-icons/fa";
+import { FaBan, FaCheck } from "react-icons/fa";
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import toast from 'react-hot-toast';
@@ -138,7 +138,7 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput) && (showSucursal ? { marginBottom: '8px' } : { marginBottom: '25px' })} size={42} />
+              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput || trueque.fechaRealizacion) && (showSucursal ? { marginBottom: '8px' } : { marginBottom: '25px' })} size={42} />
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
@@ -174,6 +174,11 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
                   <em>{trueque.sucursal.nombre}</em>
                 </div>
               }
+              { trueque && trueque.fechaRealizacion &&
+                <div className='position-absolute bottom-0 mb-4' style={{ zoom: '0.8' }}>
+                  <span className="card-subtitle text-body-secondary ms-1">{trueque.fechaRealizacion.split("-").reverse().join("/")}</span>
+                </div>
+              }
             </div>
           </div>
           <div className="modal fade" id="ventaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="ventaModalLabel" aria-hidden="true">
@@ -188,16 +193,16 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
                     <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
                       <div className="mb-3">
                         <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
-                        <input onInput={chargeArticle} list='fedeteriaArticles' type="text" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
+                        <input onInput={chargeArticle} list='fedeteriaArticles' type="number" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
                         <datalist id='fedeteriaArticles'>
                           {
-                            articulosFedeteria.map(x => <option value={x.id}>{x.descripcion}</option>)
+                            articulosFedeteria.map(x => <option key={x.id} value={x.id}>{x.descripcion}</option>)
                           }
                         </datalist>
                       </div>
                       <div className='mt-5 d-flex flex-column align-items-center justify-content-center'>
                         <img className='rounded rounded-4 border border-black p-2' height={175} src={'http://localhost:5000/api/Images/' + articuloVenta.image} alt={articuloVenta.descripcion} />
-                        <p className='mt-3'>{articuloVenta.descripcion}</p>
+                        <p className='mt-3'>{articuloVenta.descripcion} {articuloVenta.precio && <span>(${articuloVenta.precio})</span>}</p>
                       </div>
                     </form>
                   </div>
