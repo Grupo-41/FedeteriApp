@@ -131,5 +131,27 @@ namespace FedeteriAPI.Controllers
         {
             ArticulosService.DeleteArticulo(id);
         }
+
+        /// <summary>
+        /// Endpoint para comentar una publicación
+        /// </summary>
+        /// <param name="id">ID del artículo</param>
+        /// <param name="comentario">Texto del comentario</param>
+        [HttpPost("{id}/comentar")]
+        public void ComentarArticulo(int id, [FromBody] string comentario) {
+            ArticulosService.AddComentario(id, comentario);
+        }
+
+        /// <summary>
+        /// Endpoint para responder al comentario de una publicación
+        /// </summary>
+        /// <param name="id">ID del artículo</param>
+        /// <param name="comentarioId">ID del comentario</param>
+        /// <param name="respuesta">Texto de la respuesta</param>
+        [HttpPost("{id}/responder/{comentarioId}")]
+        public void ResponderComentario(int id, int comentarioId, [FromBody] string respuesta)
+        {
+            ArticulosService.AddRespuesta(id, comentarioId, respuesta);
+        }
     }
 }

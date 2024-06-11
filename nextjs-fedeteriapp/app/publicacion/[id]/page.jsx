@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import { FiUpload } from 'react-icons/fi';
 import { useLocalStorage } from 'react-use';
+import Comentario from '@/components/Comentario/Comentario';
 import toast from 'react-hot-toast';
 
 const Page = ({ params }) => {
@@ -11,6 +12,7 @@ const Page = ({ params }) => {
   const [user, setUser, removeUser] = useLocalStorage('user', {});
   const [articulo, setArticulo] = useState({});
   const [articulosUsuario, setArticulosUsuario] = useState([]);
+  const refComentario = useRef();
   const refCloseModal = useRef();
   const refDescripcion = useRef();
   const refEstado = useRef();
@@ -27,12 +29,16 @@ const Page = ({ params }) => {
   }, [])
 
   useEffect(() => {
+    refreshArticulo();
+  }, [])
+
+  function refreshArticulo(){
     const URL = 'http://localhost:5000/api/Articulos/' + id;
 
     fetch(URL)
       .then(data => data.json())
       .then(data => setArticulo(data));
-  }, [])
+  }
 
   async function postArticulo() {
     const URL = 'http://localhost:5000/api/Articulos/' + user.id
@@ -90,6 +96,27 @@ const Page = ({ params }) => {
     setArticulosUsuario(newArray);
   }
 
+  function postComentario(){
+    if(!refComentario.current || !refComentario.current.value){
+      toast.error("El comentario no puede estar vacío")
+      return;
+    }
+
+    const URL = 'http://localhost:5000/api/Articulos/' + articulo.id + '/comentar';
+
+    fetch(URL, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(refComentario.current.value)
+    }).then(() => {
+      refreshArticulo();
+      refComentario.current.value = "";
+    })
+  }
+
   async function checkInputs() {
     if (!refDescripcion.current.value) {
       toast.error('La descripción del artículo no puede estar vacía.')
@@ -111,10 +138,12 @@ const Page = ({ params }) => {
     return false;
   }
 
+  if(articulo.truequeado)
+    return "Esta publicación ya no está disponible."
 
   return (
-    <div className="mt-5 d-flex flex-column align-items-center justify-content-center w-100">
-      <form style={{ minWidth: '400px', background: 'white' }} className="d-flex flex-column justify-content-center align-items-center border rounded p-4 align-self-center">
+    <div style={{width: 'fit-content'}} className="mt-5 d-flex gap-4 flex-column flex-nowrap align-items-center justify-content-center">
+      <form style={{ background: 'white' }} className="d-flex flex-column justify-content-center align-items-center border rounded p-4 align-self-center">
         <h3 className='text-center m-0'>{articulo.descripcion}</h3>
         {articulo.usuario &&
           <small className='mt-1'><em>Publicado por: <a href={'/profile/' + articulo.usuario.id}>{articulo.usuario.nombre} {articulo.usuario.apellido}</a></em></small>
@@ -154,7 +183,7 @@ const Page = ({ params }) => {
                     <input disabled value={"Categoría " + articulo.categoria} type="text" className="form-control border border-dark" />
                   </div>
                   <div className="w-50 btn-group align-self-start dropdown-center">
-                    <button type="button" className="btn btn-warning dropdown-toggle border border-black d-flex flex-row align-items-center justify-content-between px-3" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
+                    <button type="button" className="btn dropdown-toggle d-flex flex-row align-items-center justify-content-between px-3" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
                       Proponer trueque
                     </button>
                     <ul className="dropdown-menu">
@@ -220,6 +249,23 @@ const Page = ({ params }) => {
               </>
             }
           </div>
+        </div>
+      </form>
+      <form onSubmit={e => { e.preventDefault(); postComentario(); }} style={{ background: 'white', width: '100%', maxHeight: '40vh' }} className="d-flex flex-column justify-content-center align-items-center border rounded gap-3 p-4">
+        <h3 className='text-center m-0'>Comentarios</h3>
+        {
+          articulo.comentarios && articulo.comentarios.length > 0 ?
+          <div style={{maxHeight: '170px'}} className='w-100 px-2 m-0 d-flex flex-column gap-2 overflow-auto'>
+            {articulo.comentarios.map((x, index) => <Comentario key={index} id={index} 
+                                                                articuloId={articulo.id} item={x}
+                                                                responsible={articulo.usuario.id === user.id}/>)}
+          </div>
+          :
+          <small className='text-body-secondary my-3'><em>Esta publicación aún no tiene comentarios. Sé el primero en comentar!</em> </small>
+        }
+        <div className='w-100 d-flex flex-row gap-2'>
+          <input ref={refComentario} className='form-control' placeholder='Comentá o consultá algo sobre esta publicación...' type="text" />
+          <input onClick={postComentario} type='button' className="btn" style={{ background: '#e7ab12' }} value="Comentar" />
         </div>
       </form>
     </div>

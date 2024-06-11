@@ -73,6 +73,21 @@
             </summary>
             <param name="id">ID del artículo</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.ComentarArticulo(System.Int32,System.String)">
+            <summary>
+            Endpoint para comentar una publicación
+            </summary>
+            <param name="id">ID del artículo</param>
+            <param name="comentario">Texto del comentario</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.ResponderComentario(System.Int32,System.Int32,System.String)">
+            <summary>
+            Endpoint para responder al comentario de una publicación
+            </summary>
+            <param name="id">ID del artículo</param>
+            <param name="comentarioId">ID del comentario</param>
+            <param name="respuesta">Texto de la respuesta</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.AuthController.GetLogin(FedeteriAPI.Models.CredencialesUsuario)">
             <summary>
             Valida las credenciales de inicio de sesión de un usuario

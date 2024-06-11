@@ -304,5 +304,22 @@ namespace FedeteriAPI.Services
         {
             return GetArticulosTasados().Where(x => !x.Truequeado);
         }
+
+        public static void AddComentario(int id, string comentario)
+        {
+            ArticuloOut toComment = Articulos.FirstOrDefault(x => x.Id == id);
+            toComment.Comentarios.Add(new Comentario(comentario));
+            
+            WriteAll();
+        }
+
+        public static void AddRespuesta(int id, int comentarioId, string respuesta)
+        {
+            ArticuloOut articulo = Articulos.FirstOrDefault(x => x.Id == id);
+            Comentario c = articulo.Comentarios.ElementAt(comentarioId);
+            c.Respuesta = respuesta;
+
+            WriteAll();
+        }
     }
 }

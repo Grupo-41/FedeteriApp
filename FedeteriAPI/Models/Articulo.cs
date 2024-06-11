@@ -20,6 +20,7 @@
         public List<string> ImageNames { get; set; }
         public bool Tasado { get; set; } = false;
         public bool Truequeado { get; set; } = false;
+        public List<Comentario> Comentarios { get; set; }
 
         public UsuarioOut Usuario { get; set; }
 
@@ -38,6 +39,7 @@
             this.Truequeado = false;
             this.ArticuloAsociado = articulo.ArticuloAsociado;
             this.ImageNames = new List<string>();
+            this.Comentarios = new List<Comentario>();
         }
     }
 

@@ -35,7 +35,7 @@ const Page = () => {
             {articulos && articulos.length > 0 ?
                 articulos.filter(x => !x.truequeado).map(x => {
                     return (
-                        <Publicacion key={x.id} item={x} removeItem={removeItem} own={true}/>
+                        <Publicacion key={x.id} item={x} url={`/publicacion/${x.id}`} removeItem={removeItem} own={true}/>
                     )
                 })
                 :
