@@ -32,7 +32,7 @@ const Page = () => {
     <div className="mt-5 d-flex flex-column align-items-center justify-content-center w-100">
         <h1 className='mb-4'>Tus publicaciones</h1>
         <div style={{minWidth: '400px', maxWidth: '58rem'}} className="d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
-            {articulos && articulos.length > 0 ?
+            {articulos && articulos.filter(x => !x.truequeado).length > 0 ?
                 articulos.filter(x => !x.truequeado).map(x => {
                     return (
                         <Publicacion key={x.id} item={x} url={`/publicacion/${x.id}`} removeItem={removeItem} own={true}/>

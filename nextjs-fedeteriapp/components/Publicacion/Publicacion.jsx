@@ -11,7 +11,13 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
             window.location.href = url
     }
 
-    function onClickRemove(){
+    function onClickEdit(e){
+        e.stopPropagation();
+    }
+
+    function onClickRemove(e){
+        e.stopPropagation();
+
         const URL = 'http://localhost:5000/api/Articulos/' + x.id;
 
         fetch(URL, {
@@ -43,8 +49,8 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                     {
                         own &&
                         <div class="btn-group-vertical position-absolute top-0 end-0 mt-2 me-2">
-                            <button type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
-                            <button onClick={onClickRemove} type="button" class="btn btn-danger p-2 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
+                            <button onClick={(e) => onClickEdit(e)} type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
+                            <button onClick={(e) => onClickRemove(e)} type="button" class="btn btn-danger p-2 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
                         </div>
                     }
                 </div>                
