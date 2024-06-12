@@ -19,6 +19,7 @@
         public int? ArticuloAsociado { get; set; } = null;
         public List<string> ImageNames { get; set; }
         public bool Tasado { get; set; } = false;
+        public DateTime? Destacado { get; set; }
         public bool Truequeado { get; set; } = false;
         public List<Comentario> Comentarios { get; set; }
 
@@ -37,6 +38,7 @@
             this.Categoria = "";
             this.Tasado = false;
             this.Truequeado = false;
+            this.Destacado = null;
             this.ArticuloAsociado = articulo.ArticuloAsociado;
             this.ImageNames = new List<string>();
             this.Comentarios = new List<Comentario>();

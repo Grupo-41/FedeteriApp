@@ -1,9 +1,11 @@
 import React from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
+import { LuArrowBigUpDash } from "react-icons/lu";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import toast from 'react-hot-toast';
+import { Tooltip } from 'react-tooltip';
 
 const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
     function onClickArticle() {
@@ -31,6 +33,10 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
         })
     }
 
+    function onClickUpgrade(e){
+        e.stopPropagation();
+    }
+
     return (
         <div key={x.id} className="card" style={{ width: '16rem' }}>
             <div onClick={url ? onClickArticle : null} style={{ cursor: url ? 'pointer' : 'default' }}>
@@ -48,9 +54,12 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                     </div>
                     {
                         own &&
-                        <div class="btn-group-vertical position-absolute top-0 end-0 mt-2 me-2">
-                            <button onClick={(e) => onClickEdit(e)} type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
-                            <button onClick={(e) => onClickRemove(e)} type="button" class="btn btn-danger p-2 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
+                        <div class="btn-group-vertical rounded position-absolute top-0 end-0 mt-2 me-2">
+                            { x.tasado && 
+                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' type="button"  class="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
+                            }
+                            <button onClick={(e) => onClickEdit(e)} id='btnEdit' type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
+                            <button onClick={(e) => onClickRemove(e)} id='btnRemove' type="button" class="rounded rounded-top-0 btn btn-danger p-1 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
                         </div>
                     }
                 </div>                
@@ -61,8 +70,14 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                     <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
                 </div>
             </div>
-            <small className='card-footer text-center text-truncate'>{own ? x.tasado ? <em>Artículo publicado</em> : <em>Artículo a la espera de ser tasado</em> :
-                <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}</small>
+            <small className='card-footer text-center text-truncate'>{
+            own ? 
+            x.tasado ? 
+            x.destacado ? <em>Artículo destacado ({x.destacado})</em> 
+            : <em>Artículo publicado</em> 
+            : <em>Artículo a la espera de ser tasado</em> 
+            : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
+            </small>
         </div>
     )
 }
