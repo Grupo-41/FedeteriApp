@@ -21,7 +21,8 @@ namespace FedeteriAPI.Services
 
             Trueques = TruequesFile.Select(x => new TruequeOut(x)).ToList();
 
-            HardcodeTrueques();
+            if(Trueques.Count < 20)
+                HardcodeTrueques();
         }
 
         private static void HardcodeTrueques()
@@ -199,7 +200,7 @@ namespace FedeteriAPI.Services
 
         public static IEnumerable<TruequeOut> GetRealizados()
         {
-            return GetAceptados().Where(x => x.Realizado.HasValue && x.Realizado.Value);
+            return GetAceptados().Where(x => x.Realizado.HasValue && x.Realizado.Value).OrderByDescending(x => x.FechaRealizacion);
         }
 
         public static IEnumerable<TruequeOut> GetTruequesByUsuario(int userId)

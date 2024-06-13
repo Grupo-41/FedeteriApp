@@ -24,10 +24,10 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const URL = 'http://localhost:5000/api/Trueques'
+    const URL = 'http://localhost:5000/api/Trueques/realizados'
 
     fetch(URL).then(data => data.json()).then(data => {
-      setTrueques(data.filter(x => x.realizado))
+      setTrueques(data)
     });
   }, [])
 

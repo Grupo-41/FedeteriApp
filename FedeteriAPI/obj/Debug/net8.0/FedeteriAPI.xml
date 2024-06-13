@@ -129,6 +129,51 @@
             <param name="usuarioRecoveryPass">Objeto UsuarioRecoveryPass (Email del usuario, contraseña nueva)</param>
             <returns>True o False en caso de realizarse o no el cambio de contraseña</returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.GetCalificacionesSucursales">
+            <summary>
+            Retorna un resumen de las calificaciones de todas las sucursales
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.GetCalificacionesSucursal(System.Int32)">
+            <summary>
+            Retorna todas las calificaciones detalladas de una sucursal
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.GetCalificacionesUsuarios">
+            <summary>
+            Retorna un resumen de calificación de todos los usuarios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.GetCalificacionUsuario(System.Int32)">
+            <summary>
+            Retorna un resumen de calificación de un usuario en específico
+            </summary>
+            <param name="id">ID del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.GetCalificacionesUsuario(System.Int32)">
+            <summary>
+            Retorna todas las calificaciones que se le hicieron a un usuario específico
+            </summary>
+            <param name="id">ID del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.CalificarSucursal(FedeteriAPI.Models.CalificacionSucursal)">
+            <summary>
+            Endpoint para calificar una sucursal
+            </summary>
+            <param name="calificacion">Objeto CalificacionSucursal</param>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.CalificarUsuario(FedeteriAPI.Models.CalificacionUsuario)">
+            <summary>
+            Endpoint para calificar un usuario
+            </summary>
+            <param name="calificacion">Objeto CalificacionUsuario</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.DeseadosController.GetDeseadosByUserId(System.Int32)">
             <summary>
             Retorna los artículos deseados de un usuario en concreto

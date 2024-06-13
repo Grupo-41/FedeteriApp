@@ -54,7 +54,7 @@ const Page = ({ params }) => {
                     {
                         articulos.map(x => x.marca).filter(onlyUnique).sort().map((y, index) => {
                             return (
-                                <div className="form-check">
+                                <div key={index} className="form-check">
                                     <input className="form-check-input" onInput={(e) => {
                                         if(e.target.checked){
                                             addFilter(y)
