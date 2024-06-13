@@ -119,7 +119,7 @@ namespace FedeteriAPI.Controllers
         [HttpPut("{id}")]
         public void UpdateArticulo(int id, [FromForm] ArticuloIn articulo)
         {
-            ArticulosService.UpdateArticuloAsync(id, articulo);
+            ArticulosService.UpdateArticulo(id, articulo);
         }
 
         /// <summary>

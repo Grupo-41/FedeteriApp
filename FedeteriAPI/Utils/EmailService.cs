@@ -9,7 +9,7 @@ namespace FedeteriAPI.Utils
 {
     public static class EmailService
     {
-        public static Task SendEmailAsync(string email, string subject, string message) {
+        public static void SendEmail(string email, string subject, string message) {
             var client = new SmtpClient("smtp-mail.outlook.com", 587)
             {
                 EnableSsl = true,
@@ -25,7 +25,7 @@ namespace FedeteriAPI.Utils
             msg.Priority = MailPriority.High;
             msg.BodyEncoding = Encoding.Default;
 
-            return client.SendMailAsync(msg);
+            client.Send(msg);
         }
 
         private static AlternateView GenerateMessageBody(string message)

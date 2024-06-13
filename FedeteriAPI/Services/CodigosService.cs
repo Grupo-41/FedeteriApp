@@ -51,28 +51,28 @@ namespace FedeteriAPI.Services
             return codigo;
         }
 
-        public static async Task EnviarCodigo(string userMail, string codigo)
+        public static void EnviarCodigo(string userMail, string codigo)
         {
             Usuario usuario = UsuariosService.GetUsuarios().FirstOrDefault(x => x.Email == userMail);
 
             if (usuario == null)
                 return;
 
-            await EmailService.SendEmailAsync(
+            EmailService.SendEmail(
                 email: userMail,
                 subject: "FedeteriApp - Codigo de recuperación",
                 message: String.Format("Estimado/a {0}, su código de recuperación es: {1}", usuario.Nombre, codigo)
             );
         }
 
-        public static async Task EnviarCodigoInicio(string userMail, string codigo)
+        public static void EnviarCodigoInicio(string userMail, string codigo)
         {
             Usuario usuario = UsuariosService.GetUsuarios().FirstOrDefault(x => x.Email == userMail);
 
             if (usuario == null)
                 return;
 
-            await EmailService.SendEmailAsync(
+            EmailService.SendEmail(
                 email: userMail,
                 subject: "FedeteriApp - Codigo de inicio de sesión",
                 message: String.Format("Estimado/a administrador, su código de inicio de sesión es: {0}", codigo)

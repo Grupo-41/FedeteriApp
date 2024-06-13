@@ -147,7 +147,7 @@ namespace FedeteriAPI.Services
             
             Usuarios.Add(new Usuario(usuario));
 
-            EmailService.SendEmailAsync(
+            EmailService.SendEmail(
                 usuario.Email,
                 subject: "FedeteriApp - Instructivo de inicio de sesión para empleados",
                 message: $@"Bienvenido {usuario.Nombre}! <br /><br />
@@ -169,7 +169,7 @@ namespace FedeteriAPI.Services
             usuario.EsEmpleado = false;
             Usuarios.Add(new Usuario(usuario));
 
-            EmailService.SendEmailAsync(
+            EmailService.SendEmail(
                 usuario.Email,
                 subject: "FedeteriApp - Registro exitoso",
                 message: $"Bienvenido {usuario.Nombre}! Usted se ha registrado en FedeteriApp de forma exitosa. Esperamos que disfrute de la aplicación!"

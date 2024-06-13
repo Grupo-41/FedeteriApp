@@ -267,7 +267,7 @@ namespace FedeteriAPI.Services
             }
         }
 
-        private static async void SetTruequeAceptado(int truequeId, bool aceptado, bool hardcoded = false)
+        private static void SetTruequeAceptado(int truequeId, bool aceptado, bool hardcoded = false)
         {
             TruequeOut t = GetTruequeById(truequeId);
             Trueque tFile = GetTruequeFileById(truequeId);
@@ -285,17 +285,17 @@ namespace FedeteriAPI.Services
             if (hardcoded)
                 return;
 
-            await EmailService.SendEmailAsync(t.ArticuloOfrecido.Usuario.Email,
-                                        aceptado ? "Trueque aceptado - FedeteriApp" : "Trueque rechazado - FedeteriApp",
-                                        aceptado ? String.Format("Aceptaron tu propuesta de trueque por tu artículo {0}. Ponete en contacto con {1} para elegir la sucursal en la que realizarán el trueque antes de cargarlo en la aplicación, a través de su email: {2}", 
-                                        t.ArticuloOfrecido.Descripcion, t.ArticuloSolicitado.Usuario.Nombre, t.ArticuloSolicitado.Usuario.Email)
-                                        : String.Format("Rechazaron tu propuesta de trueque por tu artículo {0}. Mayor suerte la próxima!", t.ArticuloOfrecido.Descripcion));
+            EmailService.SendEmail(t.ArticuloOfrecido.Usuario.Email,
+                                    aceptado ? "Trueque aceptado - FedeteriApp" : "Trueque rechazado - FedeteriApp",
+                                    aceptado ? String.Format("Aceptaron tu propuesta de trueque por tu artículo {0}. Ponete en contacto con {1} para elegir la sucursal en la que realizarán el trueque antes de cargarlo en la aplicación, a través de su email: {2}", 
+                                    t.ArticuloOfrecido.Descripcion, t.ArticuloSolicitado.Usuario.Nombre, t.ArticuloSolicitado.Usuario.Email)
+                                    : String.Format("Rechazaron tu propuesta de trueque por tu artículo {0}. Mayor suerte la próxima!", t.ArticuloOfrecido.Descripcion));
 
-            await EmailService.SendEmailAsync(t.ArticuloSolicitado.Usuario.Email,
-                                        aceptado ? "Trueque aceptado - FedeteriApp" : "Trueque rechazado - FedeteriApp",
-                                        aceptado ? String.Format("Aceptaste la propuesta de trueque por tu artículo {0}. Ponete en contacto con {1} para elegir la sucursal en la que realizarán el trueque antes de cargarlo en la aplicación, a través de su email: {2}",
-                                        t.ArticuloSolicitado.Descripcion, t.ArticuloOfrecido.Usuario.Nombre, t.ArticuloOfrecido.Usuario.Email)
-                                        : String.Format("Rechazaste la propuesta de trueque por tu artículo {0} exitosamente.", t.ArticuloSolicitado.Descripcion));
+            EmailService.SendEmail(t.ArticuloSolicitado.Usuario.Email,
+                                    aceptado ? "Trueque aceptado - FedeteriApp" : "Trueque rechazado - FedeteriApp",
+                                    aceptado ? String.Format("Aceptaste la propuesta de trueque por tu artículo {0}. Ponete en contacto con {1} para elegir la sucursal en la que realizarán el trueque antes de cargarlo en la aplicación, a través de su email: {2}",
+                                    t.ArticuloSolicitado.Descripcion, t.ArticuloOfrecido.Usuario.Nombre, t.ArticuloOfrecido.Usuario.Email)
+                                    : String.Format("Rechazaste la propuesta de trueque por tu artículo {0} exitosamente.", t.ArticuloSolicitado.Descripcion));
         }
 
         public static void AceptarTrueque(int truequeId)

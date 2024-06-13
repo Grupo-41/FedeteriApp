@@ -14,8 +14,52 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
     const refImg = useRef();
     const refCloseModal = useRef();
 
-    function updateArticulo(){
+    async function updateArticulo(){
+        const URL = 'http://localhost:5000/api/Articulos/' + x.id;
+
+        if(await checkInputs())
+            return
+
+        const data = new FormData();
+        data.append("Descripcion", refDescripcion.current.value);
+        data.append("Estado", refEstado.current.value);
+        data.append("Marca", refMarca.current.value || 'Ninguna');
+
+        for (var file of refImg.current.files) {
+            data.append('Images', file, file.name)
+        }
+
+        await fetch(URL, ({
+            method: 'PUT',
+            body: data
+        }))
+        .then(() => {
+            toast.success('Artículo modificado con éxito.')
+            window.location.reload();
+        })
+
         refCloseModal.current.click();
+    }
+
+    async function checkInputs(){
+        if(!refDescripcion.current.value){
+            toast.error('La descripción del artículo no puede estar vacía.')
+            return true;
+        }
+        if(!refEstado.current.value){
+            toast.error('Debe especificar el estado de su artículo.')
+            return true;
+        }
+        if(refImg.current.files.length < 1){
+            toast.error("Debe incluir como mínimo una foto de su artículo.")
+            return true;
+        }
+        if(refImg.current.files.length > 10){
+            toast.error("El artículo no debe incluir más de 10 fotos.")
+            return true;
+        }
+
+        return false;
     }
 
     function onClickArticle() {
@@ -130,6 +174,9 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                                             Debe adjuntar entre 1 y 10 imágenes de su artículo.
                                         </div>
                                     </div>
+                                    { x.tasado && 
+                                        <div className='alert alert-danger py-2 mt-4 mb-0 text-center'>Este artículo ya ha sido tasado <br/>Si lo modifica, tendrá que volver a tasarse</div>
+                                    }
                                 </form>
                             </div>
                         </div>
