@@ -14,7 +14,7 @@ const Comentario = ({ item, id, articuloId, responsible = false }) => {
     const URL = 'http://localhost:5000/api/Articulos/' + articuloId + "/responder/" + id;
 
     if(!refResponse.current.value){
-      toast.error("No puedes enviar una respuesta vacía.")
+      toast.error("No puedes enviar una respuesta vacía")
       return;
     }
 

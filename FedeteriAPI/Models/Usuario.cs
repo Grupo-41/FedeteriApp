@@ -44,6 +44,11 @@ namespace FedeteriAPI.Models
         {
             this.Puntos += puntos;
         }
+
+        public void SubPoints(int puntos)
+        {
+            this.Puntos -= puntos;
+        }
     }
 
     public class UsuarioOut
