@@ -221,7 +221,7 @@ namespace FedeteriAPI.Services
             return Articulos.FindAll(x => x.Usuario.Id == userId);
         }
 
-        public static void UpdateArticulo(int id, ArticuloIn articulo)
+        public static async Task UpdateArticuloAsync(int id, ArticuloIn articulo)
         {
             ArticuloOut toUpdate = Articulos.FirstOrDefault(x => x.Id == id);
             
@@ -230,6 +230,23 @@ namespace FedeteriAPI.Services
                 toUpdate.Descripcion = articulo.Descripcion;
                 toUpdate.Estado = articulo.Estado;
                 toUpdate.Marca = articulo.Marca;
+                toUpdate.ImageNames = new List<string>();
+
+                var ruta = String.Empty;
+
+                if (!Directory.Exists("Images"))
+                    Directory.CreateDirectory("Images");
+
+                for (int i = 0; i < articulo.Images.Length; i++)
+                {
+                    var nombreArchivo = Guid.NewGuid().ToString() + ".jpg";
+                    ruta = $"Images/{nombreArchivo}";
+
+                    using (FileStream str = new FileStream(ruta, FileMode.Create))
+                        await articulo.Images[i].CopyToAsync(str);
+
+                    toUpdate.ImageNames.Add(nombreArchivo);
+                }
 
                 WriteAll();
             }

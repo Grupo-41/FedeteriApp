@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import { LuArrowBigUpDash } from "react-icons/lu";
@@ -8,16 +8,29 @@ import toast from 'react-hot-toast';
 import { Tooltip } from 'react-tooltip';
 
 const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
+    const refDescripcion = useRef();
+    const refEstado = useRef();
+    const refMarca = useRef();
+    const refImg = useRef();
+    const refCloseModal = useRef();
+
+    function updateArticulo(){
+        refCloseModal.current.click();
+    }
+
     function onClickArticle() {
         if (typeof (window) !== 'undefined' && url)
             window.location.href = url
     }
 
-    function onClickEdit(e){
+    function onClickEdit(e) {
         e.stopPropagation();
+        refDescripcion.current.value = x.descripcion;
+        refEstado.current.value = x.estado;
+        refMarca.current.value = x.marca;
     }
 
-    function onClickRemove(e){
+    function onClickRemove(e) {
         e.stopPropagation();
 
         const URL = 'http://localhost:5000/api/Articulos/' + x.id;
@@ -25,15 +38,15 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
         fetch(URL, {
             method: 'DELETE'
         })
-        .then(() => {
-            toast.success('Artículo eliminado con éxito')
+            .then(() => {
+                toast.success('Artículo eliminado con éxito')
 
-            if(removeItem)
-                removeItem(x.id);
-        })
+                if (removeItem)
+                    removeItem(x.id);
+            })
     }
 
-    function onClickUpgrade(e){
+    function onClickUpgrade(e) {
         e.stopPropagation();
     }
 
@@ -55,14 +68,17 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                     {
                         own &&
                         <div class="btn-group-vertical rounded position-absolute top-0 end-0 mt-2 me-2">
-                            { x.tasado && 
-                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' type="button"  class="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
+                            {x.tasado &&
+                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' type="button" class="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
                             }
-                            <button onClick={(e) => onClickEdit(e)} id='btnEdit' type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
+                            <button onClick={(e) => onClickEdit(e)} data-bs-toggle="modal" data-bs-target={"#articuloModal" + x.id} id='btnEdit' type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
                             <button onClick={(e) => onClickRemove(e)} id='btnRemove' type="button" class="rounded rounded-top-0 btn btn-danger p-1 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
+                            <Tooltip anchorSelect='#btnUpgrade' place='right'>Destacar publicación</Tooltip>
+                            <Tooltip anchorSelect='#btnEdit' place='right'>Editar</Tooltip>
+                            <Tooltip anchorSelect='#btnRemove' place='right'>Eliminar</Tooltip>
                         </div>
                     }
-                </div>                
+                </div>
                 <div className="card-footer d-flex flex-column" >
                     <h5 className="card-title text-truncate pb-1 mb-1">{x.descripcion}</h5>
                     <p className='card-subtitle text-body-secondary'><strong>Estado: </strong>{x.estado}</p>
@@ -71,13 +87,58 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                 </div>
             </div>
             <small className='card-footer text-center text-truncate'>{
-            own ? 
-            x.tasado ? 
-            x.destacado ? <em>Artículo destacado ({x.destacado})</em> 
-            : <em>Artículo publicado</em> 
-            : <em>Artículo a la espera de ser tasado</em> 
-            : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
+                own ?
+                    x.tasado ?
+                        x.destacado ? <em>Artículo destacado ({x.destacado})</em>
+                            : <em>Artículo publicado</em>
+                        : <em>Artículo a la espera de ser tasado</em>
+                    : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
             </small>
+            <div className="modal fade" id={"articuloModal" + x.id} tabIndex="-1" aria-labelledby={"articuloModalLabel" + x.id} aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3 className="modal-title text-center" id={"articuloModalLabel" + x.id}>Editar artículo</h3>
+                            <button type="button" ref={refCloseModal} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body p-1">
+                            <div className="d-flex justify-content-center w-100">
+                                <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
+                                    <div className="mb-3">
+                                        <label htmlFor="descripcion" className="form-label">Descripción</label>
+                                        <input ref={refDescripcion} type="text" placeholder="Ingrese una descripción" className="form-control border border-dark" id="descripcion" required />
+                                    </div>
+                                    <div className='d-flex flex-row gap-3'>
+                                        <div className="mb-3 w-50">
+                                            <label htmlFor="estado" className="form-label">Estado</label>
+                                            <select id="estado" ref={refEstado} className='form-control form-select border border-dark' required >
+                                                <option value="">Seleccione un estado</option>
+                                                <option value="Nuevo">Nuevo</option>
+                                                <option value="Usado">Usado</option>
+                                                <option value="Reacondicionado">Reacondicionado</option>
+                                            </select>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="marca" className="form-label">Marca</label>
+                                            <input ref={refMarca} type="text" placeholder="Ingrese la marca" className="form-control border border-dark" id="marca" required />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="img" className="form-label">Imágenes</label>
+                                        <input ref={refImg} type="file" accept="image/png, image/jpeg" multiple className="form-control border border-dark" id="img" required />
+                                        <div id="imgHelp" className="form-text">
+                                            Debe adjuntar entre 1 y 10 imágenes de su artículo.
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <input onClick={updateArticulo} type='button' className="btn" style={{ background: '#e7ab12' }} value="Actualizar" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
