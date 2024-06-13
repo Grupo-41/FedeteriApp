@@ -25,9 +25,9 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <param name="userMail">Mail del usuario a recuperar</param>
         [HttpPost("recuperacion/{userMail}")]
-        public async Task PutCodigoRecuperacion(string userMail)
+        public void PutCodigoRecuperacion(string userMail)
         {
-            await UsuariosService.EnviarCodigoRecuperacionAsync(userMail);
+            UsuariosService.EnviarCodigoRecuperacionAsync(userMail);
         }
 
         /// <summary>
@@ -47,9 +47,9 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <param name="userMail">Mail del usuario administrador</param>
         [HttpPost("generar-codigo-inicio/{userMail}")]
-        public async Task PutCodigoDeInicio(string userMail)
+        public void PutCodigoDeInicio(string userMail)
         {
-            await UsuariosService.EnviarCodigoInicioAsync(userMail);
+            UsuariosService.EnviarCodigoInicioAsync(userMail);
         }
 
         /// <summary>

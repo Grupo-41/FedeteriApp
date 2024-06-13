@@ -198,23 +198,23 @@ namespace FedeteriAPI.Services
             return ArticulosService.GetArticulosByUsuario(userId);
         }
 
-        public static async Task<bool> EnviarCodigoInicioAsync(string userMail)
+        public static bool EnviarCodigoInicioAsync(string userMail)
         {
             string codigo = CodigosService.GenerarCodigoInicio(userMail);
             if (codigo == null || string.IsNullOrEmpty(codigo))
                 return false;
 
-            await CodigosService.EnviarCodigoInicio(userMail, codigo);
+            CodigosService.EnviarCodigoInicio(userMail, codigo);
             return true;
         }
 
-        public static async Task<bool> EnviarCodigoRecuperacionAsync(string userMail)
+        public static bool EnviarCodigoRecuperacionAsync(string userMail)
         {
             string codigo = CodigosService.GenerarCodigo(userMail);
             if (codigo == null || string.IsNullOrEmpty(codigo))
                 return false;
 
-            await CodigosService.EnviarCodigo(userMail, codigo);
+            CodigosService.EnviarCodigo(userMail, codigo);
             return true;
         }
 
