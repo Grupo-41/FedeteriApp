@@ -8,12 +8,21 @@ const Page = ({ params }) => {
     const [user, setUser, removeUser] = useLocalStorage('user', {});
     const query = params.query;
     const [articulos, setArticulos] = useState([])
-    const [articulosFiltrados, setArticulosFiltrados] = useState([])
+    const [marcaFiltros, setMarcaFiltros] = useState([])
+    const [estadoFiltros, setEstadoFiltros] = useState([])
 
     function onlyUnique(value, index, array) {
         return array.indexOf(value) === index;
     }
 
+    function addFilter(marca){
+        const newArray = [...marcaFiltros, marca];
+        setMarcaFiltros(newArray);
+    }
+
+    function removeFilter(marca){
+        setMarcaFiltros(marcaFiltros.filter(x => x !== marca));
+    }
 
     useEffect(() => {
         const URL = 'http://localhost:5000/api/Articulos/publicados'
@@ -32,21 +41,28 @@ const Page = ({ params }) => {
         <div style={{ marginLeft: '200px', marginTop: '100px', marginBottom: '25px' }} className="d-flex flex-column align-items-center justify-content-center w-100">
             <h1>Resultados de la búsqueda: &quot;{query}&quot;</h1>
             <div style={{ minWidth: '400px', maxWidth: '58rem' }} className="mt-4 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
-                {articulosFiltrados && articulosFiltrados.length > 0 ?
-                    articulosFiltrados.map(x => <Publicacion key={x.id} item={x}
+                {articulos && articulos.filter(x => marcaFiltros.includes(x.marca)).length > 0 ?
+                    articulos.filter(x => marcaFiltros.includes(x.marca)).map(x => <Publicacion key={x.id} item={x}
                         own={false} url={`/publicacion/${x.id}`} />)
                     :
                     <p>No hay artículos para mostrar</p>
                 }
             </div>
-            <div className="position-absolute shadow d-flex flex-column justify-content-center start-0 ps-5 gap-5 top-0 bg-white border-end border-secondary" style={{ minWidth: '260px', paddingTop: '75px', height: '100vh' }}>
+            <div className="position-absolute shadow d-flex flex-column justify-content-center start-0 ps-5 gap-5 top-0 bg-white border-end border-secondary-subtle" style={{ minWidth: '260px', paddingTop: '75px', height: '100vh' }}>
                 <div>
                     <h3>Marca</h3>
                     {
                         articulos.map(x => x.marca).filter(onlyUnique).sort().map((y, index) => {
                             return (
                                 <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value={y} id={`checkMarca${index}`} />
+                                    <input className="form-check-input" onInput={(e) => {
+                                        if(e.target.checked){
+                                            addFilter(y)
+                                        }
+                                        else{
+                                            removeFilter(y)
+                                        }
+                                    }} type="checkbox" value={y} id={`checkMarca${index}`} />
                                     <label className="form-check-label" htmlFor={`checkMarca${index}`}>
                                         {y}
                                     </label>
