@@ -130,7 +130,10 @@ namespace FedeteriAPI.Services
 
             venta.Fecha = DateOnly.FromDateTime(DateTime.Now);
             articulo.Ventas.Add(venta);
-            UsuariosService.AddPointsToUser(venta.UsuarioID, PuntosService.AsignarPuntosPorVenta(articulo.Precio));
+
+            for(int i = 0; i < venta.Cantidad; i++)
+                UsuariosService.AddPointsToUser(venta.UsuarioID, PuntosService.AsignarPuntosPorVenta(articulo.Precio));
+
             WriteAll();
             return true;
         }

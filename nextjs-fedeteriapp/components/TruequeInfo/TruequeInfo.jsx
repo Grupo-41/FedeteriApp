@@ -9,12 +9,15 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import toast from 'react-hot-toast';
 import { useLocalStorage } from 'react-use';
+import { GrFormAdd, GrFormSubtract } from "react-icons/gr";
+
 
 
 const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false }) => {
   const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
   const [articuloVenta, setArticuloVenta] = useState({ descripcion: 'Artículo a cargar', 
                                                         image: 'Placeholder.png'})
+  const [sellQuantity, setSellQuantity] = useState(1);
   const refSucursal = useRef();
   const user1 = trueque.articuloOfrecido.usuario;
   const user2 = trueque.articuloSolicitado.usuario;
@@ -22,6 +25,7 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
   const refCodigoProducto = useRef();
+  const refCantidad = useRef();
 
   useEffect(() => {
     if (showSucursalInput && sucursal)
@@ -89,7 +93,8 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
 
     const data = {
       "usuarioID": usuario.id,
-      "truequeID": trueque.id
+      "truequeID": trueque.id,
+      "cantidad": sellQuantity
     }
 
     await fetch(URL, ({
@@ -115,6 +120,15 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
       return true;
     }
     return false;
+  }
+
+  function addQuantity(){
+    setSellQuantity(sellQuantity + 1);
+  }
+
+  function subQuantity(){
+    if(sellQuantity > 1)
+      setSellQuantity(sellQuantity - 1)
   }
 
   return (
@@ -191,18 +205,30 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
                 <div className="modal-body p-1">
                   <div className="d-flex justify-content-center w-100">
                     <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
-                      <div className="mb-3">
-                        <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
-                        <input onInput={chargeArticle} list='fedeteriaArticles' type="number" placeholder="Ingrese el código de producto" className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
-                        <datalist id='fedeteriaArticles'>
-                          {
-                            articulosFedeteria.map(x => <option key={x.id} value={x.id}>{x.descripcion}</option>)
-                          }
-                        </datalist>
+                      <div className='d-flex flex-row gap-3'>
+                        <div className="mb-3 w-75">
+                          <label htmlFor="codigoProducto" className="form-label">Código de producto</label>
+                          <input onInput={chargeArticle} list='fedeteriaArticles' type="number" placeholder="Ingrese un código..." className="form-control border border-dark" id="codigoProducto" ref={refCodigoProducto} required />
+                          <datalist id='fedeteriaArticles'>
+                            {
+                              articulosFedeteria.map(x => <option key={x.id} value={x.id}>{x.descripcion}</option>)
+                            }
+                          </datalist>
+                        </div>
+                        <div className="mb-3">
+                          <label htmlFor="cantidadProducto" className="form-label">Cantidad</label>
+                          <div className='d-flex flex-row gap-2'>
+                            <input disabled type="number" className="form-control border border-dark" id="cantidadProducto" value={sellQuantity} required />
+                            <div className='btn-group'>
+                              <div onClick={() => addQuantity()} className='btn border border-black py-1 px-2' style={{background: '#e7ab12'}}><GrFormAdd size={20}/></div>
+                              <div onClick={() => subQuantity()} className='btn border border-black py-1 px-2' style={{background: '#e7ab12'}}><GrFormSubtract size={20}/></div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className='mt-5 d-flex flex-column align-items-center justify-content-center'>
+                      <div className='mt-4 mb-0 d-flex flex-column align-items-center justify-content-center'>
                         <img className='rounded rounded-4 border border-black p-2' height={175} src={'http://localhost:5000/api/Images/' + articuloVenta.image} alt={articuloVenta.descripcion} />
-                        <p className='mt-3'>{articuloVenta.descripcion} {articuloVenta.precio && <span>(${articuloVenta.precio})</span>}</p>
+                        <p className='mt-3'>{articuloVenta.descripcion} {articuloVenta.precio && <span>(${articuloVenta.precio}{sellQuantity > 1 && <> x {sellQuantity} = ${Number(articuloVenta.precio) * sellQuantity}</>})</span>}</p>
                       </div>
                     </form>
                   </div>

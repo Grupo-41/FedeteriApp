@@ -67,7 +67,7 @@
 
         public int GetCountVentas()
         {
-            return Ventas.Count;
+            return Ventas.Sum(x => x.Cantidad);
         }
     }
 
@@ -75,6 +75,7 @@
     {
         public int UsuarioID { get; set; }
         public int TruequeID { get; set; }
+        public int Cantidad { get; set; }
         public DateOnly? Fecha { get; set; }
     }
 }
