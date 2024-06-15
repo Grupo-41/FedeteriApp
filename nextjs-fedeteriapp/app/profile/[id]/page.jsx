@@ -74,8 +74,8 @@ const Page = ({params}) => {
                             <input type="text" value={searchedUser.puntos} className="form-control border border-dark" id="pointsCount" disabled/>
                         </div>
                     </div>
-                    <button className='btn btn-warning mt-2 mb-2' style={{background: '#e7ab12'}}>Ver artículos publicados</button>
-                    <button className='btn btn-warning' style={{background: '#e7ab12'}}>Ver historial de trueques</button>
+                    <a href={`/publicaciones/${searchedUser.id}`} className='btn btn-warning mt-2 mb-2' style={{background: '#e7ab12'}}>Ver artículos publicados</a>
+                    <a href={`/historial-trueques/${searchedUser.id}`} className='btn btn-warning' style={{background: '#e7ab12'}}>Ver historial de trueques</a>
                 </form>
                 <form style={{minWidth: '400px', background: 'white'}} className="border rounded p-4 d-flex flex-column justify-content-center align-self-center">
                     <h3 className='mb-4 text-center'>Lista de deseos</h3>
