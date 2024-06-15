@@ -10,10 +10,11 @@ import { Tooltip } from 'react-tooltip'
 import toast from 'react-hot-toast';
 import { useLocalStorage } from 'react-use';
 import { GrFormAdd, GrFormSubtract } from "react-icons/gr";
+import { MdDeleteForever } from 'react-icons/md';
 
 
 
-const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false }) => {
+const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false, cancelable = false }) => {
   const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
   const [articuloVenta, setArticuloVenta] = useState({ descripcion: 'Artículo a cargar', 
                                                         image: 'Placeholder.png'})
@@ -25,7 +26,6 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
   const refCodigoProducto = useRef();
-  const refCantidad = useRef();
 
   useEffect(() => {
     if (showSucursalInput && sucursal)
@@ -62,14 +62,14 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
     URL += accept ? 'aceptar-trueque/' : 'rechazar-trueque/'
     URL += trueque.id
 
+    if(removeTrueque)
+      removeTrueque(trueque.id);
+
+    toast.success(accept ? 'Trueque aceptado con éxito.' : cancelable ? 'Trueque cancelado con éxito.' : 'Trueque rechazado con éxito.')
+
     fetch(URL, {
       method: 'PUT'
-    }).then(() => {
-      toast.success(accept ? 'Trueque aceptado con éxito.' : 'Trueque rechazado con éxito.')
-
-      if(removeTrueque)
-        removeTrueque(trueque.id);
-    }); 
+    });
   }
 
   function updateSucursal() {
@@ -135,6 +135,12 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
     <>
       <div className="card" style={{ maxWidth: '800px', width: '100%' }}>
         <div className="d-flex mx-3 flex-row justify-content-center align-items-center">
+          { cancelable &&
+            <>
+              <a id='btnCancel' onClick={() => acceptTrueque(false)} className='position-absolute btn btn-danger py-2 pt-1 px-1 rounded-start-0' style={{top: '5%', left:'100%'}}><MdDeleteForever size={20} /></a>
+              <Tooltip style={{zIndex: '500'}} anchorSelect='#btnCancel'>Cancelar trueque</Tooltip>
+            </>
+          }
           <div style={{ width: '20.5%' }}>
             <Carousel showThumbs={false} showIndicators={false} showStatus={false} infiniteLoop={true}>
               {articulo1.imageNames.map((image, index) =>
@@ -173,7 +179,7 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
               }
               {
                 showSucursalInput &&
-                <div className='position-absolute bottom-0 mb-3' style={{ zoom: '0.8' }}>
+                <div className='position-absolute bottom-0 mb-3 d-flex flex-column align-items-center' style={{ zoom: '0.8' }}>
                   <select onInput={updateSucursal} id="sucursal-list" ref={refSucursal} className='py-1 form-control form-select border border-secondary' required >
                     {!sucursal && <option value="">Seleccione una sucursal</option>}
                     {sucursales.map(x =>

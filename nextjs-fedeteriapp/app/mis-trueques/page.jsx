@@ -9,7 +9,7 @@ const Page = () => {
 
     useEffect(() => {
         if(user === null && typeof window !== "undefined")
-        window.location.href = "/"
+            window.location.href = "/"
 
         const URL = 'http://localhost:5000/api/Usuarios/' + user.id + '/trueques-pendientes';
     
@@ -17,6 +17,10 @@ const Page = () => {
           setTrueques(data)
         });
     }, []);
+
+    function removeTrueque(id){
+        setTrueques(trueques.filter(x => x.id !== id))
+    }
 
     return (
     <div className="mt-5 p-5 d-flex flex-column gap-5 align-items-center justify-content-center">
@@ -36,8 +40,8 @@ const Page = () => {
                 trueques.filter(x => x.realizado === null).length > 0 &&
                 <div className='mb-5'>
                     <h2 className="ps-2 mb-3 text-center">Trueques pendientes</h2>
-                    <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                        {trueques.filter(x => x.realizado === null).map(x => <TruequeInfo key={x.id} trueque={x} showSucursalInput={true} />)}
+                    <div style={{minWidth: '350px', maxWidth: '56rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
+                        {trueques.filter(x => x.realizado === null).map(x => <TruequeInfo key={x.id} trueque={x} removeTrueque={() => removeTrueque(x.id)} showSucursalInput={true} cancelable={true} />)}
                     </div>
                 </div>
             }
