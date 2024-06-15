@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 import toast from 'react-hot-toast';
 import { Tooltip } from 'react-tooltip';
 
-const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
+const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = false }) => {
     const refDescripcion = useRef();
     const refEstado = useRef();
     const refMarca = useRef();
@@ -130,14 +130,16 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null }) => {
                     <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
                 </div>
             </div>
-            <small className='card-footer text-center text-truncate'>{
-                own ?
-                    x.tasado ?
-                        x.destacado ? <em>Artículo destacado ({x.destacado})</em>
-                            : <em>Artículo publicado</em>
-                        : <em>Artículo a la espera de ser tasado</em>
-                    : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
-            </small>
+            { !hideOwner &&
+                <small className='card-footer text-center text-truncate'>{
+                    own ?
+                        x.tasado ?
+                            x.destacado ? <em>Artículo destacado ({x.destacado})</em>
+                                : <em>Artículo publicado</em>
+                            : <em>Artículo a la espera de ser tasado</em>
+                        : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
+                </small>
+            }
             <div className="modal fade" id={"articuloModal" + x.id} tabIndex="-1" aria-labelledby={"articuloModalLabel" + x.id} aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
