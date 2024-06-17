@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { BsFillTrashFill } from "react-icons/bs";
 import { MdEdit } from "react-icons/md";
 import { LuArrowBigUpDash } from "react-icons/lu";
@@ -6,18 +6,35 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import toast from 'react-hot-toast';
 import { Tooltip } from 'react-tooltip';
+import localFont from 'next/font/local'
+import Image from 'next/image';
+import LogoMP from '../../public/MercadoPago/Logo.png'
+import { useLocalStorage } from 'react-use';
+
+const myFont = localFont({
+    src: [
+        {
+            path: '../../public/MercadoPago/Fonts/Fontspring-DEMO-proximanova-regular.otf',
+            weight: '400',
+            style: 'normal'
+        }
+    ],
+})
 
 const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = false }) => {
+    const [aDestacar, setADestacar, removeADestacar] = useLocalStorage('destacado', null)
     const refDescripcion = useRef();
     const refEstado = useRef();
     const refMarca = useRef();
     const refImg = useRef();
+    const refDuracion = useRef();
     const refCloseModal = useRef();
+    const refCloseModal2 = useRef();
 
-    async function updateArticulo(){
+    async function updateArticulo() {
         const URL = 'http://localhost:5000/api/Articulos/' + x.id;
 
-        if(await checkInputs())
+        if (await checkInputs())
             return
 
         const data = new FormData();
@@ -33,28 +50,28 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
             method: 'PUT',
             body: data
         }))
-        .then(() => {
-            toast.success('Artículo modificado con éxito.')
-            window.location.reload();
-        })
+            .then(() => {
+                toast.success('Artículo modificado con éxito.')
+                window.location.reload();
+            })
 
         refCloseModal.current.click();
     }
 
-    async function checkInputs(){
-        if(!refDescripcion.current.value){
+    async function checkInputs() {
+        if (!refDescripcion.current.value) {
             toast.error('La descripción del artículo no puede estar vacía.')
             return true;
         }
-        if(!refEstado.current.value){
+        if (!refEstado.current.value) {
             toast.error('Debe especificar el estado de su artículo.')
             return true;
         }
-        if(refImg.current.files.length < 1){
+        if (refImg.current.files.length < 1) {
             toast.error("Debe incluir como mínimo una foto de su artículo.")
             return true;
         }
-        if(refImg.current.files.length > 10){
+        if (refImg.current.files.length > 10) {
             toast.error("El artículo no debe incluir más de 10 fotos.")
             return true;
         }
@@ -94,6 +111,19 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
         e.stopPropagation();
     }
 
+    function generatePayment(){
+        if(!refDuracion.current.value){
+            toast.error("Debe ingresar una duración antes de proceder con el pago")
+            return;
+        }
+
+        setADestacar({...x, duracion: refDuracion.current.value})
+
+        const URL = 'http://localhost:5000/api/payments/create-order/' + refDuracion.current.value;
+
+        fetch(URL).then(data => data.text()).then(data => window.location = data)
+    }
+
     return (
         <div key={x.id} className="card" style={{ width: '16rem' }}>
             <div onClick={url ? onClickArticle : null} style={{ cursor: url ? 'pointer' : 'default' }}>
@@ -112,8 +142,8 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                     {
                         own &&
                         <div class="btn-group-vertical rounded position-absolute top-0 end-0 mt-2 me-2">
-                            {x.tasado &&
-                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' type="button" class="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
+                            {x.tasado && !x.destacado &&
+                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' data-bs-toggle="modal" data-bs-target={"#destacarModal" + x.id} type="button" class="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
                             }
                             <button onClick={(e) => onClickEdit(e)} data-bs-toggle="modal" data-bs-target={"#articuloModal" + x.id} id='btnEdit' type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
                             <button onClick={(e) => onClickRemove(e)} id='btnRemove' type="button" class="rounded rounded-top-0 btn btn-danger p-1 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
@@ -130,7 +160,7 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                     <p className="card-subtitle text-body-secondary"><strong>Categoría: </strong>{x.categoria || "Sin definir"}</p>
                 </div>
             </div>
-            { !hideOwner &&
+            {!hideOwner &&
                 <small className='card-footer text-center text-truncate'>{
                     own ?
                         x.tasado ?
@@ -140,6 +170,42 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                         : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
                 </small>
             }
+            <div className="modal fade" id={"destacarModal" + x.id} tabIndex="-1" aria-labelledby={"destacarModalLabel" + x.id} aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3 className="modal-title text-center" id={"destacarModalLabel" + x.id}>Destacar publicación</h3>
+                            <button type="button" ref={refCloseModal2} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body p-1">
+                            <div className="d-flex justify-content-center w-100">
+                                <form style={{ minWidth: '400px', background: 'white' }} className="rounded p-4 align-self-center">
+                                    <div className="mb-3">
+                                        <label htmlFor="descripcion" className="form-label">Artículo a destacar</label>
+                                        <input value={x.descripcion} disabled type="text" className="form-control border border-dark" id="descripcion" required />
+                                    </div>
+                                    <div className="mb-2">
+                                        <label htmlFor="duracion" className="form-label">Duración</label>
+                                        <select id="duracion" ref={refDuracion} className='form-control form-select border border-dark' required >
+                                            <option value="">Seleccione una duracion</option>
+                                            <option value="1">1 día - $1000</option>
+                                            <option value="7">7 días - $5000</option>
+                                            <option value="14">14 días - $10000</option>
+                                            <option value="30">30 días - $20000</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <div onClick={generatePayment} type='button' className={`btn text-white ${myFont.className} px-4 py-2`} style={{ background: '#009ee3', fontSize: '15px' }}>
+                                <Image className='me-2' width={32} src={LogoMP} /><span>Pagar con Mercado Pago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div className="modal fade" id={"articuloModal" + x.id} tabIndex="-1" aria-labelledby={"articuloModalLabel" + x.id} aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -176,8 +242,8 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                                             Debe adjuntar entre 1 y 10 imágenes de su artículo.
                                         </div>
                                     </div>
-                                    { x.tasado && 
-                                        <div className='alert alert-danger py-2 mt-4 mb-0 text-center'>Este artículo ya ha sido tasado <br/>Si lo modifica, tendrá que volver a tasarse</div>
+                                    {x.tasado &&
+                                        <div className='alert alert-danger py-2 mt-4 mb-0 text-center'>Este artículo ya ha sido tasado <br />Si lo modifica, tendrá que volver a tasarse</div>
                                     }
                                 </form>
                             </div>

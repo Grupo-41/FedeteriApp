@@ -53,6 +53,13 @@
             <param name="articuloID">ID del artículo a tasar</param>
             <param name="precioEstimado">Precio estimado del artículo, que va a usarse para asignarle una categoría correspondiente</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.ArticulosController.DestacarArticulo(System.Int32,System.Int32)">
+            <summary>
+            Endpoint para destacar un artículo
+            </summary>
+            <param name="articuloID">ID del artículo a destacar</param>
+            <param name="duracion">Duración en días del destacado</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ArticulosController.PostArticulo(System.Int32,FedeteriAPI.Models.ArticuloIn)">
             <summary>
             Le asigna un usuario a un artículo y lo agrega en el sistema

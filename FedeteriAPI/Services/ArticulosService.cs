@@ -340,5 +340,12 @@ namespace FedeteriAPI.Services
 
             WriteAll();
         }
+
+        public static void DestacarArticulo(int id, int duracion)
+        {
+            ArticuloOut articulo = Articulos.FirstOrDefault(x => x.Id == id);
+            articulo.Destacado = DateTime.Now.AddDays(duracion);
+            WriteAll();
+        }
     }
 }

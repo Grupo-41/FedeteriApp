@@ -101,6 +101,17 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Endpoint para destacar un artículo
+        /// </summary>
+        /// <param name="articuloID">ID del artículo a destacar</param>
+        /// <param name="duracion">Duración en días del destacado</param>
+        [HttpPut("destacar/{articuloID}/{duracion}")]
+        public void DestacarArticulo(int articuloID, int duracion)
+        {
+            ArticulosService.DestacarArticulo(articuloID, duracion);
+        }
+
+        /// <summary>
         /// Le asigna un usuario a un artículo y lo agrega en el sistema
         /// </summary>
         /// <param name="userId">ID del usuario</param>
