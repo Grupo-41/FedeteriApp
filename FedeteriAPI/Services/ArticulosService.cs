@@ -255,6 +255,8 @@ namespace FedeteriAPI.Services
 
         public static void DeleteArticulo(int id)
         {
+            TruequesService.DeleteTruequesByArticulo(id);
+
             int index = Articulos.FindIndex(x => x.Id == id);
 
             if(index != -1)

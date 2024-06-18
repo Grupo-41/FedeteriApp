@@ -323,5 +323,21 @@ namespace FedeteriAPI.Services
         {
             return GetAceptados().Where(x => !x.Realizado.HasValue);
         }
+
+        internal static void DeleteTruequesByArticulo(int id)
+        {
+            for(int i = 0; i < Trueques.Count; i++)
+            {
+                TruequeOut t = Trueques[i];
+
+                if(t.ArticuloOfrecido.Id == id || t.ArticuloSolicitado.Id == id)
+                {
+                    Trueques.RemoveAt(i);
+                    TruequesFile.RemoveAt(i);
+                }
+            }
+
+            WriteAll();
+        }
     }
 }
