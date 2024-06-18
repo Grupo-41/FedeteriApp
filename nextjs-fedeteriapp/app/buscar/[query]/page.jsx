@@ -41,6 +41,9 @@ const Page = ({ params }) => {
         fetch(URL)
             .then(data => data.json())
             .then(data => {
+                const destacados = data.filter(x => x.destacado);
+                const noDestacados = data.filter(x => !x.destacado);
+                data = [...destacados, ...noDestacados];
                 let resFilter = data.filter(x => x.descripcion.toLowerCase().includes(query.toLowerCase()) || x.marca.toLowerCase().includes(query.toLowerCase())).filter(x => x.usuario.id !== user.id);
 
                 setArticulos(resFilter);
@@ -50,7 +53,7 @@ const Page = ({ params }) => {
     return (
         <div style={{ marginLeft: articulos && articulos.length > 0 ? '200px' : '0', marginTop: '100px', marginBottom: '25px' }} className="d-flex flex-column align-items-center justify-content-center w-100">
             <h1>Resultados de la búsqueda: &quot;{query}&quot;</h1>
-            <div style={{ minWidth: '400px', maxWidth: '58rem' }} className="mt-4 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
+            <div style={{ minWidth: '400px', maxWidth: '58rem', maxHeight: '74vh', overflow: 'auto' }} className="py-2 mt-4 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
                 {articulos && articulos.length > 0 ?
                     articulosFiltrados().length > 0 ?
                     articulosFiltrados().map(x => <Publicacion key={x.id} item={x}

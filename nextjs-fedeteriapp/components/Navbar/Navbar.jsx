@@ -37,7 +37,7 @@ const Navbar = () => {
     <>
         <nav className="navbar fixed-top navbar-expand-lg shadow border-bottom border-black" style={{background: '#e7ab12 '}}>
             <div className="container-fluid">
-                <a className="navbar-brand me-3 ms-2" href="/"><Image src={FedeteriaLogo} height="35" alt="FedeteriApp"/></a>
+                <a className="navbar-brand me-3 ms-2" href="/"><Image src={FedeteriaLogo} height="30" alt="FedeteriApp"/></a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -105,8 +105,8 @@ const Navbar = () => {
                     </ul>
                     { user &&
                         <>
-                            <form className="d-flex position-relative" role="search">
-                                <input ref={refInput} onKeyDown={e => inputKeyDown(e)} className="form-control me-2" type="search" placeholder="Buscar artículos..." aria-label="Search" />
+                            <form className="d-flex position-relative" style={{width: '300px'}} role="search">
+                                <input ref={refInput} onKeyDown={e => inputKeyDown(e)} className="w-100 form-control me-2" type="search" placeholder="Buscar por artículo o marca..." aria-label="Search" />
                                 <button type='button' onClick={onClickSearch} style={{marginTop: '5px', marginRight: '18px'}} className='position-absolute end-0'><BiSearch size={20} fill='gray' /></button>
                             </form>
                             <button onClick={closeSession} className="ms-2 btn btn-outline-secondary">Cerrar sesión</button>

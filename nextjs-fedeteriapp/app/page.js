@@ -6,6 +6,7 @@ import Logo from '../public/Fedeteria_Horizontal.png'
 import { useState, useEffect, useRef } from "react";
 import { useLocalStorage } from "react-use";
 import TruequeInfo from "@/components/TruequeInfo/TruequeInfo";
+import ReactLoading from 'react-loading'
 
 export default function Home() {
   const [user, setUser, removeUser] = useLocalStorage('user', null);
@@ -33,24 +34,17 @@ export default function Home() {
 
   useEffect(() => {
     const URL = 'http://localhost:5000/api/Articulos/publicados'
-
     fetch(URL).then(data => data.json()).then(data => {
+      const destacados = data.filter(x => x.destacado);
+      const noDestacados = data.filter(x => !x.destacado);
+      data = [...destacados, ...noDestacados];
+
       setArticulos(user ? data.filter(x => x.usuario.id !== user.id) : data)
       
       if(user)
         setArticulosUsuario(data.filter(x => x.usuario.id === user.id));
     });
   }, [])
-
-  function removeItem(id){
-    const newArray = articulos.filter(x => x.id !== id);
-    setArticulos(newArray);
-  }
-
-  function removeArticulosUsuario(id){
-    const newArray = articulosUsuario.filter(x => x.id !== id);
-    setArticulosUsuario(newArray);
-  }
 
   return (
     <>
@@ -73,10 +67,9 @@ export default function Home() {
         }
         {
           (articulos.length === 0 || trueques.length === 0) &&
-          <div className="mt-5">
-            <div style={articulos.length === 0 && trueques.length === 0 ? {} : {zoom: 0.75}}>
+          <div>
+            <div className="d-flex flex-column justify-content-center align-items-center gap-5" style={articulos.length === 0 && trueques.length === 0 ? {} : {zoom: 0.75, marginTop: "150px"}}>
               <Image width={400} src={Logo} />
-              <h3 className="mt-5 text-center">Work in progress...</h3>
             </div>
           </div> 
         }

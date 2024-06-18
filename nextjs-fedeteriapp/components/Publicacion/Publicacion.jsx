@@ -125,9 +125,13 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
     }
 
     return (
-        <div key={x.id} className="card" style={{ width: '16rem' }}>
+        <div key={x.id} className="card" style={{ width: '16rem', borderColor: x.destacado && '#509' }}>
             <div onClick={url ? onClickArticle : null} style={{ cursor: url ? 'pointer' : 'default' }}>
                 <div className='position-relative card-img-top'>
+                    {
+                        !own && x.destacado &&
+                        <div className='badge position-absolute mt-2 ms-2' style={{background: '#509'}}>Destacado ⭐</div>
+                    }
                     <div className='p-1 d-flex justify-content-center'>
                         {url ?
                             <img height={175} style={{ maxWidth: '100%', objectFit: 'contain' }} src={`http://localhost:5000/api/Images/${x.imageNames[0]}`} />
@@ -164,7 +168,7 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                 <small className='card-footer text-center text-truncate'>{
                     own ?
                         x.tasado ?
-                            x.destacado ? <em>Artículo destacado ({x.destacado})</em>
+                            x.destacado ? <em>Artículo destacado ({x.destacado.slice(0, x.destacado.indexOf("T"))})</em>
                                 : <em>Artículo publicado</em>
                             : <em>Artículo a la espera de ser tasado</em>
                         : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
