@@ -94,5 +94,13 @@ namespace FedeteriAPI.Services
             CalificacionUsuarios.Add(calificacion);
             WriteAll();
         }
+
+        internal static bool TruequeCalificadoByUsuario(int userId, int truequeId)
+        {
+            CalificacionSucursal? cSucursal = CalificacionSucursales.Find(x => x.TruequeID == truequeId && x.UsuarioID == userId);
+            CalificacionUsuario? cUsuario = CalificacionUsuarios.Find(x => x.TruequeID == truequeId && x.UsuarioID == userId);
+
+            return cSucursal != null && cUsuario != null;
+        }
     }
 }

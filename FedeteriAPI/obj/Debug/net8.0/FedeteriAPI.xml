@@ -181,6 +181,14 @@
             </summary>
             <param name="calificacion">Objeto CalificacionUsuario</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.CalificacionesController.GetCalificadoByTruequeId(System.Int32,System.Int32)">
+            <summary>
+            Permite saber si un trueque fue calificado o no por el usuario
+            </summary>
+            <param name="userId">ID del usuario involucrado</param>
+            <param name="truequeId">ID del trueque</param>
+            <returns>True en caso de haber sido calificado, false en c.c.</returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.DeseadosController.GetDeseadosByUserId(System.Int32)">
             <summary>
             Retorna los artículos deseados de un usuario en concreto

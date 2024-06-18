@@ -16,7 +16,6 @@ const Page = () => {
     }
 
     const URL = `http://localhost:5000/api/Articulos/destacar/${aDestacar.id}/${aDestacar.duracion}`;
-    console.log(URL)
 
     fetch(URL, {
       method: 'PUT',

@@ -17,6 +17,7 @@ var app = builder.Build();
 
 await UsuariosService.ReadAllAsync();
 await ArticulosService.ReadAllAsync();
+await CalificacionesService.ReadAllAsync();
 await VentasService.ReadAllAsync();
 await CodigosService.ReadAllAsync();
 await TruequesService.ReadAllAsync();

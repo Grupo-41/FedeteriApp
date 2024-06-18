@@ -82,5 +82,17 @@ namespace FedeteriAPI.Controllers
         {
             CalificacionesService.CalificarUsuario(calificacion);
         }
+
+        /// <summary>
+        /// Permite saber si un trueque fue calificado o no por el usuario
+        /// </summary>
+        /// <param name="userId">ID del usuario involucrado</param>
+        /// <param name="truequeId">ID del trueque</param>
+        /// <returns>True en caso de haber sido calificado, false en c.c.</returns>
+        [HttpGet("/api/Usuarios/{userId}/Trueques/{truequeId}/calificado")]
+        public bool GetCalificadoByTruequeId(int userId, int truequeId)
+        {
+            return CalificacionesService.TruequeCalificadoByUsuario(userId, truequeId);
+        }
     }
 }

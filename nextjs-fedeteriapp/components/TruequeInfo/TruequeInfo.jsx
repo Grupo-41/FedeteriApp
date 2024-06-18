@@ -14,8 +14,12 @@ import { MdDeleteForever } from 'react-icons/md';
 
 
 
-const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValidate = false, toAccept = false, showSucursalInput = false, showSucursal = false, cancelable = false }) => {
+const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [], 
+  toValidate = false, toAccept = false, 
+  showSucursalInput = false, showSucursal = false, 
+  cancelable = false, calificable = false }) => {
   const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
+  const [toCalificate, setToCalificate] = useState(false);
   const [articuloVenta, setArticuloVenta] = useState({ descripcion: 'Artículo a cargar', 
                                                         image: 'Placeholder.png'})
   const [sellQuantity, setSellQuantity] = useState(1);
@@ -30,6 +34,12 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
   useEffect(() => {
     if (showSucursalInput && sucursal)
       refSucursal.current.value = sucursal.id;
+
+    if(calificable){
+      const URL = `http://localhost:5000/api/Usuarios/${userId}/Trueques/${trueque.id}/calificado`
+
+      fetch(URL).then(data => data.json()).then(data => setToCalificate(!data));
+    }
   }, [])
 
   function chargeArticle(){
@@ -158,7 +168,7 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput || trueque.fechaRealizacion) && (showSucursal ? { marginBottom: '8px' } : { marginBottom: '25px' })} size={42} />
+              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput || trueque.fechaRealizacion) && (showSucursal ? { marginBottom: '8px' } : toCalificate ? {marginBottom: '40px'} : { marginBottom: '25px' })} size={42} />
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
@@ -195,8 +205,9 @@ const TruequeInfo = ({ trueque, removeTrueque, articulosFedeteria = [], toValida
                 </div>
               }
               { trueque && trueque.fechaRealizacion &&
-                <div className='position-absolute bottom-0 mb-4' style={{ zoom: '0.8' }}>
-                  <span className="card-subtitle text-body-secondary ms-1">{trueque.fechaRealizacion.split("-").reverse().join("/")}</span>
+                <div className='position-absolute bottom-0 mb-4 text-center' style={{ zoom: '0.8' }}>
+                  <p className="card-subtitle text-body-secondary ms-1">{trueque.fechaRealizacion.split("-").reverse().join("/")}</p>
+                  { toCalificate && <a href={`calificar/${trueque.id}`} className='link link-opacity-75 link-underline-opacity-25 link-underline-opacity-75-hover link-offset-2 link-success'>Calificar trueque</a> }
                 </div>
               }
             </div>

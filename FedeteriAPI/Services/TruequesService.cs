@@ -190,12 +190,12 @@ namespace FedeteriAPI.Services
 
         public static IEnumerable<TruequeOut> GetAll()
         {
-            return Trueques;
+            return Trueques.OrderByDescending(x => x.FechaRealizacion);
         }
 
         public static IEnumerable<TruequeOut> GetAceptados()
         {
-            return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value);
+            return GetAll().Where(x => x.Aceptado.HasValue && x.Aceptado.Value);
         }
 
         public static IEnumerable<TruequeOut> GetRealizados()
@@ -205,12 +205,12 @@ namespace FedeteriAPI.Services
 
         public static IEnumerable<TruequeOut> GetTruequesByUsuario(int userId)
         {
-            return Trueques.Where(x => x.ArticuloSolicitado.Usuario.Id == userId || x.ArticuloOfrecido.Usuario.Id == userId);
+            return GetAll().Where(x => x.ArticuloSolicitado.Usuario.Id == userId || x.ArticuloOfrecido.Usuario.Id == userId);
         }
 
         public static IEnumerable<TruequeOut> GetPropuestasByUsuario(int userId)
         {
-            return Trueques.Where(x => x.ArticuloSolicitado.Usuario.Id == userId && !x.Aceptado.HasValue);
+            return GetAll().Where(x => x.ArticuloSolicitado.Usuario.Id == userId && !x.Aceptado.HasValue);
         }
 
         public static IEnumerable<TruequeOut> GetTruequesPendientesByUsuario(int userId)
@@ -220,7 +220,7 @@ namespace FedeteriAPI.Services
 
         public static IEnumerable<TruequeOut> GetTruequesPendientesBySucursal(int sucursalId)
         {
-            return Trueques.Where(x => x.Aceptado.HasValue && x.Aceptado.Value && x.Sucursal != null && x.Sucursal.Id == sucursalId);
+            return GetAll().Where(x => x.Aceptado.HasValue && x.Aceptado.Value && x.Sucursal != null && x.Sucursal.Id == sucursalId);
         }
 
         public static bool AddTrueque(TruequeIn newTrueque)
