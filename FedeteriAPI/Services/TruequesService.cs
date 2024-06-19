@@ -213,6 +213,11 @@ namespace FedeteriAPI.Services
             return GetAll().Where(x => x.ArticuloSolicitado.Usuario.Id == userId && !x.Aceptado.HasValue);
         }
 
+        public static IEnumerable<TruequeOut> GetSolicitudesByUsuario(int userId)
+        {
+            return GetAll().Where(x => x.ArticuloOfrecido.Usuario.Id == userId && !x.Aceptado.HasValue);
+        }
+
         public static IEnumerable<TruequeOut> GetTruequesPendientesByUsuario(int userId)
         {
             return GetTruequesByUsuario(userId).Where(x => x.Aceptado.HasValue && x.Aceptado.Value);

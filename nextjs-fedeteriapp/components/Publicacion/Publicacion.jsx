@@ -129,7 +129,7 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
             <div onClick={url ? onClickArticle : null} style={{ cursor: url ? 'pointer' : 'default' }}>
                 <div className='position-relative card-img-top'>
                     {
-                        !own && x.destacado &&
+                        x.destacado &&
                         <div className='badge position-absolute mt-2 ms-2' style={{background: '#509'}}>Destacado ⭐</div>
                     }
                     <div className='p-1 d-flex justify-content-center'>

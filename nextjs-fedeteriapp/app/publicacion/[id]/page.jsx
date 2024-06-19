@@ -183,7 +183,7 @@ const Page = ({ params }) => {
                     <input disabled value={"Categoría " + articulo.categoria} type="text" className="form-control border border-dark" />
                   </div>
                   <div className="w-50 btn-group align-self-start dropdown-center">
-                    <button type="button" className="btn dropdown-toggle d-flex flex-row align-items-center justify-content-between px-3" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
+                    <button type="button" disabled={articulo.usuario.id === user.id} className="btn dropdown-toggle d-flex flex-row align-items-center justify-content-between px-3" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
                       Proponer trueque
                     </button>
                     <ul className="dropdown-menu">

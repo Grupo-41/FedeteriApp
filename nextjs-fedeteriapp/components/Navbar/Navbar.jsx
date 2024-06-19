@@ -59,18 +59,23 @@ const Navbar = () => {
                             <li key={"profile"} className="nav-item">
                                 <a className="nav-link" href="/profile">Mi perfil</a>
                             </li>
-                            <li key={"publicar"} className="nav-item">
-                                <a className="nav-link" href="/publicar">Publicar artículo</a>
-                            </li>
-                            <li key={"publicaciones"} className="nav-item">
-                                <a className="nav-link" href="/mis-publicaciones">Mis publicaciones</a>
-                            </li>
-                            <li key={"propuestas"} className="nav-item">
-                                <a className="nav-link" href="/propuestas">Mis propuestas</a>
-                            </li>
-                            <li key={"mis-trueques"} className="nav-item">
-                                <a className="nav-link" href="/mis-trueques">Mis trueques</a>
-                            </li>
+                            {
+                                !user.esAdmin &&
+                                <>
+                                    <li key={"publicar"} className="nav-item">
+                                        <a className="nav-link" href="/publicar">Publicar artículo</a>
+                                    </li>
+                                    <li key={"publicaciones"} className="nav-item">
+                                        <a className="nav-link" href="/mis-publicaciones">Mis publicaciones</a>
+                                    </li>
+                                    <li key={"propuestas"} className="nav-item">
+                                        <a className="nav-link" href="/propuestas">Mis propuestas</a>
+                                    </li>
+                                    <li key={"mis-trueques"} className="nav-item">
+                                        <a className="nav-link" href="/mis-trueques">Mis trueques</a>
+                                    </li>
+                                </>
+                            }
                             <li key={"sucursales"} className="nav-item">
                                 <a className="nav-link" href="/sucursales">Ver sucursales</a>
                             </li>
@@ -81,24 +86,18 @@ const Navbar = () => {
                             <li key={"registrarEmpleado"} className="nav-item">
                                 <a className="nav-link" href="/registrar-empleado">Registrar empleado</a>
                             </li>
-                            {/*
-                            <li key={"estadisticas"} className="nav-item">
-                                <a className="nav-link" href="/estadisticas">Ver estadísticas</a>
-                            </li>
-                            */}
                         </>
                         }
-                        { user && user.esEmpleado &&
+                        { user && (user.esEmpleado || user.esAdmin) &&
                             <>
                                 <li key={"tasarArticulo"} className="nav-item">
                                     <a className="nav-link" href="/tasar-articulos">Tasar artículos</a>
                                 </li>
-                            </>
-                        }
-                        { user && (user.esEmpleado || user.esAdmin) &&
-                            <>
                                 <li key={"truequesPendientes"} className="nav-item">
                                     <a className="nav-link" href="/trueques-pendientes">Trueques pendientes</a>
+                                </li>
+                                <li key={"estadisticas"} className="nav-item">
+                                    <a className="nav-link" href="/estadisticas">Ver estadísticas</a>
                                 </li>
                             </>
                         }

@@ -95,6 +95,17 @@ namespace FedeteriAPI.Controllers
             return TruequesService.GetPropuestasByUsuario(userID);
         }
 
+        /// <summary>
+        /// Retorna todas las solicitudes de trueque del usuario que no hayan sido aceptadas ni rechazadas
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        [HttpGet("/api/Usuarios/{userID}/solicitudes")]
+        public IEnumerable<TruequeOut> GetSolicitudesByUsuario(int userID)
+        {
+            return TruequesService.GetSolicitudesByUsuario(userID);
+        }
+
 
         /// <summary>
         /// Retorna los trueques pendientes (aceptados) de un usuario
