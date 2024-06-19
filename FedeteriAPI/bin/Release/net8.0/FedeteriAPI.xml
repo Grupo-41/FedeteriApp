@@ -277,6 +277,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.Get(System.Int32)">
+            <summary>
+            Retorna un trueque según su ID
+            </summary>
+            <param name="id">ID del trueque</param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.TruequesController.GetPendientes">
             <summary>
             Retorna todos los trueques que han sido aceptados, pendientes de realizarse

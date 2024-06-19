@@ -21,6 +21,17 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna un trueque según su ID
+        /// </summary>
+        /// <param name="id">ID del trueque</param>
+        /// <returns></returns>
+        [HttpGet("[controller]/{id}")]
+        public TruequeOut Get(int id)
+        {
+            return TruequesService.Get(id);
+        }
+
+        /// <summary>
         /// Retorna todos los trueques que han sido aceptados, pendientes de realizarse
         /// </summary>
         /// <returns></returns>

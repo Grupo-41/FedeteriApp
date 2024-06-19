@@ -43,3 +43,5 @@ FedeteriAPI/orleans.codegen.cs
 **/usuarios.json
 **/trueques.json
 **/articulos_fedeteria.json
+**/calificaciones_sucursales.json
+**/calificaciones_usuarios.json

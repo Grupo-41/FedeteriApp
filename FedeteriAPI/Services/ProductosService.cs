@@ -8,14 +8,14 @@
             {
                 Codigo = "CPG-001",
                 Nombre = "Caña de pescar",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 ImageName = "Caña de pescar.jpg"
             },
             new Producto()
             {
                 Codigo = "DLD-000",
                 Nombre = "Desmalezadora",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 ImageName = "Desmalezadora.jpg"
             },
             new Producto()
@@ -36,7 +36,7 @@
             {
                 Codigo = "PLA-000",
                 Nombre = "Pala",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 ImageName = "Pala.jpg"
             },
             new Producto()
@@ -78,7 +78,7 @@
             {
                 Codigo = "LSN-110",
                 Nombre = "Llave Stillson",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 ImageName = "Llave Stillson.jpg"
             }
         };

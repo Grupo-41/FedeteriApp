@@ -54,7 +54,7 @@ namespace FedeteriAPI.Services
             AddHardcodedArticulo(2, new ArticuloIn()
             {
                 Descripcion = "Stillson",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 Estado = "Usado"
             }, ["Llave Stillson.jpg"], 25000);
 
@@ -82,7 +82,7 @@ namespace FedeteriAPI.Services
             AddHardcodedArticulo(3, new ArticuloIn()
             {
                 Descripcion = "Caña de pescar",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 Estado = "Usado"
             }, ["Caña de pescar.jpg"], 15000);
 
@@ -103,7 +103,7 @@ namespace FedeteriAPI.Services
             AddHardcodedArticulo(4, new ArticuloIn()
             {
                 Descripcion = "Hacha de mano",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 Estado = "Usado"
             }, ["Hacha de mano.png"], 25000);
 
@@ -152,14 +152,14 @@ namespace FedeteriAPI.Services
             AddHardcodedArticulo(5, new ArticuloIn()
             {
                 Descripcion = "Guantes de trabajo",
-                Marca = "Genéricos",
+                Marca = "Genérico",
                 Estado = "Nuevo"
             }, ["Guantes de trabajo.webp"], 15000);
 
             AddHardcodedArticulo(5, new ArticuloIn()
             {
                 Descripcion = "Caja Capsulada Exterior",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 Estado = "Nuevo"
             }, ["Caja Capsulada Exterior.jpg"], 15000, new DateTime(2024, 6, 16));
 

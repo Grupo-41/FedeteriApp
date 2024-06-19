@@ -31,6 +31,5 @@
         public Sucursal Sucursal { get; set; }
         public double Rating { get; set; }
         public int Votantes { get; set; }
-
     }
 }

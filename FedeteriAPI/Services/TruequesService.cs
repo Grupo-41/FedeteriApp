@@ -184,7 +184,7 @@ namespace FedeteriAPI.Services
                 UpdateSucursal(ActualID - 1, sucursalId);
 
                 if(realizado.HasValue)
-                    ValidateTrueque(ActualID - 1, realizado.Value, date);
+                    ValidateTrueque(ActualID - 1, realizado.Value, date, true);
             }
         }
 
@@ -254,7 +254,7 @@ namespace FedeteriAPI.Services
             return TruequesFile.FirstOrDefault(x => x.Id == truequeId);
         }
 
-        public static void ValidateTrueque(int truequeId, bool done, DateOnly? dateOnly = null)
+        public static void ValidateTrueque(int truequeId, bool done, DateOnly? dateOnly = null, bool hardcoded = false)
         {
             TruequeOut t = GetTruequeById(truequeId);
             Trueque tFile = GetTruequeFileById(truequeId);
@@ -270,6 +270,21 @@ namespace FedeteriAPI.Services
                 ArticulosService.WriteAll();
                 WriteAll();
             }
+
+            if (hardcoded)
+                return;
+
+            EmailService.SendEmail(t.ArticuloOfrecido.Usuario.Email,
+                                   subject: done ? "Trueque realizado - FedeteriApp" : "Trueque no realizado - FedeteriApp",
+                                   message: done ? $@"Realizaste un trueque en nuestra sucursal {t.Sucursal?.Nombre}! Contanos tu experiencia y calificanos en <a href='http://localhost:3000/calificar/{t.Id}'>nuestra página</a>" :
+                                           $@"No terminaste de efectuar tu trueque en nuestra sucursal {t.Sucursal?.Nombre}! Contanos por qué y calificanos en <a href='http://localhost:3000/calificar/{t.Id}'>nuestra página</a>"
+                                   );
+
+            EmailService.SendEmail(t.ArticuloSolicitado.Usuario.Email,
+                                   subject: done ? "Trueque realizado - FedeteriApp" : "Trueque no realizado - FedeteriApp",
+                                   message: done ? $@"Realizaste un trueque en nuestra sucursal {t.Sucursal?.Nombre}! Contanos tu experiencia y calificanos en <a href='http://localhost:3000/calificar/{t.Id}'>nuestra página</a>" :
+                                           $@"No terminaste de efectuar tu trueque en nuestra sucursal {t.Sucursal?.Nombre}! Contanos por qué y calificanos en <a href='http://localhost:3000/calificar/{t.Id}'>nuestra página</a>"
+                                   );
         }
 
         private static void SetTruequeAceptado(int truequeId, bool aceptado, bool hardcoded = false)
@@ -343,6 +358,11 @@ namespace FedeteriAPI.Services
             }
 
             WriteAll();
+        }
+
+        internal static TruequeOut Get(int id)
+        {
+            return Trueques.FirstOrDefault(x => x.Id == id);
         }
     }
 }

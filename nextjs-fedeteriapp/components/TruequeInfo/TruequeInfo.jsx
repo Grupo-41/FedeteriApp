@@ -59,12 +59,12 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
     let URL = 'http://localhost:5000/api/Trueques/'
     URL += realizado ? 'validar-trueque/' : 'invalidar-trueque/'
     URL += trueque.id
-/*
+
     fetch(URL, {
       method: 'PUT'
     }).then(() => {
       toast.success(realizado ? 'Trueque validado con éxito.' : 'Trueque invalidado con éxito.')
-    });*/
+    });
   }
 
   function acceptTrueque(accept) { 
@@ -217,7 +217,7 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
               <div className="modal-content">
                 <div className="modal-header">
                   <h3 className="modal-title text-center" id="ventaModalLabel">Registrar ventas</h3>
-                  <button type="button" onClick={{/*() => removeTrueque(trueque.id)*/}} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button type="button" onClick={() => removeTrueque(trueque.id)} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body p-1">
                   <div className="d-flex justify-content-center w-100">

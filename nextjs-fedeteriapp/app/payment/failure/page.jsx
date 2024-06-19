@@ -1,9 +1,15 @@
 'use client'
 import React, { useEffect } from 'react'
 import ReactLoading from 'react-loading'
+import { useLocalStorage } from 'react-use'
 
 const Page = () => {
+    const [aDestacar, setADestacar, removeADestacar] = useLocalStorage('destacado', null);
+
     useEffect(() => {
+        if(aDestacar)
+            removeADestacar();
+
         setTimeout(() => {
             if(window)
                 window.location.href = "/"

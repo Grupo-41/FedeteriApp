@@ -74,7 +74,7 @@ namespace FedeteriAPI.Services
             AddArticulo(new ArticuloFedeteria()
             {
                 Descripcion = "Hacha de mano",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 Image = "Hacha de mano.png",
                 Precio = 40000
             });
@@ -106,7 +106,7 @@ namespace FedeteriAPI.Services
             AddArticulo(new ArticuloFedeteria()
             {
                 Descripcion = "Tijera Cortacero",
-                Marca = "Genérica",
+                Marca = "Genérico",
                 Image = "Tijera Cortacero.png",
                 Precio = 12500
             });

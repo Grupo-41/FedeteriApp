@@ -34,8 +34,8 @@ const Page = () => {
         <div className="mt-5 d-flex flex-column align-items-center gap-5 justify-content-center w-100">
             {
                 propuestas && propuestas.length > 0 &&
-                <div className='mb-3 text-center'>
-                    <h2>Tus propuestas pendientes</h2>
+                <div className='mb-3'>
+                    <h2 className='text-center'>Tus propuestas pendientes</h2>
                     <div style={{ minWidth: '400px', maxWidth: '58rem' }} className="mt-2 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
                         {propuestas && propuestas.length > 0 &&
                             propuestas.map(x => {
@@ -53,8 +53,8 @@ const Page = () => {
             }
             {
                 solicitudes && solicitudes.length > 0 &&
-                <div className='text-center'>
-                    <h2 className='mb-3'>Tus solicitudes pendientes</h2>
+                <div>
+                    <h2 className='mb-3 text-center'>Tus solicitudes pendientes</h2>
                     <div style={{ minWidth: '400px', maxWidth: '58rem' }} className="mt-2 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
                         {solicitudes && solicitudes.length > 0 &&
                             solicitudes.map(x => {
