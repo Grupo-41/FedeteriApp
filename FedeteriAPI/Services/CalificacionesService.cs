@@ -85,12 +85,22 @@ namespace FedeteriAPI.Services
 
         internal static void CalificarSucursal(CalificacionSucursal calificacion)
         {
+            int alreadyVoted = CalificacionSucursales.FindIndex(x => x.TruequeID == calificacion.TruequeID && x.UsuarioID == calificacion.UsuarioID);
+
+            if (alreadyVoted != -1)
+                CalificacionSucursales.RemoveAt(alreadyVoted);
+
             CalificacionSucursales.Add(calificacion);
             WriteAll();
         }
 
         internal static void CalificarUsuario(CalificacionUsuario calificacion)
         {
+            int alreadyVoted = CalificacionUsuarios.FindIndex(x => x.TruequeID == calificacion.TruequeID && x.UsuarioID == calificacion.UsuarioID);
+
+            if(alreadyVoted != -1)
+                CalificacionUsuarios.RemoveAt(alreadyVoted);
+
             CalificacionUsuarios.Add(calificacion);
             WriteAll();
         }

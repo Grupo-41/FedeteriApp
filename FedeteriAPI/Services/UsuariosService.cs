@@ -90,7 +90,10 @@ namespace FedeteriAPI.Services
                 Telefono = 1234567890,
                 SucursalID = 1,
                 Id = ActualID++,
-            }));
+            })
+            {
+                Puntos = 50000
+            });
 
             Usuarios.Add(new Usuario(new UsuarioIn()
             {
@@ -318,6 +321,19 @@ namespace FedeteriAPI.Services
             Usuario u = GetUsuarioByID(userId); if (u == null) return;
 
             u.AddPoints(points);
+            WriteAll();
+        }
+
+        internal static void CanjearPuntos(int userId, int puntos)
+        {
+            Usuario u = GetUsuarioByID(userId); 
+            if (u == null) return; 
+            if (u.Puntos < puntos) return;
+
+            u.SubPoints(puntos);
+            CuponDescuento cupon = CodigosService.GenerarCuponDescuento(userId, puntos);
+            CodigosService.EnviarCuponDescuento(u, cupon);
+
             WriteAll();
         }
     }

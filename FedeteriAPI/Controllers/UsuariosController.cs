@@ -48,6 +48,27 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Retorna los puntos adquiridos de un usuario en específico
+        /// </summary>
+        /// <param name="userId">ID del usuario</param>
+        /// <returns></returns>
+        [HttpPost("{userId}/canjear-puntos/{puntos}")]
+        public void PostCanjearPuntos(int userId, int puntos)
+        {
+            UsuariosService.CanjearPuntos(userId, puntos);
+        }
+
+        /// <summary>
+        /// Valida un cupón de descuento y lo elimina del sistema
+        /// </summary>
+        /// <param name="codigo">Código de cupón</param>
+        [HttpGet("/api/validar-cupon/{codigo}")]
+        public bool GetValidarCupon(string codigo)
+        {
+            return CodigosService.ValidarCupon(codigo);
+        }
+
+        /// <summary>
         /// Retorna los artículos de un usuario en específico
         /// </summary>
         /// <param name="userId">ID del usuario</param>

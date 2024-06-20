@@ -52,7 +52,7 @@ const Page = ({ params }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(calificacion)
-        }).then(() => toast.success("Calificación enviada correctamente. Gracias!"))
+        }).then(() => toast.success("Sucursal calificada correctamente. Gracias!"))
     }
 
     function postCalificacionUsuario() {
@@ -78,7 +78,9 @@ const Page = ({ params }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(calificacion)
-        }).then(() => toast.success("Calificación enviada correctamente. Gracias!"))
+        }).then(() => {
+            toast.success("Usuario calificado correctamente. Gracias!")
+        })
     }
 
     useEffect(() => {

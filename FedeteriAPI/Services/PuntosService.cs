@@ -16,5 +16,11 @@
             >= 100000 => 10,
             _ => throw new NotImplementedException()
         };
+
+        public static int CalcularDescuento(int puntos)
+        {
+            double puntosDouble = puntos / 2;
+            return (int)Math.Round(puntosDouble);
+        }
     }
 }

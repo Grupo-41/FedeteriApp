@@ -10,6 +10,7 @@
             internal static readonly string FILE_CALIFICACIONES_USUARIOS = "calificaciones_usuarios.json";
             internal static readonly string FILE_CALIFICACIONES_SUCURSALES = "calificaciones_sucursales.json";
             internal static readonly string FILE_CODIGOS = "codigos.json";
+            internal static readonly string FILE_CUPONES = "cupones.json";
             internal static readonly string FILE_TRUEQUES = "trueques.json";
         }
 

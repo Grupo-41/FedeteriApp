@@ -392,6 +392,19 @@
             <param name="userId">ID del usuario</param>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.PostCanjearPuntos(System.Int32,System.Int32)">
+            <summary>
+            Retorna los puntos adquiridos de un usuario en específico
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.UsuariosController.GetValidarCupon(System.String)">
+            <summary>
+            Valida un cupón de descuento y lo elimina del sistema
+            </summary>
+            <param name="codigo">Código de cupón</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.UsuariosController.GetArticulosByUsuario(System.Int32)">
             <summary>
             Retorna los artículos de un usuario en específico
