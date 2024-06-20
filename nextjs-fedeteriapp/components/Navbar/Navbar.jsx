@@ -31,6 +31,11 @@ const Navbar = () => {
 
     useEffect(() => {
         setLoading(false);
+
+        const liElements = document.querySelectorAll(".navbar-nav li");
+
+        liElements.forEach(x => x)
+
     }, [])
 
   return (

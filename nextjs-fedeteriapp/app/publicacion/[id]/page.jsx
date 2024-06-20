@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 const Page = ({ params }) => {
   const id = params.id;
-  const [user, setUser, removeUser] = useLocalStorage('user', {});
+  const [user, setUser, removeUser] = useLocalStorage('user', null);
   const [articulo, setArticulo] = useState({});
   const [articulosUsuario, setArticulosUsuario] = useState([]);
   const refComentario = useRef();
@@ -26,7 +26,7 @@ const Page = ({ params }) => {
       if (user)
         setArticulosUsuario(data.filter(x => (x.usuario.id === user.id)));
     });
-  }, [])
+  }, [user])
 
   useEffect(() => {
     refreshArticulo();

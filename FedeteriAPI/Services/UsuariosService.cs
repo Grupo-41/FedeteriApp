@@ -2,6 +2,7 @@
 using FedeteriAPI.Models;
 using FedeteriAPI.Utils;
 using static FedeteriAPI.Utils.Constants;
+using MercadoPago.Resource.User;
 
 namespace FedeteriAPI.Services
 {
@@ -323,6 +324,13 @@ namespace FedeteriAPI.Services
             u.AddPoints(points);
             WriteAll();
         }
+        internal static void SubPointsToUser(int userId, int points)
+        {
+            Usuario u = GetUsuarioByID(userId); if (u == null) return;
+
+            u.SubPoints(points);
+            WriteAll();
+        }
 
         internal static void CanjearPuntos(int userId, int puntos)
         {
@@ -336,5 +344,6 @@ namespace FedeteriAPI.Services
 
             WriteAll();
         }
+
     }
 }

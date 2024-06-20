@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocalStorage } from 'react-use'
 
 const Page = ({ params }) => {
-    const [user, setUser, removeUser] = useLocalStorage('user', {});
+    const [user, setUser, removeUser] = useLocalStorage('user', null);
     const query = params.query;
     const [articulos, setArticulos] = useState([])
     const [filtrosMarca, setFiltrosMarca] = useState([])
@@ -48,7 +48,7 @@ const Page = ({ params }) => {
 
                 setArticulos(resFilter);
             })
-    }, [])
+    }, [user])
 
     return (
         <div style={{ marginLeft: articulos && articulos.length > 0 ? '200px' : '0', marginTop: '100px', marginBottom: '25px' }} className="d-flex flex-column align-items-center justify-content-center w-100">
