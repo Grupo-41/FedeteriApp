@@ -7,11 +7,17 @@ const Page = () => {
     const [truequesCount, setTruequesCount] = useState(0);
 
     useEffect(() => {
-        const URL = 'http://localhost:5000/api/Usuarios/' + user.id + '/trueques-pendientes';
+        let URL = 'http://localhost:5000/api/Usuarios/' + user.id + '/trueques-pendientes';
 
         fetch(URL)
         .then(data => data.json())
         .then(data => setTruequesCount(data.filter(x => x.realizado).length));
+
+        URL = 'http://localhost:5000/api/Usuarios/' + user.id + '/puntos';
+        fetch(URL).then(data => data.json()).then(data => {
+            const updatedUser = { ...user, puntos: data }
+            setUser(updatedUser);
+        })
     }, [])
 
     if (user === null)
