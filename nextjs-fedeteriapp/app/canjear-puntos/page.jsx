@@ -13,9 +13,13 @@ const Page = () => {
     const refPuntos = useRef();
 
     useEffect(() => {
+        refreshPoints();
+    }, [])
+
+    function refreshPoints(){
         const URL = 'http://localhost:5000/api/Usuarios/' + user.id + '/puntos';
         fetch(URL).then(data => data.json()).then(data => setPuntos(data));
-    }, [])
+    }
 
     function inputPuntos(e){
         if(e.target.value.length > 5){
@@ -48,9 +52,7 @@ const Page = () => {
             },
         });
 
-        myPromise.then(() => {
-            setPuntos(puntos - refPuntos.current.value);
-        })
+        myPromise.then(() => refreshPoints())
 
         toast.promise(myPromise, {
             loading: 'Canjeando cupón...',
