@@ -128,7 +128,7 @@ namespace FedeteriAPI.Services
             );
         }
 
-        public static bool ValidarCupon(string codigo)
+        public static CuponDescuento ValidarCupon(string codigo)
         {
             CuponDescuento c = Cupones.FirstOrDefault(x => x.CodigoCupon == codigo);
 
@@ -136,10 +136,10 @@ namespace FedeteriAPI.Services
             {
                 Cupones.Remove(c);
                 WriteAll();
-                return true;
+                return c;
             }
 
-            return false;
+            return null;
         }
     }
 }

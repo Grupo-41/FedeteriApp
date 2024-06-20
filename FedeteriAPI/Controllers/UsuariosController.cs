@@ -63,7 +63,7 @@ namespace FedeteriAPI.Controllers
         /// </summary>
         /// <param name="codigo">Código de cupón</param>
         [HttpGet("/api/validar-cupon/{codigo}")]
-        public bool GetValidarCupon(string codigo)
+        public CuponDescuento GetValidarCupon(string codigo)
         {
             return CodigosService.ValidarCupon(codigo);
         }
