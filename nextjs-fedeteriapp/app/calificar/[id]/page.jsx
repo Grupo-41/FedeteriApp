@@ -17,6 +17,7 @@ const Page = ({ params }) => {
     const refDescripcionUsuario = useRef();
 
     const labels = {
+        null: 'Sin calificar',
         0: 'Sin calificar',
         1: 'Muy malo',
         2: 'Malo',
@@ -32,7 +33,7 @@ const Page = ({ params }) => {
     function postCalificacionSucursal() {
         const URL = 'http://localhost:5000/api/Calificaciones/calificar-sucursal/'
 
-        if (ratingSucursal === 0) {
+        if (!ratingSucursal || ratingSucursal === 0) {
             toast.error("Debes especificar un puntaje para la sucursal.")
             return;
         }
@@ -58,7 +59,7 @@ const Page = ({ params }) => {
     function postCalificacionUsuario() {
         const URL = 'http://localhost:5000/api/Calificaciones/calificar-usuario/'
 
-        if (ratingUsuario === 0) {
+        if (!ratingUsuario || ratingUsuario === 0) {
             toast.error("Debes especificar un puntaje para el usuario.")
             return;
         }
@@ -91,10 +92,15 @@ const Page = ({ params }) => {
 
             if (data.articuloSolicitado.usuario.id == user.id)
                 setUsuario(data.articuloOfrecido.usuario);
-            else
+            else if(data.articuloOfrecido.usuario.id == user.id)
                 setUsuario(data.articuloSolicitado.usuario);
+            else
+                setUsuario(null);
         });
     }, [])
+
+    if(!usuario)
+        return "No puedes calificar un trueque del que no fuiste parte"
 
     return (
         <div style={{ width: 'fit-content' }} className="mt-5 d-flex gap-5 flex-column flex-nowrap align-items-center justify-content-center">
