@@ -50,7 +50,7 @@ const Page = () => {
                 <>
                     <h2 className="ps-2 mb-3 text-center">Trueques no concretados</h2>
                     <div style={{minWidth: '350px', maxWidth: '55rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                        {trueques.filter(x => x.realizado === false).map(x => <TruequeInfo key={x.id} trueque={x} />)}
+                        {trueques.filter(x => x.realizado === false).map(x => <TruequeInfo key={x.id} trueque={x} userId={user.id} calificable={true}/>)}
                     </div>
                 </>
             }

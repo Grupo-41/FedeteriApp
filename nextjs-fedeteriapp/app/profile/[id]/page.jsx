@@ -9,10 +9,9 @@ const Page = ({ params }) => {
     const id = params.id;
     const [user, setUser, removeUser] = useLocalStorage('user', null);
     const [searchedUser, setSearchedUser] = useState(null)
-    const [userRating, setUserRating] = useState(4.5);
+    const [userCalification, setUserCalification] = useState(null);
     const [truequesCount, setTruequesCount] = useState(0);
     const [listaDeseos, setListaDeseos] = useState([]);
-    const votantes = 23132;
 
     const labels = {
         null: 'Sin calificar',
@@ -57,6 +56,14 @@ const Page = ({ params }) => {
             .then(data => {
                 setListaDeseos(data)
             });
+
+        URL = 'http://localhost:5000/api/Calificaciones/usuarios/' + id;
+
+        fetch(URL)
+            .then(data => data.json())
+            .then(data => {
+                setUserCalification(data)
+            });
     }, [])
 
     return (
@@ -64,13 +71,15 @@ const Page = ({ params }) => {
             {
                 user !== null ?
                     searchedUser ?
-                        <div style={{width: 'fit-content'}} className="mt-5 d-flex flex-nowrap flex-column gap-4 justify-content-center w-100">
+                        <div style={{ width: 'fit-content' }} className="mt-5 d-flex flex-nowrap flex-column gap-4 justify-content-center w-100">
                             <form style={{ minWidth: '400px', width: '100%', background: 'white' }} className="d-flex flex-column border rounded p-4 w-25 align-self-center">
-                                <h3 className='text-center mt-1 mb-1'>Perfil de {searchedUser.nombre}</h3>
-                                <div className='d-flex flex-column text-center gap-1 align-items-center w-100'>
-                                    <Rating name="read-only" precision={0.1} value={userRating} getLabelText={getLabelText} readOnly />
-                                    <p>{userRating} ({votantes})</p>
-                                </div>
+                                <h3 className={'text-center mt-1 ' + (userCalification ? 'mb-1' : 'mb-3')}>Perfil de {searchedUser.nombre}</h3>
+                                {   userCalification &&
+                                    <div className='d-flex flex-column text-center gap-1 align-items-center w-100'>
+                                        <Rating name="read-only" precision={0.1} value={userCalification.rating} getLabelText={getLabelText} readOnly />
+                                        <p>{userCalification.rating.toFixed(1)} ({userCalification.votantes})</p>
+                                    </div>
+                                }
                                 <div className='d-flex flex-row gap-3'>
                                     <div className="mb-3">
                                         <label htmlFor="nombre" className="form-label">Nombre</label>
