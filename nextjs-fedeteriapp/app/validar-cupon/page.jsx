@@ -20,11 +20,12 @@ const Page = () => {
             .then(data => {
                 if (data.status === 200)
                     return data.json()
+                
                 return null
             })
             .then(data => {
-                console.log(data)
                 setCupon(data)
+
                 if (data !== null) {
                     toast.success("El cupón fue validado correctamente")
                 }
@@ -42,7 +43,7 @@ const Page = () => {
                     <input ref={cuponRef} placeholder='Ingrese el código' type="text" className="form-control" id="cupon" />
                 </div>
                 {cupon &&
-                    <p className='alert alert-success'>El cupón canjeado tiene un descuento de: ${cupon.valor}</p>
+                    <p className='alert alert-success'>El cupón canjeado tiene un descuento de ${cupon.valor}</p>
                 }
                 <button onClick={validateCode} type="button" className="btn float-end" style={{ background: '#e7ab12' }}>Validar cupón</button>
             </form>
