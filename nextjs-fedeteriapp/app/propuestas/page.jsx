@@ -35,7 +35,7 @@ const Page = () => {
             {
                 propuestas && propuestas.length > 0 &&
                 <div className='mb-3'>
-                    <h2 className='text-center'>Tus propuestas pendientes</h2>
+                    <h2 className='text-center'>Propuestas pendientes</h2>
                     <div style={{ minWidth: '400px', maxWidth: '58rem' }} className="mt-2 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
                         {propuestas && propuestas.length > 0 &&
                             propuestas.map(x => {
@@ -54,7 +54,7 @@ const Page = () => {
             {
                 solicitudes && solicitudes.length > 0 &&
                 <div>
-                    <h2 className='mb-3 text-center'>Tus solicitudes pendientes</h2>
+                    <h2 className='mb-3 text-center'>Trueques pendientes</h2>
                     <div style={{ minWidth: '400px', maxWidth: '58rem' }} className="mt-2 d-flex flex-row justify-content-center flex-wrap gap-4 align-self-center">
                         {solicitudes && solicitudes.length > 0 &&
                             solicitudes.map(x => {
