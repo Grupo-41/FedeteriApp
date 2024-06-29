@@ -1,15 +1,18 @@
 ﻿using FedeteriAPI.Utils;
 using FedeteriAPI.Models;
 using static FedeteriAPI.Utils.Constants;
+using System.Runtime.CompilerServices;
 
 namespace FedeteriAPI.Services
 {
     public static class ArticulosService
     {
         static List<ArticuloOut> Articulos = new List<ArticuloOut>();
+        static List<Destacado> Destacados = new List<Destacado>();
         static int ActualID = 0;
 
         public static void WriteAll() => FilesService<ArticuloOut>.WriteAll(Paths.FILE_ARTICULOS, Articulos);
+        public static void WriteAllDestacados() => FilesService<Destacado>.WriteAll(Paths.FILE_DESTACADOS, Destacados);
         public static async Task ReadAllAsync()
         {
             Articulos = await FilesService<ArticuloOut>.ReadAllAsync(Paths.FILE_ARTICULOS);
@@ -19,6 +22,8 @@ namespace FedeteriAPI.Services
 
             if (Articulos.Count < 5)
                 HardcodeArticles();
+
+            Destacados = await FilesService<Destacado>.ReadAllAsync(Paths.FILE_DESTACADOS);
         }
 
         private static void HardcodeArticles()
@@ -347,7 +352,48 @@ namespace FedeteriAPI.Services
         {
             ArticuloOut articulo = Articulos.FirstOrDefault(x => x.Id == id);
             articulo.Destacado = DateTime.Now.AddDays(duracion);
+
+            Destacados.Add(new Destacado()
+            {
+                Comienzo = DateOnly.FromDateTime(DateTime.Now),
+                DiasDuracion = duracion
+            });
+
+            WriteAllDestacados();
             WriteAll();
+        }
+
+        internal static IEnumerable<Destacado> GetDestacados()
+        {
+            return Destacados;
+        }
+    }
+
+    public class Destacado
+    {
+        public DateOnly Comienzo { get; set; }
+        public int DiasDuracion { get; set; }
+        public int Monto()
+        {
+            int res = 0;
+
+            switch (DiasDuracion)
+            {
+                case 1:
+                    res = 1000;
+                    break;
+                case 7:
+                    res = 5000;
+                    break;
+                case 14:
+                    res = 10000;
+                    break;
+                case 30:
+                    res = 20000;
+                    break;
+            }
+
+            return res;
         }
     }
 }

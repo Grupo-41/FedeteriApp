@@ -129,6 +129,7 @@ namespace FedeteriAPI.Services
             if (articulo == null) return false;
 
             venta.Fecha = DateOnly.FromDateTime(DateTime.Now);
+            venta.MontoTotal = venta.Cantidad * articulo.Precio;
             articulo.Ventas.Add(venta);
 
             for(int i = 0; i < venta.Cantidad; i++)
@@ -141,6 +142,16 @@ namespace FedeteriAPI.Services
         internal static IEnumerable<ArticuloFedeteria> GetArticulosFedeteria()
         {
             return ArticulosFedeteria;
+        }
+
+        public static IEnumerable<Venta> GetVentasBySucursal(int id)
+        {
+            List<Venta> ventas = new List<Venta>();
+
+            foreach(ArticuloFedeteria a in ArticulosFedeteria)
+                ventas.AddRange(a.Ventas);
+
+            return ventas.Where(x => TruequesService.Get(x.TruequeID).Sucursal.Id == id);
         }
     }
 }

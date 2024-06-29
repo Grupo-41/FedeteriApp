@@ -76,6 +76,7 @@
         public int UsuarioID { get; set; }
         public int TruequeID { get; set; }
         public int Cantidad { get; set; }
+        public int MontoTotal { get; set; }
         public DateOnly? Fecha { get; set; }
     }
 }

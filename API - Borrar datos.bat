@@ -7,6 +7,7 @@ del calificaciones_sucursales.json
 del calificaciones_usuarios.json
 del codigos.json
 del cupones.json
+del destacados.json
 
 cd bin/Debug/net8.0/
 del trueques.json
@@ -17,6 +18,7 @@ del calificaciones_sucursales.json
 del calificaciones_usuarios.json
 del codigos.json
 del cupones.json
+del destacados.json
 
 cd ../../Release/net8.0/
 del trueques.json
@@ -27,3 +29,4 @@ del calificaciones_sucursales.json
 del calificaciones_usuarios.json
 del codigos.json
 del cupones.json
+del destacados.json
