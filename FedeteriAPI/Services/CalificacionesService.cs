@@ -32,7 +32,7 @@ namespace FedeteriAPI.Services
 
                 res.Sucursal = s;
                 res.Votantes = calificaciones.Count();
-                res.Rating = calificaciones.Average(x => x.Rating);
+                res.Rating = calificaciones.Count() > 0 ? calificaciones.Average(x => x.Rating) : 0;
                 results.Add(res);
             }
 

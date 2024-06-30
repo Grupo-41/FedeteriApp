@@ -41,6 +41,7 @@ FedeteriAPI/orleans.codegen.cs
 **/articulos.json
 **/codigos.json
 **/cupones.json
+**/destacados.json
 **/usuarios.json
 **/trueques.json
 **/articulos_fedeteria.json
