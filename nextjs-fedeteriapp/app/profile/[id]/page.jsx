@@ -74,9 +74,6 @@ const Page = ({ params }) => {
                         <div style={{ width: 'fit-content' }} className="mt-5 d-flex flex-nowrap flex-column gap-4 justify-content-center w-100">
                             <form style={{ minWidth: '400px', width: '100%', background: 'white' }} className="d-flex flex-column border rounded p-4 w-25 align-self-center">
                                 <h3 className={'text-center mt-1 ' + (userCalification ? 'mb-1' : 'mb-3')}>Perfil de {searchedUser.nombre}</h3>
-                                <div className='d-flex flex-column text-center gap-1 align-items-center w-100'>
-                                    <p>Trueques realizados: {truequesCount} </p>
-                                </div>
                                 {userCalification &&
                                     <div className='d-flex flex-column text-center gap-1 align-items-center w-100'>
                                         <Rating name="read-only" precision={0.1} value={userCalification.rating} getLabelText={getLabelText} readOnly />
@@ -93,10 +90,14 @@ const Page = ({ params }) => {
                                         <input type="text" value={searchedUser.apellido} className="form-control border border-dark" id="apellido" disabled />
                                     </div>
                                 </div>
-                                <div className='d-flex flex-column text-center gap-1 align-items-center w-100'>
-                                    <div className="mb-3">
-                                        <label for="pointsCount" className="form-label">Puntos</label>
-                                        <input type="text" value={searchedUser.puntos} className="form-control border border-dark d-flex flex-column text-center gap-1 align-items-center w-100" id="pointsCount" disabled />
+                                <div className='d-flex flex-row gap-3 align-items-center w-100'>
+                                    <div className="input-group mb-3">
+                                        <span className="input-group-text px-3 border-dark">Trueques</span>
+                                        <input type="text" value={truequesCount} className="form-control border border-dark text-center" id="pointsCount" disabled />
+                                    </div>
+                                    <div className="input-group mb-3">
+                                        <span className="input-group-text px-3 border-dark">Puntos</span>
+                                        <input type="text" value={searchedUser.puntos} className="form-control border border-dark text-center" id="pointsCount" disabled />
                                     </div>
                                 </div>
                                 <a href={`/publicaciones/${searchedUser.id}`} className='btn btn-warning mt-2 mb-2' style={{ background: '#e7ab12' }}>Ver artículos publicados</a>
