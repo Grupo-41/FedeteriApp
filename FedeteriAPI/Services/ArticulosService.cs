@@ -145,7 +145,7 @@ namespace FedeteriAPI.Services
                 Descripcion = "Rollo de cable unipolar 2.5mm",
                 Marca = "TREFILCON",
                 Estado = "Nuevo"
-            }, ["Rollo Cable Unipolar 2.5mm.jpg"], 17500, new DateTime(2023, 6, 16));
+            }, ["Rollo Cable Unipolar 2.5mm.jpg"], 17500, true);
 
             AddHardcodedArticulo(5, new ArticuloIn()
             {
@@ -166,7 +166,7 @@ namespace FedeteriAPI.Services
                 Descripcion = "Caja Capsulada Exterior",
                 Marca = "Genérico",
                 Estado = "Nuevo"
-            }, ["Caja Capsulada Exterior.jpg"], 15000, new DateTime(2024, 6, 16));
+            }, ["Caja Capsulada Exterior.jpg"], 15000, true);
 
             WriteAll();
         }
@@ -176,7 +176,7 @@ namespace FedeteriAPI.Services
             return Articulos.OrderByDescending(x => x.Destacado.HasValue && DateTime.Compare(x.Destacado.Value, DateTime.Now) > 0).ToList();
         }
 
-        private static void AddHardcodedArticulo(int userID, ArticuloIn articulo, string[] images, double price, DateTime? destacado = null)
+        private static void AddHardcodedArticulo(int userID, ArticuloIn articulo, string[] images, double price, bool destacado = false)
         {
             ArticuloOut nuevoArticulo = new ArticuloOut(articulo)
             {
@@ -184,11 +184,14 @@ namespace FedeteriAPI.Services
                 Usuario = new UsuarioOut(UsuariosService.GetUsuarioByID(userID)),
                 ImageNames = images.ToList(),
                 Categoria = AsignarCategoria(price),
-                Tasado = true,
-                Destacado = destacado
+                Tasado = true
             };
 
             Articulos.Add(nuevoArticulo);
+
+            if(destacado)
+                DestacarArticulo(ActualID - 1, 7);
+
             WriteAll();
         }
 

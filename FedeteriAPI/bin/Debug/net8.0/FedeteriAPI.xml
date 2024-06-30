@@ -251,6 +251,22 @@
             <param name="codigo"></param>
             <returns></returns>
         </member>
+        <member name="M:FedeteriAPI.Controllers.EstadisticasController.GetVentasPorSucursal(System.String,System.String)">
+            <summary>
+            Retorna todas las ventas agrupadas por sucursal, con el monto total recaudado, en un rango de fechas específico
+            </summary>
+            <param name="inicio">Fecha de inicio</param>
+            <param name="fin">Fecha de fin</param>
+            <returns></returns>
+        </member>
+        <member name="M:FedeteriAPI.Controllers.EstadisticasController.GetDestacadosPorFecha(System.String,System.String)">
+            <summary>
+            Retorna la cantidad de destacados, junto con el monto total recaudado, en un rango de fechas específico
+            </summary>
+            <param name="inicio">Fecha de inicio</param>
+            <param name="fin">Fecha de fin</param>
+            <returns></returns>
+        </member>
         <member name="M:FedeteriAPI.Controllers.ImagesController.Get(System.String)">
             <summary>
             A este endpoint se le piden todas las imágenes a la API
