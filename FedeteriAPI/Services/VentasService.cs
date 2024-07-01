@@ -263,16 +263,6 @@ namespace FedeteriAPI.Services
             foreach(ArticuloFedeteria a in ArticulosFedeteria)
                 ventas.AddRange(a.Ventas);
 
-            string aaaaaaaaaaaaaaaaaaa = "";
-
-            foreach(Venta v in ventas)
-            {
-                var sucursal = TruequesService.Get(v.TruequeID).Sucursal != null ? TruequesService.Get(v.TruequeID).Sucursal.Nombre : "null";
-                aaaaaaaaaaaaaaaaaaa += v.TruequeID.ToString() + " - " + sucursal + Environment.NewLine;
-            }
-
-            Console.WriteLine(aaaaaaaaaaaaaaaaaaa);
-
             return ventas.Where(x => TruequesService.Get(x.TruequeID).Sucursal.Id == id);
         }
     }
