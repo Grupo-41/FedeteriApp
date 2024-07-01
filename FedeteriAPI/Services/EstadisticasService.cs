@@ -15,7 +15,7 @@ namespace FedeteriAPI.Services
                 ventasPorSucursal.Ventas = VentasService.GetVentasBySucursal(s.Id).ToList();
 
                 if (inicio.HasValue && fin.HasValue)
-                    ventasPorSucursal.Ventas = ventasPorSucursal.Ventas.Where(x => x.Fecha.Value.CompareTo(inicio) >= 0 && x.Fecha.Value.CompareTo(fin) < 0).ToList();
+                    ventasPorSucursal.Ventas = ventasPorSucursal.Ventas.Where(x => x.Fecha.Value.CompareTo(inicio) >= 0 && x.Fecha.Value.CompareTo(fin) <= 0).ToList();
 
                 ventasPorSucursal.MontoTotal = ventasPorSucursal.Ventas.Sum(x => x.MontoTotal);
 
@@ -30,7 +30,7 @@ namespace FedeteriAPI.Services
             List<Destacado> destacados = ArticulosService.GetDestacados().ToList();
 
             if (inicio.HasValue && fin.HasValue)
-                destacados = destacados.Where(x => x.Comienzo.CompareTo(inicio) >= 0 && x.Comienzo.CompareTo(fin) < 0).ToList();
+                destacados = destacados.Where(x => x.Comienzo.CompareTo(inicio) >= 0 && x.Comienzo.CompareTo(fin) <= 0).ToList();
 
             return new EstadisticaDestacados()
             {

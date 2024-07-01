@@ -7,10 +7,12 @@ import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
 import { BiSolidFileExport } from "react-icons/bi";
 import generatePDF, { Resolution, Margin } from 'react-to-pdf';
+import Image from 'next/image';
+import Logo from '../../public/Fedeteria_Horizontal.png'
 
 const Page = () => {
-    const refSucursal = useRef();
     const refPDF = useRef();
+    const logoFedeteriaPDF = useRef();
     const [sucursales, setSucursales] = useState([]);
     const [estadisticaVentas, setEstadisticaVentas] = useState([]);
     const [estadisticaSucursales, setEstadisticaSucursales] = useState([]);
@@ -123,7 +125,7 @@ const Page = () => {
     };
 
     const options = {
-        filename: "estadisticas.pdf",
+        filename: "Estadísticas - FedeteriApp.pdf",
         // default is `save`
         method: 'save',
         // default is Resolution.MEDIUM = 3, which should be enough, higher values
@@ -162,6 +164,12 @@ const Page = () => {
         fetch(URL)
             .then(data => data.json())
             .then(data => setEstadisticasDestacadas(data));
+    }
+
+    function onClickExport(){
+        logoFedeteriaPDF.current.classList.remove('visually-hidden')
+        generatePDF(getTargetElement, options)
+        logoFedeteriaPDF.current.classList.add('visually-hidden')
     }
 
     useEffect(() => {
@@ -214,12 +222,15 @@ const Page = () => {
         <>
             <div style={{ marginLeft: '250px' }}>
                 <div ref={refPDF} className='d-flex flex-column'>
-                    <div className='d-flex flex-row gap-3' style={{ marginTop: '125px' }}>
-                        <div className='d-flex flex-column gap-3 ps-4 pt-4' style={{ background: 'white', borderRadius: '5px', width: '530px', height: '585px' }}>
-                            <h2 className='mb-4'>Ventas</h2>
+                    <Image ref={logoFedeteriaPDF} className='visually-hidden position-relative align-self-start justify-self-center' style={{top: '25px', left: '25px'}} src={Logo} height={50} />
+                    <div className='d-flex flex-row gap-3' style={{ marginTop: '110px' }}>
+                        <div className='d-flex flex-column gap-3 ps-4 pt-4' style={{ background: 'white', borderRadius: '5px', width: '515px', height: '585px' }}>
+                            <h2 className='mb-2'>Ventas</h2>
                             <div className='ms-3'>
                                 <ReactECharts style={{ height: '28vh', width: '675px' }} option={optionVentas} />
-                                <ReactECharts style={{ height: '28vh', width: '675px', marginTop: '-35px' }} option={optionMontoPorVentas} />
+                                <span className='text-secondary position-relative' style={{bottom: '90px', left: '5px'}}><strong>Ventas totales:</strong> {estadisticaVentas.reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
+                                <ReactECharts style={{ height: '28vh', width: '675px', marginTop: '-45px' }} option={optionMontoPorVentas} />
+                                <span className='text-secondary position-relative' style={{bottom: '90px', left: '5px'}}><strong>Monto total:</strong> ${estadisticaVentas.reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
                             </div>
                         </div>
                         <div className='d-flex flex-row justify-content-center align-items-center gap-3'>
@@ -282,7 +293,7 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-            <button onClick={() => generatePDF(getTargetElement, options)} className='position-absolute bottom-0 end-0 me-3 btn btn-warning shadow' style={{ borderRadius: '32px', marginBottom: '55px' }}>Exportar PDF <BiSolidFileExport size={22} /></button>
+            <button onClick={onClickExport} className='position-absolute bottom-0 end-0 me-3 btn btn-warning shadow' style={{ borderRadius: '32px', marginBottom: '55px' }}>Exportar PDF <BiSolidFileExport size={22} /></button>
         </>
     )
 }
