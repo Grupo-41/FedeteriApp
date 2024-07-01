@@ -114,14 +114,14 @@ namespace FedeteriAPI.Services
             PostVenta(2, new Venta()
             {
                 Cantidad = 2,
-                TruequeID = 22,
+                TruequeID = 17,
                 UsuarioID = 4,
             });
 
             PostVenta(5, new Venta()
             {
                 Cantidad = 5,
-                TruequeID = 22,
+                TruequeID = 20,
                 UsuarioID = 2,
             });
 

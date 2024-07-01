@@ -5,6 +5,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
+import { BiSolidFileExport } from "react-icons/bi";
+
 
 const Page = () => {
     const refSucursal = useRef();
@@ -21,7 +23,7 @@ const Page = () => {
 
 
     const dataMontos = estadisticaVentas.map(x => {
-        const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)`: `($${x.montoTotal})`
+        const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)`: ` ($${x.montoTotal})`
 
         return {
             name: x.sucursal.nombre + monto,
@@ -109,16 +111,16 @@ const Page = () => {
     return (
         <>
             <div className='d-flex flex-row gap-4' style={{ marginTop: '75px' }}>
-                <div className='d-flex flex-column gap-3 ps-4 pt-4' style={{ background: 'white', borderRadius: '5px', width: '530px', height: '75vh' }}>
-                    <h2 className='mb-4'>Ventas</h2>
+                <div className='d-flex flex-column gap-3 ps-4 pt-4' style={{ background: 'white', borderRadius: '5px', width: '530px', height: '74vh' }}>
+                    <h2 className='mb-3'>Ventas</h2>
                     <div className='ms-3'>
                         <ReactECharts style={{ height: '35vh', width: '675px' }} option={optionVentas} />
-                        <ReactECharts style={{ height: '35vh', width: '675px', marginTop: '-25px' }} option={optionMontoPorVentas} />
+                        <ReactECharts style={{ height: '35vh', width: '675px', marginTop: '-35px' }} option={optionMontoPorVentas} />
                     </div>
                 </div>
                 <div>
                     <div className='d-flex flex-column gap-3 p-4' style={{ background: 'white', borderRadius: '5px', width: '400px' }}>
-                        <h2 className='mb-2'>Ferreterias</h2>
+                        <h2 className='mb-2'>Calificación de ferreterías</h2>
                         <ul className="list-group">
                             {estadisticaSucursales.map(x => {
                                 return (
@@ -153,6 +155,7 @@ const Page = () => {
                     </div>
                 </div>
             </div>
+            <button className='position-absolute bottom-0 end-0 me-3 btn btn-warning shadow' style={{borderRadius: '32px', marginBottom: '55px'}}>Exportar PDF <BiSolidFileExport size={22}/></button>
         </>
     )
 }

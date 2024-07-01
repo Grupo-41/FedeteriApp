@@ -163,7 +163,7 @@ namespace FedeteriAPI.Services
             {
                 ArticuloOfrecidoID = 3,
                 ArticuloSolicitadoID = 13
-            }, true, 1, true, DateOnly.FromDateTime(new DateTime(2024, 10, 20)));
+            });
 
             AddHardcodedTrueque(new TruequeIn()
             {
