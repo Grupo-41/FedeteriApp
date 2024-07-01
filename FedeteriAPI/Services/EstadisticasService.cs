@@ -18,6 +18,8 @@ namespace FedeteriAPI.Services
                     ventasPorSucursal.Ventas = ventasPorSucursal.Ventas.Where(x => x.Fecha.Value.CompareTo(inicio) >= 0 && x.Fecha.Value.CompareTo(fin) < 0).ToList();
 
                 ventasPorSucursal.MontoTotal = ventasPorSucursal.Ventas.Sum(x => x.MontoTotal);
+
+                res.Add(ventasPorSucursal);
             }
 
             return res;

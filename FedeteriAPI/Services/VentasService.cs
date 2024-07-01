@@ -110,6 +110,118 @@ namespace FedeteriAPI.Services
                 Image = "Tijera Cortacero.png",
                 Precio = 12500
             });
+
+            PostVenta(2, new Venta()
+            {
+                Cantidad = 2,
+                TruequeID = 22,
+                UsuarioID = 4,
+            });
+
+            PostVenta(5, new Venta()
+            {
+                Cantidad = 5,
+                TruequeID = 22,
+                UsuarioID = 2,
+            });
+
+            PostVenta(1, new Venta()
+            {
+                Cantidad = 3,
+                TruequeID = 17,
+                UsuarioID = 5,
+            });
+
+            PostVenta(7, new Venta()
+            {
+                Cantidad = 7,
+                TruequeID = 17,
+                UsuarioID = 2,
+            });
+
+            PostVenta(8, new Venta()
+            {
+                Cantidad = 1,
+                TruequeID = 20,
+                UsuarioID = 3,
+            });
+
+            PostVenta(4, new Venta()
+            {
+                Cantidad = 5,
+                TruequeID = 18,
+                UsuarioID = 5,
+            });
+
+            PostVenta(6, new Venta()
+            {
+                Cantidad = 3,
+                TruequeID = 18,
+                UsuarioID = 2,
+            });
+
+            PostVenta(10, new Venta()
+            {
+                Cantidad = 8,
+                TruequeID = 19,
+                UsuarioID = 4,
+            });
+
+            PostVenta(7, new Venta()
+            {
+                Cantidad = 2,
+                TruequeID = 19,
+                UsuarioID = 3,
+            });
+
+            PostVenta(3, new Venta()
+            {
+                Cantidad = 3,
+                TruequeID = 23,
+                UsuarioID = 5,
+            });
+
+            PostVenta(1, new Venta()
+            {
+                Cantidad = 3,
+                TruequeID = 23,
+                UsuarioID = 5,
+            });
+
+            PostVenta(2, new Venta()
+            {
+                Cantidad = 3,
+                TruequeID = 23,
+                UsuarioID = 3,
+            });
+
+            PostVenta(5, new Venta()
+            {
+                Cantidad = 3,
+                TruequeID = 23,
+                UsuarioID = 3,
+            });
+
+            PostVenta(7, new Venta()
+            {
+                Cantidad = 1,
+                TruequeID = 23,
+                UsuarioID = 3,
+            });
+
+            PostVenta(5, new Venta()
+            {
+                Cantidad = 8,
+                TruequeID = 21,
+                UsuarioID = 4,
+            });
+
+            PostVenta(3, new Venta()
+            {
+                Cantidad = 5,
+                TruequeID = 21,
+                UsuarioID = 3,
+            });
         }
 
         private static void AddArticulo(ArticuloFedeteria articulo)
@@ -150,6 +262,16 @@ namespace FedeteriAPI.Services
 
             foreach(ArticuloFedeteria a in ArticulosFedeteria)
                 ventas.AddRange(a.Ventas);
+
+            string aaaaaaaaaaaaaaaaaaa = "";
+
+            foreach(Venta v in ventas)
+            {
+                var sucursal = TruequesService.Get(v.TruequeID).Sucursal != null ? TruequesService.Get(v.TruequeID).Sucursal.Nombre : "null";
+                aaaaaaaaaaaaaaaaaaa += v.TruequeID.ToString() + " - " + sucursal + Environment.NewLine;
+            }
+
+            Console.WriteLine(aaaaaaaaaaaaaaaaaaa);
 
             return ventas.Where(x => TruequesService.Get(x.TruequeID).Sucursal.Id == id);
         }

@@ -133,7 +133,7 @@ namespace FedeteriAPI.Services
             {
                 ArticuloOfrecidoID = 0,
                 ArticuloSolicitadoID = 18
-            }, true, 2, true, DateOnly.FromDateTime(new DateTime(2024, 5, 10)));
+            }, true, 5, true, DateOnly.FromDateTime(new DateTime(2024, 5, 10)));
 
             AddHardcodedTrueque(new TruequeIn()
             {
@@ -145,7 +145,7 @@ namespace FedeteriAPI.Services
             {
                 ArticuloOfrecidoID = 6,
                 ArticuloSolicitadoID = 14
-            }, true, 3, true, DateOnly.FromDateTime(new DateTime(2024, 3, 23)));
+            }, true, 1, true, DateOnly.FromDateTime(new DateTime(2024, 3, 23)));
 
             AddHardcodedTrueque(new TruequeIn()
             {
@@ -163,7 +163,7 @@ namespace FedeteriAPI.Services
             {
                 ArticuloOfrecidoID = 3,
                 ArticuloSolicitadoID = 13
-            });
+            }, true, 1, true, DateOnly.FromDateTime(new DateTime(2024, 10, 20)));
 
             AddHardcodedTrueque(new TruequeIn()
             {
