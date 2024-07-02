@@ -30,6 +30,7 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
     const refDuracion = useRef();
     const refCloseModal = useRef();
     const refCloseModal2 = useRef();
+    const refCloseModal3 = useRef();
 
     async function updateArticulo() {
         const URL = 'http://localhost:5000/api/Articulos/' + x.id;
@@ -93,6 +94,15 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
 
     function onClickRemove(e) {
         e.stopPropagation();
+    }
+
+    function onClickUpgrade(e) {
+        e.stopPropagation();
+    }
+
+    function removePublicacion(){
+        if (refCloseModal3 && refCloseModal3.current)
+            refCloseModal3.current.click();
 
         const URL = 'http://localhost:5000/api/Articulos/' + x.id;
 
@@ -107,17 +117,13 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
             })
     }
 
-    function onClickUpgrade(e) {
-        e.stopPropagation();
-    }
-
-    function generatePayment(){
-        if(!refDuracion.current.value){
+    function generatePayment() {
+        if (!refDuracion.current.value) {
             toast.error("Debe ingresar una duración antes de proceder con el pago")
             return;
         }
 
-        setADestacar({...x, duracion: refDuracion.current.value})
+        setADestacar({ ...x, duracion: refDuracion.current.value })
 
         const URL = 'http://localhost:5000/api/payments/create-order/' + refDuracion.current.value;
 
@@ -130,7 +136,7 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                 <div className='position-relative card-img-top'>
                     {
                         x.destacado &&
-                        <div className='badge position-absolute mt-2 ms-2' style={{background: '#509'}}>Destacado ⭐</div>
+                        <div className='badge position-absolute mt-2 ms-2' style={{ background: '#509' }}>Destacado ⭐</div>
                     }
                     <div className='p-1 d-flex justify-content-center'>
                         {url ?
@@ -147,10 +153,10 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                         own &&
                         <div class="btn-group-vertical rounded position-absolute top-0 end-0 mt-2 me-2">
                             {x.tasado && !x.destacado &&
-                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' data-bs-toggle="modal" data-bs-target={"#destacarModal" + x.id} type="button" class="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
+                                <button onClick={(e) => onClickUpgrade(e)} id='btnUpgrade' data-bs-toggle="modal" data-bs-target={"#destacarModal" + x.id} type="button" className="btn btn-success p-1 pt-0 pb-1"><LuArrowBigUpDash color='white' fill='white' size={18} /></button>
                             }
-                            <button onClick={(e) => onClickEdit(e)} data-bs-toggle="modal" data-bs-target={"#articuloModal" + x.id} id='btnEdit' type="button" class="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
-                            <button onClick={(e) => onClickRemove(e)} id='btnRemove' type="button" class="rounded rounded-top-0 btn btn-danger p-1 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
+                            <button onClick={(e) => onClickEdit(e)} data-bs-toggle="modal" data-bs-target={"#articuloModal" + x.id} id='btnEdit' type="button" className="btn btn-warning p-1 pt-0 pb-1"><MdEdit size={16} /></button>
+                            <button onClick={(e) => onClickRemove(e)} data-bs-toggle="modal" data-bs-target={"#eliminarModal" + x.id} id='btnRemove' type="button" className="rounded rounded-top-0 btn btn-danger p-1 pt-0 pb-1"><BsFillTrashFill size={16} /></button>
                             <Tooltip anchorSelect='#btnUpgrade' place='right'>Destacar publicación</Tooltip>
                             <Tooltip anchorSelect='#btnEdit' place='right'>Editar</Tooltip>
                             <Tooltip anchorSelect='#btnRemove' place='right'>Eliminar</Tooltip>
@@ -174,6 +180,23 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
                         : <>Publicado por <a href={`/profile/${x.usuario.id}`}>{x.usuario.nombre + " " + x.usuario.apellido}</a></>}
                 </small>
             }
+            <div className="modal fade" tabindex="-1" id={'eliminarModal' + x.id}>
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3 className="modal-title">Eliminar publicación</h3>
+                            <button type="button" ref={refCloseModal3} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <p>¿Está seguro de que desea eliminar la publicación &quot;{x.descripcion}&quot;?</p>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">No, me arrepentí</button>
+                            <button onClick={removePublicacion} type="button" className="btn btn-danger">Sí, eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="modal fade" id={"destacarModal" + x.id} tabIndex="-1" aria-labelledby={"destacarModalLabel" + x.id} aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
