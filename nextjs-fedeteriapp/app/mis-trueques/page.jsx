@@ -41,7 +41,7 @@ const Page = () => {
                 <div className='mb-5'>
                     <h2 className="ps-2 mb-3 text-center">Trueques pendientes</h2>
                     <div style={{minWidth: '350px', maxWidth: '56rem', maxHeight: '29vh', overflow: 'auto'}} className="d-flex flex-row justify-content-center flex-wrap gap-3 align-self-center">
-                        {trueques.filter(x => x.realizado === null).map(x => <TruequeInfo key={x.id} trueque={x} removeTrueque={() => removeTrueque(x.id)} showSucursalInput={true} cancelable={true} />)}
+                        {trueques.filter(x => x.realizado === null).map(x => <TruequeInfo key={x.id} userId={user.id} trueque={x} removeTrueque={() => removeTrueque(x.id)} showSucursalInput={true} cancelable={true} />)}
                     </div>
                 </div>
             }

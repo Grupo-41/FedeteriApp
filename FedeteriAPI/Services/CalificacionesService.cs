@@ -19,6 +19,111 @@ namespace FedeteriAPI.Services
         {
             CalificacionUsuarios = await FilesService<CalificacionUsuario>.ReadAllAsync(Paths.FILE_CALIFICACIONES_USUARIOS);
             CalificacionSucursales = await FilesService<CalificacionSucursal>.ReadAllAsync(Paths.FILE_CALIFICACIONES_SUCURSALES);
+
+            if(CalificacionSucursales.Count < 5)
+                HardcodeSucursalCalifications();
+
+        }
+
+        private static void HardcodeSucursalCalifications()
+        {
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 5,
+                Rating = 4
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 5,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 4,
+                Rating = 4
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 4,
+                Rating = 4
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 4,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 3,
+                Rating = 3
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 3,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 3,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 2,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 2,
+                Rating = 3
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 2,
+                Rating = 3
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 1,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 1,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 1,
+                Rating = 5
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 1,
+                Rating = 4
+            });
+
+            CalificacionSucursales.Add(new CalificacionSucursal()
+            {
+                SucursalCalificadaID = 0,
+                Rating = 4
+            });
+
+            WriteAll();
         }
 
         internal static IEnumerable<CalificacionSucursalResult> GetCalificacionesSucursales()

@@ -245,7 +245,7 @@ const Page = () => {
                                         {estadisticaSucursales.map(x => {
                                             return (
                                                 <li key={x.sucursal.id} className="list-group-item d-flex justify-content-between align-items-start">
-                                                    {x.sucursal.nombre} - {x.votantes} votos
+                                                    {x.sucursal.nombre} - {x.votantes} voto{x.votantes > 1 ? 's' : ''}
                                                     <span className="badge rounded-pill" style={{ background: '#a5a' }}>{x.rating.toFixed(1)} ⭐</span>
                                                 </li>
                                             );

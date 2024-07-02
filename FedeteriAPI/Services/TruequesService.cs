@@ -328,6 +328,30 @@ namespace FedeteriAPI.Services
             SetTruequeAceptado(truequeId, false);
         }
 
+        internal static void CancelarTrueque(int userId, int truequeId)
+        {
+            TruequeOut t = GetTruequeById(truequeId);
+            Trueque tFile = GetTruequeFileById(truequeId);
+
+            if (t != null && tFile != null)
+            {
+                t.ArticuloOfrecido.Truequeado = false;
+                t.ArticuloSolicitado.Truequeado = false;
+                t.Aceptado = false;
+                tFile.Aceptado = false;
+                ArticulosService.WriteAll();
+                WriteAll();
+            }
+
+            ArticuloOut toNotify = t.ArticuloSolicitado.Usuario.Id == userId ? t.ArticuloOfrecido : t.ArticuloSolicitado;
+
+            EmailService.SendEmail(toNotify.Usuario.Email,
+                                    "Trueque cancelado - FedeteriApp" ,
+                                    String.Format("Estimado/a {0}, lamentamos informarle que el trueque por su artículo {1} fue cancelado.<br/> Mayor suerte la próxima!",
+                                    toNotify.Usuario.Nombre, toNotify.Descripcion));
+
+        }
+
         public static void UpdateSucursal(int truequeId, int sucursalId)
         {
             TruequeOut t = GetTruequeById(truequeId);

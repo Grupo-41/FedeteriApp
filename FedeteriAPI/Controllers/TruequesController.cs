@@ -161,6 +161,16 @@ namespace FedeteriAPI.Controllers
         }
 
         /// <summary>
+        /// Cancela un trueque, marcándolo como rechazado
+        /// </summary>
+        /// <param name="truequeId">ID del trueque</param>
+        [HttpPut("[controller]/cancelar-trueque/{userId}/{truequeId}")]
+        public void PutCancelarTrueque(int userId, int truequeId)
+        {
+            TruequesService.CancelarTrueque(userId, truequeId);
+        }
+
+        /// <summary>
         /// Marca un trueque como realizado
         /// </summary>
         /// <param name="truequeId">ID del trueque</param>

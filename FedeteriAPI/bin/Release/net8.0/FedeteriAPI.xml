@@ -377,6 +377,12 @@
             </summary>
             <param name="truequeId">ID del trueque</param>
         </member>
+        <member name="M:FedeteriAPI.Controllers.TruequesController.PutCancelarTrueque(System.Int32,System.Int32)">
+            <summary>
+            Cancela un trueque, marcándolo como rechazado
+            </summary>
+            <param name="truequeId">ID del trueque</param>
+        </member>
         <member name="M:FedeteriAPI.Controllers.TruequesController.PutValidarTrueque(System.Int32)">
             <summary>
             Marca un trueque como realizado

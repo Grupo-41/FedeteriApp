@@ -14,14 +14,16 @@ import { MdDeleteForever } from 'react-icons/md';
 
 
 
-const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [], 
-  toValidate = false, toAccept = false, 
-  showSucursalInput = false, showSucursal = false, 
+const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
+  toValidate = false, toAccept = false,
+  showSucursalInput = false, showSucursal = false,
   cancelable = false, calificable = false }) => {
   const [sucursales, setSucursales, removeSucursales] = useLocalStorage('sucursales', []);
   const [toCalificate, setToCalificate] = useState(false);
-  const [articuloVenta, setArticuloVenta] = useState({ descripcion: 'Artículo a cargar', 
-                                                        image: 'Placeholder.png'})
+  const [articuloVenta, setArticuloVenta] = useState({
+    descripcion: 'Artículo a cargar',
+    image: 'Placeholder.png'
+  })
   const [sellQuantity, setSellQuantity] = useState(1);
   const refSucursal = useRef();
   const user1 = trueque.articuloOfrecido.usuario;
@@ -30,28 +32,31 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
   const articulo2 = trueque.articuloSolicitado;
   const sucursal = trueque.sucursal;
   const refCodigoProducto = useRef();
+  const btnCloseModalCancelTrueque = useRef();
 
   useEffect(() => {
     if (showSucursalInput && sucursal)
       refSucursal.current.value = sucursal.id;
 
-    if(calificable){
+    if (calificable) {
       const URL = `http://localhost:5000/api/Usuarios/${userId}/Trueques/${trueque.id}/calificado`
 
       fetch(URL).then(data => data.json()).then(data => setToCalificate(!data));
     }
   }, [])
 
-  function chargeArticle(){
-    if(refCodigoProducto.current && refCodigoProducto.current.value && (refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length))
+  function chargeArticle() {
+    if (refCodigoProducto.current && refCodigoProducto.current.value && (refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length))
       setArticuloVenta(articulosFedeteria[Number(refCodigoProducto.current.value)]);
-    else{
-      if(refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length)
-        setArticuloVenta({ descripcion: 'Artículo a cargar', 
-                            image: 'Placeholder.png'})
+    else {
+      if (refCodigoProducto.current.value >= 0 && refCodigoProducto.current.value < articulosFedeteria.length)
+        setArticuloVenta({
+          descripcion: 'Artículo a cargar',
+          image: 'Placeholder.png'
+        })
       else
-        setArticuloVenta({ descripcion: 'El artículo ingresado no existe', image: 'Placeholder.png'})
-        
+        setArticuloVenta({ descripcion: 'El artículo ingresado no existe', image: 'Placeholder.png' })
+
     }
   }
 
@@ -67,15 +72,31 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
     });
   }
 
-  function acceptTrueque(accept) { 
+  function acceptTrueque(accept) {
     let URL = 'http://localhost:5000/api/Trueques/'
     URL += accept ? 'aceptar-trueque/' : 'rechazar-trueque/'
     URL += trueque.id
 
-    if(removeTrueque)
+    if (removeTrueque)
       removeTrueque(trueque.id);
 
-    toast.success(accept ? 'Trueque aceptado con éxito.' : cancelable ? 'Trueque cancelado con éxito.' : 'Trueque rechazado con éxito.')
+    toast.success(accept ? 'Trueque aceptado con éxito.' : 'Trueque rechazado con éxito.')
+
+    fetch(URL, {
+      method: 'PUT'
+    });
+  }
+
+  function cancelTrueque() {
+    const URL = `http://localhost:5000/api/Trueques/cancelar-trueque/${userId}/${trueque.id}`
+
+    if(btnCloseModalCancelTrueque && btnCloseModalCancelTrueque.current)
+      btnCloseModalCancelTrueque.current.click();
+
+    if (removeTrueque)
+      removeTrueque(trueque.id);
+
+    toast.success('Trueque cancelado con éxito.')
 
     fetch(URL, {
       method: 'PUT'
@@ -132,12 +153,12 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
     return false;
   }
 
-  function addQuantity(){
+  function addQuantity() {
     setSellQuantity(sellQuantity + 1);
   }
 
-  function subQuantity(){
-    if(sellQuantity > 1)
+  function subQuantity() {
+    if (sellQuantity > 1)
       setSellQuantity(sellQuantity - 1)
   }
 
@@ -145,10 +166,10 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
     <>
       <div className="card" style={{ maxWidth: '800px', width: '100%' }}>
         <div className="d-flex mx-3 flex-row justify-content-center align-items-center">
-          { cancelable &&
+          {cancelable &&
             <>
-              <a id='btnCancel' onClick={() => acceptTrueque(false)} className='position-absolute btn btn-danger py-2 pt-1 px-1 rounded-start-0' style={{top: '5%', left:'100%'}}><MdDeleteForever size={20} /></a>
-              <Tooltip style={{zIndex: '500'}} anchorSelect='#btnCancel'>Cancelar trueque</Tooltip>
+              <a id='btnCancel' data-bs-toggle="modal" data-bs-target={'#cancelarTruequeModal'+trueque.id} className='position-absolute btn btn-danger py-2 pt-1 px-1 rounded-start-0' style={{ top: '5%', left: '100%' }}><MdDeleteForever size={20} /></a>
+              <Tooltip style={{ zIndex: '500' }} anchorSelect='#btnCancel'>Cancelar trueque</Tooltip>
             </>
           }
           <div style={{ width: '20.5%' }}>
@@ -168,7 +189,7 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
           </div>
           <div>
             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput || trueque.fechaRealizacion) && (showSucursal ? { marginBottom: '8px' } : toCalificate ? {marginBottom: '40px'} : { marginBottom: '25px' })} size={42} />
+              <TbArrowsExchange2 style={(toValidate || toAccept || showSucursalInput || trueque.fechaRealizacion) && (showSucursal ? { marginBottom: '8px' } : toCalificate ? { marginBottom: '40px' } : { marginBottom: '25px' })} size={42} />
               {
                 toValidate &&
                 <div className='d-flex flex-row gap-3 position-absolute bottom-0 mb-3'>
@@ -204,12 +225,29 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
                   <em>{trueque.sucursal.nombre}</em>
                 </div>
               }
-              { trueque && trueque.fechaRealizacion &&
+              {trueque && trueque.fechaRealizacion &&
                 <div className='position-absolute bottom-0 mb-4 text-center' style={{ zoom: '0.8' }}>
                   <p className="card-subtitle text-body-secondary ms-1">{trueque.fechaRealizacion.split("-").reverse().join("/")}</p>
-                  { toCalificate && <a href={`calificar/${trueque.id}`} className='link link-opacity-75 link-underline-opacity-25 link-underline-opacity-75-hover link-offset-2 link-success'>Calificar trueque</a> }
+                  {toCalificate && <a href={`calificar/${trueque.id}`} className='link link-opacity-75 link-underline-opacity-25 link-underline-opacity-75-hover link-offset-2 link-success'>Calificar trueque</a>}
                 </div>
               }
+            </div>
+          </div>
+          <div className="modal fade" tabindex="-1" id={'cancelarTruequeModal'+trueque.id}>
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h3 className="modal-title">Cancelar trueque</h3>
+                  <button type="button" ref={btnCloseModalCancelTrueque} className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                  <p>¿Está seguro de que desea cancelar el trueque?</p>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">No, me arrepentí</button>
+                  <button onClick={cancelTrueque} type="button" className="btn btn-danger">Sí, cancelar trueque</button>
+                </div>
+              </div>
             </div>
           </div>
           <div className="modal fade" id="ventaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="ventaModalLabel" aria-hidden="true">
@@ -237,8 +275,8 @@ const TruequeInfo = ({ trueque, removeTrueque, userId, articulosFedeteria = [],
                           <div className='d-flex flex-row gap-2'>
                             <input disabled type="number" className="form-control border border-dark" id="cantidadProducto" value={sellQuantity} required />
                             <div className='btn-group'>
-                              <div onClick={() => addQuantity()} className='btn border border-black py-1 px-2' style={{background: '#e7ab12'}}><GrFormAdd size={20}/></div>
-                              <div onClick={() => subQuantity()} className='btn border border-black py-1 px-2' style={{background: '#e7ab12'}}><GrFormSubtract size={20}/></div>
+                              <div onClick={() => addQuantity()} className='btn border border-black py-1 px-2' style={{ background: '#e7ab12' }}><GrFormAdd size={20} /></div>
+                              <div onClick={() => subQuantity()} className='btn border border-black py-1 px-2' style={{ background: '#e7ab12' }}><GrFormSubtract size={20} /></div>
                             </div>
                           </div>
                         </div>

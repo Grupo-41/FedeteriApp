@@ -61,6 +61,7 @@ const Page = () => {
                                 return (
                                     <TruequeInfo key={x.id}
                                         trueque={x}
+                                        userId={user.id}
                                         removeTrueque={(id) => removeTrueque(id, solicitudes, setSolicitudes)}
                                         toValidate={false}
                                         cancelable={true} />
