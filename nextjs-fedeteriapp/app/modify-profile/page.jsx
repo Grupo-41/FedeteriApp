@@ -48,7 +48,9 @@ const Page = () => {
         refApellido.current.value = user.apellido;
         refEmail.current.value = user.email;
         refTelefono.current.value = user.telefono;
-        refSucursal.current.value = user.sucursal.id;
+
+        if(user && user.sucursal)
+            refSucursal.current.value = user.sucursal.id;
     }, [user])
 
     function togglePassVisibility(){

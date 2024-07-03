@@ -84,7 +84,7 @@ const Navbar = () => {
                             {user && (user.esEmpleado || user.esAdmin) &&
                                 <>
                                     <li class="nav-item dropdown">
-                                        <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
+                                        <button class="btn dropdown-toggle text-body-secondary" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
                                             Administración
                                         </button>
                                         <ul class="dropdown-menu px-2" style={{ background: '#e7ab12' }}>

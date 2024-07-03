@@ -75,7 +75,7 @@ const Page = () => {
                         <input type="text" value={user.sucursal.nombre + " - " + user.sucursal.direccion} className="form-control border border-dark" id="fecha" disabled />
                     </div>
                 }
-                <div className='d-flex flex-row justify-content-around gap-3 mt-4'>
+                <div className='d-flex flex-row justify-content-around gap-3 mt-3'>
                     <input onClick={() => { window.location.href = '/modify-profile' }} type='button' className="btn w-50" style={{ background: '#e7ab12' }} value="Modificar perfil" />
                     <input onClick={() => { window.location.href = '/canjear-puntos' }} type='button' className="btn w-50" style={{ background: '#e7ab12' }} value="Canjear puntos" />
                 </div>

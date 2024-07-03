@@ -17,7 +17,7 @@ const Page = () => {
     }, [])
 
     useEffect(() => {
-        if((user === null || !user.esEmpleado) && typeof window !== "undefined")
+        if((user === null || (!user.esEmpleado && !user.esAdmin)) && typeof window !== "undefined")
             window.location.href = "/"
     }, [user])
 
