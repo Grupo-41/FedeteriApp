@@ -87,7 +87,7 @@ const Navbar = () => {
                                         <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#e7ab12 ' }}>
                                             Administración
                                         </button>
-                                        <ul class="dropdown-menu" style={{ background: '#e7ab12 ' }}>
+                                        <ul class="dropdown-menu px-2" style={{ background: '#e7ab12' }}>
                                             <li key={"tasarArticulo"} className="nav-item">
                                                 <a className="nav-link" href="/tasar-articulos">Tasar artículos</a>
                                             </li>

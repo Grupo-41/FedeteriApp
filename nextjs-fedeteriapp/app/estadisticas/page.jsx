@@ -28,7 +28,7 @@ const Page = () => {
     let dataVentas = [];
     let dataMontos = [];
 
-    if (user.esAdmin) {
+    if (user && user.esAdmin) {
         dataVentas = estadisticaVentas.map(x => {
             return {
                 name: x.sucursal.nombre + ` (${x.ventas.length})`,
@@ -36,7 +36,7 @@ const Page = () => {
             }
         }).sort((a, b) => b.value - a.value);
     }
-    if (user.esEmpleado) {
+    else {
         dataVentas = estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
             return {
                 name: x.sucursal.nombre + ` (${x.ventas.length})`,
@@ -45,8 +45,7 @@ const Page = () => {
         }).sort((a, b) => b.value - a.value);
     }
 
-
-    if (user.esAdmin) {
+    if (user && user.esAdmin) {
         dataMontos = estadisticaVentas.map(x => {
             const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)` : ` ($${x.montoTotal})`
 
@@ -55,8 +54,7 @@ const Page = () => {
                 value: x.montoTotal
             }
         }).sort((a, b) => b.value - a.value);
-    }
-    if (user.esEmpleado) {
+    } else {
         dataMontos = estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
             const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)` : ` ($${x.montoTotal})`
 
@@ -234,12 +232,12 @@ const Page = () => {
         let newDataTrueques = [];
 
         // Crear la estructura base de newDataTrueques
-        if (user.esAdmin) {
+        if (user && user.esAdmin) {
             newDataTrueques = sucursales.map(x => ({
                 name: x.nombre,
                 value: 0
             }));
-        } else if (user.esEmpleado) {
+        } else {
             newDataTrueques = sucursales
                 .filter(c => c.nombre === user.sucursal.nombre)
                 .map(x => ({
@@ -249,7 +247,7 @@ const Page = () => {
         }
 
         // Llenar los valores correspondientes
-        if (user.esAdmin) {
+        if (user && user.esAdmin) {
             for (let i = 0; i < sucursales.length; i++) {
                 newDataTrueques[i].value = trueques.filter(x =>
                     x.sucursal.id === sucursales[i].id &&
@@ -258,7 +256,7 @@ const Page = () => {
                 ).length;
                 newDataTrueques[i].name = `${newDataTrueques[i].name} (${newDataTrueques[i].value})`;
             }
-        } else if (user.esEmpleado) {
+        } else {
             newDataTrueques.forEach(item => {
                 item.value = trueques.filter(x =>
                     x.sucursal.nombre === user.sucursal.nombre &&
@@ -285,37 +283,21 @@ const Page = () => {
                             <h2 className='mb-2'>Ventas</h2>
                             <div className='ms-3'>
                                 <ReactECharts style={{ height: '28vh', width: '675px' }} option={optionVentas} />
-                                {user.esAdmin &&
-                                    <>
-                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Ventas totales:</strong> {estadisticaVentas.reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
-
-                                    </>
-
+                                {user && user.esAdmin &&
+                                    <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Ventas totales:</strong> {estadisticaVentas.reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
                                 }
-                                {user.esEmpleado &&
-                                    <>
-                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Ventas totales:</strong> {estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
-
-                                    </>
-
+                                {user && user.esEmpleado &&
+                                    <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Ventas totales:</strong> {estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
                                 }
 
                                 <ReactECharts style={{ height: '28vh', width: '675px', marginTop: '-45px' }} option={optionMontoPorVentas} />
 
-                                {user.esAdmin &&
-                                    <>
-                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Monto total:</strong> ${estadisticaVentas.reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
-
-                                    </>
-
+                                {user && user.esAdmin &&
+                                    <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Monto total:</strong> ${estadisticaVentas.reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
                                 }
 
-                                {user.esEmpleado &&
-                                    <>
-                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Monto total:</strong> ${estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
-
-                                    </>
-
+                                {user && user.esEmpleado &&
+                                    <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Monto total:</strong> ${estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
                                 }
                             </div>
                         </div>
@@ -326,15 +308,15 @@ const Page = () => {
                             </div>
                             <div className='d-flex flex-column gap-3 justify-content-center h-100'>
                                 <div className='d-flex flex-column gap-3 p-4' style={{ background: 'white', borderRadius: '5px', width: '400px' }}>
-                                    {user.esAdmin &&
+                                    {   user && user.esAdmin &&
                                         <h2 className='mb-2'>Ferreterias</h2>
                                     }
                                     {
-                                        user.esEmpleado &&
+                                         user && user.esEmpleado &&
                                         <h2 className='mb-2'>Ferreteria</h2>
                                     }
                                     <ul className="list-group">
-                                        {user.esAdmin && estadisticaSucursales.map(x => {
+                                        { user && user.esAdmin && estadisticaSucursales.map(x => {
                                             return (
                                                 <li key={x.sucursal.id} className="list-group-item d-flex justify-content-between align-items-start">
                                                     {x.sucursal.nombre} - {x.votantes} voto{x.votantes > 1 ? 's' : ''}
@@ -342,7 +324,7 @@ const Page = () => {
                                                 </li>
                                             );
                                         })}
-                                        {user.esEmpleado && estadisticaSucursales.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
+                                        {user && user.esEmpleado && estadisticaSucursales.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
                                             return (
                                                 <li key={x.sucursal.id} className="list-group-item d-flex justify-content-between align-items-start">
                                                     {x.sucursal.nombre} - {x.votantes} voto{x.votantes > 1 ? 's' : ''}
@@ -352,7 +334,7 @@ const Page = () => {
                                         })}
                                     </ul>
                                 </div>
-                                {user.esAdmin && <>
+                                {user && user.esAdmin && <>
                                     <div className='d-flex flex-column gap-3 p-4' style={{ background: 'white', borderRadius: '5px', width: '400px', height: 'min-content' }}>
 
                                         <h2 className='mb-2'>Publicaciones destacadas</h2>
