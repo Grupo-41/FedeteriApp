@@ -9,8 +9,10 @@ import { BiSolidFileExport } from "react-icons/bi";
 import generatePDF, { Resolution, Margin } from 'react-to-pdf';
 import Image from 'next/image';
 import Logo from '../../public/Fedeteria_Horizontal.png'
+import { useLocalStorage } from 'react-use'
 
 const Page = () => {
+    const [user, setUser, removeUser] = useLocalStorage('user', null);
     const refPDF = useRef();
     const logoFedeteriaPDF = useRef();
     const [sucursales, setSucursales] = useState([]);
@@ -19,33 +21,60 @@ const Page = () => {
     const [estadisticasDestacadas, setEstadisticasDestacadas] = useState([]);
     const [dataTrueques, setDataTrueques] = useState([]);
     const [trueques, setTrueques] = useState([]);
-    const [startDate, setStartDate] = useState(dayjs('2024-01-01'));
+    const [startDate, setStartDate] = useState(dayjs('2023-01-01'));
     const [endDate, setEndDate] = useState(dayjs());
 
-
     const getTargetElement = () => refPDF.current;
+    let dataVentas = [];
+    let dataMontos = [];
 
-    const dataVentas = estadisticaVentas.map(x => {
-        return {
-            name: x.sucursal.nombre + ` (${x.ventas.length})`,
-            value: x.ventas.length
-        }
-    }).sort((a, b) => b.value - a.value);
+    if (user.esAdmin) {
+        dataVentas = estadisticaVentas.map(x => {
+            return {
+                name: x.sucursal.nombre + ` (${x.ventas.length})`,
+                value: x.ventas.length
+            }
+        }).sort((a, b) => b.value - a.value);
+    }
+    if (user.esEmpleado) {
+        dataVentas = estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
+            return {
+                name: x.sucursal.nombre + ` (${x.ventas.length})`,
+                value: x.ventas.length
+            }
+        }).sort((a, b) => b.value - a.value);
+    }
 
-    const dataMontos = estadisticaVentas.map(x => {
-        const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)` : ` ($${x.montoTotal})`
 
-        return {
-            name: x.sucursal.nombre + monto,
-            value: x.montoTotal
-        }
-    }).sort((a, b) => b.value - a.value);
+    if (user.esAdmin) {
+        dataMontos = estadisticaVentas.map(x => {
+            const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)` : ` ($${x.montoTotal})`
+
+            return {
+                name: x.sucursal.nombre + monto,
+                value: x.montoTotal
+            }
+        }).sort((a, b) => b.value - a.value);
+    }
+    if (user.esEmpleado) {
+        dataMontos = estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
+            const monto = x.montoTotal > 1000 ? ` ($${(x.montoTotal / 1000).toFixed(1)}k)` : ` ($${x.montoTotal})`
+
+            return {
+                name: x.sucursal.nombre + monto,
+                value: x.montoTotal
+            }
+        }).sort((a, b) => b.value - a.value);
+    }
 
     const optionVentas = {
         title: {
             text: 'Cantidad de ventas',
             subtext: 'Por sucursal',
             left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
         },
         legend: {
             orient: 'vertical',
@@ -166,7 +195,7 @@ const Page = () => {
             .then(data => setEstadisticasDestacadas(data));
     }
 
-    function onClickExport(){
+    function onClickExport() {
         logoFedeteriaPDF.current.classList.remove('visually-hidden')
         generatePDF(getTargetElement, options)
         logoFedeteriaPDF.current.classList.add('visually-hidden')
@@ -202,17 +231,45 @@ const Page = () => {
     }, [startDate, endDate])
 
     useEffect(() => {
-        let newDataTrueques = sucursales.map(x => {
-            return {
+        let newDataTrueques = [];
+
+        // Crear la estructura base de newDataTrueques
+        if (user.esAdmin) {
+            newDataTrueques = sucursales.map(x => ({
                 name: x.nombre,
                 value: 0
-            }
-        })
-
-        for (let i = 0; i < sucursales.length; i++) {
-            newDataTrueques[i].value = trueques.filter(x => x.sucursal.id === sucursales[i].id && dayjs(x.fechaRealizacion).isAfter(startDate) && dayjs(x.fechaRealizacion).isBefore(endDate)).length;
-            newDataTrueques[i].name = `${newDataTrueques[i].name} (${newDataTrueques[i].value})`
+            }));
+        } else if (user.esEmpleado) {
+            newDataTrueques = sucursales
+                .filter(c => c.nombre === user.sucursal.nombre)
+                .map(x => ({
+                    name: x.nombre,
+                    value: 0
+                }));
         }
+
+        // Llenar los valores correspondientes
+        if (user.esAdmin) {
+            for (let i = 0; i < sucursales.length; i++) {
+                newDataTrueques[i].value = trueques.filter(x =>
+                    x.sucursal.id === sucursales[i].id &&
+                    dayjs(x.fechaRealizacion).isAfter(startDate) &&
+                    dayjs(x.fechaRealizacion).isBefore(endDate)
+                ).length;
+                newDataTrueques[i].name = `${newDataTrueques[i].name} (${newDataTrueques[i].value})`;
+            }
+        } else if (user.esEmpleado) {
+            newDataTrueques.forEach(item => {
+                item.value = trueques.filter(x =>
+                    x.sucursal.nombre === user.sucursal.nombre &&
+                    x.sucursal.id === sucursales.find(s => s.nombre === user.sucursal.nombre).id &&
+                    dayjs(x.fechaRealizacion).isAfter(startDate) &&
+                    dayjs(x.fechaRealizacion).isBefore(endDate)
+                ).length;
+                item.name = `${item.name} (${item.value})`;
+            });
+        }
+
 
         newDataTrueques = newDataTrueques.sort((a, b) => b.value - a.value);
         setDataTrueques(newDataTrueques);
@@ -222,15 +279,44 @@ const Page = () => {
         <>
             <div style={{ marginLeft: '250px' }}>
                 <div ref={refPDF} className='d-flex flex-column'>
-                    <Image ref={logoFedeteriaPDF} className='visually-hidden position-relative align-self-start justify-self-center' style={{top: '25px', left: '25px'}} src={Logo} height={50} />
+                    <Image ref={logoFedeteriaPDF} className='visually-hidden position-relative align-self-start justify-self-center' style={{ top: '25px', left: '25px' }} src={Logo} height={50} />
                     <div className='d-flex flex-row gap-3' style={{ marginTop: '110px' }}>
                         <div className='d-flex flex-column gap-3 ps-4 pt-4' style={{ background: 'white', borderRadius: '5px', width: '515px', height: '585px' }}>
                             <h2 className='mb-2'>Ventas</h2>
                             <div className='ms-3'>
                                 <ReactECharts style={{ height: '28vh', width: '675px' }} option={optionVentas} />
-                                <span className='text-secondary position-relative' style={{bottom: '90px', left: '5px'}}><strong>Ventas totales:</strong> {estadisticaVentas.reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
+                                {user.esAdmin &&
+                                    <>
+                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Ventas totales:</strong> {estadisticaVentas.reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
+
+                                    </>
+
+                                }
+                                {user.esEmpleado &&
+                                    <>
+                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Ventas totales:</strong> {estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).reduce((partialSum, a) => partialSum + a.ventas.length, 0)}</span>
+
+                                    </>
+
+                                }
+
                                 <ReactECharts style={{ height: '28vh', width: '675px', marginTop: '-45px' }} option={optionMontoPorVentas} />
-                                <span className='text-secondary position-relative' style={{bottom: '90px', left: '5px'}}><strong>Monto total:</strong> ${estadisticaVentas.reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
+
+                                {user.esAdmin &&
+                                    <>
+                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Monto total:</strong> ${estadisticaVentas.reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
+
+                                    </>
+
+                                }
+
+                                {user.esEmpleado &&
+                                    <>
+                                        <span className='text-secondary position-relative' style={{ bottom: '90px', left: '5px' }}><strong>Monto total:</strong> ${estadisticaVentas.filter(x => x.sucursal.nombre === user.sucursal.nombre).reduce((partialSum, a) => partialSum + a.montoTotal, 0)}</span>
+
+                                    </>
+
+                                }
                             </div>
                         </div>
                         <div className='d-flex flex-row justify-content-center align-items-center gap-3'>
@@ -240,9 +326,23 @@ const Page = () => {
                             </div>
                             <div className='d-flex flex-column gap-3 justify-content-center h-100'>
                                 <div className='d-flex flex-column gap-3 p-4' style={{ background: 'white', borderRadius: '5px', width: '400px' }}>
-                                    <h2 className='mb-2'>Ferreterias</h2>
+                                    {user.esAdmin &&
+                                        <h2 className='mb-2'>Ferreterias</h2>
+                                    }
+                                    {
+                                        user.esEmpleado &&
+                                        <h2 className='mb-2'>Ferreteria</h2>
+                                    }
                                     <ul className="list-group">
-                                        {estadisticaSucursales.map(x => {
+                                        {user.esAdmin && estadisticaSucursales.map(x => {
+                                            return (
+                                                <li key={x.sucursal.id} className="list-group-item d-flex justify-content-between align-items-start">
+                                                    {x.sucursal.nombre} - {x.votantes} voto{x.votantes > 1 ? 's' : ''}
+                                                    <span className="badge rounded-pill" style={{ background: '#a5a' }}>{x.rating.toFixed(1)} ⭐</span>
+                                                </li>
+                                            );
+                                        })}
+                                        {user.esEmpleado && estadisticaSucursales.filter(x => x.sucursal.nombre === user.sucursal.nombre).map(x => {
                                             return (
                                                 <li key={x.sucursal.id} className="list-group-item d-flex justify-content-between align-items-start">
                                                     {x.sucursal.nombre} - {x.votantes} voto{x.votantes > 1 ? 's' : ''}
@@ -252,18 +352,23 @@ const Page = () => {
                                         })}
                                     </ul>
                                 </div>
-                                <div className='d-flex flex-column gap-3 p-4' style={{ background: 'white', borderRadius: '5px', width: '400px', height: 'min-content' }}>
-                                    <h2 className='mb-2'>Publicaciones destacadas</h2>
-                                    <div className="list-group">
-                                        <p className='list-group-item' style={{ marginBottom: '0' }}><strong>Cantidad:</strong> {estadisticasDestacadas.count}</p>
-                                        <p className='list-group-item' style={{ marginTop: '0' }} > <strong>Monto:</strong> ${estadisticasDestacadas.montoTotal}</p>
+                                {user.esAdmin && <>
+                                    <div className='d-flex flex-column gap-3 p-4' style={{ background: 'white', borderRadius: '5px', width: '400px', height: 'min-content' }}>
+
+                                        <h2 className='mb-2'>Publicaciones destacadas</h2>
+                                        <div className="list-group">
+                                            <p className='list-group-item' style={{ marginBottom: '0' }}><strong>Cantidad:</strong> {estadisticasDestacadas.count}</p>
+                                            <p className='list-group-item' style={{ marginTop: '0' }} > <strong>Monto:</strong> ${estadisticasDestacadas.montoTotal}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </>
+                                }
+
                             </div>
                         </div>
                     </div>
                     <div className='align-self-center justify-self-center ms-4 mt-5'>
-                        <small className='text-body-secondary' style={{pointerEvents: 'none', userSelect: 'none'}}>Rango de fecha: {startDate.format('DD/MM/YYYY')} - {endDate.format('DD/MM/YYYY')}</small>
+                        <small className='text-body-secondary' style={{ pointerEvents: 'none', userSelect: 'none' }}>Rango de fecha: {startDate.format('DD/MM/YYYY')} - {endDate.format('DD/MM/YYYY')}</small>
                     </div>
                 </div>
             </div>

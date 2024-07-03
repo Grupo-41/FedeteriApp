@@ -100,7 +100,7 @@ const Publicacion = ({ item: x, removeItem = null, own, url = null, hideOwner = 
         e.stopPropagation();
     }
 
-    function removePublicacion(){
+    function removePublicacion() {
         if (refCloseModal3 && refCloseModal3.current)
             refCloseModal3.current.click();
 
